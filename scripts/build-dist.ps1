@@ -153,6 +153,17 @@ $sharedSrcMirror = Join-Path $releaseDir "shared\src"
 New-Item -ItemType Directory -Path $sharedSrcMirror -Force | Out-Null
 Copy-Item -Recurse (Join-Path $repoRoot "packages\shared\dist\*") $sharedSrcMirror
 
+# 4f-2. shared/package.json（必需：shared/src/*.js 因相对路径导入被 backend/dist 引用，
+#       必须声明 type:module，否则 Node.js 默认按 CommonJS 处理，ESM 命名导出失效）
+$sharedMirrorPkg = @{
+  name    = "@ai-rpg/shared-mirror"
+  version = $appVersion
+  type    = "module"
+  private = $true
+}
+$sharedMirrorPkg | ConvertTo-Json -Depth 10 | Set-Content -Path (Join-Path $releaseDir "shared\package.json") -Encoding UTF8
+Write-Host "  Generated shared/package.json (type:module)"
+
 # 4g. VERSION 文件（运行时只读，供启动器/前端/后端读取）
 Write-Host "  Copying VERSION ..."
 Copy-Item $versionFile (Join-Path $releaseDir "VERSION") -Force

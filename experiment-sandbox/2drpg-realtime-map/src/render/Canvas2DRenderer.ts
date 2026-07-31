@@ -58,18 +58,25 @@ const EMOJI_FONT = '"Segoe UI Emoji", "Noto Color Emoji", "Apple Color Emoji", s
 /** 遮挡穿透系数（协议 v3 §4：玩家被建筑阻挡时外壳不透明度 —— 可辨轮廓又不喧宾夺主） */
 const OCCLUSION_ALPHA = 0.38;
 
-/** 过渡带检测的四邻方向（协议 v3 §7） */
-const EDGE_DIRS: readonly { dx: number; dy: number }[] = [
-  { dx: 1, dy: 0 },
-  { dx: -1, dy: 0 },
-  { dx: 0, dy: 1 },
-  { dx: 0, dy: -1 },
+/** 过渡带检测的方向（协议 v3 §7：4 正交棱边 + 4 对角顶点） */
+const EDGE_DIRS: readonly { dx: number; dy: number; kind: 'edge' | 'corner' }[] = [
+  { dx: 1, dy: 0, kind: 'edge' },   // 东
+  { dx: -1, dy: 0, kind: 'edge' },  // 西
+  { dx: 0, dy: 1, kind: 'edge' },   // 南
+  { dx: 0, dy: -1, kind: 'edge' },  // 北
+  { dx: 1, dy: 1, kind: 'corner' }, // 东南
+  { dx: -1, dy: 1, kind: 'corner' }, // 西南
+  { dx: 1, dy: -1, kind: 'corner' }, // 东北
+  { dx: -1, dy: -1, kind: 'corner' }, // 西北
 ];
+
+/** 对角方向起始索引 */
+const DIAGONAL_START = 4;
 
 /** 过渡带缓存超采样倍率（zoom ≤ 2 清晰；2.0–2.5 轻微柔化可接受 —— 过渡带本是柔边） */
 const BAND_SS = 2;
-/** 过渡带缓存 LRU 上限（理论组合 15 瓦片 × 16 方向组合 × 4 变体，实际出现极少，超限防异常膨胀） */
-const BAND_CACHE_LIMIT = 256;
+/** 过渡带缓存LRU上限（理论组合 15 瓦片 × 256 方向组合 × 4 变体，实际出现极少，超限防异常膨胀） */
+const BAND_CACHE_LIMIT = 1024;
 
 export class Canvas2DRenderer {
   private canvas: HTMLCanvasElement | null = null;
@@ -547,6 +554,8 @@ export class Canvas2DRenderer {
       this.bandCache.clear();
     }
     // 异类方向按邻居瓦片类型分组（同 nt 多方向合并渲染；bit i = EDGE_DIRS[i]）
+    // 对角方向（bit 4-7）与正交方向（bit 0-3）可合并到同一组：同一邻居类型
+    // 可能在多个方向上与当前瓦片相邻（如东南角被水域包围）
     const groups = new Map<TileType, { mask: number; variant: number }>();
     for (let i = 0; i < EDGE_DIRS.length; i += 1) {
       const n = EDGE_DIRS[i];
@@ -611,7 +620,8 @@ export class Canvas2DRenderer {
     // 1) 掩码（生成期复用单画布）：各方向沿棱边内法线渐变（棱边 0.5 → 中心 0）lighten 逐像素取 max 合并。
     //    法线方向：等距菱形中心方向 ≠ 棱边法线（菱形 2:1 非正方形），必须按棱边几何求法线 ——
     //    邻居 (dx,dy) 的内法线 = normalize(-th·(dx-dy), -tw·(dx+dy))；俯视正方形中心方向即法线。
-    //    多方向重叠区取 max 而非叠乘，角部无斑块；棱边 0.5 使两侧渗透对称、跨棱边无缝
+    //    多方向重叠区取 max 而非叠乘，角部无斑块；棱边 0.5 使两侧渗透对称、跨棱边无缝。
+    //    对角方向（bit 4-7）：从菱形顶点向中心渐变，顶点 alpha 0.5 → 中心 0，带宽同棱边。
     const mask = this.bandMask ?? (this.bandMask = document.createElement('canvas'));
     mask.width = W * BAND_SS;
     mask.height = H * BAND_SS;
@@ -624,28 +634,45 @@ export class Canvas2DRenderer {
     for (let i = 0; i < EDGE_DIRS.length; i += 1) {
       if ((dirsMask & (1 << i)) === 0) continue;
       const { dx, dy } = EDGE_DIRS[i];
-      // 棱边中点：等距 = 中心 + (dx-dy)·tw/2, (dx+dy)·th/2；俯视 = 中心 + dx·tw, dy·th
-      const ex = topDown ? mcx + dx * tw : mcx + ((dx - dy) * tw) / 2;
-      const ey = topDown ? mcy + dy * th : mcy + ((dx + dy) * th) / 2;
-      // 棱边内法线（指向瓦片中心侧）：俯视 = (-dx,-dy)；等距 = normalize(-th·(dx-dy), -tw·(dx+dy))
-      let nx = -dx;
-      let ny = -dy;
-      if (!topDown) {
-        const rx = -th * (dx - dy);
-        const ry = -tw * (dx + dy);
-        const nLen = Math.hypot(rx, ry) || 1;
-        nx = rx / nLen;
-        ny = ry / nLen;
+      const isDiagonal = i >= DIAGONAL_START;
+      if (isDiagonal) {
+        // —— 对角方向：在共享顶点处生成小范围柔和斑点 ——
+        // 等距菱形中，(x+dx,y+dy) 与当前瓦片共享的顶点 ≠ (dx·tw, dy·th)：
+        // 共享顶点 = 中心 + ((dx-dy)·tw/2, (dx+dy)·th/2)。
+        // 俯视方形中，共享顶点 = 中心 + (dx·tw, dy·th)。
+        const vx = topDown ? mcx + dx * tw : mcx + ((dx - dy) * tw) / 2;
+        const vy = topDown ? mcy + dy * th : mcy + ((dx + dy) * th) / 2;
+        // 渐变轴：共享顶点 → 瓦片中心（对角内法线方向）
+        const g = mCtx.createLinearGradient(vx, vy, mcx, mcy);
+        g.addColorStop(0, 'rgba(255,255,255,0.38)');
+        g.addColorStop(0.45, 'rgba(255,255,255,0.16)');
+        g.addColorStop(1, 'rgba(255,255,255,0)');
+        mCtx.fillStyle = g;
+        mCtx.fillRect(0, 0, W, H);
+      } else {
+        // —— 正交方向：沿棱边内法线渐变 ——
+        // 棱边中点：等距 = 中心 + (dx-dy)·tw/2, (dx+dy)·th/2；俯视 = 中心 + dx·tw, dy·th
+        const ex = topDown ? mcx + dx * tw : mcx + ((dx - dy) * tw) / 2;
+        const ey = topDown ? mcy + dy * th : mcy + ((dx + dy) * th) / 2;
+        // 棱边内法线（指向瓦片中心侧）：俯视 = (-dx,-dy)；等距 = normalize(-th·(dx-dy), -tw·(dx+dy))
+        let nx = -dx;
+        let ny = -dy;
+        if (!topDown) {
+          const rx = -th * (dx - dy);
+          const ry = -tw * (dx + dy);
+          const nLen = Math.hypot(rx, ry) || 1;
+          nx = rx / nLen;
+          ny = ry / nLen;
+        }
+        const g = mCtx.createLinearGradient(ex, ey, ex + nx * bandPx, ey + ny * bandPx);
+        // 缓出曲线（ease-out）：棱边 0.5 → 快速衰减到 0.32 → 缓慢衰减到 0
+        g.addColorStop(0, 'rgba(255,255,255,0.5)');
+        g.addColorStop(0.35, 'rgba(255,255,255,0.32)');
+        g.addColorStop(0.7, 'rgba(255,255,255,0.12)');
+        g.addColorStop(1, 'rgba(255,255,255,0)');
+        mCtx.fillStyle = g;
+        mCtx.fillRect(0, 0, W, H);
       }
-      const g = mCtx.createLinearGradient(ex, ey, ex + nx * bandPx, ey + ny * bandPx);
-      // 缓出曲线（ease-out）：棱边 0.5 → 快速衰减到 0.32 → 缓慢衰减到 0
-      // 比线性渐变更柔和，消除边缘可见台阶（"边缘 alpha 混合"边缘问题修复）
-      g.addColorStop(0, 'rgba(255,255,255,0.5)');
-      g.addColorStop(0.35, 'rgba(255,255,255,0.32)');
-      g.addColorStop(0.7, 'rgba(255,255,255,0.12)');
-      g.addColorStop(1, 'rgba(255,255,255,0)');
-      mCtx.fillStyle = g;
-      mCtx.fillRect(0, 0, W, H);
     }
     mCtx.globalCompositeOperation = 'source-over';
 
