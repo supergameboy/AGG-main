@@ -1,0 +1,11 @@
+{
+  "_comment": "开发调试配置，覆盖 LLM 生成的配置。设 pacingInterval=1 即每轮计算",
+  "pacingInterval": 1,
+  "tensionWeights": {
+    "combat": 0.30,
+    "threat": 0.25,
+    "resource": 0.20,
+    "info": 0.15,
+    "time": 0.10
+  }
+}

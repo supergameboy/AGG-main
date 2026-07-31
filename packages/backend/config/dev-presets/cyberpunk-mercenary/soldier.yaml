@@ -1,0 +1,16 @@
+templateId: null
+name: "铁壁"
+gender: "male"
+customGender: null
+race: "cyborg"
+classType: "soldier"
+background: "ex-military"
+attributes:
+  str: 16
+  dex: 12
+  con: 14
+  int: 8
+  wis: 10
+  cha: 8
+customOptions: null
+language: "zh-CN"

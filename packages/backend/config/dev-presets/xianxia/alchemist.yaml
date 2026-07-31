@@ -1,0 +1,16 @@
+templateId: null
+name: "丹青"
+gender: "female"
+customGender: null
+race: "spirit"
+classType: "alchemist"
+background: "merchant-family"
+attributes:
+  str: 8
+  dex: 10
+  con: 9
+  int: 16
+  wis: 13
+  cha: 12
+customOptions: null
+language: "zh-CN"

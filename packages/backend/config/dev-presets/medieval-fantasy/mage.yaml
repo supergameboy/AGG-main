@@ -1,0 +1,18 @@
+templateId: null
+name: "艾琳娜"
+gender: "female"
+customGender: null
+race: "elf"
+classType: "mage"
+background: "scholar"
+attributes:
+  str: 8
+  dex: 12
+  con: 9
+  int: 16
+  wis: 14
+  cha: 11
+customOptions:
+  deity: "自然之神欧拜亥"
+  backstory_detail: "暮光法师塔的年轻学徒，对元素之力有着天生的亲和"
+language: "zh-CN"

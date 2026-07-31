@@ -1,0 +1,15 @@
+templateId: null
+name: "诗织"
+gender: "female"
+customGender: null
+race: "transfer-student"
+classType: "literature-club"
+background: "ordinary-family"
+attributes:
+  charm: 12
+  intelligence: 14
+  courage: 8
+  empathy: 14
+  luck: 10
+customOptions: null
+language: "zh-CN"

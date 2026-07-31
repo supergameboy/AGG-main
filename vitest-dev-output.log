@@ -1,0 +1,1227 @@
+
+[7m[1m[36m RUN [39m[22m[27m [36mv1.6.1[39m [90mC:/Users/super/Documents/trae_projects/AGG-main/packages/backend[39m
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+🧪 Setting up comprehensive test environment...
+✅ Database connected
+Running migration: 001_save_tables.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+🧪 Setting up comprehensive test environment...
+✅ Database connected
+Running migration: 001_save_tables.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+Migration 001_save_tables.ts completed successfully
+Running migration: 002_character_item_tables.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+Migration 001_save_tables.ts completed successfully
+Running migration: 002_character_item_tables.ts
+Migration 002_character_item_tables.ts completed successfully
+Running migration: 003_world_tables.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[22m[39m
+🧪 Setting up comprehensive test environment...
+✅ Database connected
+Running migration: 001_save_tables.ts
+Migration 001_save_tables.ts completed successfully
+Running migration: 002_character_item_tables.ts
+Migration 002_character_item_tables.ts completed successfully
+Running migration: 003_world_tables.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+Migration 002_character_item_tables.ts completed successfully
+Running migration: 003_world_tables.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[22m[39m
+Migration 003_world_tables.ts completed successfully
+Running migration: 004_agent_tables.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[22m[39m
+Migration 004_agent_tables.ts completed successfully
+Running migration: 005_system_tables.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+Migration 003_world_tables.ts completed successfully
+Running migration: 004_agent_tables.ts
+Migration 004_agent_tables.ts completed successfully
+Running migration: 005_system_tables.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+Migration 003_world_tables.ts completed successfully
+Running migration: 004_agent_tables.ts
+Migration 004_agent_tables.ts completed successfully
+Running migration: 005_system_tables.ts
+Migration 005_system_tables.ts completed successfully
+Running migration: 006_event_tables.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[22m[39m
+Migration 005_system_tables.ts completed successfully
+Running migration: 006_event_tables.ts
+Migration 006_event_tables.ts completed successfully
+Running migration: 007_create_indexes.ts
+Migration 007_create_indexes.ts completed successfully
+Running migration: 008_agent_schedule_fix.ts
+Migration 008_agent_schedule_fix.ts completed successfully
+Running migration: 009_schema_fixes.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+Migration 006_event_tables.ts completed successfully
+Running migration: 007_create_indexes.ts
+Migration 007_create_indexes.ts completed successfully
+Running migration: 008_agent_schedule_fix.ts
+Migration 008_agent_schedule_fix.ts completed successfully
+Running migration: 009_schema_fixes.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+Migration 009_schema_fixes.ts completed successfully
+Running migration: 010_timestamp_nullable.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+Migration 005_system_tables.ts completed successfully
+Running migration: 006_event_tables.ts
+Migration 006_event_tables.ts completed successfully
+Running migration: 007_create_indexes.ts
+Migration 007_create_indexes.ts completed successfully
+Running migration: 008_agent_schedule_fix.ts
+Migration 008_agent_schedule_fix.ts completed successfully
+Running migration: 009_schema_fixes.ts
+Migration 009_schema_fixes.ts completed successfully
+Running migration: 010_timestamp_nullable.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+Migration 010_timestamp_nullable.ts completed successfully
+Running migration: 011_game_time_tables.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+Migration 011_game_time_tables.ts completed successfully
+Running migration: 012_npc_party_fields.ts
+Migration 012_npc_party_fields.ts completed successfully
+Running migration: 013_schema_alignment.ts
+Migration 013_schema_alignment.ts completed successfully
+Running migration: 014_inventory_complete_schema.ts
+Migration 014_inventory_complete_schema.ts completed successfully
+Running migration: 015_init_fixes.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[22m[39m
+Migration 009_schema_fixes.ts completed successfully
+Running migration: 010_timestamp_nullable.ts
+Migration 010_timestamp_nullable.ts completed successfully
+Running migration: 011_game_time_tables.ts
+Migration 011_game_time_tables.ts completed successfully
+Running migration: 012_npc_party_fields.ts
+Migration 012_npc_party_fields.ts completed successfully
+Running migration: 013_schema_alignment.ts
+Migration 013_schema_alignment.ts completed successfully
+Running migration: 014_inventory_complete_schema.ts
+Migration 014_inventory_complete_schema.ts completed successfully
+Running migration: 015_init_fixes.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+Migration 010_timestamp_nullable.ts completed successfully
+Running migration: 011_game_time_tables.ts
+Migration 011_game_time_tables.ts completed successfully
+Running migration: 012_npc_party_fields.ts
+Migration 012_npc_party_fields.ts completed successfully
+Running migration: 013_schema_alignment.ts
+Migration 013_schema_alignment.ts completed successfully
+Running migration: 014_inventory_complete_schema.ts
+Migration 014_inventory_complete_schema.ts completed successfully
+Running migration: 015_init_fixes.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+Migration 015_init_fixes.ts completed successfully
+Running migration: 016_template_npcs.ts
+Migration 016_template_npcs.ts completed successfully
+Running migration: 017_npc_relations_timestamps.ts
+Migration 017_npc_relations_timestamps.ts completed successfully
+Running migration: 018_character_skills_complete.ts
+Migration 018_character_skills_complete.ts completed successfully
+Running migration: 019_rename_current_location.ts
+Migration 019_rename_current_location.ts completed successfully
+Running migration: 020_location_connections.ts
+Migration 020_location_connections.ts completed successfully
+Running migration: 021_agent_profiles.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[22m[39m
+Migration 015_init_fixes.ts completed successfully
+Running migration: 016_template_npcs.ts
+Migration 016_template_npcs.ts completed successfully
+Running migration: 017_npc_relations_timestamps.ts
+Migration 017_npc_relations_timestamps.ts completed successfully
+Running migration: 018_character_skills_complete.ts
+Migration 018_character_skills_complete.ts completed successfully
+Running migration: 019_rename_current_location.ts
+Migration 019_rename_current_location.ts completed successfully
+Running migration: 020_location_connections.ts
+Migration 020_location_connections.ts completed successfully
+Running migration: 021_agent_profiles.ts
+Migration 021_agent_profiles.ts completed successfully
+Running migration: 022_template_agent_profile.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+Migration 015_init_fixes.ts completed successfully
+Running migration: 016_template_npcs.ts
+Migration 016_template_npcs.ts completed successfully
+Running migration: 017_npc_relations_timestamps.ts
+Migration 017_npc_relations_timestamps.ts completed successfully
+Running migration: 018_character_skills_complete.ts
+Migration 018_character_skills_complete.ts completed successfully
+Running migration: 019_rename_current_location.ts
+Migration 019_rename_current_location.ts completed successfully
+Running migration: 020_location_connections.ts
+Migration 020_location_connections.ts completed successfully
+Running migration: 021_agent_profiles.ts
+Migration 021_agent_profiles.ts completed successfully
+Running migration: 022_template_agent_profile.ts
+Migration 022_template_agent_profile.ts completed successfully
+Running migration: 023_template_source.ts
+Migration 023_template_source.ts completed successfully
+Running migration: 024_saves_last_played_at.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[22m[39m
+Migration 022_template_agent_profile.ts completed successfully
+Running migration: 023_template_source.ts
+Migration 023_template_source.ts completed successfully
+Running migration: 024_saves_last_played_at.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+Migration 021_agent_profiles.ts completed successfully
+Running migration: 022_template_agent_profile.ts
+Migration 022_template_agent_profile.ts completed successfully
+Running migration: 023_template_source.ts
+Migration 023_template_source.ts completed successfully
+Running migration: 024_saves_last_played_at.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[22m[39m
+Migration 024_saves_last_played_at.ts completed successfully
+Running migration: 025_character_currency.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+Migration 024_saves_last_played_at.ts completed successfully
+Running migration: 025_character_currency.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+Migration 024_saves_last_played_at.ts completed successfully
+Running migration: 025_character_currency.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+Migration 025_character_currency.ts completed successfully
+Running migration: 026_npc_mood_column.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+Migration 025_character_currency.ts completed successfully
+Running migration: 026_npc_mood_column.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+Migration 026_npc_mood_column.ts completed successfully
+Running migration: 027_model_providers.ts
+Migration 027_model_providers.ts completed successfully
+Running migration: 028_model_providers_max_tokens.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+Migration 026_npc_mood_column.ts completed successfully
+Running migration: 027_model_providers.ts
+Migration 027_model_providers.ts completed successfully
+Running migration: 028_model_providers_max_tokens.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+Migration 028_model_providers_max_tokens.ts completed successfully
+Running migration: 029_add_message_type_to_dialogues.ts
+Migration 029_add_message_type_to_dialogues.ts completed successfully
+Running migration: 030_unify_llm_providers.ts
+Migration 030_unify_llm_providers.ts completed successfully
+Running migration: 031_add_game_time_index.ts
+Migration 031_add_game_time_index.ts completed successfully
+Running migration: 032_add_locations_save_id.ts
+Migration 032_add_locations_save_id.ts completed successfully
+Running migration: 033_add_dialogue_summaries.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+Migration 028_model_providers_max_tokens.ts completed successfully
+Running migration: 029_add_message_type_to_dialogues.ts
+Migration 029_add_message_type_to_dialogues.ts completed successfully
+Running migration: 030_unify_llm_providers.ts
+Migration 030_unify_llm_providers.ts completed successfully
+Running migration: 031_add_game_time_index.ts
+Migration 031_add_game_time_index.ts completed successfully
+Running migration: 032_add_locations_save_id.ts
+Migration 032_add_locations_save_id.ts completed successfully
+Running migration: 033_add_dialogue_summaries.ts
+Migration 033_add_dialogue_summaries.ts completed successfully
+Running migration: 034_frontend_logs.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[22m[39m
+Migration 025_character_currency.ts completed successfully
+Running migration: 026_npc_mood_column.ts
+Migration 026_npc_mood_column.ts completed successfully
+Running migration: 027_model_providers.ts
+Migration 027_model_providers.ts completed successfully
+Running migration: 028_model_providers_max_tokens.ts
+Migration 028_model_providers_max_tokens.ts completed successfully
+Running migration: 029_add_message_type_to_dialogues.ts
+Migration 029_add_message_type_to_dialogues.ts completed successfully
+Running migration: 030_unify_llm_providers.ts
+Migration 030_unify_llm_providers.ts completed successfully
+Running migration: 031_add_game_time_index.ts
+Migration 031_add_game_time_index.ts completed successfully
+Running migration: 032_add_locations_save_id.ts
+Migration 032_add_locations_save_id.ts completed successfully
+Running migration: 033_add_dialogue_summaries.ts
+Migration 033_add_dialogue_summaries.ts completed successfully
+Running migration: 034_frontend_logs.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+Migration 033_add_dialogue_summaries.ts completed successfully
+Running migration: 034_frontend_logs.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[22m[39m
+Migration 034_frontend_logs.ts completed successfully
+Running migration: 035_dev_snapshots.ts
+Migration 035_dev_snapshots.ts completed successfully
+Running migration: 036_dev_consistency_reports.ts
+Migration 036_dev_consistency_reports.ts completed successfully
+Running migration: 037_locations_enhanced_columns.ts
+Migration 037_locations_enhanced_columns.ts completed successfully
+Running migration: 038_maps_enhanced_columns.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+Migration 034_frontend_logs.ts completed successfully
+Running migration: 035_dev_snapshots.ts
+Migration 035_dev_snapshots.ts completed successfully
+Running migration: 036_dev_consistency_reports.ts
+Migration 036_dev_consistency_reports.ts completed successfully
+Running migration: 037_locations_enhanced_columns.ts
+Migration 037_locations_enhanced_columns.ts completed successfully
+Running migration: 038_maps_enhanced_columns.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+Migration 034_frontend_logs.ts completed successfully
+Running migration: 035_dev_snapshots.ts
+Migration 035_dev_snapshots.ts completed successfully
+Running migration: 036_dev_consistency_reports.ts
+Migration 036_dev_consistency_reports.ts completed successfully
+Running migration: 037_locations_enhanced_columns.ts
+Migration 037_locations_enhanced_columns.ts completed successfully
+Running migration: 038_maps_enhanced_columns.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+Migration 038_maps_enhanced_columns.ts completed successfully
+Running migration: 039_save_snapshot_two_layer.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+Migration 038_maps_enhanced_columns.ts completed successfully
+Running migration: 039_save_snapshot_two_layer.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[22m[39m
+Migration 038_maps_enhanced_columns.ts completed successfully
+Running migration: 039_save_snapshot_two_layer.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+Migration 039_save_snapshot_two_layer.ts completed successfully
+Running migration: 040_character_gender.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[22m[39m
+Migration 039_save_snapshot_two_layer.ts completed successfully
+Running migration: 040_character_gender.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+Migration 039_save_snapshot_two_layer.ts completed successfully
+Running migration: 040_character_gender.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+Migration 040_character_gender.ts completed successfully
+Running migration: 041_character_custom_gender.ts
+Migration 041_character_custom_gender.ts completed successfully
+Running migration: 042_save_language.ts
+Migration 042_save_language.ts completed successfully
+Running migration: 043_template_items_column.ts
+Migration 043_template_items_column.ts completed successfully
+Running migration: 044_event_triggers_result_data.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+Migration 040_character_gender.ts completed successfully
+Running migration: 041_character_custom_gender.ts
+Migration 041_character_custom_gender.ts completed successfully
+Running migration: 042_save_language.ts
+Migration 042_save_language.ts completed successfully
+Running migration: 043_template_items_column.ts
+Migration 043_template_items_column.ts completed successfully
+Running migration: 044_event_triggers_result_data.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[22m[39m
+Migration 040_character_gender.ts completed successfully
+Running migration: 041_character_custom_gender.ts
+Migration 041_character_custom_gender.ts completed successfully
+Running migration: 042_save_language.ts
+Migration 042_save_language.ts completed successfully
+Running migration: 043_template_items_column.ts
+Migration 043_template_items_column.ts completed successfully
+Running migration: 044_event_triggers_result_data.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[22m[39m
+Migration 044_event_triggers_result_data.ts completed successfully
+Running migration: 045_character_skills_unlocked.ts
+Migration 045_character_skills_unlocked.ts completed successfully
+Running migration: 046_unify_character_fields.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+Migration 044_event_triggers_result_data.ts completed successfully
+Running migration: 045_character_skills_unlocked.ts
+Migration 045_character_skills_unlocked.ts completed successfully
+Running migration: 046_unify_character_fields.ts
+Migration 046_unify_character_fields.ts completed successfully
+Running migration: 048_add_base_max_hp_mp.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[22m[39m
+Migration 046_unify_character_fields.ts completed successfully
+Running migration: 048_add_base_max_hp_mp.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[22m[39m
+Migration 048_add_base_max_hp_mp.ts completed successfully
+Running migration: 049_agent_llm_call_cache_metrics.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+Migration 048_add_base_max_hp_mp.ts completed successfully
+Running migration: 049_agent_llm_call_cache_metrics.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+Migration 049_agent_llm_call_cache_metrics.ts completed successfully
+Running migration: 050_story_events_importance.ts
+Migration 050_story_events_importance.ts completed successfully
+Running migration: 051_sync_skill_category_from_template.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+Migration 044_event_triggers_result_data.ts completed successfully
+Running migration: 045_character_skills_unlocked.ts
+Migration 045_character_skills_unlocked.ts completed successfully
+Running migration: 046_unify_character_fields.ts
+Migration 046_unify_character_fields.ts completed successfully
+Running migration: 048_add_base_max_hp_mp.ts
+Migration 048_add_base_max_hp_mp.ts completed successfully
+Running migration: 049_agent_llm_call_cache_metrics.ts
+Migration 049_agent_llm_call_cache_metrics.ts completed successfully
+Running migration: 050_story_events_importance.ts
+Migration 050_story_events_importance.ts completed successfully
+Running migration: 051_sync_skill_category_from_template.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[22m[39m
+Migration 049_agent_llm_call_cache_metrics.ts completed successfully
+Running migration: 050_story_events_importance.ts
+Migration 050_story_events_importance.ts completed successfully
+Running migration: 051_sync_skill_category_from_template.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+Migration 051_sync_skill_category_from_template.ts completed successfully
+Running migration: 053_plan_cache.ts
+Migration 053_plan_cache.ts completed successfully
+Running migration: 054_hidden_columns.ts
+Migration 054_hidden_columns.ts completed successfully
+Running migration: 055_npc_hidden_column.ts
+Migration 055_npc_hidden_column.ts completed successfully
+Running migration: 056_quest_hidden_column.ts
+Migration 056_quest_hidden_column.ts completed successfully
+Running migration: 057_locations_hidden_column.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+Migration 051_sync_skill_category_from_template.ts completed successfully
+Running migration: 053_plan_cache.ts
+Migration 053_plan_cache.ts completed successfully
+Running migration: 054_hidden_columns.ts
+Migration 054_hidden_columns.ts completed successfully
+Running migration: 055_npc_hidden_column.ts
+Migration 055_npc_hidden_column.ts completed successfully
+Running migration: 056_quest_hidden_column.ts
+Migration 056_quest_hidden_column.ts completed successfully
+Running migration: 057_locations_hidden_column.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+Migration 057_locations_hidden_column.ts completed successfully
+Running migration: 058_model_config_fast_model_fields.ts
+Migration 058_model_config_fast_model_fields.ts completed successfully
+Running migration: 059_composite_pk_core_tables.ts
+Migration 059_composite_pk_core_tables.ts completed successfully
+Running migration: 060_location_parent_id.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+Migration 060_location_parent_id.ts completed successfully
+Running migration: 061_character_age_group.ts
+Migration 061_character_age_group.ts completed successfully
+Running migration: 062_location_is_parent.ts
+Migration 062_location_is_parent.ts completed successfully
+Running migration: 063_entity_graph.ts
+Migration 063_entity_graph.ts completed successfully
+Running migration: 064_npc_richness.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+Migration 057_locations_hidden_column.ts completed successfully
+Running migration: 058_model_config_fast_model_fields.ts
+Migration 058_model_config_fast_model_fields.ts completed successfully
+Running migration: 059_composite_pk_core_tables.ts
+Migration 059_composite_pk_core_tables.ts completed successfully
+Running migration: 060_location_parent_id.ts
+Migration 060_location_parent_id.ts completed successfully
+Running migration: 061_character_age_group.ts
+Migration 061_character_age_group.ts completed successfully
+Running migration: 062_location_is_parent.ts
+Migration 062_location_is_parent.ts completed successfully
+Running migration: 063_entity_graph.ts
+Migration 063_entity_graph.ts completed successfully
+Running migration: 064_npc_richness.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[22m[39m
+Migration 051_sync_skill_category_from_template.ts completed successfully
+Running migration: 053_plan_cache.ts
+Migration 053_plan_cache.ts completed successfully
+Running migration: 054_hidden_columns.ts
+Migration 054_hidden_columns.ts completed successfully
+Running migration: 055_npc_hidden_column.ts
+Migration 055_npc_hidden_column.ts completed successfully
+Running migration: 056_quest_hidden_column.ts
+Migration 056_quest_hidden_column.ts completed successfully
+Running migration: 057_locations_hidden_column.ts
+Migration 057_locations_hidden_column.ts completed successfully
+Running migration: 058_model_config_fast_model_fields.ts
+Migration 058_model_config_fast_model_fields.ts completed successfully
+Running migration: 059_composite_pk_core_tables.ts
+Migration 059_composite_pk_core_tables.ts completed successfully
+Running migration: 060_location_parent_id.ts
+Migration 060_location_parent_id.ts completed successfully
+Running migration: 061_character_age_group.ts
+Migration 061_character_age_group.ts completed successfully
+Running migration: 062_location_is_parent.ts
+Migration 062_location_is_parent.ts completed successfully
+Running migration: 063_entity_graph.ts
+Migration 063_entity_graph.ts completed successfully
+Running migration: 064_npc_richness.ts
+Migration 064_npc_richness.ts completed successfully
+Running migration: 065_items_tags_column.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+Migration 064_npc_richness.ts completed successfully
+Running migration: 065_items_tags_column.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+Migration 064_npc_richness.ts completed successfully
+Running migration: 065_items_tags_column.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+Migration 065_items_tags_column.ts completed successfully
+Running migration: 066_template_npcs_template_id.ts
+Migration 066_template_npcs_template_id.ts completed successfully
+Running migration: 067_template_unify.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+Migration 065_items_tags_column.ts completed successfully
+Running migration: 066_template_npcs_template_id.ts
+Migration 066_template_npcs_template_id.ts completed successfully
+Running migration: 067_template_unify.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[22m[39m
+Migration 065_items_tags_column.ts completed successfully
+Running migration: 066_template_npcs_template_id.ts
+Migration 066_template_npcs_template_id.ts completed successfully
+Running migration: 067_template_unify.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[22m[39m
+Migration 067_template_unify.ts completed successfully
+Running migration: 068_drop_stale_fks.ts
+Migration 068_drop_stale_fks.ts completed successfully
+Running migration: 069_skill_pool_and_cost.ts
+Migration 069_skill_pool_and_cost.ts completed successfully
+Running migration: 070_map_location_refactor.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+Migration 067_template_unify.ts completed successfully
+Running migration: 068_drop_stale_fks.ts
+Migration 068_drop_stale_fks.ts completed successfully
+Running migration: 069_skill_pool_and_cost.ts
+Migration 069_skill_pool_and_cost.ts completed successfully
+Running migration: 070_map_location_refactor.ts
+Migration 070_map_location_refactor.ts completed successfully
+Running migration: 071_inventory_refactor.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[22m[39m
+Migration 070_map_location_refactor.ts completed successfully
+Running migration: 071_inventory_refactor.ts
+Migration 071_inventory_refactor.ts completed successfully
+Running migration: 072_npc_stats_removal.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+Migration 071_inventory_refactor.ts completed successfully
+Running migration: 072_npc_stats_removal.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+Migration 067_template_unify.ts completed successfully
+Running migration: 068_drop_stale_fks.ts
+Migration 068_drop_stale_fks.ts completed successfully
+Running migration: 069_skill_pool_and_cost.ts
+Migration 069_skill_pool_and_cost.ts completed successfully
+Running migration: 070_map_location_refactor.ts
+Migration 070_map_location_refactor.ts completed successfully
+Running migration: 071_inventory_refactor.ts
+Migration 071_inventory_refactor.ts completed successfully
+Running migration: 072_npc_stats_removal.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+Migration 072_npc_stats_removal.ts completed successfully
+Running migration: 073_location_quest_visible.ts
+Migration 073_location_quest_visible.ts completed successfully
+Running migration: 074_quest_upgrade.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[22m[39m
+Migration 072_npc_stats_removal.ts completed successfully
+Running migration: 073_location_quest_visible.ts
+Migration 073_location_quest_visible.ts completed successfully
+Running migration: 074_quest_upgrade.ts
+Migration 074_quest_upgrade.ts completed successfully
+Running migration: 075_template_pool_tables.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+Migration 072_npc_stats_removal.ts completed successfully
+Running migration: 073_location_quest_visible.ts
+Migration 073_location_quest_visible.ts completed successfully
+Running migration: 074_quest_upgrade.ts
+Migration 074_quest_upgrade.ts completed successfully
+Running migration: 075_template_pool_tables.ts
+Migration 075_template_pool_tables.ts completed successfully
+Running migration: 076_locations_region_index.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+Migration 074_quest_upgrade.ts completed successfully
+Running migration: 075_template_pool_tables.ts
+Migration 075_template_pool_tables.ts completed successfully
+Running migration: 076_locations_region_index.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[22m[39m
+Migration 075_template_pool_tables.ts completed successfully
+Running migration: 076_locations_region_index.ts
+Migration 076_locations_region_index.ts completed successfully
+Running migration: 077_pool_icon_columns.ts
+Migration 077_pool_icon_columns.ts completed successfully
+Running migration: 078_agent_memories.ts
+Migration 078_agent_memories.ts completed successfully
+Running migration: 079_pacing_tables.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+Migration 076_locations_region_index.ts completed successfully
+Running migration: 077_pool_icon_columns.ts
+Migration 077_pool_icon_columns.ts completed successfully
+Running migration: 078_agent_memories.ts
+Migration 078_agent_memories.ts completed successfully
+Running migration: 079_pacing_tables.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+Migration 076_locations_region_index.ts completed successfully
+Running migration: 077_pool_icon_columns.ts
+Migration 077_pool_icon_columns.ts completed successfully
+Running migration: 078_agent_memories.ts
+Migration 078_agent_memories.ts completed successfully
+Running migration: 079_pacing_tables.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[22m[39m
+Migration 079_pacing_tables.ts completed successfully
+Running migration: 080_pacing_config_template_hash.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+Migration 079_pacing_tables.ts completed successfully
+Running migration: 080_pacing_config_template_hash.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+Migration 079_pacing_tables.ts completed successfully
+Running migration: 080_pacing_config_template_hash.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+Migration 080_pacing_config_template_hash.ts completed successfully
+Running migration: 081_character_skills_weight_cooldown.ts
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[22m[39m
+Migration 080_pacing_config_template_hash.ts completed successfully
+Running migration: 081_character_skills_weight_cooldown.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+Migration 080_pacing_config_template_hash.ts completed successfully
+Running migration: 081_character_skills_weight_cooldown.ts
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+Migration 081_character_skills_weight_cooldown.ts completed successfully
+All migrations completed
+✅ Migrations completed
+All seeds completed
+✅ Seeds completed
+09:24:38 [[32minfo[39m]  Starting YAML-driven Agent system initialization
+09:24:38 [[32minfo[39m]  Initializing ModelConfigService and seeding from environment
+[model-config] No DEEPSEEK_API_KEY env var found, skipping env seed 
+[model-config] Seeded provider from convict config {
+  providerType: [32m'openai'[39m,
+  providerId: [32m'0d715b35-77df-410b-94bd-9adcccc6d023'[39m,
+  model: [32m'openrouter/free'[39m
+}
+09:24:38 [[32minfo[39m]  Creating LLMService with ModelConfigService
+09:24:38 [[32minfo[39m]  Creating ContextService and DecisionLogService instances
+09:24:38 [[32minfo[39m]  Initializing YAML-driven Agent profiles...
+09:24:38 [[32minfo[39m]  Loading config from directory: C:\Users\super\Documents\trae_projects\AGG-main\packages\backend\config
+09:24:38 [[32minfo[39m]  Loaded agent profile: fantasy_rpg
+09:24:38 [[32minfo[39m]  Loaded agent profile: minimal_test
+09:24:38 [[32minfo[39m]  Loaded 0 non-builtin profiles from database (0 builtin skipped, using YAML)
+09:24:38 [[32minfo[39m]  Config loaded successfully: 2 profiles
+09:24:38 [[32minfo[39m]  YAML config loaded successfully
+09:24:38 [[32minfo[39m]  Context rules loaded {"agentCount":10}
+09:24:38 [[32minfo[39m]  Loaded 10 agent capabilities from YAML profiles
+09:24:38 [[32minfo[39m]  ToolRegistry initialized
+09:24:38 [[32minfo[39m]  Registering ServiceTools to ToolRegistry
+09:24:38 [[32minfo[39m]  Tool registered: game_time_service - GameTime Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: numerical_service - Numerical Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: character_service - Character Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: inventory_service - Inventory Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: skill_service - Skill Service (v1.1.0)
+09:24:38 [[32minfo[39m]  Tool registered: map_service - Map Service (v2.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: npc_service - NPC Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: dialogue_service - Dialogue Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: quest_service - Quest Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: combat_service - Combat Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: event_service - Event Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: story_service - Story Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: game_init_service - Game Init Service (v2.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: batch_query_service - Batch Query Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: entity_graph_service - Entity Graph Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: template_pool_service - Template Pool Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: dynamic_ui - Dynamic UI Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: generate_options - Generate Options Service (v2.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: coordinator_service - Coordinator Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: rule_service - Rule Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: skill_loader - Skill Loader (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: help_service - Help Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: memory_service - Memory Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Registered 23 ServiceTools to ToolRegistry
+09:24:38 [[32minfo[39m]  Tool reference validation passed
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[22m[39m
+Migration 081_character_skills_weight_cooldown.ts completed successfully
+All migrations completed
+✅ Migrations completed
+All seeds completed
+✅ Seeds completed
+09:24:38 [[32minfo[39m]  Starting YAML-driven Agent system initialization
+09:24:38 [[32minfo[39m]  Initializing ModelConfigService and seeding from environment
+[model-config] No DEEPSEEK_API_KEY env var found, skipping env seed 
+[model-config] Seeded provider from convict config {
+  providerType: [32m'openai'[39m,
+  providerId: [32m'00f04509-374e-46d5-afe0-a078f1298082'[39m,
+  model: [32m'openrouter/free'[39m
+}
+09:24:38 [[32minfo[39m]  Creating LLMService with ModelConfigService
+09:24:38 [[32minfo[39m]  Creating ContextService and DecisionLogService instances
+09:24:38 [[32minfo[39m]  Initializing YAML-driven Agent profiles...
+09:24:38 [[32minfo[39m]  Loading config from directory: C:\Users\super\Documents\trae_projects\AGG-main\packages\backend\config
+09:24:38 [[32minfo[39m]  Loaded agent profile: fantasy_rpg
+09:24:38 [[32minfo[39m]  Loaded agent profile: minimal_test
+09:24:38 [[32minfo[39m]  Loaded 0 non-builtin profiles from database (0 builtin skipped, using YAML)
+09:24:38 [[32minfo[39m]  Config loaded successfully: 2 profiles
+09:24:38 [[32minfo[39m]  YAML config loaded successfully
+09:24:38 [[32minfo[39m]  Context rules loaded {"agentCount":10}
+09:24:38 [[32minfo[39m]  Loaded 10 agent capabilities from YAML profiles
+09:24:38 [[32minfo[39m]  ToolRegistry initialized
+09:24:38 [[32minfo[39m]  Registering ServiceTools to ToolRegistry
+09:24:38 [[32minfo[39m]  Tool registered: game_time_service - GameTime Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: numerical_service - Numerical Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: character_service - Character Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: inventory_service - Inventory Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: skill_service - Skill Service (v1.1.0)
+09:24:38 [[32minfo[39m]  Tool registered: map_service - Map Service (v2.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: npc_service - NPC Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: dialogue_service - Dialogue Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: quest_service - Quest Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: combat_service - Combat Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: event_service - Event Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: story_service - Story Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: game_init_service - Game Init Service (v2.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: batch_query_service - Batch Query Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: entity_graph_service - Entity Graph Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: template_pool_service - Template Pool Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: dynamic_ui - Dynamic UI Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: generate_options - Generate Options Service (v2.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: coordinator_service - Coordinator Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: rule_service - Rule Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: skill_loader - Skill Loader (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: help_service - Help Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: memory_service - Memory Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Registered 23 ServiceTools to ToolRegistry
+09:24:38 [[32minfo[39m]  Tool reference validation passed
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+Migration 081_character_skills_weight_cooldown.ts completed successfully
+All migrations completed
+✅ Migrations completed
+All seeds completed
+✅ Seeds completed
+09:24:38 [[32minfo[39m]  Starting YAML-driven Agent system initialization
+09:24:38 [[32minfo[39m]  Initializing ModelConfigService and seeding from environment
+[model-config] No DEEPSEEK_API_KEY env var found, skipping env seed 
+[model-config] Seeded provider from convict config {
+  providerType: [32m'openai'[39m,
+  providerId: [32m'ec41c61c-a4a3-4e72-bd70-96e44918b353'[39m,
+  model: [32m'openrouter/free'[39m
+}
+09:24:38 [[32minfo[39m]  Creating LLMService with ModelConfigService
+09:24:38 [[32minfo[39m]  Creating ContextService and DecisionLogService instances
+09:24:38 [[32minfo[39m]  Initializing YAML-driven Agent profiles...
+09:24:38 [[32minfo[39m]  Loading config from directory: C:\Users\super\Documents\trae_projects\AGG-main\packages\backend\config
+09:24:38 [[32minfo[39m]  Loaded agent profile: fantasy_rpg
+09:24:38 [[32minfo[39m]  Loaded agent profile: minimal_test
+09:24:38 [[32minfo[39m]  Loaded 0 non-builtin profiles from database (0 builtin skipped, using YAML)
+09:24:38 [[32minfo[39m]  Config loaded successfully: 2 profiles
+09:24:38 [[32minfo[39m]  YAML config loaded successfully
+09:24:38 [[32minfo[39m]  Context rules loaded {"agentCount":10}
+09:24:38 [[32minfo[39m]  Loaded 10 agent capabilities from YAML profiles
+09:24:38 [[32minfo[39m]  ToolRegistry initialized
+09:24:38 [[32minfo[39m]  Registering ServiceTools to ToolRegistry
+09:24:38 [[32minfo[39m]  Tool registered: game_time_service - GameTime Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: numerical_service - Numerical Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: character_service - Character Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: inventory_service - Inventory Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: skill_service - Skill Service (v1.1.0)
+09:24:38 [[32minfo[39m]  Tool registered: map_service - Map Service (v2.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: npc_service - NPC Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: dialogue_service - Dialogue Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: quest_service - Quest Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: combat_service - Combat Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: event_service - Event Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: story_service - Story Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: game_init_service - Game Init Service (v2.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: batch_query_service - Batch Query Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: entity_graph_service - Entity Graph Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: template_pool_service - Template Pool Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: dynamic_ui - Dynamic UI Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: generate_options - Generate Options Service (v2.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: coordinator_service - Coordinator Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: rule_service - Rule Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: skill_loader - Skill Loader (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: help_service - Help Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Tool registered: memory_service - Memory Service (v1.0.0)
+09:24:38 [[32minfo[39m]  Registered 23 ServiceTools to ToolRegistry
+09:24:38 [[32minfo[39m]  Tool reference validation passed
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+09:24:38 [[32minfo[39m]  Discovered 189 help files {"dir":"C:\\Users\\super\\Documents\\trae_projects\\AGG-main\\packages\\backend\\config\\agent-help"}
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[22m[39m
+09:24:38 [[32minfo[39m]  Discovered 189 help files {"dir":"C:\\Users\\super\\Documents\\trae_projects\\AGG-main\\packages\\backend\\config\\agent-help"}
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+09:24:38 [[32minfo[39m]  Discovered 189 help files {"dir":"C:\\Users\\super\\Documents\\trae_projects\\AGG-main\\packages\\backend\\config\\agent-help"}
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+09:24:38 [[32minfo[39m]  Help registry loaded: 22 tools {"tools":["batch_query_service","character_service","... (22 items)"]}
+09:24:38 [[32minfo[39m]  Creating GameMasterAgent (as AgentRuntime with isSubAgent=false)
+09:24:38 [[32minfo[39m]  Agent initialized: gamemaster - GameMasterAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent gamemaster starting {"agent":"gamemaster","provider":null,"toolsConfigured":1,"maxIterations":200,"isSubAgent":false}
+09:24:38 [[32minfo[39m]  Creating AgentRuntime instances from default profile: fantasy_rpg
+09:24:38 [[32minfo[39m]  Creating agents from profile: fantasy_rpg {"agentCount":10}
+09:24:38 [[32minfo[39m]  Agent initialized: gamemaster - GameMasterAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent gamemaster starting {"agent":"gamemaster","provider":null,"toolsConfigured":1,"maxIterations":200,"isSubAgent":false}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: gamemaster {"profile":"fantasy_rpg","tools":["all"]}
+09:24:38 [[32minfo[39m]  Agent initialized: map - MapAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent map starting {"agent":"map","provider":null,"toolsConfigured":7,"maxIterations":200,"isSubAgent":true}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: map {"profile":"fantasy_rpg","tools":["map_service","npc_service","... (7 items)"]}
+09:24:38 [[32minfo[39m]  Agent initialized: combat - CombatAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent combat starting {"agent":"combat","provider":null,"toolsConfigured":9,"maxIterations":200,"isSubAgent":true}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: combat {"profile":"fantasy_rpg","tools":["combat_service","numerical_service","... (9 items)"]}
+09:24:38 [[32minfo[39m]  Agent initialized: output - OutputAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent output starting {"agent":"output","provider":null,"toolsConfigured":5,"maxIterations":200,"isSubAgent":true}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: output {"profile":"fantasy_rpg","tools":["dialogue_service","dynamic_ui","... (5 items)"]}
+09:24:38 [[32minfo[39m]  Agent initialized: quest - QuestAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent quest starting {"agent":"quest","provider":null,"toolsConfigured":11,"maxIterations":200,"isSubAgent":true}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: quest {"profile":"fantasy_rpg","tools":["quest_service","numerical_service","... (11 items)"]}
+09:24:38 [[32minfo[39m]  Agent initialized: npc_party - NPCPartyAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent npc_party starting {"agent":"npc_party","provider":null,"toolsConfigured":8,"maxIterations":200,"isSubAgent":true}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: npc_party {"profile":"fantasy_rpg","tools":["npc_service","numerical_service","... (8 items)"]}
+09:24:38 [[32minfo[39m]  Agent initialized: inventory - InventoryAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent inventory starting {"agent":"inventory","provider":null,"toolsConfigured":8,"maxIterations":200,"isSubAgent":true}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: inventory {"profile":"fantasy_rpg","tools":["inventory_service","template_pool_service","... (8 items)"]}
+09:24:38 [[32minfo[39m]  Agent initialized: skill - SkillAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent skill starting {"agent":"skill","provider":null,"toolsConfigured":7,"maxIterations":200,"isSubAgent":true}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: skill {"profile":"fantasy_rpg","tools":["skill_service","template_pool_service","... (7 items)"]}
+09:24:38 [[32minfo[39m]  Agent initialized: event - EventAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent event starting {"agent":"event","provider":null,"toolsConfigured":5,"maxIterations":200,"isSubAgent":true}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: event {"profile":"fantasy_rpg","tools":["event_service","game_time_service","... (5 items)"]}
+09:24:38 [[32minfo[39m]  Agent initialized: time - TimeAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent time starting {"agent":"time","provider":null,"toolsConfigured":4,"maxIterations":200,"isSubAgent":true}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: time {"profile":"fantasy_rpg","tools":["game_time_service","rule_service","... (4 items)"]}
+09:24:38 [[32minfo[39m]  Permissions configured from agent.tools for profile: fantasy_rpg
+09:24:38 [[32minfo[39m]  YAML permissions configured
+09:24:38 [[32minfo[39m]  Registering AgentRuntime instances to GameMasterAgent...
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: gamemaster
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: map
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: combat
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: output
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: quest
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: npc_party
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: inventory
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: skill
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: event
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: time
+09:24:38 [[32minfo[39m]  Agent system initialized: 10 AgentRuntime instances created
+✅ Agent system initialized with 10 agents
+⚠️ YAML Agent system skipped: __vi_import_5__.initializeYamlAgentSystem is not a function
+09:24:38 [[32minfo[39m]  Agent routes initialized
+09:24:38 [[32minfo[39m]  Save routes initialized
+09:24:38 [[32minfo[39m]  Synced template from YAML to DB: cthulhu-investigation
+09:24:38 [[32minfo[39m]  Synced template from YAML to DB: cyberpunk-mercenary
+09:24:38 [[32minfo[39m]  Synced template from YAML to DB: medieval-fantasy
+09:24:38 [[32minfo[39m]  Synced template from YAML to DB: modern-romance
+09:24:38 [[32minfo[39m]  Synced template from YAML to DB: xianxia
+09:24:38 [[32minfo[39m]  Synced 5 templates from YAML to database
+09:24:38 [[32minfo[39m]  Cache refreshed with 5 templates
+09:24:38 [[32minfo[39m]  TemplateService loaded {"cachedTemplates":5}
+✅ Template YAML loaded and synced to DB
+09:24:38 [[32minfo[39m]  Template routes initialized
+✅ Test environment setup complete
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2m环境保护中间件[2m > [22m[2m生产环境返回 403[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[22m[39m
+09:24:38 [[32minfo[39m]  Help registry loaded: 22 tools {"tools":["batch_query_service","character_service","... (22 items)"]}
+09:24:38 [[32minfo[39m]  Creating GameMasterAgent (as AgentRuntime with isSubAgent=false)
+09:24:38 [[32minfo[39m]  Agent initialized: gamemaster - GameMasterAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent gamemaster starting {"agent":"gamemaster","provider":null,"toolsConfigured":1,"maxIterations":200,"isSubAgent":false}
+09:24:38 [[32minfo[39m]  Creating AgentRuntime instances from default profile: fantasy_rpg
+09:24:38 [[32minfo[39m]  Creating agents from profile: fantasy_rpg {"agentCount":10}
+09:24:38 [[32minfo[39m]  Agent initialized: gamemaster - GameMasterAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent gamemaster starting {"agent":"gamemaster","provider":null,"toolsConfigured":1,"maxIterations":200,"isSubAgent":false}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: gamemaster {"profile":"fantasy_rpg","tools":["all"]}
+09:24:38 [[32minfo[39m]  Agent initialized: map - MapAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent map starting {"agent":"map","provider":null,"toolsConfigured":7,"maxIterations":200,"isSubAgent":true}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: map {"profile":"fantasy_rpg","tools":["map_service","npc_service","... (7 items)"]}
+09:24:38 [[32minfo[39m]  Agent initialized: combat - CombatAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent combat starting {"agent":"combat","provider":null,"toolsConfigured":9,"maxIterations":200,"isSubAgent":true}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: combat {"profile":"fantasy_rpg","tools":["combat_service","numerical_service","... (9 items)"]}
+09:24:38 [[32minfo[39m]  Agent initialized: output - OutputAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent output starting {"agent":"output","provider":null,"toolsConfigured":5,"maxIterations":200,"isSubAgent":true}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: output {"profile":"fantasy_rpg","tools":["dialogue_service","dynamic_ui","... (5 items)"]}
+09:24:38 [[32minfo[39m]  Agent initialized: quest - QuestAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent quest starting {"agent":"quest","provider":null,"toolsConfigured":11,"maxIterations":200,"isSubAgent":true}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: quest {"profile":"fantasy_rpg","tools":["quest_service","numerical_service","... (11 items)"]}
+09:24:38 [[32minfo[39m]  Agent initialized: npc_party - NPCPartyAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent npc_party starting {"agent":"npc_party","provider":null,"toolsConfigured":8,"maxIterations":200,"isSubAgent":true}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: npc_party {"profile":"fantasy_rpg","tools":["npc_service","numerical_service","... (8 items)"]}
+09:24:38 [[32minfo[39m]  Agent initialized: inventory - InventoryAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent inventory starting {"agent":"inventory","provider":null,"toolsConfigured":8,"maxIterations":200,"isSubAgent":true}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: inventory {"profile":"fantasy_rpg","tools":["inventory_service","template_pool_service","... (8 items)"]}
+09:24:38 [[32minfo[39m]  Agent initialized: skill - SkillAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent skill starting {"agent":"skill","provider":null,"toolsConfigured":7,"maxIterations":200,"isSubAgent":true}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: skill {"profile":"fantasy_rpg","tools":["skill_service","template_pool_service","... (7 items)"]}
+09:24:38 [[32minfo[39m]  Agent initialized: event - EventAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent event starting {"agent":"event","provider":null,"toolsConfigured":5,"maxIterations":200,"isSubAgent":true}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: event {"profile":"fantasy_rpg","tools":["event_service","game_time_service","... (5 items)"]}
+09:24:38 [[32minfo[39m]  Agent initialized: time - TimeAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent time starting {"agent":"time","provider":null,"toolsConfigured":4,"maxIterations":200,"isSubAgent":true}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: time {"profile":"fantasy_rpg","tools":["game_time_service","rule_service","... (4 items)"]}
+09:24:38 [[32minfo[39m]  Permissions configured from agent.tools for profile: fantasy_rpg
+09:24:38 [[32minfo[39m]  YAML permissions configured
+09:24:38 [[32minfo[39m]  Registering AgentRuntime instances to GameMasterAgent...
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: gamemaster
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: map
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: combat
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: output
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: quest
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: npc_party
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: inventory
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: skill
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: event
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: time
+09:24:38 [[32minfo[39m]  Agent system initialized: 10 AgentRuntime instances created
+✅ Agent system initialized with 10 agents
+⚠️ YAML Agent system skipped: __vi_import_5__.initializeYamlAgentSystem is not a function
+09:24:38 [[32minfo[39m]  Agent routes initialized
+09:24:38 [[32minfo[39m]  Save routes initialized
+09:24:38 [[32minfo[39m]  Synced template from YAML to DB: cthulhu-investigation
+09:24:38 [[32minfo[39m]  Synced template from YAML to DB: cyberpunk-mercenary
+09:24:38 [[32minfo[39m]  Synced template from YAML to DB: medieval-fantasy
+09:24:38 [[32minfo[39m]  Synced template from YAML to DB: modern-romance
+09:24:38 [[32minfo[39m]  Synced template from YAML to DB: xianxia
+09:24:38 [[32minfo[39m]  Synced 5 templates from YAML to database
+09:24:38 [[32minfo[39m]  Cache refreshed with 5 templates
+09:24:38 [[32minfo[39m]  TemplateService loaded {"cachedTemplates":5}
+✅ Template YAML loaded and synced to DB
+09:24:38 [[32minfo[39m]  Template routes initialized
+✅ Test environment setup complete
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[2m > [22m[2mDev API — runtime-events endpoint[2m > [22m[2mreturns 400 when saveId is missing[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+09:24:38 [[32minfo[39m]  Help registry loaded: 22 tools {"tools":["batch_query_service","character_service","... (22 items)"]}
+09:24:38 [[32minfo[39m]  Creating GameMasterAgent (as AgentRuntime with isSubAgent=false)
+09:24:38 [[32minfo[39m]  Agent initialized: gamemaster - GameMasterAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent gamemaster starting {"agent":"gamemaster","provider":null,"toolsConfigured":1,"maxIterations":200,"isSubAgent":false}
+09:24:38 [[32minfo[39m]  Creating AgentRuntime instances from default profile: fantasy_rpg
+09:24:38 [[32minfo[39m]  Creating agents from profile: fantasy_rpg {"agentCount":10}
+09:24:38 [[32minfo[39m]  Agent initialized: gamemaster - GameMasterAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent gamemaster starting {"agent":"gamemaster","provider":null,"toolsConfigured":1,"maxIterations":200,"isSubAgent":false}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: gamemaster {"profile":"fantasy_rpg","tools":["all"]}
+09:24:38 [[32minfo[39m]  Agent initialized: map - MapAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent map starting {"agent":"map","provider":null,"toolsConfigured":7,"maxIterations":200,"isSubAgent":true}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: map {"profile":"fantasy_rpg","tools":["map_service","npc_service","... (7 items)"]}
+09:24:38 [[32minfo[39m]  Agent initialized: combat - CombatAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent combat starting {"agent":"combat","provider":null,"toolsConfigured":9,"maxIterations":200,"isSubAgent":true}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: combat {"profile":"fantasy_rpg","tools":["combat_service","numerical_service","... (9 items)"]}
+09:24:38 [[32minfo[39m]  Agent initialized: output - OutputAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent output starting {"agent":"output","provider":null,"toolsConfigured":5,"maxIterations":200,"isSubAgent":true}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: output {"profile":"fantasy_rpg","tools":["dialogue_service","dynamic_ui","... (5 items)"]}
+09:24:38 [[32minfo[39m]  Agent initialized: quest - QuestAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent quest starting {"agent":"quest","provider":null,"toolsConfigured":11,"maxIterations":200,"isSubAgent":true}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: quest {"profile":"fantasy_rpg","tools":["quest_service","numerical_service","... (11 items)"]}
+09:24:38 [[32minfo[39m]  Agent initialized: npc_party - NPCPartyAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent npc_party starting {"agent":"npc_party","provider":null,"toolsConfigured":8,"maxIterations":200,"isSubAgent":true}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: npc_party {"profile":"fantasy_rpg","tools":["npc_service","numerical_service","... (8 items)"]}
+09:24:38 [[32minfo[39m]  Agent initialized: inventory - InventoryAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent inventory starting {"agent":"inventory","provider":null,"toolsConfigured":8,"maxIterations":200,"isSubAgent":true}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: inventory {"profile":"fantasy_rpg","tools":["inventory_service","template_pool_service","... (8 items)"]}
+09:24:38 [[32minfo[39m]  Agent initialized: skill - SkillAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent skill starting {"agent":"skill","provider":null,"toolsConfigured":7,"maxIterations":200,"isSubAgent":true}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: skill {"profile":"fantasy_rpg","tools":["skill_service","template_pool_service","... (7 items)"]}
+09:24:38 [[32minfo[39m]  Agent initialized: event - EventAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent event starting {"agent":"event","provider":null,"toolsConfigured":5,"maxIterations":200,"isSubAgent":true}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: event {"profile":"fantasy_rpg","tools":["event_service","game_time_service","... (5 items)"]}
+09:24:38 [[32minfo[39m]  Agent initialized: time - TimeAgent
+09:24:38 [[32minfo[39m] [AGENT-START] Agent time starting {"agent":"time","provider":null,"toolsConfigured":4,"maxIterations":200,"isSubAgent":true}
+09:24:38 [[32minfo[39m]  Created AgentRuntime: time {"profile":"fantasy_rpg","tools":["game_time_service","rule_service","... (4 items)"]}
+09:24:38 [[32minfo[39m]  Permissions configured from agent.tools for profile: fantasy_rpg
+09:24:38 [[32minfo[39m]  YAML permissions configured
+09:24:38 [[32minfo[39m]  Registering AgentRuntime instances to GameMasterAgent...
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: gamemaster
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: map
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: combat
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: output
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: quest
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: npc_party
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: inventory
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: skill
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: event
+09:24:38 [[32minfo[39m]  Registered AgentRuntime to Coordinator: time
+09:24:38 [[32minfo[39m]  Agent system initialized: 10 AgentRuntime instances created
+✅ Agent system initialized with 10 agents
+⚠️ YAML Agent system skipped: __vi_import_5__.initializeYamlAgentSystem is not a function
+09:24:38 [[32minfo[39m]  Agent routes initialized
+09:24:38 [[32minfo[39m]  Save routes initialized
+09:24:38 [[32minfo[39m]  Synced template from YAML to DB: cthulhu-investigation
+09:24:38 [[32minfo[39m]  Synced template from YAML to DB: cyberpunk-mercenary
+09:24:38 [[32minfo[39m]  Synced template from YAML to DB: medieval-fantasy
+09:24:38 [[32minfo[39m]  Synced template from YAML to DB: modern-romance
+09:24:38 [[32minfo[39m]  Synced template from YAML to DB: xianxia
+09:24:38 [[32minfo[39m]  Synced 5 templates from YAML to database
+09:24:38 [[32minfo[39m]  Cache refreshed with 5 templates
+09:24:38 [[32minfo[39m]  TemplateService loaded {"cachedTemplates":5}
+✅ Template YAML loaded and synced to DB
+09:24:38 [[32minfo[39m]  Template routes initialized
+✅ Test environment setup complete
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[2m > [22m[2mDev routes LLM metrics[2m > [22m[2mGET /llm-metrics/summary 应返回聚合结果[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2m环境保护中间件[2m > [22m[2m非生产环境允许访问[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[2m > [22m[2mDev API — runtime-events endpoint[2m > [22m[2mreturns 503 when DevTraceCollector is not available[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mAPI Key 校验[2m > [22m[2m设置了 DEV_API_KEY 但请求无 key 头时返回 401[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[2m > [22m[2mDev API — runtime-events endpoint[2m > [22m[2mreturns runtime events for a saveId[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mAPI Key 校验[2m > [22m[2m设置了 DEV_API_KEY 且 key 头正确时允许访问[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[2m > [22m[2mDev routes LLM metrics[2m > [22m[2mGET /llm-metrics/recent 应校验非法 timeRange[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[2m > [22m[2mDev API — runtime-events endpoint[2m > [22m[2mfilters runtime events by type[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mAPI Key 校验[2m > [22m[2m设置了 DEV_API_KEY 但 key 头错误时返回 401[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[2m > [22m[2mDev API — runtime-events endpoint[2m > [22m[2mfilters runtime events by requestId[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mAPI Key 校验[2m > [22m[2m未设置 DEV_API_KEY 时不校验 key[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[2m > [22m[2mDev API — runtime-events endpoint[2m > [22m[2mrespects limit parameter[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[2m > [22m[2mDev routes LLM metrics[2m > [22m[2mGET /llm-metrics/recent 应校验非法 timeRange[22m[39m
+09:24:38 [[31merror[39m]  Error occurred: [
+  {
+    "code": "invalid_value",
+    "values": [
+      "1h",
+      "6h",
+      "24h",
+      "7d"
+    ],
+    "path": [
+      "timeRange"
+    ],
+    "message": "Invalid option: expected one of \"1h\"|\"6h\"|\"24h\"|\"7d\""
+  }
+] {"name":"ZodError"}
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mPOST /quick-init[2m > [22m[2m缺少 preset 字段返回 400[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev.llm-metrics.test.ts[22m[39m
+✅ Database connection closed
+
+ [32m✓[39m src/routes/__tests__/dev.llm-metrics.test.ts [2m ([22m[2m2 tests[22m[2m)[22m[33m 789[2mms[22m[39m
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[2m > [22m[2mDev API — runtime-events endpoint[2m > [22m[2mreturns empty events for saveId with no data[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[2m > [22m[2mDev API — runtime-events endpoint[2m > [22m[2mreturns event with full traceIds structure[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[2m > [22m[2mDev API — runtime-events endpoint[2m > [22m[2mcombines type and requestId filters[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-runtime-events.test.ts[22m[39m
+✅ Database connection closed
+
+ [32m✓[39m src/routes/__tests__/dev-runtime-events.test.ts [2m ([22m[2m9 tests[22m[2m)[22m[33m 798[2mms[22m[39m
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mPOST /quick-init[2m > [22m[2mcoordinator 或 devModeService 不可用时返回 503[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mPOST /quick-init[2m > [22m[2m预设校验失败返回 400[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mPOST /quick-init[2m > [22m[2m成功初始化返回 200 及完整响应结构[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mPOST /quick-init[2m > [22m[2mcoordinator 返回失败时返回 400[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mPOST /quick-init[2m > [22m[2m调用 coordinator 时 to 字段为 gamemaster[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mPOST /agent-trace[2m > [22m[2m缺少 message 或 saveId 返回 400[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mPOST /agent-trace[2m > [22m[2m缺少 message 返回 400[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mPOST /agent-trace[2m > [22m[2mcoordinator 或 devModeService 不可用时返回 503[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mPOST /agent-trace[2m > [22m[2mto 字段始终为 gamemaster，agentType 作为 _devTargetAgentType 传递[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mPOST /agent-trace[2m > [22m[2m无效 agentType 不阻止请求，仍作为 _devTargetAgentType 传递[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mPOST /agent-trace[2m > [22m[2m成功返回包含 summary 聚合字段[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mPOST /agent-trace[2m > [22m[2m成功返回包含 coordinatorDecisions 字段[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mPOST /agent-trace[2m > [22m[2mtrace 为空时 summary 为 null[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mPOST /agent-trace[2m > [22m[2m默认 action 为 chat[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mPOST /agent-trace[2m > [22m[2m可自定义 action[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mPOST /ab-test[2m > [22m[2m缺少必填字段返回 400[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mPOST /ab-test[2m > [22m[2mcoordinator 或 devModeService 不可用时返回 503[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mPOST /ab-test[2m > [22m[2mdryRun 模式仅校验预设不调用 LLM[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mPOST /ab-test[2m > [22m[2mdryRun 预设校验失败时仍返回 200（dryRun 不阻止）[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mPOST /ab-test[2m > [22m[2m正式模式成功返回完整结构含 summary.agentBreakdown[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mPOST /ab-test[2m > [22m[2m正式模式 init 失败返回 400[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mPOST /ab-test[2m > [22m[2m正式模式预设校验失败返回 400[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mGET /presets[2m > [22m[2m返回预设列表[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mGET /presets[2m > [22m[2mdevModeService 不可用时返回 503[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mGET /presets/:template/:preset[2m > [22m[2m返回预设详情[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mGET /presets/:template/:preset[2m > [22m[2m预设不存在返回 404[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mGET /presets/:template/:preset[2m > [22m[2m无效预设格式返回 404[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mGET /presets/:template/:preset[2m > [22m[2mdevModeService 不可用时返回 503[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mGET /post-react-traces[2m > [22m[2m返回 post-react traces，并按 story_post_react 类型过滤[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mGET /post-react-traces[2m > [22m[2mcollector 不可用时应返回 503，而不是伪装成空数据[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mGET /runtime-snapshots[2m > [22m[2m返回 runtime snapshot traces，并按 runtime_snapshot 类型过滤[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mGET /runtime-snapshots[2m > [22m[2mcollector 不可用时应返回 503，而不是伪装成空数据[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mGET /prompt-composition[2m > [22m[2m带 agentKey 或 intentHint 时使用真实 agentConfig 构建 prompt，而不是伪造空配置[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mGET /prompt-composition[2m > [22m[2m自定义 prompt 预览不应覆盖最后一次真实构建结果[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mGET /prompt-composition[2m > [22m[2m无效 agentKey 应返回 400，而不是伪造空配置继续构建[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mGET /prompt-composition[2m > [22m[2m合法 agentKey 但缺少真实 agentConfig 时应返回 400，而不是回退到空配置[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mGET /prompt-composition[2m > [22m[2mcoordinator 不支持读取 prompt agentConfig 时应返回 503[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mGET /prompt-composition[2m > [22m[2m空字符串 agentKey 应返回 400，而不是回退到默认 gamemaster[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mGET /prompt-composition[2m > [22m[2m空字符串 agentKey 搭配 intentHint 时也应返回 400[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mGET /prompt-composition[2m > [22m[2m重复传入 agentKey 时应返回 400，而不是抛 500 或继续预览[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[2m > [22m[2mDev Mode API — 5 个新端点[2m > [22m[2mGET /prompt-composition[2m > [22m[2m重复传入 intentHint 时应返回 400，而不是继续预览[22m[39m
+09:24:38 [[32minfo[39m]  Dev routes initialized
+
+[90mstdout[2m | src/routes/__tests__/dev-mode.test.ts[22m[39m
+✅ Database connection closed
+
+ [32m✓[39m src/routes/__tests__/dev-mode.test.ts [2m ([22m[2m48 tests[22m[2m)[22m[33m 935[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+[2m      Tests [22m [1m[32m59 passed[39m[22m[90m (59)[39m
+[2m   Start at [22m 09:24:35
+[2m   Duration [22m 3.55s[2m (transform 1.28s, setup 6.15s, collect 693ms, tests 2.52s, environment 0ms, prepare 375ms)[22m
+

@@ -1,0 +1,31 @@
+{
+  "timestamp": 1775688981531,
+  "saveId": "save-1775687924040-xvs43a",
+  "totalIssues": 2,
+  "criticalIssues": 1,
+  "highIssues": 0,
+  "mediumIssues": 1,
+  "issues": [
+    {
+      "category": "ABNORMAL",
+      "severity": "CRITICAL",
+      "message": "B2: 空消息: 网络错误 - Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+      "timestamp": 1775688141466
+    },
+    {
+      "category": "ABNORMAL",
+      "severity": "MEDIUM",
+      "message": "B3: 无效saveId返回错误",
+      "timestamp": 1775688172891
+    }
+  ],
+  "finalState": {
+    "name": "亚瑟",
+    "race": "human",
+    "class": "warrior",
+    "level": 1,
+    "gold": 200,
+    "hp": "300/300",
+    "mp": "170/170"
+  }
+}

@@ -1,0 +1,24 @@
+# 审核策略配置 - 方案M coordinator 联动
+# 按 action 配置审核模式/范围/重试预算
+# coordinator 在子Agent完成后按此配置自动调用 AuditAgent.audit
+audit_strategies:
+  # 技能池初始化：程序审（实体数量+名称）
+  generate_pool_skills:
+    mode: program
+    scope: [entity_counts, entity_names]
+    retry_budget: 2
+  # 物品池初始化：程序审（实体数量+物品归属）
+  generate_pool_items:
+    mode: program
+    scope: [entity_counts, item_ownership]
+    retry_budget: 2
+  # 游戏初始化：程序审（全量数据一致性）
+  initialize:
+    mode: program
+    scope: [entity_counts, npc_location, item_ownership, graph_consistency, info_boundary]
+    retry_budget: 1
+  # NPC交互：程序审+LLM审（NPC位置+内容质量）
+  npc_interact:
+    mode: both
+    scope: [npc_location, content_quality]
+    retry_budget: 1

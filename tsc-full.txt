@@ -1,0 +1,1 @@
+  Object literal may only specify known properties, and 'attribute' does not exist in type 'ItemEffect'.

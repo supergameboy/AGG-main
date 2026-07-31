@@ -1,0 +1,16 @@
+templateId: null
+name: "沃克"
+gender: "male"
+customGender: null
+race: "local-resident"
+classType: "detective"
+background: "working-class"
+attributes:
+  str: 10
+  dex: 14
+  con: 11
+  int: 14
+  wis: 12
+  cha: 9
+customOptions: null
+language: "zh-CN"

@@ -1,0 +1,28 @@
+.react-flow {
+  --xy-background-color: var(--bg-card);
+  --xy-background-pattern-dots-color: var(--border-primary);
+  --xy-controls-button-background-color: var(--bg-secondary);
+  --xy-controls-button-background-color-hover: var(--bg-tertiary);
+  --xy-controls-button-border-color: var(--border-primary);
+  --xy-controls-button-color: var(--text-primary);
+  --xy-edge-label-background-color: var(--bg-primary);
+  --xy-attribution-background-color: transparent;
+}
+
+.react-flow__controls {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border-primary);
+}
+
+.react-flow__controls-button {
+  border-bottom: 1px solid var(--border-primary) !important;
+}
+
+.react-flow__controls-button:last-child {
+  border-bottom: none !important;
+}
+
+.react-flow__controls-button svg {
+  fill: var(--text-primary);
+}

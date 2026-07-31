@@ -1,0 +1,370 @@
+# Agent 上下文注入规则
+# 定义每个 Agent 在调度前需要预加载的数据上下文
+# 目的：减少子 Agent 的 Tool 调用轮次
+
+context_rules:
+  challenge:
+    required:
+      - id: character_status
+        source: character_service
+        method: get_full_status
+        format: compact
+        description: "当前角色的战斗统计"
+      - id: location_info
+        source: map_service
+        method: get_current_location
+        format: summary
+        description: "当前位置描述"
+      - id: skill_list
+        source: skill_service
+        method: list_skills
+        format: compact
+        description: "角色已学技能"
+      - id: combat_state
+        source: challenge_service
+        method: get_combat_state
+        format: compact
+        description: "当前战斗状态(回合数/参战者/行动顺序)"
+      - id: game_time
+        source: game_time_service
+        method: get_current_time
+        format: compact
+        description: "当前游戏时间"
+    max_context_tokens: 184000
+
+  inventory:
+    required:
+      - id: character_inventory
+        source: inventory_service
+        method: list_inventory
+        format: compact
+        description: "角色背包物品列表"
+      - id: equipped_items
+        source: inventory_service
+        method: get_equipment
+        format: compact
+        description: "角色装备中的物品"
+      - id: character_attributes
+        source: character_service
+        method: get_full_status
+        format: compact
+        description: "角色属性"
+    max_context_tokens: 184000
+
+  map:
+    required:
+      - id: current_location
+        source: map_service
+        method: get_current_location
+        format: compact
+        description: "当前位置信息"
+      - id: nearby_locations
+        source: map_service
+        method: get_connected_locations
+        format: compact
+        description: "当前位置可到达的相邻地点"
+      - id: all_locations
+        source: map_service
+        method: list_locations_by_level
+        format: compact
+        description: "所有地图和地点列表"
+      - id: all_npcs
+        source: npc_service
+        method: list_npcs
+        format: compact
+        description: "所有NPC列表（丰富地点描述时需要引用NPC位置信息）"
+    max_context_tokens: 184000
+
+  npc_party:
+    required:
+      - id: current_location
+        source: map_service
+        method: get_current_location
+        format: summary
+        description: "当前位置"
+      - id: dialogue_history
+        source: dialogue_service
+        method: get_dialogue_history
+        format: compact
+        params:
+          limit: 15
+        description: "最近对话历史（NPC对话必须参考此历史保持连续性和一致性）"
+    max_context_tokens: 184000
+
+  quest:
+    required:
+      - id: active_quests
+        source: quest_service
+        method: get_active_quests
+        format: compact
+        description: "当前激活的任务（含任务状态、目标等完整信息）"
+      - id: available_quests
+        source: quest_service
+        method: get_available_quests
+        format: compact
+        description: "当前可接取的任务（含任务状态等完整信息）"
+      - id: story_context
+        source: story_service
+        method: get_context
+        format: summary
+        description: "当前故事背景"
+      - id: current_location
+        source: map_service
+        method: get_current_location
+        format: summary
+        description: "玩家当前位置"
+      - id: character_status
+        source: character_service
+        method: get_full_status
+        format: compact
+        description: "角色等级和属性(用于任务难度适配)"
+      - id: all_npcs
+        source: npc_service
+        method: list_npcs
+        format: compact
+        params:
+          visibility: 'all'
+        description: "存档中所有NPC属性详情，创建任务时需要引用NPC ID"
+    max_context_tokens: 184000
+
+  skill:
+    required:
+      - id: skill_list
+        source: skill_service
+        method: list_skills
+        format: compact
+        description: "角色技能列表"
+      - id: character_attributes
+        source: character_service
+        method: get_full_status
+        format: compact
+        description: "角色属性"
+    max_context_tokens: 184000
+
+  event:
+    required:
+      - id: pending_events
+        source: event_service
+        method: get_pending_triggers
+        format: compact
+        description: "等待触发的事件"
+      - id: story_context
+        source: story_service
+        method: get_context
+        format: summary
+        description: "当前故事背景"
+      - id: current_location
+        source: map_service
+        method: get_current_location
+        format: summary
+        description: "玩家当前位置(位置条件检测)"
+      - id: character_status
+        source: character_service
+        method: get_full_status
+        format: compact
+        description: "角色状态(属性条件检测)"
+      - id: game_time
+        source: game_time_service
+        method: get_current_time
+        format: compact
+        description: "当前游戏时间(时间条件检测)"
+      - id: active_quests
+        source: quest_service
+        method: get_active_quests
+        format: compact
+        description: "激活任务(任务条件检测)"
+    max_context_tokens: 184000
+
+  time:
+    required:
+      - id: game_time
+        source: game_time_service
+        method: get_current_time
+        format: compact
+        description: "当前游戏时间"
+    max_context_tokens: 184000
+
+  output:
+    required:
+      - id: world_summary
+        source: story_service
+        method: get_context
+        format: summary
+        description: "世界故事摘要"
+      - id: game_time
+        source: game_time_service
+        method: get_current_time
+        format: compact
+        description: "当前游戏时间(昼夜/季节/氛围)"
+      - id: current_location
+        source: map_service
+        method: get_current_location
+        format: summary
+        description: "当前位置环境信息"
+      - id: character_status
+        source: character_service
+        method: get_full_status
+        format: compact
+        description: "角色当前状态"
+      - id: active_quests
+        source: quest_service
+        method: get_active_quests
+        format: compact
+        description: "当前激活的任务（保持任务上下文不丢失）"
+      - id: character_inventory
+        source: inventory_service
+        method: list_inventory
+        format: compact
+        description: "角色背包物品列表（生成物品面板UI时需要）"
+      - id: skill_list
+        source: skill_service
+        method: list_skills
+        format: compact
+        description: "角色技能列表（生成技能面板UI时需要）"
+    max_context_tokens: 184000
+
+  gamemaster:
+    required:
+      - id: dialogue_history
+        source: dialogue_service
+        method: get_dialogue_history
+        format: compact
+        params:
+          limit: 20
+        description: "最近对话历史（保持对话连续性和一致性的关键上下文）"
+      - id: character_status
+        source: character_service
+        method: get_full_status
+        format: compact
+        description: "角色完整状态"
+      - id: current_location
+        source: map_service
+        method: get_current_location
+        format: compact
+        description: "当前位置信息"
+      - id: active_quests
+        source: quest_service
+        method: get_active_quests
+        format: compact
+        description: "当前激活的任务"
+      - id: available_quests
+        source: quest_service
+        method: get_available_quests
+        format: compact
+        description: "当前可接取的任务"
+      - id: story_context
+        source: story_service
+        method: get_context
+        format: summary
+        description: "当前故事背景"
+      - id: game_time
+        source: game_time_service
+        method: get_current_time
+        format: compact
+        description: "当前游戏时间"
+      - id: skill_list
+        source: skill_service
+        method: list_skills
+        format: compact
+        description: "角色技能列表"
+      - id: equipped_items
+        source: inventory_service
+        method: get_equipment
+        format: compact
+        description: "角色装备"
+      - id: combat_state
+        source: challenge_service
+        method: get_combat_state
+        format: compact
+        description: "当前战斗状态（无战斗时返回空）"
+      - id: character_inventory
+        source: inventory_service
+        method: list_inventory
+        format: compact
+        description: "角色背包物品列表（当前拥有的所有物品）"
+      - id: active_effects
+        source: challenge_service
+        method: get_status_effects
+        format: compact
+        description: "角色当前状态效果(buffs/debuffs/持续伤害等)"
+      - id: pending_events
+        source: event_service
+        method: get_pending_triggers
+        format: compact
+        description: "等待触发的事件列表，需要在合适的时机触发"
+    max_context_tokens: 184000
+
+# v2: 默认 manifest（manifest 路径，按 agentType+action）
+# 程序自动构建路径用：contextInjector.getDefaultManifest(agentType, action)
+# GM 传 manifest 时完全替换默认（?? 运算符），mergeManifest 工具函数可合并
+default_manifests:
+  gamemaster:
+    initialize:
+      sections:
+        - tag: "模板数据.世界设定"
+        - tag: "模板数据.角色创建"
+        - tag: "模板数据.游戏规则"
+        - tag: "模板数据.起始场景"
+        - tag: "游戏数据.游戏时间"
+        # 模块4 新增：GM 启动注入全图概览+感知边，用于 GM 决策时感知关系网络状态
+        - tag: "关系数据.全图概览"
+        - tag: "关系数据.感知边"
+      description: "GM初始化：注入世界设定+角色创建+游戏规则+起始场景+游戏时间+全图概览+感知边"
+    # 模块4 新增：GM 游戏循环中定期注入全图概览（节点/边统计），让 GM 感知关系网络变化
+    game_loop:
+      sections:
+        - tag: "关系数据.全图概览"
+      description: "GM游戏循环：注入全图概览（节点/边统计），用于 GM 决策时感知关系网络变化"
+
+  skill:
+    skill_pool_init:
+      sections:
+        - tag: "模板数据.技能定义"
+        - tag: "池数据.技能"
+      description: "技能池初始化：注入YAML种子技能+模板池技能"
+
+  inventory:
+    item_pool_init:
+      sections:
+        - tag: "模板数据.物品定义"
+        - tag: "池数据.物品"
+      description: "物品池初始化：注入YAML种子物品+模板池物品"
+
+  map:
+    map_init:
+      sections:
+        - tag: "模板数据.起始场景"
+        - tag: "存档数据.地点"
+      description: "地图初始化：注入起始场景+已创建地点"
+
+  npc_party:
+    npc_spawn:
+      sections:
+        - tag: "模板数据.角色创建"
+        - tag: "存档数据.NPC"
+      description: "NPC生成：注入角色创建模板+已创建NPC"
+      # LOW-1 第七轮修订：不配置"关系数据.NPC关系" tag。
+      # 理由：entityGraphService 在 init.ts L497 创建时 npcService=null，
+      #   getNpcProfile 会抛错被 GameDataExpander 降级为 warn（局部降级无价值）。
+      # NPC Party 若需查询 NPC 关系数据，应通过工具调用 entity_graph_service.get_npc_profile
+      #   （走模块1 EntityGraphPort 路径，per-saveId 实例含 npcService）。
+      # 模块2 决策：NPC_PARTY 不写关系，关系维护职责归 GM（perception-management 技能）。
+    # 模块4 新增 action：NPC 对话时注入对话 NPC 存档数据
+    dialogue:
+      sections:
+        - tag: "存档数据.NPC"
+      description: "NPC对话：注入对话NPC存档数据"
+      # LOW-1 第七轮修订：不配置"关系数据.NPC关系" tag（同 npc_spawn 理由）
+
+  quest:
+    quest_create:
+      sections:
+        - tag: "模板数据.初始数据"
+        - tag: "存档数据.任务"
+        # 模块4 新增：任务发布 NPC 的关系数据，让任务基于 NPC 关系网络设计
+        # 占位符 ${questGiverNpcId} 由 coordinator 在运行时解析（若不支持，先落地静态 filter）
+        - tag: "关系数据.实体关系"
+          filter:
+            entityId: "${questGiverNpcId}"
+            entityType: "npc"
+      description: "任务创建：注入初始数据+已创建任务+任务发布NPC关系数据"

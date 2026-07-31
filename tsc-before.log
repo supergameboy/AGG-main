@@ -1,0 +1,1 @@
+src/agents/coordinator/ResponseBuilder.ts(339,36): error TS2339: Property 'speaker' does not exist on type 'GameResponse'.

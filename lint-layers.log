@@ -1,0 +1,159 @@
+
+> multi-agent-generative-rpg-engine@1.0.0 lint:layers C:\Users\super\Documents\trae_projects\AGG-main
+> node scripts/check-layer-boundary.mjs
+
+
+[WARNING]   agents/AgentRuntime.ts:117
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { LocationData } from '../game-systems/map/types';
+
+[WARNING]   agents/BaseAgent.ts:11
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { IContextProvider } from '../game-systems/shared/types.js';
+
+[WARNING]   agents/config/ConfigLoader.ts:15
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { IAgentProfileRepository, AgentProfileRow } from '../../game-systems/config/types.js';
+
+[WARNING]   agents/coordinator/DataRefreshHandler.ts:6
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { LocationData, LocationConnection } from '../../game-systems/map/types.js';
+
+[WARNING]   agents/coordinator/DataRefreshHandler.ts:7
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { ICharacterRepository, CharacterData } from '../../game-systems/character/types.js';
+
+[WARNING]   agents/coordinator/DataRefreshHandler.ts:8
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { IInventoryRepository, InventoryItem, OwnerType } from '../../game-systems/inventory/types.js';
+
+[WARNING]   agents/coordinator/DataRefreshHandler.ts:9
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { ILocationRepository, ILocationConnectionRepository } from '../../game-systems/map/types.js';
+
+[WARNING]   agents/coordinator/DataRefreshHandler.ts:10
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { INPCRepository, NPCProfile } from '../../game-systems/npc/types.js';
+
+[WARNING]   agents/coordinator/DataRefreshHandler.ts:11
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { IQuestRepository, IQuestObjectiveRepository, Quest, QuestObjective } from '../../game-systems/quest/types.js';
+
+[WARNING]   agents/coordinator/DataRefreshHandler.ts:12
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { ICharacterSkillRepository, CharacterSkill } from '../../game-systems/skill/types.js';
+
+[WARNING]   agents/coordinator/ResponseBuilder.ts:6
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { ISaveProvider } from '../../game-systems/save/types.js';
+
+[WARNING]   agents/memory/episodic-memory-service.ts:3
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { IEpisodicMemoryRepository, EpisodicMemoryRow } from '../../game-systems/memory/types.js';
+
+[WARNING]   agents/memory/procedural-memory-service.ts:3
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { IProceduralMemoryRepository, ProceduralMemoryRow } from '../../game-systems/memory/types.js';
+
+[WARNING]   agents/memory/types.ts:3
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: export type { EpisodicMemoryType, AgentEpisodicMemory, EpisodicRecallOptions, AgentProceduralMemory, ProceduralRecallOptions, } from '../../game-systems/memory/types.js';
+
+[WARNING]   agents/prompt/layers/drive-layer.ts:2
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { INPCService, DriveProfile, NPCProfile } from '../../../game-systems/npc/types.js';
+
+[WARNING]   agents/prompt/layers/entity-graph-layer.ts:2
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { EntityGraphService } from '../../../game-systems/entity-graph/EntityGraphService.js';
+
+[WARNING]   agents/prompt/layers/entity-graph-layer.ts:3
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { EntityEdge } from '../../../game-systems/entity-graph/types.js';
+
+[WARNING]   agents/prompt/layers/equipment-slot-layer.ts:2
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { ITemplateProvider } from '../../../game-systems/shared/types.js';
+
+[WARNING]   agents/prompt/layers/information-boundary-layer.ts:2
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { EntityGraphService } from '../../../game-systems/entity-graph/EntityGraphService.js';
+
+[WARNING]   agents/prompt/layers/information-boundary-layer.ts:3
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { EntityNode, EntityType } from '../../../game-systems/entity-graph/types.js';
+
+[WARNING]   agents/runtime/audit-hook.ts:18
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { IAuditAgent, AuditContext } from '../../game-systems/audit/ProgramChecker.js';
+
+[WARNING]   agents/runtime/context-manager.ts:23
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { IContextProvider } from '../../game-systems/shared/types.js';
+
+[WARNING]   agents/runtime/hook-impl-registry.ts:17
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { IAuditAgent } from '../../game-systems/audit/ProgramChecker.js';
+
+[WARNING]   agents/runtime/types.ts:21
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { IContextProvider } from '../../game-systems/shared/types.js';
+
+[WARNING]   agents/runtime/types.ts:22
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { INPCService } from '../../game-systems/npc/types.js';
+
+[WARNING]   agents/story/StoryDomain.ts:7
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { StoryEvent, StoryEventInput } from '../../game-systems/story/types.js';
+
+[WARNING]   agents/story/StoryKernel.ts:31
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { StoryEventInput } from '../../game-systems/story/types.js';
+
+[WARNING]   agents/story/StoryKernel.ts:32
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { IPacingRepository, IPacingHistoryRepository, IStoryEventRepository, PacingConfigRow, PacingHistoryRow, } from '../../game-systems/story/types.js';
+
+[WARNING]   agents/story/StoryKernel.ts:39
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { ICharacterRepository } from '../../game-systems/character/types.js';
+
+[WARNING]   agents/story/StoryKernel.ts:40
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { IQuestRepository, IQuestObjectiveRepository } from '../../game-systems/quest/types.js';
+
+[WARNING]   agents/story/types.ts:1
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { ChapterInfo, StoryContext, StoryEvent, StoryEventInput, } from '../../game-systems/story/types.js';
+
+[WARNING]   agents/tools/coordinator-service.ts:8
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { DedupService } from '../../game-systems/dispatch/DedupService.js';
+
+[WARNING]   agents/types.ts:7
+          rule: G鈫扚 (Agent灞傜姝緷璧栦笟鍔″眰锛堢粍鍚堟牴闄ゅ锛?
+          import: import type { GameTime, TimeAdvanceParams, TimePassageResult } from '../game-systems/time/types';
+
+[WARNING]   game-systems/character/GenerateOptionsTool.ts:12
+          rule: I鈫扙+G (宸ュ叿灞傜姝緷璧栨湇鍔″眰鍜孉gent灞?
+          import: import type { ConfigLoader } from '../../agents/config/ConfigLoader.js';
+
+[WARNING]   game-systems/shared/types.ts:32
+          rule: F鈫扙 (涓氬姟灞傜姝緷璧栨湇鍔″眰锛堥€氳繃鎺ュ彛瑙ｈ€︼級)
+          import: import type { TemplateRecord } from '../../services/template.js';
+
+[WARNING]   game-systems/shared/types.ts:33
+          rule: F鈫扙 (涓氬姟灞傜姝緷璧栨湇鍔″眰锛堥€氳繃鎺ュ彛瑙ｈ€︼級)
+          import: import type { CreateTemplateSkillParams, CreateTemplateItemParams, } from '../../services/template-pool.js';
+
+[WARNING]   programs/ChallengeProgram.ts:37
+          rule: G2鈫扜+F (G2绋嬪簭鎵ц灞傜姝alue import Agent灞侴鍜屼笟鍔″眰F锛堜粎鍏佽type import绔彛鎺ュ彛锛?
+          import: import type { ICombatServiceTool } from '../game-systems/combat/CombatServiceTool.js';
+
+========== 姹囨€?==========
+ERROR:   0 涓紙value import 杩濊锛宔rror 妯″紡浼氶樆鏂瀯寤猴級
+WARNING: 37 涓紙type-only 杩濊锛屼笉闃绘柇鏋勫缓锛?璞佸厤:    agents/agent-deps.ts (28 澶?import锛岀粍鍚堟牴)
+璞佸厤:    agents/init.ts (83 澶?import锛岀粍鍚堟牴)
+
+妯″紡: warn (exit 0)

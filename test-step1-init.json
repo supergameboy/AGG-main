@@ -1,0 +1,83 @@
+﻿{
+    "success":  true,
+    "data":  {
+                 "success":  true,
+                 "data":  {
+                              "coordinator":  {
+                                                  "processedAt":  1775504200830,
+                                                  "duration":  31630,
+                                                  "scheduleDepth":  2,
+                                                  "agentsInvolved":  [
+
+                                                                     ]
+                                              },
+                              "firstLayerData":  {
+
+                                                 },
+                              "numericalExample":  {
+                                                       "maxHealth":  325,
+                                                       "maxMana":  212,
+                                                       "attack":  39,
+                                                       "defense":  27,
+                                                       "magicAttack":  45,
+                                                       "magicDefense":  21,
+                                                       "speed":  26,
+                                                       "critRate":  0.19000000000000003,
+                                                       "critDamage":  1.82,
+                                                       "evasion":  0.13,
+                                                       "accuracy":  0.9660000000000001
+                                                   }
+                          },
+                 "messages":  [
+                                  {
+                                      "id":  "1775504200830-rz04y8p6n",
+                                      "timestamp":  1775504200830,
+                                      "from":  "coordinator",
+                                      "to":  "dialogue",
+                                      "type":  "response",
+                                      "payload":  {
+                                                      "action":  "coordinator_response",
+                                                      "data":  {
+                                                                   "coordinator":  {
+                                                                                       "processedAt":  1775504200830,
+                                                                                       "duration":  31630,
+                                                                                       "scheduleDepth":  2,
+                                                                                       "agentsInvolved":  [
+
+                                                                                                          ]
+                                                                                   },
+                                                                   "firstLayerData":  {
+
+                                                                                      },
+                                                                   "numericalExample":  {
+                                                                                            "maxHealth":  325,
+                                                                                            "maxMana":  212,
+                                                                                            "attack":  39,
+                                                                                            "defense":  27,
+                                                                                            "magicAttack":  45,
+                                                                                            "magicDefense":  21,
+                                                                                            "speed":  26,
+                                                                                            "critRate":  0.19000000000000003,
+                                                                                            "critDamage":  1.82,
+                                                                                            "evasion":  0.13,
+                                                                                            "accuracy":  0.9660000000000001
+                                                                                        }
+                                                               }
+                                                  },
+                                      "metadata":  {
+                                                       "priority":  "normal",
+                                                       "requiresResponse":  false
+                                                   }
+                                  }
+                              ],
+                 "metadata":  {
+                                  "processingTime":  31632,
+                                  "messageId":  "1775504169200-hs2w7cu2s",
+                                  "processedAt":  "2026-04-06T19:36:40.832Z"
+                              }
+             },
+    "meta":  {
+                 "timestamp":  1775504200832,
+                 "requestId":  "1acc3801-4a25-426d-ac6e-a9109eb8b2b0"
+             }
+}

@@ -1,0 +1,16 @@
+templateId: null
+name: "海伦"
+gender: "female"
+customGender: null
+race: "scholar-family"
+classType: "doctor"
+background: "upper-class"
+attributes:
+  str: 8
+  dex: 10
+  con: 9
+  int: 15
+  wis: 14
+  cha: 12
+customOptions: null
+language: "zh-CN"

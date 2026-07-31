@@ -1,0 +1,1 @@
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: vitest run src/game-systems/skill/__tests__/skill-doc-compliance-extended.test.ts src/game-systems/inventory/__tests__/inventory-doc-compliance-extended.test.ts

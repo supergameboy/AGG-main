@@ -1,0 +1,9 @@
+src/agents/__tests__/react-engine-debug-extraction.test.ts(167,36): error TS7006: Parameter 'i' implicitly has an 'any' type.
+src/agents/AgentRuntime.ts(2094,64): error TS2345: Argument of type '"dev:llm_debug"' is not assignable to parameter of type '"dialogue:message" | "combat:turn_start" | "quest:update" | "event:triggered" | "agent_progress" | "config:reloaded" | "map:update" | "map:entity_move" | "dev:staging_write" | ... 8 more ... | "generate_progress"'.
+src/services/__tests__/shadow-state-insert-override.test.ts(85,12): error TS2571: Object is of type 'unknown'.
+src/services/__tests__/shadow-state-scope-values-transparent.test.ts(139,14): error TS2571: Object is of type 'unknown'.
+src/services/__tests__/template-world-context.test.ts(6,3): error TS2322: Type '{ id: string; name: string; description: string; version: string; author: string; tags: string[]; gameMode: string; numericalComplexity: string; agentProfile: string; isBuiltin: boolean; ... 16 more ...; updatedAt: any; }' is not assignable to type 'TemplateRecord'.
+  Types of property 'locations' are incompatible.
+    Type 'Record<string, unknown>[] | undefined' is not assignable to type 'Record<string, unknown>[]'.
+      Type 'undefined' is not assignable to type 'Record<string, unknown>[]'.
+

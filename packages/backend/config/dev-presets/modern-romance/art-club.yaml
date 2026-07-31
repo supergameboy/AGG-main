@@ -1,0 +1,15 @@
+templateId: null
+name: "美月"
+gender: "female"
+customGender: null
+race: "returnee"
+classType: "art-club"
+background: "wealthy-family"
+attributes:
+  charm: 14
+  intelligence: 10
+  courage: 8
+  empathy: 14
+  luck: 10
+customOptions: null
+language: "zh-CN"

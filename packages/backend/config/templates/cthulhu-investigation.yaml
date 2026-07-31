@@ -1,0 +1,2267 @@
+id: cthulhu-investigation
+name: 克苏鲁恐怖调查
+description: 1920年代的新英格兰阿卡姆镇，古老的秘密正在苏醒。作为调查员，你将面对超越人类理解的恐怖真相。理智在崩塌，现实在扭曲——你能否在疯狂吞噬你之前揭开谜团？
+version: 1.0.0
+author: AGG Team
+tags:
+  - horror
+  - investigation
+  - lovecraft
+  - cthulhu
+  - 1920s
+
+game_mode: text_adventure
+default_challenge_mode: narrative_combat
+numerical_complexity: medium
+agent_profile: fantasy_rpg
+is_builtin: true
+
+world_setting:
+  name: 阿卡姆镇
+  description: 1920年代的新英格兰小镇，米斯卡塔尼克河缓缓流过。阿卡姆是一座古老的小镇，哥特式的建筑在雾气中若隐若现。米斯卡塔尼克大学收藏着禁忌的典籍，而镇外的森林和山丘中隐藏着不可名状的秘密。古老的邪教在暗处活动，异界的低语在深夜回响。
+  era: 1920年代
+  genre: horror
+  magic_system: 克苏鲁神话 - 禁忌知识与古老仪式
+  technology_level: 20世纪初
+  custom_fields:
+    location: 美国马萨诸塞州
+    university: 米斯卡塔尼克大学
+    currency: 美元
+    sanity_system: 理智值(POW)
+    mythos: 克苏鲁神话体系
+
+character_creation:
+  attribute_points: 10
+  attribute_role_mapping:
+    physical_power: str
+    agility: dex
+    endurance: con
+    mental_power: int
+    perception: wis
+    influence: cha
+  races:
+    - id: local-resident
+      name: 本地居民
+      description: 在阿卡姆土生土长，对这座小镇的怪异早已习以为常。你知道哪些地方不该去，哪些话题不该提。但最近发生的事，已经超出了你的认知。
+      bonuses:
+        con: 1
+      penalties: {}
+      abilities:
+        - 本地知识
+        - 镇民关系网
+      available_classes:
+        - detective
+        - doctor
+        - journalist
+        - professor
+    - id: immigrant
+      name: 外来移民
+      description: 从远方来到阿卡姆谋生，你对这座小镇的一切都感到陌生和不安。但正因为你不受旧习束缚，你能看到本地人忽视的线索。
+      bonuses:
+        dex: 1
+        int: 1
+      penalties:
+        cha: -1
+      abilities:
+        - 外来者视角
+        - 多语言能力
+      available_classes:
+        - detective
+        - doctor
+        - professor
+    - id: scholar-family
+      name: 学者家族
+      description: 出身学术世家，你的家族与米斯卡塔尼克大学有着深厚的渊源。家中的藏书室里藏着一些不该存在的书籍，而你从小就对那些奇怪的符号感到不安。
+      bonuses:
+        int: 2
+      penalties:
+        con: -1
+      abilities:
+        - 学术传承
+        - 禁忌知识直觉
+      available_classes:
+        - doctor
+        - professor
+    - id: occult-bloodline
+      name: 神秘血统
+      description: 你的血脉中流淌着不可名状的力量。噩梦从幼年就纠缠着你，你偶尔能感知到常人无法察觉的存在。这份天赋是祝福还是诅咒，取决于你如何使用它。
+      bonuses:
+        wis: 2
+      penalties:
+        cha: -1
+      abilities:
+        - 灵视
+        - 梦境感知
+      available_classes:
+        - detective
+        - doctor
+        - professor
+
+  classes:
+    - id: detective
+      name: 侦探
+      description: 私人侦探，擅长搜集线索和逻辑推理。你受雇调查阿卡姆的失踪案件，却发现自己卷入了一场超越想象的恐怖之中。
+      primary_attributes:
+        - int
+        - dex
+      hit_die: d8
+      skill_proficiencies:
+        - investigation
+        - perception
+        - stealth
+      starting_equipment:
+        - revolver
+        - magnifying-glass
+        - detective-notebook
+    - id: doctor
+      name: 医生
+      description: 米斯卡塔尼克大学的医学教授，对人类精神有着深入的研究。你开始怀疑，某些"精神病患"的症状并非源于疾病，而是源于某种不可名状的接触。
+      primary_attributes:
+        - int
+        - wis
+      hit_die: d8
+      skill_proficiencies:
+        - medicine
+        - psychology
+        - science
+      starting_equipment:
+        - medical-bag
+        - scalpel
+        - psychiatric-notes
+    - id: journalist
+      name: 记者
+      description: 阿卡姆公报的调查记者，总是追着离奇的新闻跑。你最近收到的一封匿名信，将你引向了一个远比任何新闻都恐怖的真相。
+      primary_attributes:
+        - cha
+        - dex
+      hit_die: d6
+      skill_proficiencies:
+        - persuasion
+        - investigation
+        - photography
+      starting_equipment:
+        - camera
+        - press-badge
+        - typewriter
+    - id: professor
+      name: 教授
+      description: 米斯卡塔尼克大学的考古学教授，对古代文明有着渊博的知识。你在一次发掘中接触到了不该接触的东西，从此你的世界再也不一样了。
+      primary_attributes:
+        - int
+        - wis
+      hit_die: d6
+      skill_proficiencies:
+        - arcana
+        - history
+        - library-use
+      starting_equipment:
+        - ancient-tome
+        - decoding-lens
+        - university-credentials
+
+  backgrounds:
+    - id: middle-class
+      name: 中产阶级
+      description: 体面的中产家庭，有稳定的工作和收入。你在阿卡姆过着平静的生活，直到那个雨夜，一切都变了。
+      skill_proficiencies:
+        - credit-rating
+        - etiquette
+      languages:
+        - latin
+      equipment:
+        - formal-attire
+        - pocket-watch
+        - house-key
+      feature: 体面身份 - 你在社会上有着可靠的信用和人际关系
+      attribute_bonuses:
+        cha: 1
+    - id: working-class
+      name: 工人阶级
+      description: 靠双手吃饭的劳动者，生活虽不富裕但踏实。你见过太多上流社会看不到的东西，包括那些在暗巷中出没的身影。
+      skill_proficiencies:
+        - survival
+        - mechanics
+      languages: []
+      equipment:
+        - work-clothes
+        - toolbox
+        - flask
+      feature: 街头智慧 - 你了解底层社会的规则和生存之道
+      attribute_bonuses:
+        con: 1
+    - id: upper-class
+      name: 上流社会
+      description: 出身名门望族，家族在阿卡姆有着百年的历史。但你也知道，家族的荣耀之下隐藏着不可告人的秘密。
+      skill_proficiencies:
+        - persuasion
+        - credit-rating
+      languages:
+        - french
+        - latin
+      equipment:
+        - tailored-suit
+        - cane-sword
+        - family-heirloom
+      feature: 旧钱势力 - 你的家族名字能打开许多门，也可能引来危险的关注
+      attribute_bonuses:
+        int: 1
+    - id: marginalized
+      name: 边缘人群
+      description: 生活在社会边缘的人，无人在意你的存在。但正因如此，你能去到别人不敢去的地方，听到别人听不到的耳语。
+      skill_proficiencies:
+        - stealth
+        - streetwise
+      languages:
+        - thieves-cant
+      equipment:
+        - worn-coat
+        - lockpicks
+        - hidden-dagger
+      feature: 隐形人 - 你习惯了不被注意，这让你能轻松地观察和跟踪
+      attribute_bonuses:
+        dex: 1
+
+  attributes:
+    - id: str
+      name: 力量
+      abbreviation: STR
+      description: 体能和力量，影响近战攻击和体力活动
+      min_value: 1
+      default_value: 10
+      max_value: 20
+    - id: dex
+      name: 敏捷
+      abbreviation: DEX
+      description: 灵活性和反应速度，影响闪避和远程攻击
+      min_value: 1
+      default_value: 10
+      max_value: 20
+    - id: con
+      name: 体质
+      abbreviation: CON
+      description: 耐力和抗性，影响生命值和理智恢复
+      min_value: 1
+      default_value: 10
+      max_value: 20
+    - id: int
+      name: 智力
+      abbreviation: INT
+      description: 知识和推理能力，影响调查和学术判定
+      min_value: 1
+      default_value: 10
+      max_value: 20
+    - id: wis
+      name: 感知
+      abbreviation: WIS
+      description: 洞察力和意志力，影响理智判定和灵视
+      min_value: 1
+      default_value: 10
+      max_value: 20
+    - id: cha
+      name: 魅力
+      abbreviation: CHA
+      description: 社交能力和说服力，影响交涉和号召
+      min_value: 1
+      default_value: 10
+      max_value: 20
+
+  custom_options: []
+
+  age_mode: group
+  age_groups:
+    - id: youth
+      name: 青年
+      description: 年轻气盛，身手敏捷但经验不足
+      bonuses:
+        dex: 1
+      penalties:
+        wis: -1
+    - id: middle
+      name: 中年
+      description: 经验丰富，判断力强但体力下降
+      bonuses:
+        wis: 1
+      penalties:
+        dex: -1
+    - id: elder
+      name: 老年
+      description: 学识渊博，但身体衰弱
+      bonuses:
+        int: 1
+        wis: 1
+      penalties:
+        str: -1
+        con: -1
+
+game_rules:
+  combat_system:
+    type: narrative
+    initiative_type: dexterity
+    custom_initiative: ""
+    action_points: 1
+    critical_hit:
+      threshold: 20
+      multiplier: 2
+    flee:
+      base_chance: 0.5
+      per_dead_enemy_bonus: 0.2
+    defend:
+      damage_reduction: 0.6
+    damage_formula:
+      attack_contribution: 0.4
+      defense_reduction: 0.6
+      level_bonus_factor: 1
+      variance_min: 0.8
+      variance_range: 0.4
+    enemy_ai:
+      skill_use_chance: 0.2
+    defaults:
+      potion_heal: 20
+      mana_potion_restore: 15
+      skill_mana_cost: 8
+      skill_damage_multiplier: 1.3
+      skill_base_damage_factor: 1.5
+      attribute_fallback: 10
+      enemy_speed_factor: 1
+  derived_attribute_formulas:
+    maxHealth:
+      base: 100
+      coefficients: { physical_power: 5, endurance: 15 }
+    maxMana:
+      base: 50
+      coefficients: { mental_power: 10, endurance: 2 }
+    attack:
+      base: 10
+      coefficients: { physical_power: 2, agility: 0.5 }
+    defense:
+      base: 5
+      coefficients: { endurance: 1.5, physical_power: 0.5 }
+    magicAttack:
+      base: 8
+      coefficients: { mental_power: 2.5, perception: 0.3 }
+    magicDefense:
+      base: 4
+      coefficients: { mental_power: 1, endurance: 0.3 }
+    speed:
+      base: 10
+      coefficients: { agility: 1.5, influence: 0.2 }
+    critRate:
+      base: 0.05
+      coefficients: { agility: 0.01, influence: 0.005 }
+      max: 0.5
+    critDamage:
+      base: 1.5
+      coefficients: { physical_power: 0.02, influence: 0.01 }
+    dodgeRate:
+      base: 0.05
+      coefficients: { agility: 0.008 }
+      max: 0.3
+    blockRate:
+      base: 0.9
+      coefficients: { agility: 0.005, perception: 0.002 }
+  skill_system:
+    max_level: 10
+    cooldown_system: none
+    upgrade_cost:
+      base: 80
+      multiplier: 1.5
+  inventory_system:
+    max_slots: 15
+    weight_system: true
+    stack_sizes:
+      ammunition: 20
+      clue: 1
+      consumable: 5
+    equipment_slots:
+      - id: main_hand
+        name: 主手
+        icon: ⚔
+        accepted_item_types:
+          - weapon
+      - id: body
+        name: 身体
+        icon: 🛡
+        accepted_item_types:
+          - armor
+      - id: head
+        name: 头部
+        icon: 🎩
+        accepted_item_types:
+          - armor
+          - accessory
+      - id: accessory
+        name: 饰品
+        icon: 💍
+        capacity: 2
+        accepted_item_types:
+          - accessory
+  quest_system:
+    max_active: 5
+    time_system: true
+    fail_conditions:
+      - timeout
+      - sanity-loss
+      - npc-death
+  currency_system:
+    id: dollar
+    name: 美元
+    icon: 💵
+  custom_rules:
+    - name: 理智值系统
+      description: 目击恐怖事件或接触禁忌知识会降低理智值，理智值归零则角色永久疯狂
+    - name: 禁忌知识
+      description: 阅读禁忌典籍可以获得强大力量，但会付出理智的代价
+
+ai_constraints:
+  tone: dark
+  custom_tone: ""
+  content_rating: mature
+  prohibited_topics:
+    - explicit-content
+  required_elements:
+    - horror
+    - investigation
+    - sanity-mechanics
+    - cosmic-dread
+  ai_behavior:
+    response_style: narrative
+    detail_level: detailed
+    player_agency: balanced
+
+starting_scene:
+  location: arkham-police-station
+  description: 1920年的深秋，阿卡姆镇笼罩在一层薄雾之中。你站在警察局门口，手中握着一封匿名信。信上只有一句话："如果你想找到失踪的人，今晚来印斯茅斯路17号。"警长从你身边经过，他的表情阴沉，似乎这座小镇的每个人都在隐瞒着什么......
+  location_description: 阿卡姆警察局，1920年代新英格兰小镇的执法机构
+  atmosphere: 阴沉压抑，薄雾笼罩，每个人都像在隐瞒着什么
+
+  sub_locations:
+    - id: police-lobby
+      name: 警察局大厅
+      description: 狭窄昏暗的接待大厅，墙上贴满了失踪人口的寻人启事，有些已经泛黄卷边。木制长椅上坐着几位面容焦虑的镇民，他们低声交谈，不时警觉地看向门口。柜台后的警员面色疲惫，对每一个报案都报以同样的冷漠回应。角落里的老式挂钟滴答作响，仿佛在为失踪者倒计时。
+      type: lobby
+      is_starting: true
+      danger_level: 0
+
+    - id: ward-office
+      name: 沃德探长办公室
+      description: 一间弥漫着烟草味的狭小办公室，桌上堆满了案卷和烟灰缸。墙上钉着一张阿卡姆地图，地图上用红色图钉标注着失踪地点，它们诡异地排列成一个不规则的圆弧。窗户被厚重的窗帘遮住，只有桌上的台灯投下昏黄的光圈。
+      type: office
+      danger_level: 0
+
+    - id: evidence-room
+      name: 证物室
+      description: 警察局地下室的证物存放处，铁架上整齐排列着标有编号的证物箱。最里侧的铁柜上挂着"禁止入内"的牌子，柜门上的锁似乎最近被更换过。空气中弥漫着陈旧纸张和某种说不出的腥味，灯光偶尔闪烁，仿佛有什么东西在暗处窥视。
+      type: storage
+      danger_level: 1
+
+    - id: station-exit
+      name: 警察局出口
+      description: 警察局正门外的石阶，阿卡姆的薄雾在此处格外浓重。街灯在雾中发出朦胧的橘黄色光芒，远处隐约可见米斯卡塔尼克河的轮廓。偶尔有马车经过，马蹄声在雾中回荡，听起来格外寂寥。
+      type: gate
+      danger_level: 0
+      connections:
+        - innsmouth-road-entrance
+        - university-entrance
+
+  npcs:
+    - id: inspector-ward
+      location: ward-office
+      name: 沃德探长
+      title: 阿卡姆警察局探长
+      description: 一位疲惫的中年探长，眼圈深黑，烟不离手。他负责调查最近的一系列失踪案，但似乎遇到了无法解释的阻力。
+      role: informant
+      race: human
+      appearance: 灰色风衣，软呢帽，指间夹着半截香烟，眼中满是疲惫
+      personality: 严肃、多疑、内心挣扎
+      dialogue:
+        - 你也是来调查失踪案的？我劝你趁早放弃。
+        - 有些事情......不是人类应该知道的。
+        - 最近三周，已经有七个人失踪了。没有任何线索，就像凭空消失了一样。
+      stats:
+        level: 4
+        hp: 35
+        attack: 10
+        defense: 7
+        speed: 5
+        magic: 3
+      services:
+        - information
+        - quest
+      custom_data:
+        sanity: 65
+        knows_truth: partial
+  items:
+    - id: anonymous-letter
+      name: 匿名信
+      description: 一封用打字机打印的匿名信，纸张泛黄，墨水有淡淡的腥味。信上只有一句话和一个地址。
+      type: quest
+      rarity: unique
+      stats: {}
+      effects: []
+      value:
+        buy: 0
+        sell: 0
+        currency: dollar
+      quantity: 1
+      custom_data:
+        displayType: 任务物品
+        displayRarity: 独特
+        displayStats: []
+        displayEffects:
+          - 指向印斯茅斯路17号的线索
+        tags: [quest, clue, letter, investigation]
+        locale: zh-CN
+        is_clue: true
+        clue_type: lead
+        location: innsmouth-road-17
+  quests:
+    - id: investigation-quest-1
+      name: 消失的人们
+      description: 调查阿卡姆镇近期发生的一系列失踪案件，从匿名信的线索开始，揭开隐藏在小镇之下的恐怖真相。
+      type: main
+      objectives:
+        - id: iq1-1
+          description: 与沃德探长交谈了解失踪案详情
+          type: talk
+          target: inspector-ward
+          required: 1
+        - id: iq1-2
+          description: 前往印斯茅斯路17号调查
+          type: explore
+          target: innsmouth-road-17
+          required: 1
+        - id: iq1-3
+          description: 收集至少3条关于失踪者的线索
+          type: collect
+          target: clue
+          required: 3
+      rewards:
+        - type: experience
+          value: 80
+        - type: skill
+          value: occult-knowledge-basic
+      giver: anonymous
+      time_limit: 0
+      custom_data:
+        sanity_cost: 5
+  explorable_areas:
+    - id: innsmouth-road
+      name: 印斯茅斯路
+      description: 阿卡姆镇外通往印斯茅斯方向的荒僻道路，沿途散布着废弃的农舍和无人照看的墓地。匿名信中提到的17号就在这条路上。
+      type: street
+      danger_level: 3
+      atmosphere: 荒凉阴森，雾气弥漫，远处似有低语
+      sub_locations:
+        - id: innsmouth-road-entrance
+          name: 印斯茅斯路入口
+          description: 离开阿卡姆镇区后的第一个岔路口，一块锈蚀的路牌指向印斯茅斯方向。路牌上的字迹已被风雨侵蚀，但"17"这个数字似乎被人用指甲刻意加深过。雾气在此处变得浓重，能见度不足十码。
+          type: gate
+          danger_level: 1
+          connections:
+            - station-exit
+        - id: innsmouth-road-17
+          name: 印斯茅斯路17号
+          description: 一栋维多利亚风格的三层老宅，外墙爬满枯萎的常春藤。门廊上的灯在无人触碰的情况下忽明忽暗，窗户被厚重的黑色窗帘遮得严严实实。门缝下渗出微弱的青绿色光芒，空气中弥漫着海腥味和某种不属于人间的甜腻气息。这就是匿名信指引你来的地方。
+          type: building
+          danger_level: 4
+        - id: abandoned-cemetery
+          name: 路边废弃墓地
+          description: 道路旁一片被铁栏围起的古老墓地，墓碑上的日期最早可追溯到17世纪。部分坟墓似乎被从内部打开过，泥土堆积的方向不对。最深处有一座没有名字的陵墓，陵墓门上的锁链最近被剪断了。
+          type: cemetery
+          danger_level: 3
+    - id: miskatonic-university
+      name: 米斯卡塔尼克大学
+      description: 阿卡姆最负盛名的学府，也是禁忌知识的守护者。大学图书馆的禁区收藏着不该被人类阅读的典籍，而地下实验室里进行着不可言说的研究。
+      type: institution
+      danger_level: 1
+      atmosphere: 学术庄严之下暗流涌动，书页间藏着不可名状的秘密
+      sub_locations:
+        - id: university-entrance
+          name: 大学正门
+          description: 哥特式的校门拱廊下，穿着学术袍的教授们步履匆匆。门厅的公告栏上贴着各种学术活动通知，但最角落的一张被图钉钉死的羊皮纸上写着一行拉丁文——翻译过来是"知识是诅咒的入口"。
+          type: gate
+          danger_level: 0
+          connections:
+            - station-exit
+        - id: restricted-library
+          name: 图书馆禁区
+          description: 图书馆最深处被铁门和警示标志封锁的区域，只有持有特别许可的教授才能进入。书架上摆着用不知名皮革装订的古籍，有些书似乎在自行颤动。空气中弥漫着陈旧羊皮纸和某种说不出的气味，阅读某些书籍后的人声称听到了来自书页间的低语。
+          type: library
+          danger_level: 2
+
+initial_data:
+  skills:
+    detective:
+      - keen-observation
+      - logical-deduction
+      - interrogation
+      - evidence-collection
+      - shadowing
+    doctor:
+      - first-aid
+      - psychological-analysis
+      - forensic-examination
+      - emergency-surgery
+      - sanity-counseling
+    journalist:
+      - information-gathering
+      - persuasive-interview
+      - photographic-evidence
+      - quick-writing
+      - undercover-investigation
+    professor:
+      - ancient-languages
+      - artifact-analysis
+      - library-research
+      - occult-knowledge
+      - ritual-decipher
+  items_by_class:
+    detective:
+      - item_id: revolver
+        quantity: 1
+      - item_id: detective-notebook
+        quantity: 1
+      - item_id: magnifying-glass
+        quantity: 1
+      - item_id: flashlight
+        quantity: 1
+      - item_id: trench-coat
+        quantity: 1
+      - item_id: fedora
+        quantity: 1
+    doctor:
+      - item_id: medical-bag
+        quantity: 1
+      - item_id: psychiatric-notes
+        quantity: 1
+      - item_id: scalpel
+        quantity: 1
+      - item_id: morphine
+        quantity: 2
+      - item_id: white-coat
+        quantity: 1
+      - item_id: reading-glasses
+        quantity: 1
+    journalist:
+      - item_id: camera
+        quantity: 1
+      - item_id: typewriter
+        quantity: 1
+      - item_id: press-badge
+        quantity: 1
+      - item_id: notepad
+        quantity: 1
+      - item_id: flashbulb
+        quantity: 3
+      - item_id: trench-coat
+        quantity: 1
+    professor:
+      - item_id: ancient-tome
+        quantity: 1
+      - item_id: decoding-lens
+        quantity: 1
+      - item_id: university-credentials
+        quantity: 1
+      - item_id: research-notes
+        quantity: 1
+      - item_id: reading-glasses
+        quantity: 1
+      - item_id: lantern
+        quantity: 1
+  items_by_background:
+    middle-class:
+      - item_id: pocket-watch
+        quantity: 1
+      - item_id: formal-attire
+        quantity: 1
+      - item_id: house-key
+        quantity: 1
+    working-class:
+      - item_id: toolbox
+        quantity: 1
+      - item_id: flask
+        quantity: 1
+      - item_id: work-clothes
+        quantity: 1
+    upper-class:
+      - item_id: cane-sword
+        quantity: 1
+      - item_id: family-heirloom
+        quantity: 1
+      - item_id: tailored-suit
+        quantity: 1
+    marginalized:
+      - item_id: lockpicks
+        quantity: 1
+      - item_id: hidden-dagger
+        quantity: 1
+      - item_id: worn-coat
+        quantity: 1
+  equipment:
+    detective:
+      weapon: revolver
+      body: trench-coat
+      head: fedora
+      accessory:
+        - magnifying-glass
+        - flashlight
+    doctor:
+      weapon: scalpel
+      body: white-coat
+      head: reading-glasses
+      accessory:
+        - medical-bag
+        - morphine
+    journalist:
+      weapon: camera
+      body: trench-coat
+      accessory:
+        - press-badge
+        - notepad
+    professor:
+      weapon: decoding-lens
+      body: university-credentials
+      head: reading-glasses
+      accessory:
+        - ancient-tome
+        - lantern
+  gold:
+    middle-class: 150
+    working-class: 30
+    upper-class: 500
+    marginalized: 10
+
+skills:
+  - id: keen-observation
+    name: 敏锐观察
+    description: 侦探训练有素的双眼能捕捉常人忽视的细节——墙上的刮痕、地毯上的泥印、空气中不自然的腥味。在阿卡姆，每一个微小的异常都可能是通向真相的线索，也可能是通向疯狂的入口。
+    type: utility
+    element: physical
+    target_type: self
+    cost:
+      mana: 5
+    damage: {}
+    effects:
+      - type: perception_boost
+        value: 3
+        duration: 2
+        description: 感知判定获得+3加值，持续2回合
+    cooldown: 0
+    range: 0
+    icon: 👁
+    custom_data:
+      class: detective
+      skill_tier: 1
+      locale: zh-CN
+
+  - id: logical-deduction
+    name: 逻辑推理
+    description: 将碎片化的线索串联成完整的推理链条。从一封匿名信到一座废弃的宅邸，从一声深夜的低语到一个消失的家族——逻辑是你在混沌中唯一的锚点。但有些真相，逻辑也无法解释。
+    type: utility
+    element: physical
+    target_type: self
+    cost:
+      mana: 8
+    damage: {}
+    effects:
+      - type: investigation_boost
+        value: 4
+        duration: 1
+        description: 调查判定获得+4加值，持续1回合
+      - type: clue_reveal
+        value: 1
+        description: 有概率揭示隐藏线索
+    cooldown: 2
+    range: 0
+    icon: 🧠
+    custom_data:
+      class: detective
+      skill_tier: 2
+      locale: zh-CN
+
+  - id: interrogation
+    name: 审讯施压
+    description: 用锐利的目光和精准的提问击碎嫌疑人的心理防线。你知道在哪里施加压力，在哪里留出缝隙——恐惧和信任，都是撬开嘴巴的工具。但在阿卡姆，有些人口中的真相比谎言更加恐怖。
+    type: debuff
+    element: physical
+    target_type: single
+    cost:
+      mana: 10
+    damage: {}
+    effects:
+      - type: will_reduction
+        value: 3
+        duration: 2
+        description: 降低目标意志3点，持续2回合
+      - type: information_extract
+        value: 1
+        description: 有概率获取额外情报
+    cooldown: 3
+    range: 1
+    icon: 🔍
+    custom_data:
+      class: detective
+      skill_tier: 2
+      locale: zh-CN
+
+  - id: evidence-collection
+    name: 证据搜集
+    description: 系统性地搜索和记录现场的一切痕迹。指纹、足迹、血迹、纤维——每一件证据都是拼图的一角。你的笔记本上画满了箭头和圈注，但有些证据指向的方向，你宁愿没有发现。
+    type: utility
+    element: physical
+    target_type: self
+    cost:
+      mana: 6
+    damage: {}
+    effects:
+      - type: evidence_bonus
+        value: 3
+        duration: 3
+        description: 证据搜集判定获得+3加值，持续3回合
+      - type: clue_preservation
+        value: 1
+        description: 防止线索因时间流逝而丢失
+    cooldown: 1
+    range: 0
+    icon: 📋
+    custom_data:
+      class: detective
+      skill_tier: 1
+      locale: zh-CN
+
+  - id: shadowing
+    name: 暗影尾随
+    description: 融入阿卡姆的雾气和暗巷，像一道无声的影子跟踪目标。你的脚步轻得像猫，呼吸缓得像死物。但当你凝视着黑暗中那道身影时，你偶尔会感到——黑暗也在凝视着你。
+    type: utility
+    element: shadow
+    target_type: self
+    cost:
+      mana: 7
+    damage: {}
+    effects:
+      - type: stealth_boost
+        value: 4
+        duration: 3
+        description: 潜行判定获得+4加值，持续3回合
+      - type: shadow_meld
+        value: 1
+        description: 在黑暗区域获得额外隐蔽加值
+    cooldown: 2
+    range: 0
+    icon: 🌑
+    custom_data:
+      class: detective
+      skill_tier: 2
+      sanity_risk: 1
+      locale: zh-CN
+
+  - id: first-aid
+    name: 急救处置
+    description: 迅速而冷静地处理伤口——止血、消毒、包扎。在阿卡姆的暗巷中，你见过太多不该出现的伤口：撕裂伤的边缘过于整齐，穿刺伤的角度违背解剖学常识。但无论伤口多么诡异，血总是要止的。
+    type: healing
+    element: physical
+    target_type: ally
+    cost:
+      mana: 8
+    damage: {}
+    effects:
+      - type: heal
+        value: 25
+        description: 恢复目标25点生命值
+      - type: bleed_stop
+        value: 1
+        description: 止血，防止持续伤害
+    cooldown: 2
+    range: 1
+    icon: ⚕
+    custom_data:
+      class: doctor
+      skill_tier: 1
+      locale: zh-CN
+
+  - id: psychological-analysis
+    name: 心理剖析
+    description: 透过表象洞察目标的精神世界。你受过专业的精神分析训练，能从细微的表情变化和言语漏洞中读取隐藏的真相。但深入他人的心灵就像潜入深海——你永远不知道黑暗中潜伏着什么。
+    type: debuff
+    element: shadow
+    target_type: single
+    cost:
+      mana: 12
+    damage: {}
+    effects:
+      - type: psychology_insight
+        value: 3
+        duration: 2
+        description: 揭示目标隐藏的心理状态和秘密
+      - type: will_shatter
+        value: 2
+        duration: 1
+        description: 降低目标意志2点，持续1回合
+    cooldown: 3
+    range: 2
+    icon: 🌀
+    custom_data:
+      class: doctor
+      skill_tier: 3
+      sanity_risk: 2
+      locale: zh-CN
+
+  - id: forensic-examination
+    name: 法医检验
+    description: 以科学的严谨检验尸体和物证。组织切片、毒理分析、创伤比对——你相信科学能解释一切。直到你在一具尸体的胃里发现了不属于地球任何已知生物的组织样本。
+    type: utility
+    element: physical
+    target_type: self
+    cost:
+      mana: 10
+    damage: {}
+    effects:
+      - type: forensic_insight
+        value: 4
+        duration: 2
+        description: 法医判定获得+4加值，持续2回合
+      - type: cause_of_death
+        value: 1
+        description: 确定死因，获取关键线索
+    cooldown: 2
+    range: 0
+    icon: 🔬
+    custom_data:
+      class: doctor
+      skill_tier: 2
+      locale: zh-CN
+
+  - id: emergency-surgery
+    name: 紧急手术
+    description: 在最恶劣的条件下进行外科手术——没有无菌室，没有麻醉师，只有你颤抖的双手和冰冷的手术刀。生命在你指间流逝，你必须比死神更快。但有些伤口，你的手术刀无法触及——它们不在身体上。
+    type: healing
+    element: physical
+    target_type: ally
+    cost:
+      mana: 18
+    damage: {}
+    effects:
+      - type: major_heal
+        value: 50
+        description: 恢复目标50点生命值
+      - type: critical_stabilize
+        value: 1
+        description: 稳定濒死状态的目标
+    cooldown: 4
+    range: 1
+    icon: 🩺
+    custom_data:
+      class: doctor
+      skill_tier: 3
+      locale: zh-CN
+
+  - id: sanity-counseling
+    name: 理智疏导
+    description: 用专业的话语和温和的引导，帮助崩溃的同伴重新抓住现实的边缘。你告诉他们那只是幻觉，那只是恐惧的产物——但你自己的手也在颤抖，因为你看到了同样的东西。
+    type: healing
+    element: shadow
+    target_type: ally
+    cost:
+      mana: 15
+    damage: {}
+    effects:
+      - type: sanity_restore
+        value: 10
+        description: 恢复目标10点理智值
+      - type: fear_suppress
+        value: 2
+        duration: 3
+        description: 压制恐惧效果，持续3回合
+    cooldown: 3
+    range: 1
+    icon: 💫
+    custom_data:
+      class: doctor
+      skill_tier: 2
+      sanity_risk: 1
+      locale: zh-CN
+
+  - id: information-gathering
+    name: 情报刺探
+    description: 在酒馆的角落里竖起耳朵，在码头的烟雾中交换消息，在警察局的走廊上偷听谈话。阿卡姆的每条街巷都是情报的河流，而你是最好的渔夫。但有些消息一旦听到，就再也无法从脑海中抹去。
+    type: utility
+    element: physical
+    target_type: self
+    cost:
+      mana: 6
+    damage: {}
+    effects:
+      - type: intel_gather
+        value: 2
+        duration: 2
+        description: 情报搜集判定获得+2加值，持续2回合
+      - type: rumor_network
+        value: 1
+        description: 有概率获取额外传闻
+    cooldown: 1
+    range: 0
+    icon: 🗣
+    custom_data:
+      class: journalist
+      skill_tier: 1
+      locale: zh-CN
+
+  - id: persuasive-interview
+    name: 诱导采访
+    description: 用精心设计的问题引导受访者说出他们本不想说的话。一个微笑、一声叹息、一次恰到好处的沉默——都是你的武器。人们总是愿意对记者倾诉，但你有时会听到比新闻更可怕的故事。
+    type: buff
+    element: physical
+    target_type: ally
+    cost:
+      mana: 8
+    damage: {}
+    effects:
+      - type: charisma_boost
+        value: 3
+        duration: 2
+        description: 魅力判定获得+3加值，持续2回合
+      - type: trust_gain
+        value: 1
+        description: 提升NPC信任度
+    cooldown: 2
+    range: 1
+    icon: 📝
+    custom_data:
+      class: journalist
+      skill_tier: 1
+      locale: zh-CN
+
+  - id: photographic-evidence
+    name: 闪光取证
+    description: 镁光灯爆闪的瞬间，黑暗中的真相被定格在胶片上。照片不会说谎——但有时，冲洗出来的底片上会出现拍摄时并不存在的身影。那些影子站在你身后，微笑着。
+    type: attack
+    element: physical
+    target_type: aoe
+    cost:
+      mana: 10
+    damage:
+      base: 8
+      scaling:
+        attribute: str
+        multiplier: 0.3
+    effects:
+      - type: blind
+        value: 1
+        duration: 1
+        description: 闪光致盲区域内敌人1回合
+      - type: evidence_capture
+        value: 1
+        description: 记录现场证据，不可销毁
+    cooldown: 3
+    range: 3
+    icon: 📸
+    custom_data:
+      class: journalist
+      skill_tier: 2
+      sanity_risk: 1
+      locale: zh-CN
+
+  - id: quick-writing
+    name: 速笔记录
+    description: 以惊人的速度将观察和对话转化为文字记录。你的速记符号只有自己能读懂，但正是这些潦草的笔记，在事后拼凑出了完整的真相。有时你回看笔记，发现某些段落不是你的笔迹——那些扭曲的字迹诉说着你从未听过的语言。
+    type: utility
+    element: physical
+    target_type: self
+    cost:
+      mana: 4
+    damage: {}
+    effects:
+      - type: record_preservation
+        value: 1
+        description: 永久记录当前场景信息
+      - type: detail_recall
+        value: 2
+        duration: 3
+        description: 记忆判定获得+2加值，持续3回合
+    cooldown: 0
+    range: 0
+    icon: ✏
+    custom_data:
+      class: journalist
+      skill_tier: 1
+      locale: zh-CN
+
+  - id: undercover-investigation
+    name: 潜入暗访
+    description: 伪装身份深入阿卡姆最危险的角落——邪教的地下集会、走私者的秘密仓库、被封锁的精神病院。你以假面示人，每一步都走在刀刃上。当周围的人开始用你不理解的语言祈祷时，你知道自己已经走得太深了。
+    type: utility
+    element: shadow
+    target_type: self
+    cost:
+      mana: 14
+    damage: {}
+    effects:
+      - type: disguise
+        value: 4
+        duration: 4
+        description: 伪装判定获得+4加值，持续4回合
+      - type: deep_cover
+        value: 1
+        description: 获得进入限制区域的权限
+    cooldown: 4
+    range: 0
+    icon: 🎭
+    custom_data:
+      class: journalist
+      skill_tier: 3
+      sanity_risk: 3
+      locale: zh-CN
+
+  - id: ancient-languages
+    name: 古语解读
+    description: 破译那些早已消亡的语言——苏美尔楔形文字、埃及象形文字、以及某些不属于任何已知文明的符号。后者让你既着迷又恐惧，因为当你读出那些音节时，空气中的温度似乎下降了。
+    type: utility
+    element: arcane
+    target_type: self
+    cost:
+      mana: 10
+    damage: {}
+    effects:
+      - type: language_decode
+        value: 4
+        duration: 2
+        description: 语言解读判定获得+4加值，持续2回合
+      - type: ancient_text_access
+        value: 1
+        description: 解锁阅读禁忌文本的能力
+    cooldown: 2
+    range: 0
+    icon: 📜
+    custom_data:
+      class: professor
+      skill_tier: 2
+      sanity_risk: 2
+      locale: zh-CN
+
+  - id: artifact-analysis
+    name: 邪物鉴定
+    description: 用学术的严谨检验那些不该存在的器物——材质分析、年代测定、纹样比对。有些器物散发着令人不安的寒意，有些在黑暗中会自行移动，还有些……还有心跳。你告诉自己这只是共振现象，但你无法说服自己的双手停止颤抖。
+    type: utility
+    element: arcane
+    target_type: self
+    cost:
+      mana: 12
+    damage: {}
+    effects:
+      - type: artifact_identify
+        value: 3
+        duration: 2
+        description: 遗物鉴定判定获得+3加值，持续2回合
+      - type: curse_detect
+        value: 1
+        description: 检测物品上的诅咒或超自然属性
+    cooldown: 3
+    range: 0
+    icon: 🏺
+    custom_data:
+      class: professor
+      skill_tier: 2
+      sanity_risk: 2
+      locale: zh-CN
+
+  - id: library-research
+    name: 典籍检索
+    description: 在米斯卡塔尼克大学图书馆的幽深书架间穿行，你比任何人都清楚哪本书放在哪个位置——包括那些被锁在禁区书架上的。知识就是力量，但在阿卡姆，某些知识本身就是一种诅咒。
+    type: utility
+    element: arcane
+    target_type: self
+    cost:
+      mana: 6
+    damage: {}
+    effects:
+      - type: research_boost
+        value: 3
+        duration: 3
+        description: 学术研究判定获得+3加值，持续3回合
+      - type: restricted_access
+        value: 1
+        description: 获得图书馆禁区的进入权限
+    cooldown: 1
+    range: 0
+    icon: 📚
+    custom_data:
+      class: professor
+      skill_tier: 1
+      locale: zh-CN
+
+  - id: occult-knowledge
+    name: 禁忌知识
+    description: 那些不该被人类知晓的秘密——旧日的名讳、深渊的坐标、现实的裂缝。你从禁忌典籍的字里行间拼凑出这些知识，每理解一个概念，你对世界的认知就崩塌一分。力量与疯狂只有一线之隔，而你正站在那条线上。
+    type: buff
+    element: shadow
+    target_type: self
+    cost:
+      mana: 20
+      sanity: 5
+    damage: {}
+    effects:
+      - type: occult_power
+        value: 5
+        duration: 3
+        description: 神秘学判定获得+5加值，持续3回合
+      - type: mythos_insight
+        value: 2
+        duration: 2
+        description: 获得对超自然存在的洞察，持续2回合
+      - type: sanity_drain
+        value: 5
+        description: 消耗5点理智值
+    cooldown: 5
+    range: 0
+    icon: 🕯
+    custom_data:
+      class: professor
+      skill_tier: 3
+      sanity_risk: 5
+      forbidden: true
+      locale: zh-CN
+
+  - id: ritual-decipher
+    name: 仪式破译
+    description: 解读那些亵渎的仪式文本——献祭的顺序、召唤的咒语、封印的阵法。你告诉自己研究这些只是为了阻止它们，但每破译一个仪式，你离那个不可名状的世界就更近一步。有些仪式只需要一个念错音节的失误……
+    type: utility
+    element: shadow
+    target_type: self
+    cost:
+      mana: 15
+    damage: {}
+    effects:
+      - type: ritual_understand
+        value: 4
+        duration: 2
+        description: 仪式解读判定获得+4加值，持续2回合
+      - type: counter_ritual
+        value: 1
+        description: 有概率找到对抗仪式的方法
+      - type: sanity_tremor
+        value: 2
+        description: 接触亵渎知识，理智值轻微动摇
+    cooldown: 4
+    range: 0
+    icon: ⛧
+    custom_data:
+      class: professor
+      skill_tier: 3
+      sanity_risk: 3
+      forbidden: true
+      locale: zh-CN
+
+items:
+  - id: revolver
+    name: .38左轮手枪
+    description: 一把史密斯韦森.38口径左轮手枪，枪身磨损但机械结构完好。在阿卡姆的暗巷中，它是你最可靠的伙伴。枪柄上刻着前任主人的名字缩写，那人如今已不知所踪。
+    type: weapon
+    rarity: common
+    stats:
+      attack: 8
+      blockRate: 0.85
+    effects: []
+    value:
+      buy: 150
+      sell: 75
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 武器
+      displayRarity: 普通
+      displayStats:
+        - key: attack
+          label: 攻击力
+          value: "+8"
+        - key: blockRate
+          label: 格挡率
+          value: "85%"
+      displayEffects: []
+      tags: ["枪械", "远程", "初始装备"]
+      locale: zh-CN
+
+  - id: detective-notebook
+    name: 调查笔记
+    description: 一本黑色封皮的笔记本，内页密密麻麻写满了线索、证词和推理。有些页面被撕掉了，有些则被反复涂抹。笔记本的封底夹层里藏着一张褪色的照片，照片上的人脸已被划花。
+    type: tool
+    rarity: common
+    stats:
+      investigation: 3
+    effects: []
+    value:
+      buy: 5
+      sell: 2
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats:
+        - key: investigation
+          label: 调查
+          value: "+3"
+      displayEffects:
+        - "记录线索，调查判定时获得加值"
+      tags: ["笔记", "调查", "初始装备"]
+      locale: zh-CN
+
+  - id: magnifying-glass
+    name: 放大镜
+    description: 一只黄铜手柄的放大镜，镜片边缘有细微的划痕。透过它，你能看到肉眼错过的细节——指纹、纤维、血迹。但有些细节，也许你并不想看到。
+    type: tool
+    rarity: common
+    stats:
+      perception: 3
+    effects: []
+    value:
+      buy: 10
+      sell: 5
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats:
+        - key: perception
+          label: 感知
+          value: "+3"
+      displayEffects:
+        - "检查细微痕迹，感知判定时获得加值"
+      tags: ["放大镜", "调查", "初始装备"]
+      locale: zh-CN
+
+  - id: flashlight
+    name: 手电筒
+    description: 一只沉重的金属手电筒，光线在浓雾中只能照亮几码的距离。电池总是不够用，光线偶尔会莫名闪烁——也许只是接触不良，也许不是。
+    type: tool
+    rarity: common
+    stats:
+      perception: 2
+    effects: []
+    value:
+      buy: 8
+      sell: 4
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats:
+        - key: perception
+          label: 感知
+          value: "+2"
+      displayEffects:
+        - "照亮黑暗区域，消除黑暗中的感知惩罚"
+      tags: ["照明", "工具", "初始装备"]
+      locale: zh-CN
+
+  - id: trench-coat
+    name: 风衣
+    description: 一件深灰色的长款风衣，内衬有多个暗袋，足以藏放各种工具和武器。衣角沾着泥点和雨渍，是阿卡姆多雨气候的忠实记录者。穿上它，你感觉自己像是黑色电影里的主角——如果这不是现实的话。
+    type: armor
+    rarity: common
+    stats:
+      defense: 2
+      dodgeRate: 0.02
+    effects: []
+    value:
+      buy: 25
+      sell: 12
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 防具
+      displayRarity: 普通
+      displayStats:
+        - key: defense
+          label: 防御力
+          value: "+2"
+        - key: dodgeRate
+          label: 闪避率
+          value: "+2%"
+      displayEffects:
+        - "多个暗袋可藏放物品"
+      tags: ["风衣", "外衣", "初始装备"]
+      locale: zh-CN
+
+  - id: fedora
+    name: 软呢帽
+    description: 一顶深棕色的软呢帽，帽檐压低可以遮住半张脸。阿卡姆的男人们几乎人手一顶，但你的这顶似乎有些不同——帽带内侧缝着一个小小的护身符，你不记得这是谁放进去的。
+    type: armor
+    rarity: common
+    stats:
+      defense: 1
+    effects: []
+    value:
+      buy: 8
+      sell: 4
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 防具
+      displayRarity: 普通
+      displayStats:
+        - key: defense
+          label: 防御力
+          value: "+1"
+      displayEffects: []
+      tags: ["帽子", "头饰", "初始装备"]
+      locale: zh-CN
+
+  - id: medical-bag
+    name: 医药箱
+    description: 一个棕色的皮质医药箱，内部分隔整齐，装着绷带、消毒剂、缝合针线和各种急救用品。箱子底部有一层暗格，里面放着几支吗啡针剂和一本手写的异常病例记录。
+    type: tool
+    rarity: common
+    stats:
+      medicine: 4
+    effects: []
+    value:
+      buy: 30
+      sell: 15
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats:
+        - key: medicine
+          label: 医术
+          value: "+4"
+      displayEffects:
+        - "急救治疗，恢复生命值"
+        - "医学判定时获得加值"
+      tags: ["医疗", "急救", "初始装备"]
+      locale: zh-CN
+
+  - id: psychiatric-notes
+    name: 精神病案笔记
+    description: 一本厚重的病历档案，记录着阿卡姆精神病院中最诡异的病例。有些患者的症状无法用任何已知医学理论解释——他们声称看到了"不该存在的东西"。笔记的最后一页用颤抖的字迹写着："它们是真实的。"
+    type: tool
+    rarity: uncommon
+    stats:
+      psychology: 4
+      occult: 1
+    effects:
+      - type: sanity_risk
+        value: 2
+        description: 阅读时有理智风险
+    value:
+      buy: 50
+      sell: 25
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 优秀
+      displayStats:
+        - key: psychology
+          label: 心理学
+          value: "+4"
+        - key: occult
+          label: 神秘学
+          value: "+1"
+      displayEffects:
+        - "心理学判定时获得加值"
+        - "阅读时有轻微理智风险"
+      tags: ["笔记", "医学", "神秘", "初始装备"]
+      locale: zh-CN
+
+  - id: scalpel
+    name: 手术刀
+    description: 一把锋利的不锈钢手术刀，刀刃闪着冷光。它原本是用来救人的，但在紧急情况下，它也能成为令人胆寒的武器。刀柄上刻着米斯卡塔尼克大学医学院的徽记。
+    type: weapon
+    rarity: common
+    stats:
+      attack: 4
+      critRate: 0.08
+    effects: []
+    value:
+      buy: 10
+      sell: 5
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 武器
+      displayRarity: 普通
+      displayStats:
+        - key: attack
+          label: 攻击力
+          value: "+4"
+        - key: critRate
+          label: 暴击率
+          value: "+8%"
+      displayEffects:
+        - "近战武器，暴击率较高"
+      tags: ["刀械", "近战", "医疗", "初始装备"]
+      locale: zh-CN
+
+  - id: morphine
+    name: 吗啡针剂
+    description: 一支密封的吗啡注射器，玻璃管中透明的液体在光线下微微泛黄。它能迅速止痛，也能让最恐惧的心灵暂时获得安宁。但依赖是危险的——身体的和精神的都是。
+    type: consumable
+    rarity: uncommon
+    stats:
+      heal: 25
+      sanityRestore: 5
+    effects:
+      - type: heal
+        value: 25
+      - type: sanity_restore
+        value: 5
+    value:
+      buy: 40
+      sell: 20
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 消耗品
+      displayRarity: 优秀
+      displayStats:
+        - key: heal
+          label: 治疗量
+          value: "+25"
+        - key: sanityRestore
+          label: 理智恢复
+          value: "+5"
+      displayEffects:
+        - "恢复25点生命值"
+        - "恢复5点理智值"
+        - "使用过多可能产生依赖"
+      tags: ["药品", "消耗品", "危险"]
+      locale: zh-CN
+
+  - id: white-coat
+    name: 白大褂
+    description: 一件洁白的医生长袍，口袋里别着两支钢笔和一支体温计。穿上它，人们会下意识地信任你——这在这个充满谎言的小镇里，是一种无价的伪装。袍角有一处不易察觉的暗红色污渍。
+    type: armor
+    rarity: common
+    stats:
+      defense: 1
+      charisma: 2
+    effects: []
+    value:
+      buy: 15
+      sell: 7
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 防具
+      displayRarity: 普通
+      displayStats:
+        - key: defense
+          label: 防御力
+          value: "+1"
+        - key: charisma
+          label: 魅力
+          value: "+2"
+      displayEffects:
+        - "穿着时社交判定获得加值"
+      tags: ["白大褂", "外衣", "初始装备"]
+      locale: zh-CN
+
+  - id: reading-glasses
+    name: 阅读眼镜
+    description: 一副圆形镜片的阅读眼镜，金丝框架已经有些褪色。透过它阅读细小文字时世界变得清晰，但有时你会在镜片边缘看到不该存在的影子——也许是镜片的瑕疵，也许不是。
+    type: accessory
+    rarity: common
+    stats:
+      intelligence: 1
+      perception: 1
+    effects: []
+    value:
+      buy: 5
+      sell: 2
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 饰品
+      displayRarity: 普通
+      displayStats:
+        - key: intelligence
+          label: 智力
+          value: "+1"
+        - key: perception
+          label: 感知
+          value: "+1"
+      displayEffects:
+        - "阅读和研究时获得加值"
+      tags: ["眼镜", "饰品", "初始装备"]
+      locale: zh-CN
+
+  - id: camera
+    name: 照相机
+    description: 一台格拉弗莱克斯新闻照相机，沉重的机身挂在胸前。快门声在寂静中格外刺耳，但一张照片能记录下肉眼可能忽略的细节——或者捕捉到不该被捕捉的东西。已有两位摄影师在阿卡姆失踪，他们的胶卷从未被找到。
+    type: tool
+    rarity: common
+    stats:
+      investigation: 2
+      perception: 2
+    effects: []
+    value:
+      buy: 80
+      sell: 40
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats:
+        - key: investigation
+          label: 调查
+          value: "+2"
+        - key: perception
+          label: 感知
+          value: "+2"
+      displayEffects:
+        - "拍摄照片记录证据"
+        - "调查和感知判定时获得加值"
+      tags: ["照相机", "调查", "初始装备"]
+      locale: zh-CN
+
+  - id: typewriter
+    name: 便携打字机
+    description: 一台雷明顿便携式打字机，按键敲击时发出清脆的声响。你是用它来写新闻报道的，但最近你发现，打出来的文字偶尔会出现你从未输入过的内容——像是来自另一个世界的讯息。
+    type: tool
+    rarity: common
+    stats:
+      persuasion: 1
+    effects: []
+    value:
+      buy: 60
+      sell: 30
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats:
+        - key: persuasion
+          label: 说服
+          value: "+1"
+      displayEffects:
+        - "撰写报道和文章"
+        - "文字说服力加值"
+      tags: ["打字机", "写作", "初始装备"]
+      locale: zh-CN
+
+  - id: press-badge
+    name: 记者证
+    description: 阿卡姆公报的官方记者证，贴着你的黑白照片。这块小小的金属牌能打开许多普通人无法进入的门——警察局、医院、市政厅。但有些门，也许不该被打开。
+    type: accessory
+    rarity: common
+    stats:
+      charisma: 2
+    effects: []
+    value:
+      buy: 0
+      sell: 0
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 饰品
+      displayRarity: 普通
+      displayStats:
+        - key: charisma
+          label: 魅力
+          value: "+2"
+      displayEffects:
+        - "获得进入限制区域的权限"
+        - "社交判定时获得加值"
+      tags: ["证件", "饰品", "初始装备"]
+      locale: zh-CN
+
+  - id: notepad
+    name: 速记本
+    description: 一本小巧的速记本，可以轻松塞进口袋。纸页上写满了潦草的笔记和速记符号，只有你自己能看懂。最后一页画着一个反复出现的奇怪符号——你不记得自己画过它。
+    type: tool
+    rarity: common
+    stats:
+      investigation: 2
+    effects: []
+    value:
+      buy: 2
+      sell: 1
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats:
+        - key: investigation
+          label: 调查
+          value: "+2"
+      displayEffects:
+        - "快速记录线索和信息"
+      tags: ["笔记", "调查", "初始装备"]
+      locale: zh-CN
+
+  - id: flashbulb
+    name: 闪光灯泡
+    description: 一次性的镁光灯泡，爆闪时能照亮整个房间，也能让黑暗中潜伏的东西暴露在光天化日之下——如果它们愿意被看到的话。刺眼的闪光有时会揭示不该存在的影子。
+    type: consumable
+    rarity: common
+    stats: {}
+    effects:
+      - type: blind
+        value: 1
+        duration: 1
+        target: enemy
+      - type: reveal
+        value: 1
+        description: 揭示隐藏的存在
+    value:
+      buy: 3
+      sell: 1
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 消耗品
+      displayRarity: 普通
+      displayStats: []
+      displayEffects:
+        - "闪光致盲敌人1回合"
+        - "揭示黑暗中隐藏的存在"
+      tags: ["消耗品", "照明", "照相机配件"]
+      locale: zh-CN
+
+  - id: ancient-tome
+    name: 禁忌典籍
+    description: 一本用不知名皮革装订的厚重古籍，书页泛黄卷曲，上面的文字用一种你不认识的语言书写——但当你凝视它们时，你似乎能理解其中的含义。书脊上没有标题，只有一道扭曲的螺旋纹路。你的理智告诉你不该翻开它，但好奇心比理智更强大。
+    type: tool
+    rarity: rare
+    stats:
+      occult: 5
+      magicAttack: 3
+    effects:
+      - type: sanity_cost
+        value: 5
+        description: 阅读时消耗理智值
+      - type: knowledge_gain
+        value: 3
+        description: 获得禁忌知识
+    value:
+      buy: 500
+      sell: 250
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 稀有
+      displayStats:
+        - key: occult
+          label: 神秘学
+          value: "+5"
+        - key: magicAttack
+          label: 魔法攻击
+          value: "+3"
+      displayEffects:
+        - "阅读获得禁忌知识"
+        - "每次阅读消耗5点理智值"
+        - "神秘学判定大幅加值"
+      tags: ["典籍", "禁忌知识", "危险", "初始装备"]
+      locale: zh-CN
+
+  - id: decoding-lens
+    name: 解密透镜
+    description: 一枚镶嵌在铜框中的特殊透镜，据说是从一位已故语言学教授的遗物中发现的。透过它观察，普通文字下会浮现隐藏的密码和符号。但有时，它会显示一些不属于这个世界的文字——那些文字似乎在移动。
+    type: tool
+    rarity: uncommon
+    stats:
+      arcana: 3
+      intelligence: 1
+    effects: []
+    value:
+      buy: 120
+      sell: 60
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 优秀
+      displayStats:
+        - key: arcana
+          label: 奥秘
+          value: "+3"
+        - key: intelligence
+          label: 智力
+          value: "+1"
+      displayEffects:
+        - "解读密码和隐藏文字"
+        - "奥秘判定时获得加值"
+      tags: ["透镜", "解密", "初始装备"]
+      locale: zh-CN
+
+  - id: university-credentials
+    name: 大学证件
+    description: 米斯卡塔尼克大学颁发的教授身份证明，附有校长的签名和大学的火漆印章。凭借它，你可以进入大学的图书馆、实验室和档案馆——包括那些不对普通师生开放的禁区。
+    type: accessory
+    rarity: common
+    stats:
+      charisma: 2
+      intelligence: 1
+    effects: []
+    value:
+      buy: 0
+      sell: 0
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 饰品
+      displayRarity: 普通
+      displayStats:
+        - key: charisma
+          label: 魅力
+          value: "+2"
+        - key: intelligence
+          label: 智力
+          value: "+1"
+      displayEffects:
+        - "获得大学设施的使用权限"
+        - "学术圈社交加值"
+      tags: ["证件", "饰品", "初始装备"]
+      locale: zh-CN
+
+  - id: research-notes
+    name: 研究笔记
+    description: 一摞用回形针别在一起的研究手稿，记录着对古代文明遗迹的考察发现。笔记中夹杂着拓片、素描和地图草稿。某些页面的边缘画着重复的几何图案，你确信自己没有画过它们。
+    type: tool
+    rarity: common
+    stats:
+      arcana: 2
+      history: 2
+    effects: []
+    value:
+      buy: 10
+      sell: 5
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats:
+        - key: arcana
+          label: 奥秘
+          value: "+2"
+        - key: history
+          label: 历史
+          value: "+2"
+      displayEffects:
+        - "学术研究时获得加值"
+        - "历史和奥秘判定加值"
+      tags: ["笔记", "研究", "初始装备"]
+      locale: zh-CN
+
+  - id: lantern
+    name: 油灯
+    description: 一盏黄铜油灯，玻璃灯罩上有细微的裂纹。煤油的火焰在风中摇曳，投下不安分的影子。比起手电筒，油灯的光线更加温暖柔和，但总有什么地方不对——灯焰偶尔会变成不自然的青绿色，仿佛回应着某种看不见的存在。
+    type: tool
+    rarity: common
+    stats:
+      perception: 2
+    effects: []
+    value:
+      buy: 6
+      sell: 3
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats:
+        - key: perception
+          label: 感知
+          value: "+2"
+      displayEffects:
+        - "照亮黑暗区域"
+        - "感知判定时获得加值"
+      tags: ["照明", "工具", "初始装备"]
+      locale: zh-CN
+
+  - id: pocket-watch
+    name: 怀表
+    description: 一只精致的银壳怀表，表盖内侧刻着一行拉丁文——"Tempus fugit, aeternitas manet"。怀表走时精准，但每逢午夜，秒针总会停顿一瞬，仿佛时间本身在那个刹那犹豫了一下。
+    type: accessory
+    rarity: common
+    stats:
+      perception: 1
+      speed: 1
+    effects: []
+    value:
+      buy: 20
+      sell: 10
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 饰品
+      displayRarity: 普通
+      displayStats:
+        - key: perception
+          label: 感知
+          value: "+1"
+        - key: speed
+          label: 速度
+          value: "+1"
+      displayEffects:
+        - "精确计时，行动时获得先机"
+      tags: ["怀表", "饰品", "中产"]
+      locale: zh-CN
+
+  - id: formal-attire
+    name: 正式礼服
+    description: 一套体面的深色西装，搭配白色衬衫和丝绸领带。穿上它，你看起来像是去参加上流社会的晚宴——而不是去调查失踪案。但在这个看重外表的世道，体面的着装有时比推理更管用。
+    type: armor
+    rarity: common
+    stats:
+      defense: 1
+      charisma: 2
+    effects: []
+    value:
+      buy: 40
+      sell: 20
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 防具
+      displayRarity: 普通
+      displayStats:
+        - key: defense
+          label: 防御力
+          value: "+1"
+        - key: charisma
+          label: 魅力
+          value: "+2"
+      displayEffects:
+        - "社交场合中获得加值"
+      tags: ["服装", "正装", "中产"]
+      locale: zh-CN
+
+  - id: house-key
+    name: 房屋钥匙
+    description: 一串挂着三把钥匙的黄铜钥匙圈，分别打开你住所的前门、后门和地下室。地下室的钥匙你几乎不用——那里总是弥漫着一股说不清的潮湿气味，而且灯泡总是莫名其妙地烧坏。
+    type: misc
+    rarity: common
+    stats: {}
+    effects: []
+    value:
+      buy: 0
+      sell: 0
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 杂物
+      displayRarity: 普通
+      displayStats: []
+      displayEffects:
+        - "打开住所的门窗"
+      tags: ["钥匙", "杂物", "中产"]
+      locale: zh-CN
+
+  - id: toolbox
+    name: 工具箱
+    description: 一个沉甸甸的铁皮工具箱，里面装着锤子、螺丝刀、扳手和各种零件。在阿卡姆的老房子里，总有东西需要修理——门轴、水管、还有那些你不知道用途的奇怪装置。
+    type: tool
+    rarity: common
+    stats:
+      mechanics: 3
+    effects: []
+    value:
+      buy: 15
+      sell: 7
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats:
+        - key: mechanics
+          label: 机械
+          value: "+3"
+      displayEffects:
+        - "修理和组装机械装置"
+        - "机械判定时获得加值"
+      tags: ["工具", "机械", "工人"]
+      locale: zh-CN
+
+  - id: flask
+    name: 随身酒壶
+    description: 一只银色的扁平酒壶，内壁已经被威士忌浸成了琥珀色。在阿卡姆的寒夜里，一口烈酒能温暖身体，也能麻痹那些不愿面对的恐惧。但酒精只是暂时的盾牌，恐惧总会回来——而且更加强烈。
+    type: consumable
+    rarity: common
+    stats:
+      courage: 3
+      sanityRestore: 2
+    effects:
+      - type: courage_boost
+        value: 3
+        duration: 2
+      - type: sanity_restore
+        value: 2
+    value:
+      buy: 5
+      sell: 2
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 消耗品
+      displayRarity: 普通
+      displayStats:
+        - key: courage
+          label: 勇气
+          value: "+3"
+        - key: sanityRestore
+          label: 理智恢复
+          value: "+2"
+      displayEffects:
+        - "饮用后暂时提升勇气"
+        - "恢复2点理智值"
+        - "效果持续2回合"
+      tags: ["酒壶", "消耗品", "工人"]
+      locale: zh-CN
+
+  - id: work-clothes
+    name: 工装
+    description: 一套结实的帆布工装，膝盖处缝着补丁，口袋里永远有掏不完的螺丝和铁屑。它不体面，但很实用——在阿卡姆的工厂和码头，没人会多看你一眼，这反而是一种优势。
+    type: armor
+    rarity: common
+    stats:
+      defense: 2
+      endurance: 1
+    effects: []
+    value:
+      buy: 8
+      sell: 4
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 防具
+      displayRarity: 普通
+      displayStats:
+        - key: defense
+          label: 防御力
+          value: "+2"
+        - key: endurance
+          label: 耐力
+          value: "+1"
+      displayEffects:
+        - "穿着时不易引起注意"
+      tags: ["工装", "服装", "工人"]
+      locale: zh-CN
+
+  - id: cane-sword
+    name: 剑杖
+    description: 一根做工考究的黑檀木手杖，银质手柄上雕刻着缠绕的蛇纹。拔出剑鞘，里面藏着一片锋利的钢刃——上流社会的绅士们喜欢这种优雅的防身方式。剑刃上刻着一行细小的铭文，用某种古老的语言写成。
+    type: weapon
+    rarity: uncommon
+    stats:
+      attack: 6
+      critRate: 0.06
+    effects: []
+    value:
+      buy: 100
+      sell: 50
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 武器
+      displayRarity: 优秀
+      displayStats:
+        - key: attack
+          label: 攻击力
+          value: "+6"
+        - key: critRate
+          label: 暴击率
+          value: "+6%"
+      displayEffects:
+        - "伪装成手杖，不易被发现"
+        - "近战武器，暴击率较高"
+      tags: ["剑杖", "近战", "隐藏", "上流"]
+      locale: zh-CN
+
+  - id: family-heirloom
+    name: 家族传家宝
+    description: 一枚镶嵌着深绿色宝石的银质胸针，宝石内部似乎有雾气在缓缓流动。你的家族代代相传，据说它来自一次远东航行中的"意外收获"。佩戴它时，你偶尔能感知到常人无法察觉的存在——这是祝福还是诅咒，取决于你如何看待它。
+    type: accessory
+    rarity: rare
+    stats:
+      occult: 2
+      wisdom: 2
+    effects:
+      - type: occult_sense
+        value: 1
+        description: 偶尔感知超自然存在
+    value:
+      buy: 300
+      sell: 150
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 饰品
+      displayRarity: 稀有
+      displayStats:
+        - key: occult
+          label: 神秘学
+          value: "+2"
+        - key: wisdom
+          label: 感知
+          value: "+2"
+      displayEffects:
+        - "偶尔感知超自然存在"
+        - "神秘学和感知判定加值"
+      tags: ["传家宝", "饰品", "神秘", "上流"]
+      locale: zh-CN
+
+  - id: tailored-suit
+    name: 定制西装
+    description: 一套由波士顿最好的裁缝手工缝制的西装，面料是上等的英式羊毛，剪裁完美贴合身形。在阿卡姆，穿成这样走在街上，人们会自动让路——尊敬和畏惧，有时候看起来一模一样。
+    type: armor
+    rarity: uncommon
+    stats:
+      defense: 1
+      charisma: 3
+    effects: []
+    value:
+      buy: 120
+      sell: 60
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 防具
+      displayRarity: 优秀
+      displayStats:
+        - key: defense
+          label: 防御力
+          value: "+1"
+        - key: charisma
+          label: 魅力
+          value: "+3"
+      displayEffects:
+        - "社交场合中获得显著加值"
+        - "上流社会通行无阻"
+      tags: ["西装", "正装", "上流"]
+      locale: zh-CN
+
+  - id: lockpicks
+    name: 开锁工具
+    description: 一套精密的开锁工具，装在柔软的皮革卷包中。从简单的弹子锁到复杂的保险柜，没有它打不开的门——至少你是这么认为的。在阿卡姆，有些门锁后面藏着的东西，也许不该被看到。
+    type: tool
+    rarity: uncommon
+    stats:
+      dexterity: 2
+      stealth: 2
+    effects: []
+    value:
+      buy: 30
+      sell: 15
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 优秀
+      displayStats:
+        - key: dexterity
+          label: 敏捷
+          value: "+2"
+        - key: stealth
+          label: 潜行
+          value: "+2"
+      displayEffects:
+        - "撬开各种锁具"
+        - "敏捷和潜行判定加值"
+      tags: ["工具", "开锁", "边缘"]
+      locale: zh-CN
+
+  - id: hidden-dagger
+    name: 隐秘匕首
+    description: 一把短小精悍的匕首，刀刃经过消光处理，不会反射任何光线。特制的刀鞘可以绑在小臂内侧，一抖手腕便能滑入掌心。在阿卡姆的暗巷中，这是最后的保险——也是最后的底线。
+    type: weapon
+    rarity: uncommon
+    stats:
+      attack: 5
+      critRate: 0.1
+    effects: []
+    value:
+      buy: 20
+      sell: 10
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 武器
+      displayRarity: 优秀
+      displayStats:
+        - key: attack
+          label: 攻击力
+          value: "+5"
+        - key: critRate
+          label: 暴击率
+          value: "+10%"
+      displayEffects:
+        - "隐藏携带，不易被发现"
+        - "近战武器，暴击率高"
+      tags: ["匕首", "近战", "隐藏", "边缘"]
+      locale: zh-CN
+
+  - id: worn-coat
+    name: 破旧外套
+    description: 一件不知穿了多少年的灰色外套，肘部和下摆已经磨出了毛边。它不保暖，不体面，但能让你融入阿卡姆最底层的街巷。在那里，没人会注意一个穿着破旧外套的人——这正是你想要的。
+    type: armor
+    rarity: common
+    stats:
+      defense: 1
+      stealth: 2
+    effects: []
+    value:
+      buy: 3
+      sell: 1
+      currency: dollar
+    quantity: 1
+    custom_data:
+      displayType: 防具
+      displayRarity: 普通
+      displayStats:
+        - key: defense
+          label: 防御力
+          value: "+1"
+        - key: stealth
+          label: 潜行
+          value: "+2"
+      displayEffects:
+        - "穿着时不易引起注意"
+        - "潜行判定时获得加值"
+      tags: ["外套", "服装", "边缘"]
+      locale: zh-CN
+
+ui_theme:
+  primary_color: "#4a5568"
+  font_family: serif
+  background_style: gradient
+  gradient_colors:
+    start: "#1a1a2e"
+    end: "#0d0d1a"
+    direction: to bottom
+  background_image: ""
+  pattern_type: zigzag
+  animated_type: mist
+  custom_css: ""
+
+ui_layout:
+  show_minimap: false
+  show_combat_panel: false
+  show_skill_bar: true
+  show_party_panel: true
+  minimap_position: top-left
+  minimap_size: small
+  party_panel_position: left
+  skill_bar_slots: 4
+  custom_layout: ""
+
+special_rules:
+  has_kp: true
+  permadeath: true
+  save_restriction: checkpoint_only
+  custom_rules:
+    - 理智值系统：目击恐怖事件或接触禁忌知识会降低理智值，理智值归零则角色永久疯狂
+    - 禁忌知识：阅读禁忌典籍可以获得强大力量，但会付出理智的代价
+    - 守密人(KP)系统：KP负责描述场景和判定结果，引导恐怖氛围
+    - 永久死亡：角色死亡不可复活，请谨慎行动
+    - 检查点存档：仅在关键剧情节点可以存档

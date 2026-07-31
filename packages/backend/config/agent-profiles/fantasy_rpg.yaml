@@ -1,0 +1,526 @@
+name: fantasy_rpg
+description: 奇幻RPG模式的Agent配置集
+game_mode: text_rpg
+
+agents:
+  gamemaster:
+    name: GameMasterAgent
+    englishId: gamemaster
+    description: 游戏主控Agent，负责调度子Agent和管理游戏流程
+    whenToInvoke: 玩家发送任何消息时首先由GameMasterAgent处理
+    system_prompt_file: ./prompts/gamemaster.md
+    provider_id: null
+    temperature: 0.7
+    max_tokens: 8192
+    isSubAgent: false
+    enableSpawnAgent: true
+    enableStagingPool: true
+    # M5 prepareNextTurn：第 1 轮 default 模型保证叙事规划质量，第 2 轮起切 fast 模型降本
+    # （story Agent 已合并进 GM，Q3 拍板首批启用点；guard 取 story 场景参数：单切换、无冷却、不切回）
+    prepareNextTurn:
+      enabled: true
+      strategy: iteration-tier
+      iterationTier:
+        fastAfterIteration: 1
+      guard:
+        maxSwitchesPerLoop: 1
+        cooldownIterations: 0
+        allowSwitchBack: false
+    deterministicActions:
+      - list_inventory
+      - get_full_status
+      - get_current_location
+    initDeterministicActions:
+      - get_template_data
+    tools:
+      - all
+    rules:
+      # dir 仅用于 ConfigLoader 校验规则文件是否存在，运行时由 PromptModule 从 skills 的 hook 配置加载规则
+      dir: config/agent-rules/gamemaster
+      alwaysApply:
+        - convergence
+        - injection-defense
+        - player-agency
+        - response-format
+        - roleplay-immersion
+      # hooked 仅用于 ConfigLoader 校验规则文件是否存在，运行时由 skills 的 hook 配置决定加载哪些规则
+      hooked:
+        - combat-safety
+        - dialogue-rules
+        - init-convergence
+        - move-safety
+        - pool-generation-rules
+        - special-rules-enforcement
+        - spawn-agent-rules
+    skills:
+      # dir 仅用于 ConfigLoader 校验技能文件是否存在，运行时由 SkillRegistry 从 skills 的 hook 配置加载技能
+      dir: config/agent-skills/gamemaster
+      list:
+        - combat-orchestration
+        - continuity-audit
+        - dialogue-management
+        - game-initialization
+        - generate-pool-items
+        - generate-pool-skills
+        - generate-welcome
+        - gm-item-operations
+        - level-up
+        - npc-interaction
+        - perception-management
+        - player-movement
+        - quest-management
+        - special-rules-setup
+        - trading
+        - world-maintenance
+    help:
+      dirs:
+        - config/agent-help/character_service
+        - config/agent-help/challenge_service
+        - config/agent-help/coordinator_service
+        - config/agent-help/dialogue_service
+        - config/agent-help/dynamic_ui
+        - config/agent-help/entity_graph_service
+        - config/agent-help/event_service
+        - config/agent-help/game_init_service
+        - config/agent-help/game_time_service
+        - config/agent-help/generate_options
+        - config/agent-help/inventory_service
+        - config/agent-help/map_service
+        - config/agent-help/npc_service
+        - config/agent-help/numerical_service
+        - config/agent-help/quest_service
+        - config/agent-help/skill_service
+        - config/agent-help/story_service
+        - config/agent-help/template_pool_service
+      autoLoadOnFirstUse: false
+    # toolBudget:  # 已注释，回退到全部工具可见（模块C预算机制待修复）
+    #   maxVisibleTools: 22
+    #   maxVisibleHelpDocs: 30
+    #   maxToolSummaryTokens: 3000
+    #   maxHelpSummaryTokens: 3000
+    #   maxOnDemandLoadsPerTurn: 8
+    capabilities:
+      supported_intents: [initialize, chat, combat_start, combat_end, travel, explore, buy_item, sell_item, use_item, dialogue, quest_accept, quest_complete, level_up, npc_interact, ui_generation, generate_pool_skills, generate_pool_items]
+      required_fields: [saveId, action]
+      optional_fields: [targetLocation, currentLocation, playerInput, targetNpcId, itemId]
+
+  map:
+    name: MapAgent
+    englishId: map
+    description: 地图导航Agent，负责位置移动和区域探索
+    whenToInvoke: GameMasterAgent需要执行移动或探索操作时调用
+    system_prompt_file: ./prompts/map.md
+    provider_id: null
+    temperature: 0.5
+    max_tokens: 4096
+    isSubAgent: true
+    enableSpawnAgent: false
+    tools:
+      - map_service
+      - npc_service
+      - game_init_service
+      - game_time_service
+      - rule_service
+      - skill_loader
+      - help_service
+    rules:
+      # dir/hooked 仅用于 ConfigLoader 校验，运行时由 skills 的 hook 配置决定加载
+      dir: config/agent-rules/map
+      alwaysApply:
+        - map-core
+      hooked:
+        - location-safety
+    skills:
+      # dir 仅用于 ConfigLoader 校验技能文件是否存在，运行时由 SkillRegistry 从 skills 的 hook 配置加载技能
+      dir: config/agent-skills/map
+      list:
+        - explore-location
+        - location-management
+        - location-pool-init
+        - move-execution
+        - pathfinding
+    help:
+      dirs:
+        - config/agent-help/map_service
+        - config/agent-help/npc_service
+        - config/agent-help/game_init_service
+        - config/agent-help/game_time_service
+      autoLoadOnFirstUse: false
+    capabilities:
+      supported_intents: [move, explore, describe, get, discover, get_path, teleport, location_init]
+      required_fields: [saveId, action]
+      optional_fields: [targetLocation, currentLocation, playerInput]
+
+  challenge:
+    name: ChallengeAgent
+    englishId: challenge
+    description: 挑战Agent，管理战斗与各类挑战流程和伤害计算
+    whenToInvoke: GameMasterAgent需要执行战斗相关操作时调用
+    system_prompt_file: ./prompts/challenge.md
+    provider_id: null
+    temperature: 0.6
+    max_tokens: 8192
+    isSubAgent: true
+    enableSpawnAgent: false
+    tools:
+      - challenge_service
+      - numerical_service
+      - game_time_service
+      - character_service
+      - inventory_service
+      - skill_service
+      - rule_service
+      - skill_loader
+      - help_service
+    rules:
+      # dir/hooked 仅用于 ConfigLoader 校验，运行时由 skills 的 hook 配置决定加载
+      dir: config/agent-rules/challenge
+      alwaysApply:
+        - combat-core
+      hooked:
+        - damage-calculation
+        - combat-range-rule
+    skills:
+      # dir 仅用于 ConfigLoader 校验技能文件是否存在，运行时由 SkillRegistry 从 skills 的 hook 配置加载技能
+      dir: config/agent-skills/challenge
+      list:
+        - calculate-damage
+        - combat-resolution
+        - damage-calculation
+        - execute-turn
+    help:
+      dirs:
+        - config/agent-help/challenge_service
+        - config/agent-help/numerical_service
+        - config/agent-help/character_service
+        - config/agent-help/inventory_service
+        - config/agent-help/skill_service
+        - config/agent-help/game_time_service
+      autoLoadOnFirstUse: false
+    capabilities:
+      # 5 个新意图（code-design §8.1 行1563 要求）：select_challenge_mode / generate_enemy_strategy / narrate_combat / roll_dice / queue_action
+      supported_intents: [combat_start, combat_turn, combat_end, defend, flee, use_skill, use_item_combat, select_challenge_mode, generate_enemy_strategy, narrate_combat, roll_dice, queue_action]
+      required_fields: [saveId, action]
+      optional_fields: [targetId, skillId, itemId]
+
+  output:
+    name: OutputAgent
+    englishId: output
+    description: 输出Agent，一次调用生成对话叙事+UI指令，统一JSON输出
+    whenToInvoke: GameMasterAgent需要生成叙事或对话回应时调用
+    system_prompt_file: ./prompts/output.md
+    provider_id: null
+    temperature: 0.85
+    max_tokens: 8192
+    isSubAgent: true
+    enableSpawnAgent: false
+    force_structured_output: true
+    tools:
+      - dialogue_service
+      - dynamic_ui
+      - rule_service
+      - skill_loader
+      - help_service
+    hookPolicies:
+      disable:
+        - before_compaction
+      recovery:
+        enableFallbackAgent: false
+    rules:
+      # dir 仅用于 ConfigLoader 校验，运行时由 PromptModule 从 skills 的 hook 配置加载规则
+      dir: config/agent-rules/output
+      alwaysApply:
+        - output-core
+    skills:
+      # dir 仅用于 ConfigLoader 校验技能文件是否存在，运行时由 SkillRegistry 从 skills 的 hook 配置加载技能
+      dir: config/agent-skills/output
+      list:
+        - generate-dialogue
+        - generate-narrative
+        - generate-ui
+        - dynamic-ui-generation
+    help:
+      dirs:
+        - config/agent-help/dialogue_service
+        - config/agent-help/dynamic_ui
+        - config/agent-help/npc_service
+      autoLoadOnFirstUse: false
+    toolBudget:
+      maxVisibleTools: 4
+      maxVisibleHelpDocs: 4
+      maxToolSummaryTokens: 500
+      maxHelpSummaryTokens: 500
+      maxOnDemandLoadsPerTurn: 2
+    capabilities:
+      supported_intents: [generate_dialogue, generate_narrative, generate_ui]
+      required_fields: [saveId, action]
+      optional_fields: [dialogueContent, narrativeContext, uiComponents]
+
+  quest:
+    name: QuestAgent
+    englishId: quest
+    description: 任务系统Agent，管理任务生成、更新和完成
+    whenToInvoke: GameMasterAgent需要执行任务相关操作时调用
+    system_prompt_file: ./prompts/quest.md
+    provider_id: null
+    temperature: 0.5
+    max_tokens: 8192
+    isSubAgent: true
+    enableSpawnAgent: false
+    tools:
+      - quest_service
+      - numerical_service
+      - game_time_service
+      - character_service
+      - inventory_service
+      - event_service
+      - npc_service
+      - skill_service
+      - rule_service
+      - skill_loader
+      - help_service
+    rules:
+      # dir/hooked 仅用于 ConfigLoader 校验，运行时由 skills 的 hook 配置决定加载
+      dir: config/agent-rules/quest
+      alwaysApply:
+        - quest-core
+        - quest-visibility
+      hooked:
+        - quest-accept-check
+        - quest-complete-reward
+    skills:
+      # dir 仅用于 ConfigLoader 校验技能文件是否存在，运行时由 SkillRegistry 从 skills 的 hook 配置加载技能
+      dir: config/agent-skills/quest
+      list:
+        - accept-quest
+        - complete-quest
+        - quest-progress
+    help:
+      dirs:
+        - config/agent-help/quest_service
+        - config/agent-help/character_service
+        - config/agent-help/inventory_service
+        - config/agent-help/event_service
+        - config/agent-help/game_time_service
+        - config/agent-help/numerical_service
+        - config/agent-help/npc_service
+        - config/agent-help/skill_service
+      autoLoadOnFirstUse: false
+    capabilities:
+      supported_intents: [quest_accept, quest_complete, quest_update, quest_check, quest_create]
+      required_fields: [saveId, action]
+      optional_fields: [questId, objectiveId, targetId]
+
+  npc_party:
+    name: NPCPartyAgent
+    englishId: npc_party
+    description: NPC队伍Agent，管理队伍成员和NPC感知关系
+    whenToInvoke: GameMasterAgent需要执行NPC交互或队伍管理操作时调用
+    system_prompt_file: ./prompts/npc_party.md
+    provider_id: null
+    temperature: 0.6
+    max_tokens: 4096
+    isSubAgent: true
+    enableSpawnAgent: false
+    tools:
+      - npc_service
+      - entity_graph_service
+      - numerical_service
+      - inventory_service
+      - skill_service
+      - template_pool_service
+      - rule_service
+      - skill_loader
+      - help_service
+    rules:
+      # dir 仅用于 ConfigLoader 校验规则文件是否存在，运行时由 PromptModule 从 skills 的 hook 配置加载规则
+      dir: config/agent-rules/npc_party
+      alwaysApply:
+        - npc-core
+    skills:
+      # dir 仅用于 ConfigLoader 校验技能文件是否存在，运行时由 SkillRegistry 从 skills 的 hook 配置加载技能
+      dir: config/agent-skills/npc_party
+      list:
+        - npc-attribute-init
+        - npc-behavior
+        - npc-creation
+        - npc-equipment-init
+        - npc-skill-init
+    help:
+      dirs:
+        - config/agent-help/npc_service
+        - config/agent-help/entity_graph_service
+        - config/agent-help/numerical_service
+        - config/agent-help/inventory_service
+        - config/agent-help/skill_service
+        - config/agent-help/template_pool_service
+      autoLoadOnFirstUse: false
+    capabilities:
+      # 模块2 简化：删除 relationship_update 意图（NPC 关系由 entity_graph_service.set_relationship 维护，不再独立 intent）
+      supported_intents: [npc_interact, npc_create, npc_update, party_manage, npc_skill_init, npc_equipment_init]
+      required_fields: [saveId, action]
+      optional_fields: [targetNpcId, partyAction]
+
+  inventory:
+    name: InventoryAgent
+    englishId: inventory
+    description: 物品管理Agent，管理背包、装备和使用物品
+    whenToInvoke: GameMasterAgent需要执行物品相关操作时调用
+    system_prompt_file: ./prompts/inventory.md
+    provider_id: null
+    temperature: 0.3
+    max_tokens: 6144
+    isSubAgent: true
+    enableSpawnAgent: false
+    tools:
+      - inventory_service
+      - template_pool_service
+      - numerical_service
+      - character_service
+      - game_init_service
+      - rule_service
+      - skill_loader
+      - help_service
+    rules:
+      # dir 仅用于 ConfigLoader 校验，运行时由 PromptModule 从 skills 的 hook 配置加载规则
+      dir: config/agent-rules/inventory
+      alwaysApply:
+        - inventory-core
+      hooked:
+        - trade-rules
+    skills:
+      # dir 仅用于 ConfigLoader 校验技能文件是否存在，运行时由 SkillRegistry 从 skills 的 hook 配置加载技能
+      dir: config/agent-skills/inventory
+      list:
+        - equipment-management
+        - item-acquisition
+        - item-usage
+        - item-pool-init
+    help:
+      dirs:
+        - config/agent-help/inventory_service
+        - config/agent-help/template_pool_service
+        - config/agent-help/numerical_service
+        - config/agent-help/character_service
+        - config/agent-help/game_init_service
+      autoLoadOnFirstUse: false
+    capabilities:
+      supported_intents: [use_item, equip_item, unequip_item, buy_item, sell_item, list_inventory, get_item, item_pool_init]
+      required_fields: [saveId, action]
+      optional_fields: [itemId, targetId, quantity, equipmentSlot]
+
+  skill:
+    name: SkillAgent
+    englishId: skill
+    description: 技能Agent，管理技能使用和学习
+    whenToInvoke: GameMasterAgent需要执行技能相关操作时调用
+    system_prompt_file: ./prompts/skill.md
+    provider_id: null
+    temperature: 0.5
+    max_tokens: 4096
+    isSubAgent: true
+    enableSpawnAgent: false
+    tools:
+      - skill_service
+      - template_pool_service
+      - character_service
+      - game_init_service
+      - rule_service
+      - skill_loader
+      - help_service
+    rules:
+      # dir 仅用于 ConfigLoader 校验，运行时由 PromptModule 从 skills 的 hook 配置加载规则
+      dir: config/agent-rules/skill
+      alwaysApply:
+        - skill-core
+    skills:
+      # dir 仅用于 ConfigLoader 校验技能文件是否存在，运行时由 SkillRegistry 从 skills 的 hook 配置加载技能
+      dir: config/agent-skills/skill
+      list:
+        - skill-learning
+        - skill-usage
+        - skill-pool-init
+    help:
+      dirs:
+        - config/agent-help/skill_service
+        - config/agent-help/template_pool_service
+        - config/agent-help/character_service
+        - config/agent-help/game_init_service
+      autoLoadOnFirstUse: false
+    capabilities:
+      supported_intents: [use_skill, learn_skill, upgrade_skill, check_cooldown, list_skills, skill_pool_init]
+      required_fields: [saveId, action]
+      optional_fields: [skillId, targetId]
+
+  event:
+    name: EventAgent
+    englishId: event
+    description: 事件Agent，管理事件触发和处理
+    whenToInvoke: GameMasterAgent需要执行事件相关操作时调用
+    system_prompt_file: ./prompts/event.md
+    provider_id: null
+    temperature: 0.5
+    max_tokens: 4096
+    isSubAgent: true
+    enableSpawnAgent: false
+    tools:
+      - event_service
+      - game_time_service
+      - rule_service
+      - skill_loader
+      - help_service
+    rules:
+      # dir 仅用于 ConfigLoader 校验，运行时由 PromptModule 从 skills 的 hook 配置加载规则
+      dir: config/agent-rules/event
+      alwaysApply:
+        - event-core
+    skills:
+      # dir 仅用于 ConfigLoader 校验技能文件是否存在，运行时由 SkillRegistry 从 skills 的 hook 配置加载技能
+      dir: config/agent-skills/event
+      list:
+        - process-event
+        - trigger-event
+        - directive-event
+    help:
+      dirs:
+        - config/agent-help/event_service
+      autoLoadOnFirstUse: false
+    capabilities:
+      supported_intents: [trigger_event, process_event, check_triggers, record_event, directive_event]
+      required_fields: [saveId, action]
+      optional_fields: [eventId, triggerType, eventData]
+
+  time:
+    name: TimeAgent
+    englishId: time
+    description: 游戏时间Agent，管理游戏时间推进和动作时间计算
+    whenToInvoke: GameMasterAgent需要执行时间相关操作时调用
+    system_prompt_file: ./prompts/time.md
+    provider_id: null
+    temperature: 0.3
+    max_tokens: 2048
+    isSubAgent: true
+    enableSpawnAgent: false
+    tools:
+      - game_time_service
+      - rule_service
+      - skill_loader
+      - help_service
+    rules:
+      # dir 仅用于 ConfigLoader 校验，运行时由 PromptModule 从 skills 的 hook 配置加载规则
+      dir: config/agent-rules/time
+      alwaysApply:
+        - time-core
+    skills:
+      # dir 仅用于 ConfigLoader 校验技能文件是否存在，运行时由 SkillRegistry 从 skills 的 hook 配置加载技能
+      dir: config/agent-skills/time
+      list:
+        - advance-time
+    help:
+      dirs:
+        - config/agent-help/game_time_service
+      autoLoadOnFirstUse: false
+    capabilities:
+      supported_intents: [advance_time, get_time, initialize_time]
+      required_fields: [saveId, action]
+      optional_fields: [hours, minutes, actionType]

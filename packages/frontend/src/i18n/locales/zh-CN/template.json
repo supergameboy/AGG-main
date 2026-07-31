@@ -1,0 +1,27 @@
+{
+  "title": "模板编辑器",
+  "createTemplate": "创建模板",
+  "editTemplate": "编辑模板",
+  "deleteTemplate": "删除模板",
+  "templateName": "模板名称",
+  "templateAuthor": "模板作者",
+  "basicInfo": "基本信息",
+  "rules": "规则",
+  "items": "物品",
+  "skills": "技能",
+  "npcs": "NPC",
+  "quests": "任务",
+  "startingScene": "开场场景",
+  "uiLayout": "UI布局",
+  "preview": "预览",
+  "saveTemplate": "保存模板",
+  "exportTemplate": "导出模板",
+  "importTemplate": "导入模板",
+  "newTemplate": "新模板",
+  "defaultAuthor": "用户",
+  "challengeMode": {
+    "defaultLabel": "默认挑战模式",
+    "hint": "留空则由系统按游戏模式自动推断",
+    "auto": "自动推断"
+  }
+}

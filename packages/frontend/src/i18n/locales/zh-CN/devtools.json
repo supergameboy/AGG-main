@@ -1,0 +1,14 @@
+{
+  "title": "开发者工具",
+  "performance": "性能",
+  "tools": "工具",
+  "logs": "日志",
+  "state": "状态",
+  "agentDebug": "Agent调试",
+  "llmCalls": "LLM调用",
+  "cacheStats": "缓存统计",
+  "clearCache": "清除缓存",
+  "resetGame": "重置游戏",
+  "exportData": "导出数据",
+  "importData": "导入数据"
+}

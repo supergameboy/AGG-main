@@ -1,0 +1,1055 @@
+
+[7m[1m[36m RUN [39m[22m[27m [36mv1.6.1[39m [90mC:/Users/super/Documents/trae_projects/AGG-main/packages/backend[39m
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+🧪 Setting up comprehensive test environment...
+✅ Database connected
+Running migration: 001_save_tables.ts
+
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+🧪 Setting up comprehensive test environment...
+✅ Database connected
+Running migration: 001_save_tables.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+🧪 Setting up comprehensive test environment...
+✅ Database connected
+Running migration: 001_save_tables.ts
+
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+Migration 001_save_tables.ts completed successfully
+Running migration: 002_character_item_tables.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 001_save_tables.ts completed successfully
+Running migration: 002_character_item_tables.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 001_save_tables.ts completed successfully
+Running migration: 002_character_item_tables.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 002_character_item_tables.ts completed successfully
+Running migration: 003_world_tables.ts
+Migration 003_world_tables.ts completed successfully
+Running migration: 004_agent_tables.ts
+
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+Migration 002_character_item_tables.ts completed successfully
+Running migration: 003_world_tables.ts
+Migration 003_world_tables.ts completed successfully
+Running migration: 004_agent_tables.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 002_character_item_tables.ts completed successfully
+Running migration: 003_world_tables.ts
+Migration 003_world_tables.ts completed successfully
+Running migration: 004_agent_tables.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 004_agent_tables.ts completed successfully
+Running migration: 005_system_tables.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 004_agent_tables.ts completed successfully
+Running migration: 005_system_tables.ts
+Migration 005_system_tables.ts completed successfully
+Running migration: 006_event_tables.ts
+Migration 006_event_tables.ts completed successfully
+Running migration: 007_create_indexes.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 005_system_tables.ts completed successfully
+Running migration: 006_event_tables.ts
+Migration 006_event_tables.ts completed successfully
+Running migration: 007_create_indexes.ts
+
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+Migration 004_agent_tables.ts completed successfully
+Running migration: 005_system_tables.ts
+Migration 005_system_tables.ts completed successfully
+Running migration: 006_event_tables.ts
+Migration 006_event_tables.ts completed successfully
+Running migration: 007_create_indexes.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 007_create_indexes.ts completed successfully
+Running migration: 008_agent_schedule_fix.ts
+Migration 008_agent_schedule_fix.ts completed successfully
+Running migration: 009_schema_fixes.ts
+Migration 009_schema_fixes.ts completed successfully
+Running migration: 010_timestamp_nullable.ts
+Migration 010_timestamp_nullable.ts completed successfully
+Running migration: 011_game_time_tables.ts
+
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+Migration 007_create_indexes.ts completed successfully
+Running migration: 008_agent_schedule_fix.ts
+Migration 008_agent_schedule_fix.ts completed successfully
+Running migration: 009_schema_fixes.ts
+Migration 009_schema_fixes.ts completed successfully
+Running migration: 010_timestamp_nullable.ts
+Migration 010_timestamp_nullable.ts completed successfully
+Running migration: 011_game_time_tables.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 007_create_indexes.ts completed successfully
+Running migration: 008_agent_schedule_fix.ts
+Migration 008_agent_schedule_fix.ts completed successfully
+Running migration: 009_schema_fixes.ts
+Migration 009_schema_fixes.ts completed successfully
+Running migration: 010_timestamp_nullable.ts
+Migration 010_timestamp_nullable.ts completed successfully
+Running migration: 011_game_time_tables.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 011_game_time_tables.ts completed successfully
+Running migration: 012_npc_party_fields.ts
+Migration 012_npc_party_fields.ts completed successfully
+Running migration: 013_schema_alignment.ts
+Migration 013_schema_alignment.ts completed successfully
+Running migration: 014_inventory_complete_schema.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 014_inventory_complete_schema.ts completed successfully
+Running migration: 015_init_fixes.ts
+Migration 015_init_fixes.ts completed successfully
+Running migration: 016_template_npcs.ts
+Migration 016_template_npcs.ts completed successfully
+Running migration: 017_npc_relations_timestamps.ts
+
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+Migration 011_game_time_tables.ts completed successfully
+Running migration: 012_npc_party_fields.ts
+Migration 012_npc_party_fields.ts completed successfully
+Running migration: 013_schema_alignment.ts
+Migration 013_schema_alignment.ts completed successfully
+Running migration: 014_inventory_complete_schema.ts
+Migration 014_inventory_complete_schema.ts completed successfully
+Running migration: 015_init_fixes.ts
+Migration 015_init_fixes.ts completed successfully
+Running migration: 016_template_npcs.ts
+Migration 016_template_npcs.ts completed successfully
+Running migration: 017_npc_relations_timestamps.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 011_game_time_tables.ts completed successfully
+Running migration: 012_npc_party_fields.ts
+Migration 012_npc_party_fields.ts completed successfully
+Running migration: 013_schema_alignment.ts
+Migration 013_schema_alignment.ts completed successfully
+Running migration: 014_inventory_complete_schema.ts
+Migration 014_inventory_complete_schema.ts completed successfully
+Running migration: 015_init_fixes.ts
+Migration 015_init_fixes.ts completed successfully
+Running migration: 016_template_npcs.ts
+Migration 016_template_npcs.ts completed successfully
+Running migration: 017_npc_relations_timestamps.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 017_npc_relations_timestamps.ts completed successfully
+Running migration: 018_character_skills_complete.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 017_npc_relations_timestamps.ts completed successfully
+Running migration: 018_character_skills_complete.ts
+
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+Migration 017_npc_relations_timestamps.ts completed successfully
+Running migration: 018_character_skills_complete.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 018_character_skills_complete.ts completed successfully
+Running migration: 019_rename_current_location.ts
+
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+Migration 018_character_skills_complete.ts completed successfully
+Running migration: 019_rename_current_location.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 018_character_skills_complete.ts completed successfully
+Running migration: 019_rename_current_location.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 019_rename_current_location.ts completed successfully
+Running migration: 020_location_connections.ts
+Migration 020_location_connections.ts completed successfully
+Running migration: 021_agent_profiles.ts
+Migration 021_agent_profiles.ts completed successfully
+Running migration: 022_template_agent_profile.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 019_rename_current_location.ts completed successfully
+Running migration: 020_location_connections.ts
+Migration 020_location_connections.ts completed successfully
+Running migration: 021_agent_profiles.ts
+Migration 021_agent_profiles.ts completed successfully
+Running migration: 022_template_agent_profile.ts
+
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+Migration 019_rename_current_location.ts completed successfully
+Running migration: 020_location_connections.ts
+Migration 020_location_connections.ts completed successfully
+Running migration: 021_agent_profiles.ts
+Migration 021_agent_profiles.ts completed successfully
+Running migration: 022_template_agent_profile.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 022_template_agent_profile.ts completed successfully
+Running migration: 023_template_source.ts
+Migration 023_template_source.ts completed successfully
+Running migration: 024_saves_last_played_at.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 022_template_agent_profile.ts completed successfully
+Running migration: 023_template_source.ts
+Migration 023_template_source.ts completed successfully
+Running migration: 024_saves_last_played_at.ts
+Migration 024_saves_last_played_at.ts completed successfully
+Running migration: 025_character_currency.ts
+Migration 025_character_currency.ts completed successfully
+Running migration: 026_npc_mood_column.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 024_saves_last_played_at.ts completed successfully
+Running migration: 025_character_currency.ts
+Migration 025_character_currency.ts completed successfully
+Running migration: 026_npc_mood_column.ts
+
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+Migration 022_template_agent_profile.ts completed successfully
+Running migration: 023_template_source.ts
+Migration 023_template_source.ts completed successfully
+Running migration: 024_saves_last_played_at.ts
+Migration 024_saves_last_played_at.ts completed successfully
+Running migration: 025_character_currency.ts
+Migration 025_character_currency.ts completed successfully
+Running migration: 026_npc_mood_column.ts
+
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+Migration 026_npc_mood_column.ts completed successfully
+Running migration: 027_model_providers.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 026_npc_mood_column.ts completed successfully
+Running migration: 027_model_providers.ts
+Migration 027_model_providers.ts completed successfully
+Running migration: 028_model_providers_max_tokens.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 028_model_providers_max_tokens.ts completed successfully
+Running migration: 029_add_message_type_to_dialogues.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 026_npc_mood_column.ts completed successfully
+Running migration: 027_model_providers.ts
+Migration 027_model_providers.ts completed successfully
+Running migration: 028_model_providers_max_tokens.ts
+Migration 028_model_providers_max_tokens.ts completed successfully
+Running migration: 029_add_message_type_to_dialogues.ts
+
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+Migration 027_model_providers.ts completed successfully
+Running migration: 028_model_providers_max_tokens.ts
+Migration 028_model_providers_max_tokens.ts completed successfully
+Running migration: 029_add_message_type_to_dialogues.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 029_add_message_type_to_dialogues.ts completed successfully
+Running migration: 030_unify_llm_providers.ts
+Migration 030_unify_llm_providers.ts completed successfully
+Running migration: 031_add_game_time_index.ts
+
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+Migration 029_add_message_type_to_dialogues.ts completed successfully
+Running migration: 030_unify_llm_providers.ts
+Migration 030_unify_llm_providers.ts completed successfully
+Running migration: 031_add_game_time_index.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 029_add_message_type_to_dialogues.ts completed successfully
+Running migration: 030_unify_llm_providers.ts
+Migration 030_unify_llm_providers.ts completed successfully
+Running migration: 031_add_game_time_index.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 031_add_game_time_index.ts completed successfully
+Running migration: 032_add_locations_save_id.ts
+Migration 032_add_locations_save_id.ts completed successfully
+Running migration: 033_add_dialogue_summaries.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 031_add_game_time_index.ts completed successfully
+Running migration: 032_add_locations_save_id.ts
+Migration 032_add_locations_save_id.ts completed successfully
+Running migration: 033_add_dialogue_summaries.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 033_add_dialogue_summaries.ts completed successfully
+Running migration: 034_frontend_logs.ts
+Migration 034_frontend_logs.ts completed successfully
+Running migration: 035_dev_snapshots.ts
+Migration 035_dev_snapshots.ts completed successfully
+Running migration: 036_dev_consistency_reports.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 033_add_dialogue_summaries.ts completed successfully
+Running migration: 034_frontend_logs.ts
+Migration 034_frontend_logs.ts completed successfully
+Running migration: 035_dev_snapshots.ts
+Migration 035_dev_snapshots.ts completed successfully
+Running migration: 036_dev_consistency_reports.ts
+
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+Migration 031_add_game_time_index.ts completed successfully
+Running migration: 032_add_locations_save_id.ts
+Migration 032_add_locations_save_id.ts completed successfully
+Running migration: 033_add_dialogue_summaries.ts
+Migration 033_add_dialogue_summaries.ts completed successfully
+Running migration: 034_frontend_logs.ts
+Migration 034_frontend_logs.ts completed successfully
+Running migration: 035_dev_snapshots.ts
+Migration 035_dev_snapshots.ts completed successfully
+Running migration: 036_dev_consistency_reports.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 036_dev_consistency_reports.ts completed successfully
+Running migration: 037_locations_enhanced_columns.ts
+Migration 037_locations_enhanced_columns.ts completed successfully
+Running migration: 038_maps_enhanced_columns.ts
+Migration 038_maps_enhanced_columns.ts completed successfully
+Running migration: 039_save_snapshot_two_layer.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 036_dev_consistency_reports.ts completed successfully
+Running migration: 037_locations_enhanced_columns.ts
+Migration 037_locations_enhanced_columns.ts completed successfully
+Running migration: 038_maps_enhanced_columns.ts
+Migration 038_maps_enhanced_columns.ts completed successfully
+Running migration: 039_save_snapshot_two_layer.ts
+
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+Migration 036_dev_consistency_reports.ts completed successfully
+Running migration: 037_locations_enhanced_columns.ts
+Migration 037_locations_enhanced_columns.ts completed successfully
+Running migration: 038_maps_enhanced_columns.ts
+Migration 038_maps_enhanced_columns.ts completed successfully
+Running migration: 039_save_snapshot_two_layer.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 039_save_snapshot_two_layer.ts completed successfully
+Running migration: 040_character_gender.ts
+
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+Migration 039_save_snapshot_two_layer.ts completed successfully
+Running migration: 040_character_gender.ts
+Migration 040_character_gender.ts completed successfully
+Running migration: 041_character_custom_gender.ts
+Migration 041_character_custom_gender.ts completed successfully
+Running migration: 042_save_language.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 040_character_gender.ts completed successfully
+Running migration: 041_character_custom_gender.ts
+Migration 041_character_custom_gender.ts completed successfully
+Running migration: 042_save_language.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 039_save_snapshot_two_layer.ts completed successfully
+Running migration: 040_character_gender.ts
+Migration 040_character_gender.ts completed successfully
+Running migration: 041_character_custom_gender.ts
+Migration 041_character_custom_gender.ts completed successfully
+Running migration: 042_save_language.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 042_save_language.ts completed successfully
+Running migration: 043_template_items_column.ts
+Migration 043_template_items_column.ts completed successfully
+Running migration: 044_event_triggers_result_data.ts
+Migration 044_event_triggers_result_data.ts completed successfully
+Running migration: 045_character_skills_unlocked.ts
+
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+Migration 042_save_language.ts completed successfully
+Running migration: 043_template_items_column.ts
+Migration 043_template_items_column.ts completed successfully
+Running migration: 044_event_triggers_result_data.ts
+Migration 044_event_triggers_result_data.ts completed successfully
+Running migration: 045_character_skills_unlocked.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 042_save_language.ts completed successfully
+Running migration: 043_template_items_column.ts
+Migration 043_template_items_column.ts completed successfully
+Running migration: 044_event_triggers_result_data.ts
+Migration 044_event_triggers_result_data.ts completed successfully
+Running migration: 045_character_skills_unlocked.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 045_character_skills_unlocked.ts completed successfully
+Running migration: 046_unify_character_fields.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 045_character_skills_unlocked.ts completed successfully
+Running migration: 046_unify_character_fields.ts
+Migration 046_unify_character_fields.ts completed successfully
+Running migration: 048_add_base_max_hp_mp.ts
+Migration 048_add_base_max_hp_mp.ts completed successfully
+Running migration: 049_agent_llm_call_cache_metrics.ts
+Migration 049_agent_llm_call_cache_metrics.ts completed successfully
+Running migration: 050_story_events_importance.ts
+Migration 050_story_events_importance.ts completed successfully
+Running migration: 051_sync_skill_category_from_template.ts
+Migration 051_sync_skill_category_from_template.ts completed successfully
+Running migration: 053_plan_cache.ts
+
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+Migration 045_character_skills_unlocked.ts completed successfully
+Running migration: 046_unify_character_fields.ts
+Migration 046_unify_character_fields.ts completed successfully
+Running migration: 048_add_base_max_hp_mp.ts
+Migration 048_add_base_max_hp_mp.ts completed successfully
+Running migration: 049_agent_llm_call_cache_metrics.ts
+Migration 049_agent_llm_call_cache_metrics.ts completed successfully
+Running migration: 050_story_events_importance.ts
+Migration 050_story_events_importance.ts completed successfully
+Running migration: 051_sync_skill_category_from_template.ts
+Migration 051_sync_skill_category_from_template.ts completed successfully
+Running migration: 053_plan_cache.ts
+Migration 053_plan_cache.ts completed successfully
+Running migration: 054_hidden_columns.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 046_unify_character_fields.ts completed successfully
+Running migration: 048_add_base_max_hp_mp.ts
+Migration 048_add_base_max_hp_mp.ts completed successfully
+Running migration: 049_agent_llm_call_cache_metrics.ts
+Migration 049_agent_llm_call_cache_metrics.ts completed successfully
+Running migration: 050_story_events_importance.ts
+Migration 050_story_events_importance.ts completed successfully
+Running migration: 051_sync_skill_category_from_template.ts
+Migration 051_sync_skill_category_from_template.ts completed successfully
+Running migration: 053_plan_cache.ts
+Migration 053_plan_cache.ts completed successfully
+Running migration: 054_hidden_columns.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 053_plan_cache.ts completed successfully
+Running migration: 054_hidden_columns.ts
+Migration 054_hidden_columns.ts completed successfully
+Running migration: 055_npc_hidden_column.ts
+Migration 055_npc_hidden_column.ts completed successfully
+Running migration: 056_quest_hidden_column.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 054_hidden_columns.ts completed successfully
+Running migration: 055_npc_hidden_column.ts
+Migration 055_npc_hidden_column.ts completed successfully
+Running migration: 056_quest_hidden_column.ts
+
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+Migration 054_hidden_columns.ts completed successfully
+Running migration: 055_npc_hidden_column.ts
+Migration 055_npc_hidden_column.ts completed successfully
+Running migration: 056_quest_hidden_column.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 056_quest_hidden_column.ts completed successfully
+Running migration: 057_locations_hidden_column.ts
+Migration 057_locations_hidden_column.ts completed successfully
+Running migration: 058_model_config_fast_model_fields.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 056_quest_hidden_column.ts completed successfully
+Running migration: 057_locations_hidden_column.ts
+Migration 057_locations_hidden_column.ts completed successfully
+Running migration: 058_model_config_fast_model_fields.ts
+
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+Migration 056_quest_hidden_column.ts completed successfully
+Running migration: 057_locations_hidden_column.ts
+Migration 057_locations_hidden_column.ts completed successfully
+Running migration: 058_model_config_fast_model_fields.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 058_model_config_fast_model_fields.ts completed successfully
+Running migration: 059_composite_pk_core_tables.ts
+Migration 059_composite_pk_core_tables.ts completed successfully
+Running migration: 060_location_parent_id.ts
+Migration 060_location_parent_id.ts completed successfully
+Running migration: 061_character_age_group.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 058_model_config_fast_model_fields.ts completed successfully
+Running migration: 059_composite_pk_core_tables.ts
+Migration 059_composite_pk_core_tables.ts completed successfully
+Running migration: 060_location_parent_id.ts
+Migration 060_location_parent_id.ts completed successfully
+Running migration: 061_character_age_group.ts
+
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+Migration 058_model_config_fast_model_fields.ts completed successfully
+Running migration: 059_composite_pk_core_tables.ts
+Migration 059_composite_pk_core_tables.ts completed successfully
+Running migration: 060_location_parent_id.ts
+Migration 060_location_parent_id.ts completed successfully
+Running migration: 061_character_age_group.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 061_character_age_group.ts completed successfully
+Running migration: 062_location_is_parent.ts
+Migration 062_location_is_parent.ts completed successfully
+Running migration: 063_entity_graph.ts
+Migration 063_entity_graph.ts completed successfully
+Running migration: 064_npc_richness.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 061_character_age_group.ts completed successfully
+Running migration: 062_location_is_parent.ts
+Migration 062_location_is_parent.ts completed successfully
+Running migration: 063_entity_graph.ts
+Migration 063_entity_graph.ts completed successfully
+Running migration: 064_npc_richness.ts
+
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+Migration 061_character_age_group.ts completed successfully
+Running migration: 062_location_is_parent.ts
+Migration 062_location_is_parent.ts completed successfully
+Running migration: 063_entity_graph.ts
+Migration 063_entity_graph.ts completed successfully
+Running migration: 064_npc_richness.ts
+
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+Migration 064_npc_richness.ts completed successfully
+Running migration: 065_items_tags_column.ts
+Migration 065_items_tags_column.ts completed successfully
+Running migration: 066_template_npcs_template_id.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 064_npc_richness.ts completed successfully
+Running migration: 065_items_tags_column.ts
+Migration 065_items_tags_column.ts completed successfully
+Running migration: 066_template_npcs_template_id.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 064_npc_richness.ts completed successfully
+Running migration: 065_items_tags_column.ts
+Migration 065_items_tags_column.ts completed successfully
+Running migration: 066_template_npcs_template_id.ts
+
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+Migration 066_template_npcs_template_id.ts completed successfully
+Running migration: 067_template_unify.ts
+Migration 067_template_unify.ts completed successfully
+Running migration: 068_drop_stale_fks.ts
+Migration 068_drop_stale_fks.ts completed successfully
+Running migration: 069_skill_pool_and_cost.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 066_template_npcs_template_id.ts completed successfully
+Running migration: 067_template_unify.ts
+Migration 067_template_unify.ts completed successfully
+Running migration: 068_drop_stale_fks.ts
+Migration 068_drop_stale_fks.ts completed successfully
+Running migration: 069_skill_pool_and_cost.ts
+
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+Migration 069_skill_pool_and_cost.ts completed successfully
+Running migration: 070_map_location_refactor.ts
+Migration 070_map_location_refactor.ts completed successfully
+Running migration: 071_inventory_refactor.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 066_template_npcs_template_id.ts completed successfully
+Running migration: 067_template_unify.ts
+Migration 067_template_unify.ts completed successfully
+Running migration: 068_drop_stale_fks.ts
+Migration 068_drop_stale_fks.ts completed successfully
+Running migration: 069_skill_pool_and_cost.ts
+Migration 069_skill_pool_and_cost.ts completed successfully
+Running migration: 070_map_location_refactor.ts
+Migration 070_map_location_refactor.ts completed successfully
+Running migration: 071_inventory_refactor.ts
+Migration 071_inventory_refactor.ts completed successfully
+Running migration: 072_npc_stats_removal.ts
+Migration 072_npc_stats_removal.ts completed successfully
+Running migration: 073_location_quest_visible.ts
+Migration 073_location_quest_visible.ts completed successfully
+Running migration: 074_quest_upgrade.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 069_skill_pool_and_cost.ts completed successfully
+Running migration: 070_map_location_refactor.ts
+Migration 070_map_location_refactor.ts completed successfully
+Running migration: 071_inventory_refactor.ts
+Migration 071_inventory_refactor.ts completed successfully
+Running migration: 072_npc_stats_removal.ts
+Migration 072_npc_stats_removal.ts completed successfully
+Running migration: 073_location_quest_visible.ts
+Migration 073_location_quest_visible.ts completed successfully
+Running migration: 074_quest_upgrade.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 074_quest_upgrade.ts completed successfully
+Running migration: 075_template_pool_tables.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 075_template_pool_tables.ts completed successfully
+Running migration: 076_locations_region_index.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 074_quest_upgrade.ts completed successfully
+Running migration: 075_template_pool_tables.ts
+Migration 075_template_pool_tables.ts completed successfully
+Running migration: 076_locations_region_index.ts
+
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+Migration 071_inventory_refactor.ts completed successfully
+Running migration: 072_npc_stats_removal.ts
+Migration 072_npc_stats_removal.ts completed successfully
+Running migration: 073_location_quest_visible.ts
+Migration 073_location_quest_visible.ts completed successfully
+Running migration: 074_quest_upgrade.ts
+Migration 074_quest_upgrade.ts completed successfully
+Running migration: 075_template_pool_tables.ts
+Migration 075_template_pool_tables.ts completed successfully
+Running migration: 076_locations_region_index.ts
+Migration 076_locations_region_index.ts completed successfully
+Running migration: 077_pool_icon_columns.ts
+Migration 077_pool_icon_columns.ts completed successfully
+Running migration: 078_agent_memories.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 076_locations_region_index.ts completed successfully
+Running migration: 077_pool_icon_columns.ts
+Migration 077_pool_icon_columns.ts completed successfully
+Running migration: 078_agent_memories.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 076_locations_region_index.ts completed successfully
+Running migration: 077_pool_icon_columns.ts
+Migration 077_pool_icon_columns.ts completed successfully
+Running migration: 078_agent_memories.ts
+
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+Migration 078_agent_memories.ts completed successfully
+Running migration: 079_pacing_tables.ts
+Migration 079_pacing_tables.ts completed successfully
+Running migration: 080_pacing_config_template_hash.ts
+Migration 080_pacing_config_template_hash.ts completed successfully
+Running migration: 081_character_skills_weight_cooldown.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 078_agent_memories.ts completed successfully
+Running migration: 079_pacing_tables.ts
+Migration 079_pacing_tables.ts completed successfully
+Running migration: 080_pacing_config_template_hash.ts
+Migration 080_pacing_config_template_hash.ts completed successfully
+Running migration: 081_character_skills_weight_cooldown.ts
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+Migration 081_character_skills_weight_cooldown.ts completed successfully
+All migrations completed
+✅ Migrations completed
+All seeds completed
+✅ Seeds completed
+09:24:15 [[32minfo[39m]  Starting YAML-driven Agent system initialization
+09:24:15 [[32minfo[39m]  Initializing ModelConfigService and seeding from environment
+[model-config] No DEEPSEEK_API_KEY env var found, skipping env seed 
+[model-config] Seeded provider from convict config {
+  providerType: [32m'openai'[39m,
+  providerId: [32m'0a25682a-5166-4d03-bc11-25a99087871a'[39m,
+  model: [32m'openrouter/free'[39m
+}
+09:24:15 [[32minfo[39m]  Creating LLMService with ModelConfigService
+09:24:15 [[32minfo[39m]  Creating ContextService and DecisionLogService instances
+09:24:15 [[32minfo[39m]  Initializing YAML-driven Agent profiles...
+09:24:15 [[32minfo[39m]  Loading config from directory: C:\Users\super\Documents\trae_projects\AGG-main\packages\backend\config
+09:24:15 [[32minfo[39m]  Loaded agent profile: fantasy_rpg
+09:24:15 [[32minfo[39m]  Loaded agent profile: minimal_test
+09:24:15 [[32minfo[39m]  Loaded 0 non-builtin profiles from database (0 builtin skipped, using YAML)
+09:24:15 [[32minfo[39m]  Config loaded successfully: 2 profiles
+09:24:15 [[32minfo[39m]  YAML config loaded successfully
+09:24:15 [[32minfo[39m]  Context rules loaded {"agentCount":10}
+09:24:15 [[32minfo[39m]  Loaded 10 agent capabilities from YAML profiles
+09:24:15 [[32minfo[39m]  ToolRegistry initialized
+09:24:15 [[32minfo[39m]  Registering ServiceTools to ToolRegistry
+09:24:15 [[32minfo[39m]  Tool registered: game_time_service - GameTime Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: numerical_service - Numerical Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: character_service - Character Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: inventory_service - Inventory Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: skill_service - Skill Service (v1.1.0)
+09:24:15 [[32minfo[39m]  Tool registered: map_service - Map Service (v2.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: npc_service - NPC Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: dialogue_service - Dialogue Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: quest_service - Quest Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: combat_service - Combat Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: event_service - Event Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: story_service - Story Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: game_init_service - Game Init Service (v2.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: batch_query_service - Batch Query Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: entity_graph_service - Entity Graph Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: template_pool_service - Template Pool Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: dynamic_ui - Dynamic UI Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: generate_options - Generate Options Service (v2.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: coordinator_service - Coordinator Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: rule_service - Rule Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: skill_loader - Skill Loader (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: help_service - Help Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: memory_service - Memory Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Registered 23 ServiceTools to ToolRegistry
+09:24:15 [[32minfo[39m]  Tool reference validation passed
+
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+Migration 081_character_skills_weight_cooldown.ts completed successfully
+All migrations completed
+✅ Migrations completed
+All seeds completed
+✅ Seeds completed
+09:24:15 [[32minfo[39m]  Starting YAML-driven Agent system initialization
+09:24:15 [[32minfo[39m]  Initializing ModelConfigService and seeding from environment
+[model-config] No DEEPSEEK_API_KEY env var found, skipping env seed 
+[model-config] Seeded provider from convict config {
+  providerType: [32m'openai'[39m,
+  providerId: [32m'782e4484-46a2-4d1e-8ec8-703781496b0d'[39m,
+  model: [32m'openrouter/free'[39m
+}
+09:24:15 [[32minfo[39m]  Creating LLMService with ModelConfigService
+09:24:15 [[32minfo[39m]  Creating ContextService and DecisionLogService instances
+09:24:15 [[32minfo[39m]  Initializing YAML-driven Agent profiles...
+09:24:15 [[32minfo[39m]  Loading config from directory: C:\Users\super\Documents\trae_projects\AGG-main\packages\backend\config
+09:24:15 [[32minfo[39m]  Loaded agent profile: fantasy_rpg
+09:24:15 [[32minfo[39m]  Loaded agent profile: minimal_test
+09:24:15 [[32minfo[39m]  Loaded 0 non-builtin profiles from database (0 builtin skipped, using YAML)
+09:24:15 [[32minfo[39m]  Config loaded successfully: 2 profiles
+09:24:15 [[32minfo[39m]  YAML config loaded successfully
+09:24:15 [[32minfo[39m]  Context rules loaded {"agentCount":10}
+09:24:15 [[32minfo[39m]  Loaded 10 agent capabilities from YAML profiles
+09:24:15 [[32minfo[39m]  ToolRegistry initialized
+09:24:15 [[32minfo[39m]  Registering ServiceTools to ToolRegistry
+09:24:15 [[32minfo[39m]  Tool registered: game_time_service - GameTime Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: numerical_service - Numerical Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: character_service - Character Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: inventory_service - Inventory Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: skill_service - Skill Service (v1.1.0)
+09:24:15 [[32minfo[39m]  Tool registered: map_service - Map Service (v2.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: npc_service - NPC Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: dialogue_service - Dialogue Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: quest_service - Quest Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: combat_service - Combat Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: event_service - Event Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: story_service - Story Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: game_init_service - Game Init Service (v2.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: batch_query_service - Batch Query Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: entity_graph_service - Entity Graph Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: template_pool_service - Template Pool Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: dynamic_ui - Dynamic UI Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: generate_options - Generate Options Service (v2.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: coordinator_service - Coordinator Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: rule_service - Rule Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: skill_loader - Skill Loader (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: help_service - Help Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: memory_service - Memory Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Registered 23 ServiceTools to ToolRegistry
+09:24:15 [[32minfo[39m]  Tool reference validation passed
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+Migration 078_agent_memories.ts completed successfully
+Running migration: 079_pacing_tables.ts
+Migration 079_pacing_tables.ts completed successfully
+Running migration: 080_pacing_config_template_hash.ts
+Migration 080_pacing_config_template_hash.ts completed successfully
+Running migration: 081_character_skills_weight_cooldown.ts
+Migration 081_character_skills_weight_cooldown.ts completed successfully
+All migrations completed
+✅ Migrations completed
+All seeds completed
+✅ Seeds completed
+09:24:15 [[32minfo[39m]  Starting YAML-driven Agent system initialization
+09:24:15 [[32minfo[39m]  Initializing ModelConfigService and seeding from environment
+[model-config] No DEEPSEEK_API_KEY env var found, skipping env seed 
+[model-config] Seeded provider from convict config {
+  providerType: [32m'openai'[39m,
+  providerId: [32m'd966fe39-8ed5-47b9-856d-f3c1632c2c49'[39m,
+  model: [32m'openrouter/free'[39m
+}
+09:24:15 [[32minfo[39m]  Creating LLMService with ModelConfigService
+09:24:15 [[32minfo[39m]  Creating ContextService and DecisionLogService instances
+09:24:15 [[32minfo[39m]  Initializing YAML-driven Agent profiles...
+09:24:15 [[32minfo[39m]  Loading config from directory: C:\Users\super\Documents\trae_projects\AGG-main\packages\backend\config
+09:24:15 [[32minfo[39m]  Loaded agent profile: fantasy_rpg
+09:24:15 [[32minfo[39m]  Loaded agent profile: minimal_test
+09:24:15 [[32minfo[39m]  Loaded 0 non-builtin profiles from database (0 builtin skipped, using YAML)
+09:24:15 [[32minfo[39m]  Config loaded successfully: 2 profiles
+09:24:15 [[32minfo[39m]  YAML config loaded successfully
+09:24:15 [[32minfo[39m]  Context rules loaded {"agentCount":10}
+09:24:15 [[32minfo[39m]  Loaded 10 agent capabilities from YAML profiles
+09:24:15 [[32minfo[39m]  ToolRegistry initialized
+09:24:15 [[32minfo[39m]  Registering ServiceTools to ToolRegistry
+09:24:15 [[32minfo[39m]  Tool registered: game_time_service - GameTime Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: numerical_service - Numerical Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: character_service - Character Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: inventory_service - Inventory Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: skill_service - Skill Service (v1.1.0)
+09:24:15 [[32minfo[39m]  Tool registered: map_service - Map Service (v2.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: npc_service - NPC Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: dialogue_service - Dialogue Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: quest_service - Quest Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: combat_service - Combat Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: event_service - Event Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: story_service - Story Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: game_init_service - Game Init Service (v2.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: batch_query_service - Batch Query Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: entity_graph_service - Entity Graph Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: template_pool_service - Template Pool Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: dynamic_ui - Dynamic UI Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: generate_options - Generate Options Service (v2.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: coordinator_service - Coordinator Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: rule_service - Rule Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: skill_loader - Skill Loader (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: help_service - Help Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Tool registered: memory_service - Memory Service (v1.0.0)
+09:24:15 [[32minfo[39m]  Registered 23 ServiceTools to ToolRegistry
+09:24:15 [[32minfo[39m]  Tool reference validation passed
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+09:24:15 [[32minfo[39m]  Discovered 189 help files {"dir":"C:\\Users\\super\\Documents\\trae_projects\\AGG-main\\packages\\backend\\config\\agent-help"}
+
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+09:24:15 [[32minfo[39m]  Discovered 189 help files {"dir":"C:\\Users\\super\\Documents\\trae_projects\\AGG-main\\packages\\backend\\config\\agent-help"}
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+09:24:15 [[32minfo[39m]  Discovered 189 help files {"dir":"C:\\Users\\super\\Documents\\trae_projects\\AGG-main\\packages\\backend\\config\\agent-help"}
+
+[90mstdout[2m | src/game-systems/map/__tests__/location-names-by-ids.test.ts[22m[39m
+09:24:15 [[32minfo[39m]  Help registry loaded: 22 tools {"tools":["batch_query_service","character_service","... (22 items)"]}
+09:24:15 [[32minfo[39m]  Creating GameMasterAgent (as AgentRuntime with isSubAgent=false)
+09:24:15 [[32minfo[39m]  Agent initialized: gamemaster - GameMasterAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent gamemaster starting {"agent":"gamemaster","provider":null,"toolsConfigured":1,"maxIterations":200,"isSubAgent":false}
+09:24:15 [[32minfo[39m]  Creating AgentRuntime instances from default profile: fantasy_rpg
+09:24:15 [[32minfo[39m]  Creating agents from profile: fantasy_rpg {"agentCount":10}
+09:24:15 [[32minfo[39m]  Agent initialized: gamemaster - GameMasterAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent gamemaster starting {"agent":"gamemaster","provider":null,"toolsConfigured":1,"maxIterations":200,"isSubAgent":false}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: gamemaster {"profile":"fantasy_rpg","tools":["all"]}
+09:24:15 [[32minfo[39m]  Agent initialized: map - MapAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent map starting {"agent":"map","provider":null,"toolsConfigured":7,"maxIterations":200,"isSubAgent":true}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: map {"profile":"fantasy_rpg","tools":["map_service","npc_service","... (7 items)"]}
+09:24:15 [[32minfo[39m]  Agent initialized: combat - CombatAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent combat starting {"agent":"combat","provider":null,"toolsConfigured":9,"maxIterations":200,"isSubAgent":true}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: combat {"profile":"fantasy_rpg","tools":["combat_service","numerical_service","... (9 items)"]}
+09:24:15 [[32minfo[39m]  Agent initialized: output - OutputAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent output starting {"agent":"output","provider":null,"toolsConfigured":5,"maxIterations":200,"isSubAgent":true}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: output {"profile":"fantasy_rpg","tools":["dialogue_service","dynamic_ui","... (5 items)"]}
+09:24:15 [[32minfo[39m]  Agent initialized: quest - QuestAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent quest starting {"agent":"quest","provider":null,"toolsConfigured":11,"maxIterations":200,"isSubAgent":true}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: quest {"profile":"fantasy_rpg","tools":["quest_service","numerical_service","... (11 items)"]}
+09:24:15 [[32minfo[39m]  Agent initialized: npc_party - NPCPartyAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent npc_party starting {"agent":"npc_party","provider":null,"toolsConfigured":8,"maxIterations":200,"isSubAgent":true}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: npc_party {"profile":"fantasy_rpg","tools":["npc_service","numerical_service","... (8 items)"]}
+09:24:15 [[32minfo[39m]  Agent initialized: inventory - InventoryAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent inventory starting {"agent":"inventory","provider":null,"toolsConfigured":8,"maxIterations":200,"isSubAgent":true}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: inventory {"profile":"fantasy_rpg","tools":["inventory_service","template_pool_service","... (8 items)"]}
+09:24:15 [[32minfo[39m]  Agent initialized: skill - SkillAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent skill starting {"agent":"skill","provider":null,"toolsConfigured":7,"maxIterations":200,"isSubAgent":true}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: skill {"profile":"fantasy_rpg","tools":["skill_service","template_pool_service","... (7 items)"]}
+09:24:15 [[32minfo[39m]  Agent initialized: event - EventAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent event starting {"agent":"event","provider":null,"toolsConfigured":5,"maxIterations":200,"isSubAgent":true}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: event {"profile":"fantasy_rpg","tools":["event_service","game_time_service","... (5 items)"]}
+09:24:15 [[32minfo[39m]  Agent initialized: time - TimeAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent time starting {"agent":"time","provider":null,"toolsConfigured":4,"maxIterations":200,"isSubAgent":true}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: time {"profile":"fantasy_rpg","tools":["game_time_service","rule_service","... (4 items)"]}
+09:24:15 [[32minfo[39m]  Permissions configured from agent.tools for profile: fantasy_rpg
+09:24:15 [[32minfo[39m]  YAML permissions configured
+09:24:15 [[32minfo[39m]  Registering AgentRuntime instances to GameMasterAgent...
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: gamemaster
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: map
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: combat
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: output
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: quest
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: npc_party
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: inventory
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: skill
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: event
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: time
+09:24:15 [[32minfo[39m]  Agent system initialized: 10 AgentRuntime instances created
+✅ Agent system initialized with 10 agents
+⚠️ YAML Agent system skipped: __vi_import_5__.initializeYamlAgentSystem is not a function
+09:24:15 [[32minfo[39m]  Agent routes initialized
+09:24:15 [[32minfo[39m]  Save routes initialized
+09:24:15 [[32minfo[39m]  Synced template from YAML to DB: cthulhu-investigation
+09:24:15 [[32minfo[39m]  Synced template from YAML to DB: cyberpunk-mercenary
+09:24:15 [[32minfo[39m]  Synced template from YAML to DB: medieval-fantasy
+09:24:15 [[32minfo[39m]  Synced template from YAML to DB: modern-romance
+09:24:15 [[32minfo[39m]  Synced template from YAML to DB: xianxia
+09:24:15 [[32minfo[39m]  Synced 5 templates from YAML to database
+09:24:15 [[32minfo[39m]  Cache refreshed with 5 templates
+09:24:15 [[32minfo[39m]  TemplateService loaded {"cachedTemplates":5}
+✅ Template YAML loaded and synced to DB
+09:24:15 [[32minfo[39m]  Template routes initialized
+✅ Test environment setup complete
+✅ Database connection closed
+
+ [32m✓[39m src/game-systems/map/__tests__/location-names-by-ids.test.ts [2m ([22m[2m5 tests[22m[2m)[22m[33m 661[2mms[22m[39m
+[90mstdout[2m | src/game-systems/npc/__tests__/npc-names-by-ids.test.ts[22m[39m
+09:24:15 [[32minfo[39m]  Help registry loaded: 22 tools {"tools":["batch_query_service","character_service","... (22 items)"]}
+09:24:15 [[32minfo[39m]  Creating GameMasterAgent (as AgentRuntime with isSubAgent=false)
+09:24:15 [[32minfo[39m]  Agent initialized: gamemaster - GameMasterAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent gamemaster starting {"agent":"gamemaster","provider":null,"toolsConfigured":1,"maxIterations":200,"isSubAgent":false}
+09:24:15 [[32minfo[39m]  Creating AgentRuntime instances from default profile: fantasy_rpg
+09:24:15 [[32minfo[39m]  Creating agents from profile: fantasy_rpg {"agentCount":10}
+09:24:15 [[32minfo[39m]  Agent initialized: gamemaster - GameMasterAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent gamemaster starting {"agent":"gamemaster","provider":null,"toolsConfigured":1,"maxIterations":200,"isSubAgent":false}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: gamemaster {"profile":"fantasy_rpg","tools":["all"]}
+09:24:15 [[32minfo[39m]  Agent initialized: map - MapAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent map starting {"agent":"map","provider":null,"toolsConfigured":7,"maxIterations":200,"isSubAgent":true}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: map {"profile":"fantasy_rpg","tools":["map_service","npc_service","... (7 items)"]}
+09:24:15 [[32minfo[39m]  Agent initialized: combat - CombatAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent combat starting {"agent":"combat","provider":null,"toolsConfigured":9,"maxIterations":200,"isSubAgent":true}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: combat {"profile":"fantasy_rpg","tools":["combat_service","numerical_service","... (9 items)"]}
+09:24:15 [[32minfo[39m]  Agent initialized: output - OutputAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent output starting {"agent":"output","provider":null,"toolsConfigured":5,"maxIterations":200,"isSubAgent":true}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: output {"profile":"fantasy_rpg","tools":["dialogue_service","dynamic_ui","... (5 items)"]}
+09:24:15 [[32minfo[39m]  Agent initialized: quest - QuestAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent quest starting {"agent":"quest","provider":null,"toolsConfigured":11,"maxIterations":200,"isSubAgent":true}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: quest {"profile":"fantasy_rpg","tools":["quest_service","numerical_service","... (11 items)"]}
+09:24:15 [[32minfo[39m]  Agent initialized: npc_party - NPCPartyAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent npc_party starting {"agent":"npc_party","provider":null,"toolsConfigured":8,"maxIterations":200,"isSubAgent":true}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: npc_party {"profile":"fantasy_rpg","tools":["npc_service","numerical_service","... (8 items)"]}
+09:24:15 [[32minfo[39m]  Agent initialized: inventory - InventoryAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent inventory starting {"agent":"inventory","provider":null,"toolsConfigured":8,"maxIterations":200,"isSubAgent":true}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: inventory {"profile":"fantasy_rpg","tools":["inventory_service","template_pool_service","... (8 items)"]}
+09:24:15 [[32minfo[39m]  Agent initialized: skill - SkillAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent skill starting {"agent":"skill","provider":null,"toolsConfigured":7,"maxIterations":200,"isSubAgent":true}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: skill {"profile":"fantasy_rpg","tools":["skill_service","template_pool_service","... (7 items)"]}
+09:24:15 [[32minfo[39m]  Agent initialized: event - EventAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent event starting {"agent":"event","provider":null,"toolsConfigured":5,"maxIterations":200,"isSubAgent":true}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: event {"profile":"fantasy_rpg","tools":["event_service","game_time_service","... (5 items)"]}
+09:24:15 [[32minfo[39m]  Agent initialized: time - TimeAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent time starting {"agent":"time","provider":null,"toolsConfigured":4,"maxIterations":200,"isSubAgent":true}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: time {"profile":"fantasy_rpg","tools":["game_time_service","rule_service","... (4 items)"]}
+09:24:15 [[32minfo[39m]  Permissions configured from agent.tools for profile: fantasy_rpg
+09:24:15 [[32minfo[39m]  YAML permissions configured
+09:24:15 [[32minfo[39m]  Registering AgentRuntime instances to GameMasterAgent...
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: gamemaster
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: map
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: combat
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: output
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: quest
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: npc_party
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: inventory
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: skill
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: event
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: time
+09:24:15 [[32minfo[39m]  Agent system initialized: 10 AgentRuntime instances created
+✅ Agent system initialized with 10 agents
+⚠️ YAML Agent system skipped: __vi_import_5__.initializeYamlAgentSystem is not a function
+09:24:15 [[32minfo[39m]  Agent routes initialized
+09:24:15 [[32minfo[39m]  Save routes initialized
+09:24:15 [[32minfo[39m]  Synced template from YAML to DB: cthulhu-investigation
+09:24:15 [[32minfo[39m]  Synced template from YAML to DB: cyberpunk-mercenary
+09:24:15 [[32minfo[39m]  Synced template from YAML to DB: medieval-fantasy
+09:24:15 [[32minfo[39m]  Synced template from YAML to DB: modern-romance
+09:24:15 [[32minfo[39m]  Synced template from YAML to DB: xianxia
+09:24:15 [[32minfo[39m]  Synced 5 templates from YAML to database
+09:24:15 [[32minfo[39m]  Cache refreshed with 5 templates
+09:24:15 [[32minfo[39m]  TemplateService loaded {"cachedTemplates":5}
+✅ Template YAML loaded and synced to DB
+09:24:15 [[32minfo[39m]  Template routes initialized
+✅ Test environment setup complete
+✅ Database connection closed
+
+ [32m✓[39m src/game-systems/npc/__tests__/npc-names-by-ids.test.ts [2m ([22m[2m4 tests[22m[2m)[22m[33m 665[2mms[22m[39m
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[2m > [22m[2mMapService resolveLocationId — 中文感知名称解析[2m > [22m[2mresolveLocationId[2m > [22m[2m通过精确中文名称匹配[22m[39m
+09:24:15 [[32minfo[39m]  Resolved locationId by exact name {"input":"铁匠铺","resolved":"loc-forge"}
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[2m > [22m[2mMapService resolveLocationId — 中文感知名称解析[2m > [22m[2mresolveLocationId[2m > [22m[2m通过中文部分名称匹配（"匠铺"匹配"铁匠铺"）[22m[39m
+09:24:15 [[32minfo[39m]  Resolved locationId by contains match {"input":"匠铺","resolved":"loc-forge"}
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[2m > [22m[2mMapService resolveLocationId — 中文感知名称解析[2m > [22m[2mresolveLocationId[2m > [22m[2m通过中文部分名称匹配（"铁"匹配"铁匠铺"或"铁矿洞"）[22m[39m
+09:24:15 [[32minfo[39m]  Resolved locationId by contains match {"input":"铁","resolved":"loc-forge"}
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[2m > [22m[2mMapService resolveLocationId — 中文感知名称解析[2m > [22m[2mresolveLocationId[2m > [22m[2m通过中文全名匹配（"暗影森林"）[22m[39m
+09:24:15 [[32minfo[39m]  Resolved locationId by exact name {"input":"暗影森林","resolved":"loc-forest"}
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[2m > [22m[2mMapService resolveLocationId — 中文感知名称解析[2m > [22m[2mresolveLocationId[2m > [22m[2m通过中文部分名称匹配（"森林"匹配"暗影森林"）[22m[39m
+09:24:15 [[32minfo[39m]  Resolved locationId by contains match {"input":"森林","resolved":"loc-forest"}
+
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[2m > [22m[2mMapService resolveLocationId — 中文感知名称解析[2m > [22m[2mresolveLocationId[2m > [22m[2m通过中文部分名称匹配（"酒馆"匹配"老橡树酒馆"）[22m[39m
+09:24:15 [[32minfo[39m]  Resolved locationId by contains match {"input":"酒馆","resolved":"loc-tavern"}
+
+ [32m✓[39m src/game-systems/map/__tests__/chinese-location-resolution.test.ts [2m ([22m[2m13 tests[22m[2m)[22m[33m 687[2mms[22m[39m
+[90mstdout[2m | src/game-systems/map/__tests__/chinese-location-resolution.test.ts[22m[39m
+09:24:15 [[32minfo[39m]  Help registry loaded: 22 tools {"tools":["batch_query_service","character_service","... (22 items)"]}
+09:24:15 [[32minfo[39m]  Creating GameMasterAgent (as AgentRuntime with isSubAgent=false)
+09:24:15 [[32minfo[39m]  Agent initialized: gamemaster - GameMasterAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent gamemaster starting {"agent":"gamemaster","provider":null,"toolsConfigured":1,"maxIterations":200,"isSubAgent":false}
+09:24:15 [[32minfo[39m]  Creating AgentRuntime instances from default profile: fantasy_rpg
+09:24:15 [[32minfo[39m]  Creating agents from profile: fantasy_rpg {"agentCount":10}
+09:24:15 [[32minfo[39m]  Agent initialized: gamemaster - GameMasterAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent gamemaster starting {"agent":"gamemaster","provider":null,"toolsConfigured":1,"maxIterations":200,"isSubAgent":false}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: gamemaster {"profile":"fantasy_rpg","tools":["all"]}
+09:24:15 [[32minfo[39m]  Agent initialized: map - MapAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent map starting {"agent":"map","provider":null,"toolsConfigured":7,"maxIterations":200,"isSubAgent":true}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: map {"profile":"fantasy_rpg","tools":["map_service","npc_service","... (7 items)"]}
+09:24:15 [[32minfo[39m]  Agent initialized: combat - CombatAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent combat starting {"agent":"combat","provider":null,"toolsConfigured":9,"maxIterations":200,"isSubAgent":true}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: combat {"profile":"fantasy_rpg","tools":["combat_service","numerical_service","... (9 items)"]}
+09:24:15 [[32minfo[39m]  Agent initialized: output - OutputAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent output starting {"agent":"output","provider":null,"toolsConfigured":5,"maxIterations":200,"isSubAgent":true}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: output {"profile":"fantasy_rpg","tools":["dialogue_service","dynamic_ui","... (5 items)"]}
+09:24:15 [[32minfo[39m]  Agent initialized: quest - QuestAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent quest starting {"agent":"quest","provider":null,"toolsConfigured":11,"maxIterations":200,"isSubAgent":true}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: quest {"profile":"fantasy_rpg","tools":["quest_service","numerical_service","... (11 items)"]}
+09:24:15 [[32minfo[39m]  Agent initialized: npc_party - NPCPartyAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent npc_party starting {"agent":"npc_party","provider":null,"toolsConfigured":8,"maxIterations":200,"isSubAgent":true}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: npc_party {"profile":"fantasy_rpg","tools":["npc_service","numerical_service","... (8 items)"]}
+09:24:15 [[32minfo[39m]  Agent initialized: inventory - InventoryAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent inventory starting {"agent":"inventory","provider":null,"toolsConfigured":8,"maxIterations":200,"isSubAgent":true}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: inventory {"profile":"fantasy_rpg","tools":["inventory_service","template_pool_service","... (8 items)"]}
+09:24:15 [[32minfo[39m]  Agent initialized: skill - SkillAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent skill starting {"agent":"skill","provider":null,"toolsConfigured":7,"maxIterations":200,"isSubAgent":true}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: skill {"profile":"fantasy_rpg","tools":["skill_service","template_pool_service","... (7 items)"]}
+09:24:15 [[32minfo[39m]  Agent initialized: event - EventAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent event starting {"agent":"event","provider":null,"toolsConfigured":5,"maxIterations":200,"isSubAgent":true}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: event {"profile":"fantasy_rpg","tools":["event_service","game_time_service","... (5 items)"]}
+09:24:15 [[32minfo[39m]  Agent initialized: time - TimeAgent
+09:24:15 [[32minfo[39m] [AGENT-START] Agent time starting {"agent":"time","provider":null,"toolsConfigured":4,"maxIterations":200,"isSubAgent":true}
+09:24:15 [[32minfo[39m]  Created AgentRuntime: time {"profile":"fantasy_rpg","tools":["game_time_service","rule_service","... (4 items)"]}
+09:24:15 [[32minfo[39m]  Permissions configured from agent.tools for profile: fantasy_rpg
+09:24:15 [[32minfo[39m]  YAML permissions configured
+09:24:15 [[32minfo[39m]  Registering AgentRuntime instances to GameMasterAgent...
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: gamemaster
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: map
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: combat
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: output
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: quest
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: npc_party
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: inventory
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: skill
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: event
+09:24:15 [[32minfo[39m]  Registered AgentRuntime to Coordinator: time
+09:24:15 [[32minfo[39m]  Agent system initialized: 10 AgentRuntime instances created
+✅ Agent system initialized with 10 agents
+⚠️ YAML Agent system skipped: __vi_import_5__.initializeYamlAgentSystem is not a function
+09:24:15 [[32minfo[39m]  Agent routes initialized
+09:24:15 [[32minfo[39m]  Save routes initialized
+09:24:15 [[32minfo[39m]  Synced template from YAML to DB: cthulhu-investigation
+09:24:15 [[32minfo[39m]  Synced template from YAML to DB: cyberpunk-mercenary
+09:24:15 [[32minfo[39m]  Synced template from YAML to DB: medieval-fantasy
+09:24:15 [[32minfo[39m]  Synced template from YAML to DB: modern-romance
+09:24:15 [[32minfo[39m]  Synced template from YAML to DB: xianxia
+09:24:15 [[32minfo[39m]  Synced 5 templates from YAML to database
+09:24:15 [[32minfo[39m]  Cache refreshed with 5 templates
+09:24:15 [[32minfo[39m]  TemplateService loaded {"cachedTemplates":5}
+✅ Template YAML loaded and synced to DB
+09:24:15 [[32minfo[39m]  Template routes initialized
+✅ Test environment setup complete
+✅ Database connection closed
+
+
+[2m Test Files [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+[2m      Tests [22m [1m[32m22 passed[39m[22m[90m (22)[39m
+[2m   Start at [22m 09:24:12
+[2m   Duration [22m 3.06s[2m (transform 1.23s, setup 6.08s, collect 36ms, tests 2.01s, environment 0ms, prepare 357ms)[22m
+

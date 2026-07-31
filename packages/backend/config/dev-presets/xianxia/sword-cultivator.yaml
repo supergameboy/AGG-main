@@ -1,0 +1,16 @@
+templateId: null
+name: "凌霄"
+gender: "male"
+customGender: null
+race: "human"
+classType: "sword-cultivator"
+background: "sect-disciple"
+attributes:
+  str: 15
+  dex: 14
+  con: 10
+  int: 10
+  wis: 11
+  cha: 10
+customOptions: null
+language: "zh-CN"

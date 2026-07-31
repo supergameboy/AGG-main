@@ -1,0 +1,16 @@
+templateId: null
+name: "玄机"
+gender: "male"
+customGender: null
+race: "half-demon"
+classType: "formation-master"
+background: "wandering-cultivator"
+attributes:
+  str: 11
+  dex: 11
+  con: 10
+  int: 14
+  wis: 14
+  cha: 9
+customOptions: null
+language: "zh-CN"

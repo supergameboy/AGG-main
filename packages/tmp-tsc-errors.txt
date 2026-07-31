@@ -1,0 +1,1 @@
+src/agents/AgentRuntime.ts(962,80): error TS2352: Conversion of type 'TemplateRecord' to type 'Record<string, unknown>' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.

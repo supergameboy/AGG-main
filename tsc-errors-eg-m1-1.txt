@@ -1,0 +1,26 @@
+
+> @ai-rpg/backend@1.0.0 typecheck C:\Users\super\Documents\trae_projects\AGG-main\packages\backend
+> tsc --noEmit
+
+src/agents/agent-deps.ts(350,9): error TS6133: 'npcReadPort' is declared but its value is never read.
+src/agents/agent-deps.ts(358,9): error TS6133: 'npcRelationReadPort' is declared but its value is never read.
+src/agents/agent-deps.ts(366,9): error TS6133: 'locationReadPort' is declared but its value is never read.
+src/agents/agent-deps.ts(374,9): error TS6133: 'locationConnectionReadPort' is declared but its value is never read.
+src/agents/agent-deps.ts(382,9): error TS6133: 'inventoryReadPort' is declared but its value is never read.
+src/agents/agent-deps.ts(394,9): error TS6133: 'questReadPort' is declared but its value is never read.
+src/agents/agent-deps.ts(402,9): error TS6133: 'eventReadPort' is declared but its value is never read.
+src/agents/agent-deps.ts(415,9): error TS6133: 'factionReadPort' is declared but its value is never read.
+src/agents/agent-deps.ts(425,9): error TS6133: 'characterSkillReadPort' is declared but its value is never read.
+src/agents/agent-deps.ts(433,9): error TS6133: 'npcGoalReadPort' is declared but its value is never read.
+src/services/__tests__/ws-e2e-flow.test.ts(17,21): error TS6133: 'WebSocketServer' is declared but its value is never read.
+src/services/__tests__/ws-e2e-flow.test.ts(22,30): error TS6196: 'WSGameResult' is declared but never used.
+src/services/__tests__/ws-e2e-flow.test.ts(22,44): error TS6196: 'WSGameError' is declared but never used.
+src/services/__tests__/ws-e2e-flow.test.ts(276,19): error TS2554: Expected 6 arguments, but got 2.
+src/services/__tests__/ws-e2e-flow.test.ts(279,30): error TS2554: Expected 4-5 arguments, but got 1.
+src/services/__tests__/ws-e2e-flow.test.ts(280,26): error TS2554: Expected 10 arguments, but got 1.
+src/services/__tests__/ws-e2e-flow.test.ts(383,50): error TS2550: Property 'findLastIndex' does not exist on type 'any[]'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2023' or later.
+src/services/__tests__/ws-e2e-flow.test.ts(383,65): error TS7006: Parameter 'm' implicitly has an 'any' type.
+src/services/__tests__/ws-e2e-flow.test.ts(651,34): error TS6133: 'clientId2' is declared but its value is never read.
+C:\Users\super\Documents\trae_projects\AGG-main\packages\backend:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @ai-rpg/backend@1.0.0 typecheck: `tsc --noEmit`
+Exit status 2

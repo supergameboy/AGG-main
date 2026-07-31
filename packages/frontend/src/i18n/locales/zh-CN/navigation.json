@@ -1,0 +1,13 @@
+{
+  "mainMenu": "主菜单",
+  "newGame": "新游戏",
+  "continueGame": "继续游戏",
+  "loadGame": "读取存档",
+  "saveGame": "保存游戏",
+  "settings": "设置",
+  "quitGame": "退出游戏",
+  "backToGame": "返回游戏",
+  "backToMenu": "返回主菜单",
+  "gameTitle": "AI-generated Games",
+  "toggleTheme": "切换主题"
+}

@@ -1,0 +1,168 @@
+{
+  "_comment": "CoordinatorAgent 关键词路由规则配置文件",
+  "_description": "将硬编码的关键词映射外部化到JSON，便于维护和扩展",
+  "_version": "3.0.0",
+  "_lastUpdated": "2026-05-13",
+  "_note": "dialogue和ui由系统在Layer 3自动调度，不需要在路由规则中出现。story已迁移到CoordinatorAgent内部StoryKernel，不再作为可路由Domain Agent",
+  "actionToAgents": {
+    "_description": "Action名称到Agent类型数组的映射规则，用于fallbackIntentAnalysis方法",
+    "对话相关": {
+      "_note": "当用户请求涉及NPC对话、交谈时，调度npc_party Agent。dialogue由Layer 3自动调度",
+      "dialogue_request": ["npc_party"],
+      "talk": ["npc_party"],
+      "speak": ["npc_party"],
+      "chat": ["npc_party"]
+    },
+    "战斗相关": {
+      "_note": "战斗操作通常需要challenge Agent处理战斗逻辑，numerical Agent计算数值，skill Agent处理技能使用",
+      "combat_action": ["challenge", "numerical"],
+      "attack": ["challenge", "numerical", "skill"],
+      "fight": ["challenge", "numerical"],
+      "defend": ["challenge", "numerical"]
+    },
+    "任务相关": {
+      "_note": "任务系统由quest Agent主导",
+      "quest_update": ["quest"],
+      "quest_check": ["quest"],
+      "quest_accept": ["quest"],
+      "quest_list": ["quest"],
+      "task": ["quest"]
+    },
+    "地图/移动相关": {
+      "_note": "位置和移动操作主要由map Agent处理，探索类操作可能触发event Agent",
+      "move": ["map", "time"],
+      "go": ["map", "time"],
+      "travel": ["map", "time"],
+      "explore": ["map", "event"],
+      "location": ["map", "npc_party"],
+      "where": ["map", "npc_party"],
+      "nearby": ["map", "npc_party", "event"]
+    },
+    "物品/装备相关": {
+      "_note": "所有背包、物品、装备、金钱相关的操作都由inventory Agent统一管理",
+      "inventory_action": ["inventory"],
+      "check_inventory": ["inventory"],
+      "show_inventory": ["inventory"],
+      "list_inventory": ["inventory"],
+      "backpack": ["inventory"],
+      "bag": ["inventory"],
+      "item": ["inventory"],
+      "equipment": ["inventory"],
+      "equip": ["inventory"],
+      "use_item": ["inventory"],
+      "gold": ["inventory"],
+      "money": ["inventory"]
+    },
+    "技能相关": {
+      "_note": "技能操作由skill Agent主导，涉及数值计算时附加numerical Agent，战斗技能附加challenge Agent",
+      "skill_use": ["skill", "numerical"],
+      "skill_list": ["skill"],
+      "list_skills": ["skill"],
+      "learn_skill": ["skill"],
+      "upgrade_skill": ["skill", "numerical"],
+      "ability": ["skill", "numerical"],
+      "spell": ["skill", "numerical"],
+      "combat_skill": ["skill", "challenge"]
+    },
+    "NPC/队伍相关": {
+      "_note": "NPC交互、招募、队伍管理由npc_party Agent负责。dialogue由Layer 3自动调度",
+      "npc_interaction": ["npc_party"],
+      "recruit": ["npc_party"],
+      "dismiss": ["npc_party"],
+      "party": ["npc_party"],
+      "npc_info": ["npc_party"],
+      "npc_list": ["npc_party"]
+    },
+    "事件相关": {
+      "_note": "事件触发和检查由event Agent处理",
+      "event_trigger": ["event"],
+      "event_check": ["event"]
+    },
+    "故事/剧情相关": {
+      "_note": "故事进度、章节、历史等叙事内容由StoryKernel在CoordinatorAgent内部管理，不再独立路由",
+      "story_progress": ["quest"],
+      "story_check": ["quest"],
+      "chapter": ["quest"],
+      "history": ["quest"]
+    },
+    "数值/属性相关": {
+      "_note": "属性查看、等级提升、经验值、伤害计算等数值操作由numerical Agent负责",
+      "stats": ["numerical"],
+      "attributes": ["numerical", "skill"],
+      "level_up": ["numerical", "skill"],
+      "experience": ["numerical", "quest"],
+      "calculate": ["numerical"],
+      "damage": ["numerical", "challenge"],
+      "heal": ["numerical"]
+    },
+    "时间相关": {
+      "_note": "游戏时间查询、等待、时间计算由time Agent负责",
+      "time_get": ["time"],
+      "time_wait": ["time"],
+      "time_advance": ["time"],
+      "time_schedule": ["time"]
+    },
+    "综合查询（多Agent组合）": {
+      "_note": "复杂的综合查询需要多个Agent协作，返回完整的游戏状态信息",
+      "status": ["inventory", "skill", "numerical", "map"],
+      "info": ["map", "npc_party", "quest"],
+      "help": ["map", "npc_party", "quest"],
+      "look": ["map", "npc_party"],
+      "examine": ["inventory", "npc_party", "map"]
+    }
+  },
+  "keywordCategories": {
+    "_description": "关键词正则表达式分类规则，用于fallbackKeywordMatch方法",
+    "_usage": "当action无法匹配时，通过消息文本中的关键词来推断目标Agent",
+    "物品/装备领域": {
+      "_note": "检测用户是否在询问或操作背包、物品、装备、武器、金币等",
+      "_agents": ["inventory"],
+      "_regexPattern": "背包|行囊|物品|装备|武器|防具|金币|金钱|仓库|使用|穿戴|卸下|丢弃|重量|耐久"
+    },
+    "技能/能力领域": {
+      "_note": "检测用户是否在询问或操作技能、法术、能力、学习、升级等",
+      "_agents": ["skill", "numerical"],
+      "_regexPattern": "技能|能力|法术|特技|绝招|学习|掌握|升级|冷却|mp|sp|剑术|魔法|射击|格挡"
+    },
+    "地图/位置/移动领域": {
+      "_note": "检测用户是否在询问位置、移动、探索地图、前往某地等",
+      "_agents": ["map"],
+      "_regexPattern": "位置|地点|区域|场所|前往|移动|去|到达|旅行|探索|地图|路径|村庄|森林|城市|山脉|附近|周围|周边|在哪|在哪里"
+    },
+    "任务/委托领域": {
+      "_note": "检测用户是否在询问任务、委托、接受任务、完成任务等",
+      "_agents": ["quest"],
+      "_regexPattern": "任务|委托|使命|目标|工作|接受|完成|放弃|奖励|主线|支线|日常|公会|冒险者|猎人"
+    },
+    "NPC/队伍领域": {
+      "_note": "检测用户是否在与NPC互动、招募队伍成员等。dialogue由Layer 3自动调度",
+      "_agents": ["npc_party"],
+      "_regexPattern": "npc|人物|角色|村民|商人|铁匠|对话|交谈|互动|招募|加入|解散|队伍|关系|好感|信任"
+    },
+    "故事/剧情领域": {
+      "_note": "故事/剧情由StoryKernel在CoordinatorAgent内部管理，关键词匹配到quest Agent处理相关查询",
+      "_agents": ["quest"],
+      "_regexPattern": "故事|剧情|背景|传说|历史|章节|进度|回忆|日志|世界观|设定|势力|阵营|发生了什么"
+    },
+    "战斗领域": {
+      "_note": "检测用户是否在进行或询问战斗、攻击、敌人、伤害等",
+      "_agents": ["challenge", "numerical"],
+      "_regexPattern": "战斗|打架|攻击|防御|伤害|敌人|怪物|boss|哥布林|龙|hp|mp|生命|法力|暴击|闪避"
+    },
+    "数值/属性领域": {
+      "_note": "检测用户是否在询问属性、数值、等级、经验值、计算等",
+      "_agents": ["numerical"],
+      "_regexPattern": "属性|数值|等级|经验|升级|力量|敏捷|智力|体质|幸运|攻击力|防御力|命中|掉落|计算"
+    },
+    "事件/遭遇领域": {
+      "_note": "检测用户是否在触发事件、遭遇随机事件等",
+      "_agents": ["event"],
+      "_regexPattern": "事件|触发|遭遇|随机|奇遇|发现|意外"
+    },
+    "时间领域": {
+      "_note": "检测用户是否在询问游戏时间、等待、时间计算等",
+      "_agents": ["time"],
+      "_regexPattern": "时间|日期|天数|时段|季节|等待|休息|天亮|天黑|白天|夜晚|黎明|黄昏|多久"
+    }
+  }
+}

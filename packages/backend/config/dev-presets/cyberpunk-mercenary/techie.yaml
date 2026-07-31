@@ -1,0 +1,16 @@
+templateId: null
+name: "齿轮"
+gender: "female"
+customGender: null
+race: "cyborg"
+classType: "techie"
+background: "street"
+attributes:
+  str: 10
+  dex: 14
+  con: 12
+  int: 15
+  wis: 10
+  cha: 7
+customOptions: null
+language: "zh-CN"

@@ -1,0 +1,1 @@
+__Safe-Rm-Invoke-Pwsh: pwsh.exe execution failed with exit code: 1

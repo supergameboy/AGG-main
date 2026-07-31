@@ -1,0 +1,2267 @@
+id: xianxia
+name: 仙侠修真
+description: 天地玄黄，宇宙洪荒。修真者逆天改命，追求长生大道。在这片灵气充盈的九州大陆上，仙门林立，妖兽横行，凡人仰望苍穹，修士踏剑凌云。你将从一个默默无闻的凡人，踏上修仙之路，历经劫难，证道成仙。
+version: 1.0.0
+author: AGG Team
+tags:
+  - xianxia
+  - cultivation
+  - fantasy
+  - chinese-mythology
+  - martial-arts
+
+game_mode: text_rpg
+default_challenge_mode: narrative_combat
+numerical_complexity: medium
+agent_profile: fantasy_rpg
+is_builtin: true
+
+world_setting:
+  name: 九州大陆
+  description: 九州大陆是一片灵气充盈的修真世界。东有蓬莱仙岛，西有昆仑神山，南有十万大山，北有极寒冰原。修真门派林立，正道魔道纷争不断。凡人仰望苍穹，修士踏剑凌云，追求长生大道。天地间灵气潮汐起伏，大劫将至，谁能证道成仙？
+  era: 上古修真纪
+  genre: xianxia
+  magic_system: 修真功法 - 灵气修炼与道法神通
+  technology_level: 古代修真文明
+  custom_fields:
+    cultivation_realms: 炼气、筑基、金丹、元婴、化神、渡劫、大乘
+    major_sects: 天剑宗、太虚门、万法仙宗、幽冥魔宫
+    currency: 灵石
+    spiritual_energy: 灵气潮汐
+    tribulation: 天劫系统
+
+character_creation:
+  attribute_points: 10
+  attribute_role_mapping:
+    physical_power: str
+    agility: dex
+    endurance: con
+    mental_power: int
+    perception: wis
+    influence: cha
+  races:
+    - id: human
+      name: 人族
+      description: 万物之灵，悟性最高。人族修士虽体魄不及妖族，但悟性超群，修炼速度最快，是最常见的修真种族。
+      bonuses:
+        wis: 1
+        int: 1
+      penalties:
+        con: -1
+      abilities:
+        - 悟性通灵
+        - 道心坚韧
+      available_classes:
+        - sword-cultivator
+        - alchemist
+        - formation-master
+        - talisman-master
+    - id: demon
+      name: 妖族
+      description: 天生异禀，体魄强健。妖族修士以本体修炼，天生拥有强大的肉身和血脉神通，但悟性略逊人族。
+      bonuses:
+        str: 2
+        con: 1
+      penalties:
+        int: -1
+        cha: -1
+      abilities:
+        - 血脉神通
+        - 妖丹修炼
+      available_classes:
+        - sword-cultivator
+        - alchemist
+    - id: spirit
+      name: 灵族
+      description: 天地灵气孕育而生，与自然亲和。灵族修士天生对灵气敏感，擅长法术和阵法，但肉身较为脆弱。
+      bonuses:
+        int: 2
+        wis: 1
+      penalties:
+        str: -2
+      abilities:
+        - 灵气感知
+        - 天然道体
+      available_classes:
+        - alchemist
+        - formation-master
+        - talisman-master
+    - id: half-demon
+      name: 半妖
+      description: 人妖混血，兼具两族之长。半妖修士既有人族的悟性，又有妖族的体魄，但常受两族排斥。
+      bonuses:
+        str: 1
+        dex: 1
+      penalties:
+        cha: -1
+      abilities:
+        - 双重血脉
+        - 适应修炼
+      available_classes:
+        - sword-cultivator
+        - formation-master
+
+  classes:
+    - id: sword-cultivator
+      name: 剑修
+      description: 以剑入道，一剑破万法。剑修是最纯粹的战斗修士，追求剑道极致，攻击力冠绝各派。
+      primary_attributes:
+        - str
+        - dex
+      hit_die: d10
+      skill_proficiencies:
+        - sword-arts
+        - combat-awareness
+        - qi-sensing
+      starting_equipment:
+        - iron-sword
+        - basic-robe
+        - qi-gathering-pill
+    - id: alchemist
+      name: 炼丹师
+      description: 炼丹悟道，丹成天地惊。炼丹师擅长炼制丹药辅助修炼，是修真界最受尊敬的职业之一。
+      primary_attributes:
+        - int
+        - wis
+      hit_die: d6
+      skill_proficiencies:
+        - alchemy
+        - herb-identification
+        - fire-control
+      starting_equipment:
+        - alchemy-furnace
+        - basic-robe
+        - herb-collection-bag
+    - id: formation-master
+      name: 阵法师
+      description: 阵法通天，困仙锁神。阵法师擅长布置各种阵法，攻防兼备，是团队中不可或缺的存在。
+      primary_attributes:
+        - int
+        - wis
+      hit_die: d8
+      skill_proficiencies:
+        - formation-arts
+        - rune-carving
+        - spatial-awareness
+      starting_equipment:
+        - formation-flags
+        - basic-robe
+        - spirit-stone
+    - id: talisman-master
+      name: 符箓师
+      description: 符通天地，箓镇鬼神。符箓师擅长绘制各种符箓，一符在手，万法皆通。
+      primary_attributes:
+        - wis
+        - cha
+      hit_die: d8
+      skill_proficiencies:
+        - talisman-arts
+        - calligraphy
+        - spirit-binding
+      starting_equipment:
+        - talisman-brush
+        - basic-robe
+        - blank-talismans
+
+  backgrounds:
+    - id: sect-disciple
+      name: 宗门弟子
+      description: 出身修真大派，自幼修炼。你有良好的修炼资源和师门庇护，但也背负着宗门的期望和责任。
+      skill_proficiencies:
+        - sect-techniques
+        - etiquette
+      languages:
+        - ancient-script
+      equipment:
+        - sect-token
+        - meditation-mat
+        - basic-pill
+      feature: 宗门庇护 - 你可以寻求师门帮助，获得修炼资源和保护
+      attribute_bonuses:
+        wis: 1
+    - id: wandering-cultivator
+      name: 散修
+      description: 无门无派的散修，全凭自身摸索修炼。你缺少资源但自由自在，在险境中磨砺出了过人的生存能力。
+      skill_proficiencies:
+        - survival
+        - streetwise
+      languages: []
+      equipment:
+        - worn-robe
+        - rusty-sword
+        - spirit-herb
+      feature: 野路子 - 你在野外修炼效率更高，更容易发现机缘
+      attribute_bonuses:
+        con: 1
+    - id: merchant-family
+      name: 商贾之家
+      description: 出身灵石商贾之家，虽非修真世家但财力雄厚。你用灵石铺路，以资源换取修炼速度。
+      skill_proficiencies:
+        - negotiation
+        - appraisal
+      languages:
+        - trade-tongue
+      equipment:
+        - fine-robe
+        - spirit-stone-pouch
+        - quality-pill
+      feature: 灵石铺路 - 你可以购买到更好的修炼资源和丹药
+      attribute_bonuses:
+        cha: 1
+    - id: mortal-origin
+      name: 凡人出身
+      description: 原本只是普通凡人，因机缘巧合踏入修真之路。你对凡间疾苦有深刻理解，道心坚定。
+      skill_proficiencies:
+        - perseverance
+        - mortal-wisdom
+      languages: []
+      equipment:
+        - simple-clothes
+        - family-heirloom
+        - lucky-charm
+      feature: 凡心悟道 - 你对道的理解更接地气，突破瓶颈时更有优势
+      attribute_bonuses:
+        int: 1
+
+  attributes:
+    - id: str
+      name: 力量
+      abbreviation: STR
+      description: 肉身力量，影响近战伤害和体修功法威力
+      min_value: 1
+      default_value: 10
+      max_value: 20
+    - id: dex
+      name: 敏捷
+      abbreviation: DEX
+      description: 身法灵巧，影响闪避、先攻和剑修技艺
+      min_value: 1
+      default_value: 10
+      max_value: 20
+    - id: con
+      name: 体质
+      abbreviation: CON
+      description: 体魄强健，影响生命值和修炼根基
+      min_value: 1
+      default_value: 10
+      max_value: 20
+    - id: int
+      name: 悟性
+      abbreviation: INT
+      description: 悟性与智慧，影响法术威力和修炼速度
+      min_value: 1
+      default_value: 10
+      max_value: 20
+    - id: wis
+      name: 神识
+      abbreviation: WIS
+      description: 神识与感知，影响阵法、符箓和灵气感应
+      min_value: 1
+      default_value: 10
+      max_value: 20
+    - id: cha
+      name: 道缘
+      abbreviation: CHA
+      description: 道缘与人脉，影响社交和机缘际遇
+      min_value: 1
+      default_value: 10
+      max_value: 20
+
+  custom_options: []
+
+  age_mode: group
+  age_groups:
+    - id: young
+      name: 筑基少年
+      description: 初入修途，根骨未定
+      bonuses:
+        dex: 1
+      penalties:
+        wis: -1
+    - id: youth
+      name: 金丹青年
+      description: 修为精进，气运正盛
+      bonuses: {}
+      penalties: {}
+    - id: middle
+      name: 元婴中年
+      description: 道行深厚，法力通玄
+      bonuses:
+        wis: 1
+        int: 1
+      penalties:
+        dex: -1
+    - id: elder
+      name: 化神老者
+      description: 功参造化，返璞归真
+      bonuses:
+        int: 2
+      penalties:
+        str: -1
+        con: -1
+
+game_rules:
+  combat_system:
+    type: turn_based
+    initiative_type: dexterity
+    custom_initiative: ""
+    action_points: 2
+    critical_hit:
+      threshold: 18
+      multiplier: 2.5
+    flee:
+      base_chance: 0.2
+      per_dead_enemy_bonus: 0.15
+    defend:
+      damage_reduction: 0.4
+    damage_formula:
+      attack_contribution: 0.6
+      defense_reduction: 0.4
+      level_bonus_factor: 3
+      variance_min: 0.85
+      variance_range: 0.3
+    enemy_ai:
+      skill_use_chance: 0.4
+    defaults:
+      potion_heal: 50
+      mana_potion_restore: 30
+      skill_mana_cost: 15
+      skill_damage_multiplier: 2.0
+      skill_base_damage_factor: 2.5
+      attribute_fallback: 10
+      enemy_speed_factor: 3
+  derived_attribute_formulas:
+    maxHealth:
+      base: 100
+      coefficients: { physical_power: 5, endurance: 15 }
+    maxMana:
+      base: 50
+      coefficients: { mental_power: 10, endurance: 2 }
+    attack:
+      base: 10
+      coefficients: { physical_power: 2, agility: 0.5 }
+    defense:
+      base: 5
+      coefficients: { endurance: 1.5, physical_power: 0.5 }
+    magicAttack:
+      base: 8
+      coefficients: { mental_power: 2.5, perception: 0.3 }
+    magicDefense:
+      base: 4
+      coefficients: { mental_power: 1, endurance: 0.3 }
+    speed:
+      base: 10
+      coefficients: { agility: 1.5, influence: 0.2 }
+    critRate:
+      base: 0.05
+      coefficients: { agility: 0.01, influence: 0.005 }
+      max: 0.5
+    critDamage:
+      base: 1.5
+      coefficients: { physical_power: 0.02, influence: 0.01 }
+    dodgeRate:
+      base: 0.05
+      coefficients: { agility: 0.008 }
+      max: 0.3
+    blockRate:
+      base: 0.9
+      coefficients: { agility: 0.005, perception: 0.002 }
+  skill_system:
+    max_level: 10
+    cooldown_system: turn
+    upgrade_cost:
+      base: 150
+      multiplier: 1.6
+  inventory_system:
+    max_slots: 25
+    weight_system: false
+    stack_sizes:
+      pill: 10
+      talisman: 20
+      material: 99
+      misc: 99
+    equipment_slots:
+      - id: main_hand
+        name: 主手
+        icon: ⚔
+        accepted_item_types:
+          - weapon
+      - id: off_hand
+        name: 副手
+        icon: 🛡
+        accepted_item_types:
+          - weapon
+          - accessory
+      - id: head
+        name: 头部
+        icon: ⛑
+        accepted_item_types:
+          - armor
+      - id: body
+        name: 身体
+        icon: 🛡
+        accepted_item_types:
+          - armor
+      - id: feet
+        name: 脚部
+        icon: 👢
+        accepted_item_types:
+          - armor
+      - id: accessory
+        name: 法宝
+        icon: 💍
+        capacity: 2
+        accepted_item_types:
+          - accessory
+  quest_system:
+    max_active: 8
+    time_system: true
+    fail_conditions:
+      - timeout
+      - tribulation-failed
+      - dao-heart-broken
+  currency_system:
+    id: spirit_stone
+    name: 灵石
+    icon: 💎
+  custom_rules:
+    - name: 修炼境界
+      description: 角色通过修炼提升境界，每个境界突破需要渡劫
+    - name: 灵气修炼
+      description: 在灵气充裕之地修炼效率更高，灵气枯竭之地修炼困难
+
+ai_constraints:
+  tone: epic
+  custom_tone: 仙侠修真风格，文言与白话交织
+  content_rating: teen
+  prohibited_topics:
+    - explicit-content
+  required_elements:
+    - cultivation
+    - tribulation
+    - dao-insight
+    - sect-politics
+  ai_behavior:
+    response_style: narrative
+    detail_level: detailed
+    player_agency: balanced
+
+starting_scene:
+  location: tianjian-peak
+  description: 你站在天剑宗的山门前，云雾缭绕间隐约可见远处的剑光闪烁。一位白衣长老从云端落下，目光如炬地审视着你。"你便是今年新入门的弟子？"他的声音如洪钟大吕，震得你气血翻涌，"修真之路，逆天而行，你可准备好了？"
+  location_description: 天剑宗山门，云雾缭绕的修真圣地入口
+  atmosphere: 仙气飘渺，剑意隐现
+
+  sub_locations:
+    - id: mountain-gate
+      name: 天剑宗山门
+      description: 巍峨的石牌坊矗立在云雾之中，牌坊上刻着"天剑宗"三个大字，笔力遒劲，隐含剑意。石阶两侧各立着一柄三丈高的石剑，剑身流转着淡青色灵光。山风拂过，云雾翻涌间可见远处群峰如剑直插天际，偶有剑光破空而过。
+      type: gate
+      is_starting: true
+      danger_level: 0
+
+    - id: sword-hall
+      name: 剑道大殿
+      description: 天剑宗的核心建筑，殿内供奉着历代宗主的佩剑。大殿以千年寒玉铺地，穹顶绘有万剑归宗的壁画，灵气浓郁得几乎凝为实质。每月初一十五，全宗弟子在此听长老讲道。
+      type: temple
+      danger_level: 0
+      services:
+        - type: training
+          name: 剑道讲法
+
+    - id: alchemy-hall
+      name: 丹房
+      description: 终年弥漫着药香的石室，数十尊丹炉排列其中，炉火明灭不定。墙壁上的木架上摆满了各色灵草和丹药瓶罐，空气中灵气与药气交织。炼丹师们在此日夜轮值，为宗门炼制修炼所需的丹药。
+      type: workshop
+      danger_level: 0
+      services:
+        - type: alchemy
+          name: 丹药炼制与交易
+        - type: pill_shop
+          name: 丹药购买
+
+    - id: disciple-quarters
+      name: 弟子居所
+      description: 外门弟子的居所，一排排简朴的石屋依山而建。每间石屋前都有一小片灵田，供弟子日常修炼之用。晨昏时分，诵经声与练剑声交织回荡在山间。
+      type: residence
+      danger_level: 0
+
+    - id: peak-exit
+      name: 山门出口
+      description: 天剑宗与外界的通道，一道由剑阵守护的石桥横跨深渊。桥面上刻着密密麻麻的阵纹，灵光流转间形成无形的屏障。守桥弟子查验令牌后方可放行，出了此门便是宗门外的天地。
+      type: gate
+      danger_level: 0
+      connections:
+        - training-entrance
+        - forest-entrance
+
+  npcs:
+    - id: elder-baiyun
+      location: mountain-gate
+      name: 白云长老
+      title: 天剑宗外门长老
+      description: 天剑宗外门长老，筑基后期修为。看似和蔼实则严厉，负责新弟子的入门考核。
+      role: quest_giver
+      race: human
+      appearance: 白发白须，身着白色道袍，手持拂尘，脚踏祥云
+      personality: 严厉、公正、偶尔温和
+      dialogue:
+        - 修真之路，一步踏错便是万劫不复。
+        - 你根基尚浅，需勤加修炼方能在这修真界立足。
+        - 宗门每年都会发放修炼资源，但能否得到看你的表现。
+      stats:
+        level: 15
+        hp: 200
+        attack: 35
+        defense: 25
+        speed: 20
+        magic: 40
+      services:
+        - quest
+        - training
+      custom_data: {}
+    - id: senior-sister-lin
+      location: disciple-quarters
+      name: 林师姐
+      title: 天剑宗内门弟子
+      description: 天剑宗内门弟子，金丹初期修为。性格爽朗，对新弟子照顾有加，是宗门中的人气角色。
+      role: ally
+      race: human
+      appearance: 青衣长剑，英姿飒爽，眉目间带着几分英气
+      personality: 爽朗、热心、偶尔冒失
+      dialogue:
+        - 师弟/师妹，有什么不懂的尽管问我！
+        - 修炼切忌急躁，欲速则不达。
+        - 我带你去领入门物资吧，别让白云长老等急了。
+      stats:
+        level: 8
+        hp: 80
+        attack: 18
+        defense: 12
+        speed: 15
+        magic: 20
+      services:
+        - conversation
+        - shop
+      custom_data: {}
+  items:
+    - id: qi-gathering-pill
+      name: 聚气丹
+      description: 最基础的修炼丹药，服用后可加速灵气吸收。炼丹师的入门之作。
+      category: consumable
+      quality: common
+      stats:
+        qi_recovery: 10
+      effects:
+        - type: buff
+          value: 10
+          duration: 5
+      value:
+        buy: 50
+        sell: 25
+        currency: spirit_stone
+      quantity: 3
+      custom_data:
+        displayType: 丹药
+        displayRarity: 普通
+        displayStats:
+          - key: qi_recovery
+            label: 灵气恢复
+            value: "10"
+        displayEffects:
+          - 灵气恢复10点
+          - 持续5回合
+        tags: [consumable, pill, cultivation, qi]
+        locale: zh-CN
+  quests:
+    - id: main-quest-xx1
+      name: 踏入仙门
+      description: 通过天剑宗的入门考核，正式成为外门弟子，开始你的修真之路。
+      type: main
+      objectives:
+        - id: obj-xx1
+          description: 与白云长老交谈了解宗门规矩
+          type: talk
+          target: elder-baiyun
+          required: 1
+        - id: obj-xx2
+          description: 在练功场完成基础剑法考核
+          type: custom
+          target: training-ground
+          required: 1
+        - id: obj-xx3
+          description: 前往丹房领取入门物资
+          type: explore
+          target: alchemy-hall
+          required: 1
+      rewards:
+        - type: experience
+          value: 100
+        - type: gold
+          value: 50
+      giver: elder-baiyun
+      time_limit: 0
+      custom_data: {}
+  explorable_areas:
+    - id: training-ground
+      name: 练功场
+      description: 天剑宗外门弟子修炼之地，灵气浓度适中，适合初学者修炼。场地中央竖立着数根刻有阵纹的石柱，可辅助弟子引导灵气运转。
+      type: training
+      danger_level: 0
+      atmosphere: 灵气充盈，剑气纵横
+      sub_locations:
+        - id: training-entrance
+          name: 练功场入口
+          description: 练功场与天剑宗主峰之间的石阶通道，两侧种着灵桃树，花瓣随风飘落如雪。通道尽头是一座刻有"勤修苦练"四字的石碑，石碑旁站着负责看守的师兄。
+          type: gate
+          danger_level: 0
+          connections:
+            - peak-exit
+        - id: training-arena
+          name: 演武场
+          description: 开阔的青石广场，地面刻着比武阵纹。弟子们在此切磋剑法、比试修为，石柱上的阵纹可在比试时形成防护结界，防止误伤。每日清晨，这里便响起整齐的练剑声。
+          type: arena
+          danger_level: 0
+        - id: meditation-platform
+          name: 打坐台
+          description: 练功场东侧的高台，台上刻有聚灵阵纹，灵气浓度是外门其他区域的三倍。弟子们在此打坐修炼，闭目吐纳间灵气如丝般涌入经脉。高台边缘种着千年灵松，松涛声有助于入定。
+          type: training
+          danger_level: 0
+    - id: spirit-forest
+      name: 灵兽林
+      description: 宗门后山的灵兽栖息地，古木参天，灵气浓郁。林中栖息着各种灵兽，从温顺的灵兔到凶猛的赤焰虎，适合弟子历练。
+      type: forest
+      danger_level: 2
+      atmosphere: 古木幽深，兽鸣阵阵
+      sub_locations:
+        - id: forest-entrance
+          name: 灵兽林入口
+          description: 灵兽林外围的守卫点，两名外门弟子常年驻守在此。入口处立着一块石碑，上面刻着林中灵兽的种类和危险等级。空气中弥漫着草木清香和淡淡的兽腥味。
+          type: gate
+          danger_level: 1
+          connections:
+            - peak-exit
+        - id: forest-depths
+          name: 灵兽林深处
+          description: 古木遮天的密林深处，阳光只能透过树冠洒下斑驳的光点。灵兽的吼叫声此起彼伏，地面上散落着各种灵草和矿石。越往深处走，灵气越浓，灵兽也越凶猛。据说林中最深处有一头化形灵兽守护着一处上古遗迹。
+          type: forest
+          danger_level: 3
+
+skills:
+  - id: basic-sword-arts
+    name: 清风十三式
+    description: 天剑宗入门剑法，以清风为意，十三式剑招连绵不绝。虽是基础剑法，但招招精妙，式式相连，初学者若能领悟其中剑意，便可踏入剑道之门。
+    category: attack
+    element: physical
+    target_type: single
+    cost:
+      mana: 8
+    damage:
+      base: 15
+      scaling:
+        attribute: str
+        multiplier: 0.6
+    effects: []
+    cooldown: 0
+    range: 1
+    icon: ⚔️
+    custom_data:
+      class: sword-cultivator
+      tier: 1
+      lore: 清风拂柳，剑意初生
+      locale: zh-CN
+
+  - id: qi-slash
+    name: 御气斩
+    description: 以灵气灌注剑身，挥出一道凌厉剑气。剑气破空而出，可伤数丈之外的敌人，是剑修从近战迈向远程的第一步。修为越深，剑气越锐，金丹期修士一剑可斩断山石。
+    category: attack
+    element: physical
+    target_type: single
+    cost:
+      mana: 15
+    damage:
+      base: 30
+      scaling:
+        attribute: str
+        multiplier: 0.8
+    effects:
+      - type: damage
+        attribute: str
+        multiplier: 0.3
+    cooldown: 1
+    range: 3
+    icon: 🗡️
+    custom_data:
+      class: sword-cultivator
+      tier: 2
+      lore: 剑气纵横三万里，一剑光寒十九州
+      locale: zh-CN
+
+  - id: sword-intent
+    name: 剑意初成
+    description: 剑修悟道之始，心中剑意初成。剑意无形无质，却可增强一切剑法威力，令出剑更快、斩击更锐。剑意是剑修与凡人剑客的根本区别，有剑意者，草木竹石皆可为剑。
+    category: passive
+    element: physical
+    target_type: self
+    cost:
+      mana: 0
+    damage: {}
+    effects:
+      - type: buff
+        attribute: attack
+        value: 5
+        duration: 0
+      - type: buff
+        attribute: critRate
+        value: 0.05
+        duration: 0
+    cooldown: 0
+    range: 0
+    icon: 💫
+    custom_data:
+      class: sword-cultivator
+      tier: 2
+      lore: 心中有剑，万物皆剑
+      locale: zh-CN
+
+  - id: sword-qi-burst
+    name: 剑气纵横
+    description: 将灵气凝于剑身，猛然释放，形成环形剑气风暴。剑气向四方激射，可同时伤及周围所有敌人，是剑修少有的群攻手段。此招消耗颇大，需量力而行。
+    category: attack
+    element: physical
+    target_type: aoe
+    cost:
+      mana: 25
+    damage:
+      base: 22
+      scaling:
+        attribute: str
+        multiplier: 0.7
+    effects:
+      - type: damage
+        attribute: str
+        multiplier: 0.2
+    cooldown: 3
+    range: 2
+    icon: 🌪️
+    custom_data:
+      class: sword-cultivator
+      tier: 3
+      lore: 剑气冲霄，横扫千军
+      locale: zh-CN
+
+  - id: flying-sword
+    name: 御剑术
+    description: 剑修标志性的神通，以神识御剑，飞剑可于百丈之外取人首级。御剑之术不仅是杀伐手段，更是剑修赶路飞行的根基。初学御剑仅能操控一柄，修为深者可万剑齐发。
+    category: attack
+    element: arcane
+    target_type: single
+    cost:
+      mana: 20
+    damage:
+      base: 40
+      scaling:
+        attribute: dex
+        multiplier: 1.0
+    effects:
+      - type: damage
+        attribute: dex
+        multiplier: 0.4
+    cooldown: 2
+    range: 5
+    icon: 🗡️
+    custom_data:
+      class: sword-cultivator
+      tier: 3
+      lore: 御剑乘风来，除魔天地间
+      locale: zh-CN
+
+  - id: sword-domain
+    name: 剑域
+    description: 剑修至高境界之一，以自身剑意笼罩方圆之地，形成剑域。域内剑修如鱼得水，攻击大增；域外之人则如陷剑牢，举步维艰。唯有剑意通神者方能开辟剑域。
+    category: buff
+    element: physical
+    target_type: self_aoe
+    cost:
+      mana: 35
+    damage: {}
+    effects:
+      - type: buff
+        attribute: attack
+        value: 15
+        duration: 5
+        target: self
+      - type: buff
+        attribute: speed
+        value: 8
+        duration: 5
+        target: self
+      - type: debuff
+        attribute: speed
+        value: -5
+        duration: 5
+        target: enemy
+    cooldown: 6
+    range: 3
+    icon: 🔮
+    custom_data:
+      class: sword-cultivator
+      tier: 4
+      lore: 一剑成域，万法皆空
+      locale: zh-CN
+
+  - id: basic-alchemy
+    name: 基础炼丹术
+    description: 炼丹师的入门功法，掌握灵火控温、药材配比、丹火凝丹等基本技法。虽只能炼制聚气丹、回气丹等基础丹药，却是一切丹道的根基。万丈高楼平地起，炼丹之道始于斯。
+    category: utility
+    element: fire
+    target_type: self
+    cost:
+      mana: 5
+    damage: {}
+    effects:
+      - type: buff
+        attribute: magicAttack
+        value: 3
+        duration: 3
+    cooldown: 0
+    range: 0
+    icon: 🧪
+    custom_data:
+      class: alchemist
+      tier: 1
+      lore: 丹成天地惊，药就鬼神泣
+      locale: zh-CN
+
+  - id: fire-control
+    name: 控火诀
+    description: 炼丹师的核心技法，以神识操控丹火，精准控制火候温度。火候是炼丹成败的关键，火大则丹毁，火小则药散。精通控火者，炼丹成功率大幅提升，亦可于战斗中以丹火伤敌。
+    category: utility
+    element: fire
+    target_type: self
+    cost:
+      mana: 10
+    damage: {}
+    effects:
+      - type: buff
+        attribute: magicAttack
+        value: 8
+        duration: 5
+      - type: buff
+        attribute: int
+        value: 2
+        duration: 5
+    cooldown: 3
+    range: 0
+    icon: 🔥
+    custom_data:
+      class: alchemist
+      tier: 2
+      lore: 火候精微处，丹成九转功
+      locale: zh-CN
+
+  - id: pill-refining
+    name: 炼丹秘法
+    description: 炼丹师的不传之秘，以特殊手法炼制丹药，可大幅提升丹药品质和成功率。高阶炼丹师炼制的丹药，药效远超同辈，一枚顶他人三枚。此法需深厚的炼丹功底方能施展。
+    category: utility
+    element: fire
+    target_type: self
+    cost:
+      mana: 20
+    damage: {}
+    effects:
+      - type: buff
+        attribute: int
+        value: 5
+        duration: 5
+      - type: buff
+        attribute: wis
+        value: 3
+        duration: 5
+      - type: heal
+        value: 15
+        duration: 0
+    cooldown: 4
+    range: 0
+    icon: 💊
+    custom_data:
+      class: alchemist
+      tier: 3
+      lore: 九转金丹成，凡骨化仙身
+      locale: zh-CN
+
+  - id: herb-identification
+    name: 辨药术
+    description: 炼丹师的必备技能，以神识感应灵草灵药的品种、年份和药性。修真界灵草万千，良莠混杂，辨药术可助修士在野外快速辨识灵草，避免误采毒草，亦可在坊市中辨别药材真伪。
+    category: passive
+    element: arcane
+    target_type: self
+    cost:
+      mana: 0
+    damage: {}
+    effects:
+      - type: buff
+        attribute: wis
+        value: 3
+        duration: 0
+      - type: buff
+        attribute: int
+        value: 2
+        duration: 0
+    cooldown: 0
+    range: 0
+    icon: 🌿
+    custom_data:
+      class: alchemist
+      tier: 1
+      lore: 百草入目明，灵药辨真伪
+      locale: zh-CN
+
+  - id: detoxification-pill
+    name: 解毒丹法
+    description: 炼丹师以特殊手法炼制解毒丹药，服用后可解除各种毒素和负面状态。修真界毒虫毒草遍布，妖修毒术防不胜防，一枚解毒丹往往能救人性命。此法亦可于战斗中为同伴解毒。
+    category: healing
+    element: water
+    target_type: ally
+    cost:
+      mana: 12
+    damage: {}
+    effects:
+      - type: cleanse
+        target: debuff
+      - type: heal
+        value: 20
+        duration: 0
+    cooldown: 2
+    range: 3
+    icon: 💚
+    custom_data:
+      class: alchemist
+      tier: 2
+      lore: 百毒不侵身，丹到病除时
+      locale: zh-CN
+
+  - id: basic-formation
+    name: 基础阵法
+    description: 阵法师的入门功法，掌握阵旗布设、阵纹刻画、灵气引导等基本技法。虽只能布设聚灵阵等简单阵法，却是一切阵道的根基。阵法之道博大精深，穷毕生之力亦难窥全貌。
+    category: utility
+    element: arcane
+    target_type: self
+    cost:
+      mana: 5
+    damage: {}
+    effects:
+      - type: buff
+        attribute: magicAttack
+        value: 3
+        duration: 3
+    cooldown: 0
+    range: 0
+    icon: 📿
+    custom_data:
+      class: formation-master
+      tier: 1
+      lore: 阵法通天，困仙锁神
+      locale: zh-CN
+
+  - id: rune-carving
+    name: 刻阵术
+    description: 阵法师的核心技法，以刻阵凿在阵基上镌刻阵纹，精度直接影响阵法威力。阵纹是阵法的骨架，一笔一划皆需精确无误，差之毫厘则阵法威力大减，甚至反噬布阵之人。
+    category: utility
+    element: arcane
+    target_type: self
+    cost:
+      mana: 10
+    damage: {}
+    effects:
+      - type: buff
+        attribute: wis
+        value: 4
+        duration: 5
+      - type: buff
+        attribute: int
+        value: 2
+        duration: 5
+    cooldown: 3
+    range: 0
+    icon: ✨
+    custom_data:
+      class: formation-master
+      tier: 2
+      lore: 一笔一划间，乾坤自流转
+      locale: zh-CN
+
+  - id: trap-formation
+    name: 困敌阵
+    description: 以阵旗和阵纹布设困敌之阵，阵成之后，阵内敌人行动迟缓、灵气运转受阻。此阵是阵法师最常用的战斗手段，以阵困敌，再以法术攻之，可令强敌亦难脱身。
+    category: debuff
+    element: arcane
+    target_type: aoe
+    cost:
+      mana: 18
+    damage: {}
+    effects:
+      - type: debuff
+        attribute: speed
+        value: -8
+        duration: 4
+      - type: debuff
+        attribute: attack
+        value: -5
+        duration: 4
+    cooldown: 3
+    range: 3
+    icon: ⛓️
+    custom_data:
+      class: formation-master
+      tier: 2
+      lore: 阵成困龙虎，插翅亦难飞
+      locale: zh-CN
+
+  - id: defensive-formation
+    name: 护山大阵
+    description: 阵法师的防御绝学，以阵旗布设护山大阵，阵内之人防御大增，可抵御强敌攻伐。此阵本是宗门护山之用，经简化后亦可于战斗中布设，虽不及宗门大阵威力，却足以保命。
+    category: defense
+    element: arcane
+    target_type: self_aoe
+    cost:
+      mana: 22
+    damage: {}
+    effects:
+      - type: buff
+        attribute: defense
+        value: 12
+        duration: 4
+        target: ally
+      - type: buff
+        attribute: magicDefense
+        value: 10
+        duration: 4
+        target: ally
+    cooldown: 4
+    range: 3
+    icon: 🛡️
+    custom_data:
+      class: formation-master
+      tier: 3
+      lore: 大阵护山门，万法不可破
+      locale: zh-CN
+
+  - id: spirit-gathering-formation
+    name: 聚灵阵
+    description: 阵法师的辅助绝学，以阵旗布设聚灵阵，汇聚天地灵气于阵内，令阵中之人修炼效率大增、灵气恢复加速。此阵是修士日常修炼的必备辅助，亦是战后恢复的良方。
+    category: buff
+    element: arcane
+    target_type: self_aoe
+    cost:
+      mana: 15
+    damage: {}
+    effects:
+      - type: buff
+        attribute: magicAttack
+        value: 8
+        duration: 5
+        target: ally
+      - type: heal
+        value: 10
+        duration: 3
+        target: ally
+    cooldown: 4
+    range: 3
+    icon: 🌀
+    custom_data:
+      class: formation-master
+      tier: 3
+      lore: 灵气聚如海，修为日千里
+      locale: zh-CN
+
+  - id: basic-talisman
+    name: 基础符箓术
+    description: 符箓师的入门功法，掌握灵墨调配、灵纹绘制、法力灌注等基本技法。虽只能绘制护身符、镇妖符等基础符箓，却是一切符道的根基。符箓之道以笔为媒，以墨为介，以灵为魂。
+    category: utility
+    element: holy
+    target_type: self
+    cost:
+      mana: 5
+    damage: {}
+    effects:
+      - type: buff
+        attribute: magicAttack
+        value: 3
+        duration: 3
+    cooldown: 0
+    range: 0
+    icon: 📜
+    custom_data:
+      class: talisman-master
+      tier: 1
+      lore: 符通天地，箓镇鬼神
+      locale: zh-CN
+
+  - id: spirit-binding
+    name: 封灵术
+    description: 符箓师的控场技法，以灵纹符箓封印敌人灵气运转，令其法术难施、灵力凝滞。此术对妖修和魔修尤为有效，可暂时压制其血脉神通。封灵术的持续时间取决于双方修为差距。
+    category: debuff
+    element: shadow
+    target_type: single
+    cost:
+      mana: 15
+    damage: {}
+    effects:
+      - type: debuff
+        attribute: magicAttack
+        value: -10
+        duration: 3
+      - type: debuff
+        attribute: speed
+        value: -5
+        duration: 3
+    cooldown: 3
+    range: 3
+    icon: 🔒
+    custom_data:
+      class: talisman-master
+      tier: 2
+      lore: 灵封法锁，万邪伏首
+      locale: zh-CN
+
+  - id: protection-talisman
+    name: 护身符法
+    description: 符箓师的防御技法，以朱砂灵墨绘制护身符阵，符成之后可在目标身上形成灵气护盾，抵御伤害。护身符是符箓师最受欢迎的作品，修士执行任务时常备数枚以防不测。
+    category: defense
+    element: holy
+    target_type: ally
+    cost:
+      mana: 12
+    damage: {}
+    effects:
+      - type: buff
+        attribute: defense
+        value: 8
+        duration: 4
+      - type: buff
+        attribute: magicDefense
+        value: 8
+        duration: 4
+    cooldown: 2
+    range: 3
+    icon: 🛡️
+    custom_data:
+      class: talisman-master
+      tier: 2
+      lore: 灵符护体，百邪不侵
+      locale: zh-CN
+
+  - id: attack-talisman
+    name: 攻伐符法
+    description: 符箓师的攻击技法，以灵墨绘制攻伐灵纹，符成之后可释放蕴含法力的攻击。攻伐符种类繁多，有雷符、火符、冰符等，威力虽不及专修法术，但胜在灵活多变、出其不意。
+    category: attack
+    element: holy
+    target_type: single
+    cost:
+      mana: 18
+    damage:
+      base: 35
+      scaling:
+        attribute: wis
+        multiplier: 0.9
+    effects:
+      - type: damage
+        attribute: wis
+        multiplier: 0.3
+    cooldown: 2
+    range: 4
+    icon: ⚡
+    custom_data:
+      class: talisman-master
+      tier: 3
+      lore: 灵符一出，鬼神辟易
+      locale: zh-CN
+
+  - id: spirit-summoning
+    name: 召灵术
+    description: 符箓师的秘传技法，以灵符为媒召唤天地间的灵体协助战斗。灵体可为修士探路、传讯、甚至直接参战。此术风险与收益并存，若修为不足，灵体可能反噬其主。
+    category: utility
+    element: shadow
+    target_type: self
+    cost:
+      mana: 25
+    damage: {}
+    effects:
+      - type: summon
+        entity: spirit-creature
+        duration: 5
+      - type: buff
+        attribute: wis
+        value: 5
+        duration: 5
+    cooldown: 5
+    range: 0
+    icon: 👻
+    custom_data:
+      class: talisman-master
+      tier: 4
+      lore: 符召天地灵，灵从符中来
+      locale: zh-CN
+
+items:
+  - id: iron-sword
+    name: 铁骨剑
+    description: 以寒铁锻造的入门长剑，剑身厚重如骨，虽无灵气加持，却胜在坚韧耐用。天剑宗外门弟子的标准佩剑，剑柄上刻有宗门铭文，是踏入剑道的第一步。
+    category: weapon
+    quality: common
+    stats:
+      attack: 5
+    effects: []
+    value:
+      buy: 80
+      sell: 40
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 武器
+      displayRarity: 普通
+      displayStats:
+        - key: attack
+          label: 攻击力
+          value: "+5"
+      displayEffects: []
+      tags: ["剑", "近战", "初始装备"]
+      locale: zh-CN
+
+  - id: basic-robe
+    name: 清风道袍
+    description: 天剑宗统一下发的入门道袍，以灵蚕丝织就，轻若无物，清风拂袖间隐有灵气流转。虽防护有限，但胜在透气舒适，适合日常修炼穿着。袍角绣有云纹，是外门弟子的身份标识。
+    category: armor
+    quality: common
+    stats:
+      defense: 2
+      magicDefense: 2
+    effects: []
+    value:
+      buy: 60
+      sell: 30
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 防具
+      displayRarity: 普通
+      displayStats:
+        - key: defense
+          label: 防御力
+          value: "+2"
+        - key: magicDefense
+          label: 魔法防御
+          value: "+2"
+      displayEffects: []
+      tags: ["道袍", "布甲", "初始装备"]
+      locale: zh-CN
+
+  - id: qi-gathering-pill
+    name: 聚气丹
+    description: 最基础的修炼丹药，以灵草炼制而成，服用后可加速灵气吸收。丹药呈淡青色，入口即化，一股温润灵气自丹田升起。炼丹师的入门之作，也是修士日常修炼的必备之物。
+    category: consumable
+    quality: common
+    stats:
+      qi_recovery: 10
+    effects:
+      - type: buff
+        value: 10
+        duration: 5
+    value:
+      buy: 50
+      sell: 25
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 消耗品
+      displayRarity: 普通
+      displayStats:
+        - key: qi_recovery
+          label: 灵气恢复
+          value: "+10"
+      displayEffects:
+        - "服用后5回合内加速灵气吸收"
+      tags: ["丹药", "修炼", "消耗品"]
+      visualDesc: "淡青色丹药，表面隐有灵光流转，散发淡淡药香"
+      effects:
+        - type: buff
+          value: 10
+          duration: 5
+      price: 25
+      locale: zh-CN
+
+  - id: sword-manual
+    name: 剑诀残卷
+    description: 一卷泛黄的剑诀残篇，记载着天剑宗入门剑法"清风十三式"的前七式。虽只是残卷，但字里行间蕴含的剑意仍令初学者受益匪浅。据传完整剑诀可引动天地剑气，可惜早已失传。
+    category: accessory
+    quality: uncommon
+    stats:
+      attack: 2
+      dex: 1
+    effects: []
+    value:
+      buy: 120
+      sell: 60
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 法宝
+      displayRarity: 优秀
+      displayStats:
+        - key: attack
+          label: 攻击力
+          value: "+2"
+        - key: dex
+          label: 敏捷
+          value: "+1"
+      displayEffects:
+        - "研读可领悟剑法精要，提升剑修技艺"
+      tags: ["剑诀", "功法", "法宝"]
+      visualDesc: "泛黄竹简上以朱砂书写剑诀，字迹苍劲有力，隐含剑意"
+      locale: zh-CN
+
+  - id: cloud-boots
+    name: 踏云靴
+    description: 以云蚕丝和风灵兽皮缝制的轻便靴子，靴底刻有微型御风阵纹。穿上后步履轻盈，如踏云端，是剑修和阵法师执行任务时的首选。据说高阶踏云靴可御风飞行，此靴虽未至那般境界，却也是难得的灵器。
+    category: armor
+    quality: uncommon
+    stats:
+      speed: 5
+      dodgeRate: 0.03
+    effects: []
+    value:
+      buy: 150
+      sell: 75
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 防具
+      displayRarity: 优秀
+      displayStats:
+        - key: speed
+          label: 速度
+          value: "+5"
+        - key: dodgeRate
+          label: 闪避率
+          value: "+3%"
+      displayEffects:
+        - "御风而行，身法更为灵动"
+      tags: ["靴子", "御风", "灵器"]
+      visualDesc: "淡青色轻靴，靴面云纹若隐若现，靴底阵纹微光闪烁"
+      locale: zh-CN
+
+  - id: jade-pendant
+    name: 灵玉佩
+    description: 以昆仑灵玉雕琢而成的玉佩，玉质温润通透，内蕴一丝天地灵韵。佩戴后可安神定魂，辅助修炼时更易入定。天剑宗赐予优秀弟子的信物，也是修士互赠的常见礼器。
+    category: accessory
+    quality: uncommon
+    stats:
+      magicDefense: 3
+      wis: 1
+    effects: []
+    value:
+      buy: 100
+      sell: 50
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 法宝
+      displayRarity: 优秀
+      displayStats:
+        - key: magicDefense
+          label: 魔法防御
+          value: "+3"
+        - key: wis
+          label: 神识
+          value: "+1"
+      displayEffects:
+        - "安神定魂，修炼时更易入定"
+      tags: ["玉佩", "灵玉", "法宝"]
+      visualDesc: "温润白玉雕成，玉中隐现淡金纹路，触手温凉"
+      locale: zh-CN
+
+  - id: alchemy-furnace
+    name: 灵火丹炉
+    description: 一尊三足铜炉，炉身刻有火焰纹路和炼丹口诀，炉底封印着一缕地心灵火。虽只是入门级丹炉，但足以炼制聚气丹、回气丹等基础丹药。炼丹师视丹炉如剑修视剑，此炉便是炼丹之路的起点。
+    category: weapon
+    quality: common
+    stats:
+      magicAttack: 3
+      int: 1
+    effects: []
+    value:
+      buy: 100
+      sell: 50
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 武器
+      displayRarity: 普通
+      displayStats:
+        - key: magicAttack
+          label: 魔法攻击
+          value: "+3"
+        - key: int
+          label: 悟性
+          value: "+1"
+      displayEffects:
+        - "内置灵火，可炼制基础丹药"
+      tags: ["丹炉", "炼丹", "初始装备"]
+      visualDesc: "三足铜炉，炉身火焰纹路微微发红，炉底灵火若隐若现"
+      locale: zh-CN
+
+  - id: herb-collection-bag
+    name: 采药囊
+    description: 以灵蚕丝编织的储物袋，内设多个隔层，可保持灵草药性不散。袋面绣有百草纹，是炼丹师采药时的必备之物。据说高阶采药囊内含须弥空间，可储存大量药材，此囊虽无此功能，却已足够初学之用。
+    category: tool
+    quality: common
+    stats: {}
+    effects: []
+    value:
+      buy: 40
+      sell: 20
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats: []
+      displayEffects:
+        - "可妥善保存灵草，防止药性流失"
+        - "采药时更易辨识灵草品种"
+      tags: ["储物", "采药", "炼丹工具"]
+      visualDesc: "淡绿色丝袋，袋面百草纹栩栩如生，袋口以灵绳系紧"
+      locale: zh-CN
+
+  - id: fire-spirit-stone
+    name: 火灵石
+    description: 一枚蕴含火属性灵气的灵石，石面赤红如炭，触之温热。炼丹师以火灵石辅助控火，可使丹火更为稳定，提升炼丹成功率。火灵石产自火山灵脉，是炼丹师梦寐以求的辅材。
+    category: accessory
+    quality: uncommon
+    stats:
+      magicAttack: 4
+      int: 1
+    effects: []
+    value:
+      buy: 130
+      sell: 65
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 法宝
+      displayRarity: 优秀
+      displayStats:
+        - key: magicAttack
+          label: 魔法攻击
+          value: "+4"
+        - key: int
+          label: 悟性
+          value: "+1"
+      displayEffects:
+        - "辅助控火，提升炼丹成功率"
+        - "增强火属性法术威力"
+      tags: ["灵石", "火属性", "炼丹", "法宝"]
+      visualDesc: "赤红色灵石，表面火焰纹路流转，触之温热"
+      locale: zh-CN
+
+  - id: alchemy-manual
+    name: 丹方残卷
+    description: 一卷记载基础丹方的竹简，包含聚气丹、回气丹等入门丹药的炼制之法。丹方以朱砂书写，旁注历代炼丹师的心得体会。虽只是残卷，却足以引领初学者踏入炼丹之道。
+    category: accessory
+    quality: uncommon
+    stats:
+      int: 2
+      wis: 1
+    effects: []
+    value:
+      buy: 120
+      sell: 60
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 法宝
+      displayRarity: 优秀
+      displayStats:
+        - key: int
+          label: 悟性
+          value: "+2"
+        - key: wis
+          label: 神识
+          value: "+1"
+      displayEffects:
+        - "研读可领悟炼丹之道，提升炼丹技艺"
+      tags: ["丹方", "功法", "法宝"]
+      visualDesc: "泛黄竹简上以朱砂书写丹方，旁注密密麻麻"
+      locale: zh-CN
+
+  - id: formation-flags
+    name: 聚灵阵旗
+    description: 一套十二面阵旗，旗面以灵蚕丝织就，上绘聚灵阵纹。阵旗插入地面后可布设基础聚灵阵，提升阵内灵气浓度。是阵法师入门的必备之物，也是修士日常修炼的辅助工具。
+    category: weapon
+    quality: common
+    stats:
+      magicAttack: 3
+      wis: 1
+    effects: []
+    value:
+      buy: 90
+      sell: 45
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 武器
+      displayRarity: 普通
+      displayStats:
+        - key: magicAttack
+          label: 魔法攻击
+          value: "+3"
+        - key: wis
+          label: 神识
+          value: "+1"
+      displayEffects:
+        - "可布设基础聚灵阵，提升灵气浓度"
+      tags: ["阵旗", "阵法", "初始装备"]
+      visualDesc: "十二面淡金色小旗，旗面阵纹闪烁微光，旗杆以灵木制成"
+      locale: zh-CN
+
+  - id: spirit-stone
+    name: 下品灵石
+    description: 修真界的通用货币，蕴含微薄灵气。下品灵石虽灵气稀薄，但胜在数量充足，是散修和初入门弟子修炼的基本资源。百枚下品灵石方可兑换一枚中品灵石，修真之路，灵石为基。
+    category: tool
+    quality: common
+    stats:
+      qi_recovery: 5
+    effects:
+      - type: buff
+        value: 5
+        duration: 3
+    value:
+      buy: 30
+      sell: 15
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats:
+        - key: qi_recovery
+          label: 灵气恢复
+          value: "+5"
+      displayEffects:
+        - "吸收其中灵气辅助修炼"
+        - "修真界通用货币"
+      tags: ["灵石", "货币", "修炼"]
+      visualDesc: "拇指大小的半透明石块，内部隐约可见灵气流转"
+      effects:
+        - type: buff
+          value: 5
+          duration: 3
+      price: 15
+      locale: zh-CN
+
+  - id: rune-chisel
+    name: 刻阵凿
+    description: 以玄铁和灵骨打造的刻阵工具，凿尖锋锐无比，可在灵石和玉石上刻画阵纹。阵法师以刻阵凿在阵基上镌刻阵纹，精度直接影响阵法威力。一把好的刻阵凿，是阵法师最忠实的伙伴。
+    category: accessory
+    quality: common
+    stats:
+      wis: 1
+      int: 1
+    effects: []
+    value:
+      buy: 60
+      sell: 30
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 法宝
+      displayRarity: 普通
+      displayStats:
+        - key: wis
+          label: 神识
+          value: "+1"
+        - key: int
+          label: 悟性
+          value: "+1"
+      displayEffects:
+        - "提升阵纹刻画精度，增强阵法效果"
+      tags: ["工具", "阵法", "法宝"]
+      visualDesc: "玄铁凿身配灵骨手柄，凿尖寒光闪烁"
+      locale: zh-CN
+
+  - id: formation-manual
+    name: 阵法残卷
+    description: 一卷记载基础阵法的竹简，包含聚灵阵、护山阵等入门阵法的布设之法。阵纹图解清晰，旁注历代阵法师的布阵心得。虽只是残卷，却已涵盖阵法之道的基本原理。
+    category: accessory
+    quality: uncommon
+    stats:
+      int: 2
+      wis: 1
+    effects: []
+    value:
+      buy: 120
+      sell: 60
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 法宝
+      displayRarity: 优秀
+      displayStats:
+        - key: int
+          label: 悟性
+          value: "+2"
+        - key: wis
+          label: 神识
+          value: "+1"
+      displayEffects:
+        - "研读可领悟阵法之道，提升布阵技艺"
+      tags: ["阵法", "功法", "法宝"]
+      visualDesc: "泛黄竹简上以朱砂描绘阵纹图解，线条精密"
+      locale: zh-CN
+
+  - id: talisman-brush
+    name: 灵纹符笔
+    description: 以灵兽毫毛和灵木杆制成的符笔，笔尖蕴含微薄灵力，可使朱砂灵墨均匀附着于符纸之上。符箓师以符笔绘符，笔力与灵力交融，方能成就一张灵符。此笔虽为入门之器，却已胜过凡间千笔万墨。
+    category: weapon
+    quality: common
+    stats:
+      magicAttack: 3
+      wis: 1
+    effects: []
+    value:
+      buy: 80
+      sell: 40
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 武器
+      displayRarity: 普通
+      displayStats:
+        - key: magicAttack
+          label: 魔法攻击
+          value: "+3"
+        - key: wis
+          label: 神识
+          value: "+1"
+      displayEffects:
+        - "绘符时灵力灌注更为均匀，提升符箓品质"
+      tags: ["符笔", "符箓", "初始装备"]
+      visualDesc: "灵木笔杆温润如玉，笔毫银白如雪，隐隐有灵光流转"
+      locale: zh-CN
+
+  - id: blank-talismans
+    name: 空白符纸
+    description: 以灵树皮和灵蚕丝制成的符纸，纸面洁白如玉，质地柔韧，可承载灵纹和法力。符箓师在空白符纸上绘制灵纹，注入法力，便可成就一张灵符。品质越高的符纸，能承载的灵纹越复杂。
+    category: consumable
+    quality: common
+    stats: {}
+    effects: []
+    value:
+      buy: 10
+      sell: 5
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 消耗品
+      displayRarity: 普通
+      displayStats: []
+      displayEffects:
+        - "用于绘制灵符的载体"
+      tags: ["符纸", "符箓", "材料"]
+      visualDesc: "洁白柔韧的灵纸，纸面隐约可见灵蚕丝纹路"
+      locale: zh-CN
+
+  - id: cinnabar-ink
+    name: 朱砂灵墨
+    description: 以千年朱砂和灵泉水研磨而成的灵墨，墨色赤红如血，蕴含微薄灵力。符箓师以朱砂灵墨绘制灵纹，墨迹入纸即与符纸灵气交融，是绘符的关键材料。品质越高的灵墨，绘出的灵纹越稳定。
+    category: accessory
+    quality: uncommon
+    stats:
+      magicAttack: 2
+      wis: 2
+    effects: []
+    value:
+      buy: 100
+      sell: 50
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 法宝
+      displayRarity: 优秀
+      displayStats:
+        - key: magicAttack
+          label: 魔法攻击
+          value: "+2"
+        - key: wis
+          label: 神识
+          value: "+2"
+      displayEffects:
+        - "绘符时灵纹更为稳定，提升符箓品质"
+      tags: ["灵墨", "符箓", "法宝"]
+      visualDesc: "玉瓶中盛着赤红灵墨，墨面如镜，隐有灵光流转"
+      locale: zh-CN
+
+  - id: talisman-manual
+    name: 符箓残卷
+    description: 一卷记载基础符箓的竹简，包含护身符、镇妖符等入门符箓的绘制之法。灵纹图解精细，旁注历代符箓师的绘符心得。虽只是残卷，却已道尽符箓之道的根基。
+    category: accessory
+    quality: uncommon
+    stats:
+      wis: 2
+      cha: 1
+    effects: []
+    value:
+      buy: 120
+      sell: 60
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 法宝
+      displayRarity: 优秀
+      displayStats:
+        - key: wis
+          label: 神识
+          value: "+2"
+        - key: cha
+          label: 道缘
+          value: "+1"
+      displayEffects:
+        - "研读可领悟符箓之道，提升绘符技艺"
+      tags: ["符箓", "功法", "法宝"]
+      visualDesc: "泛黄竹简上以朱砂描绘灵纹图解，线条精妙入微"
+      locale: zh-CN
+
+  - id: sect-token
+    name: 宗门令牌
+    description: 天剑宗颁发的弟子身份令牌，以灵玉铸成，正面刻有宗门徽记，背面刻有弟子编号。持此令牌可在宗门各处通行，领取月例灵石，进入藏经阁借阅功法。令牌与弟子神识绑定，遗失需向长老报备补办。
+    category: accessory
+    quality: common
+    stats:
+      cha: 1
+    effects: []
+    value:
+      buy: 0
+      sell: 0
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 法宝
+      displayRarity: 普通
+      displayStats:
+        - key: cha
+          label: 道缘
+          value: "+1"
+      displayEffects:
+        - "宗门弟子身份证明，可领取月例灵石"
+        - "可在宗门各处通行，进入藏经阁借阅功法"
+      tags: ["令牌", "宗门", "身份证明"]
+      visualDesc: "灵玉令牌，正面天剑宗徽记，背面弟子编号，温润如玉"
+      locale: zh-CN
+
+  - id: meditation-mat
+    name: 打坐蒲团
+    description: 以灵草编织的蒲团，经高僧开光加持，坐于其上修炼可助心神安宁、灵气汇聚。虽非珍贵法器，却是宗门弟子日常修炼的必备之物。蒲团上残留着历代弟子的修炼气息，据说坐得越久，灵气感应越敏锐。
+    category: accessory
+    quality: common
+    stats:
+      wis: 1
+    effects: []
+    value:
+      buy: 30
+      sell: 15
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 法宝
+      displayRarity: 普通
+      displayStats:
+        - key: wis
+          label: 神识
+          value: "+1"
+      displayEffects:
+        - "修炼时助心神安宁，灵气汇聚更速"
+      tags: ["蒲团", "修炼", "法宝"]
+      visualDesc: "淡黄色蒲团，编织紧密，表面因长年使用而光滑"
+      locale: zh-CN
+
+  - id: basic-pill
+    name: 回气丹
+    description: 基础疗伤丹药，以灵草和灵泉炼制，服用后可恢复少量灵气和体力。丹药呈淡白色，入口清凉，适合修炼中灵气不济时服用。虽不及高阶丹药功效显著，却胜在炼制简单、价格低廉。
+    category: consumable
+    quality: common
+    stats:
+      heal: 30
+    effects:
+      - type: heal
+        value: 30
+    value:
+      buy: 40
+      sell: 20
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 消耗品
+      displayRarity: 普通
+      displayStats:
+        - key: heal
+          label: 治疗量
+          value: "+30"
+      displayEffects:
+        - "恢复30点生命值"
+      tags: ["丹药", "治疗", "消耗品"]
+      visualDesc: "淡白色丹药，表面光滑，散发淡淡药香"
+      effects:
+        - type: heal
+          value: 30
+      price: 20
+      locale: zh-CN
+
+  - id: worn-robe
+    name: 破旧道袍
+    description: 一件已经看不出原色的破旧道袍，到处是补丁和磨损，却依然残留着微薄的灵气。这是散修在修真界艰难求生的见证，每一处补丁都记录着一段风餐露宿的修炼岁月。虽破旧不堪，却胜在自在无拘。
+    category: armor
+    quality: common
+    stats:
+      defense: 1
+    effects: []
+    value:
+      buy: 20
+      sell: 10
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 防具
+      displayRarity: 普通
+      displayStats:
+        - key: defense
+          label: 防御力
+          value: "+1"
+      displayEffects: []
+      tags: ["道袍", "破旧", "散修"]
+      visualDesc: "灰扑扑的破旧道袍，补丁摞着补丁，但洗得很干净"
+      locale: zh-CN
+
+  - id: spirit-herb
+    name: 灵草
+    description: 在灵气充裕之地生长的药草，叶片泛着淡绿灵光，蕴含微薄灵气。灵草可直接服用补充灵气，也是炼丹的基础材料。散修常以采摘灵草为生，在险地寻觅灵草更是修真界的日常。
+    category: consumable
+    quality: common
+    stats:
+      qi_recovery: 8
+    effects:
+      - type: buff
+        value: 8
+        duration: 3
+    value:
+      buy: 35
+      sell: 18
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 消耗品
+      displayRarity: 普通
+      displayStats:
+        - key: qi_recovery
+          label: 灵气恢复
+          value: "+8"
+      displayEffects:
+        - "服用后3回合内缓慢恢复灵气"
+        - "可作为炼丹材料使用"
+      tags: ["灵草", "炼丹", "消耗品"]
+      visualDesc: "翠绿药草，叶片泛着淡绿灵光，散发清新草木香气"
+      effects:
+        - type: buff
+          value: 8
+          duration: 3
+      price: 18
+      locale: zh-CN
+
+  - id: survival-guide
+    name: 修真野录
+    description: 一本由无名散修编纂的野外生存手册，记载着九州大陆各地的灵草分布、灵兽习性、危险区域和避难之所。内容粗浅却实用，是散修在修真界摸爬滚打的宝贵经验。书中还夹着几页手绘地图，标注了散修聚集的坊市位置。
+    category: tool
+    quality: common
+    stats:
+      wis: 1
+    effects: []
+    value:
+      buy: 50
+      sell: 25
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats:
+        - key: wis
+          label: 神识
+          value: "+1"
+      displayEffects:
+        - "记载灵草分布和灵兽习性，野外生存必备"
+        - "标注散修坊市和避难之所的位置"
+      tags: ["书籍", "散修", "生存"]
+      visualDesc: "泛黄书册，封面已磨损，内页密密麻麻写满笔记"
+      locale: zh-CN
+
+  - id: fine-robe
+    name: 锦云法袍
+    description: 以灵蚕金丝织就的华贵法袍，袍面云纹以金线绣成，灵光流转间尽显富贵。虽防护不俗，但更多是身份的象征——穿此袍者，非富即贵。商贾之家的修士常以此袍彰显财力，在坊市交易时更能获得优待。
+    category: armor
+    quality: uncommon
+    stats:
+      defense: 4
+      magicDefense: 3
+      cha: 1
+    effects: []
+    value:
+      buy: 200
+      sell: 100
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 防具
+      displayRarity: 优秀
+      displayStats:
+        - key: defense
+          label: 防御力
+          value: "+4"
+        - key: magicDefense
+          label: 魔法防御
+          value: "+3"
+        - key: cha
+          label: 道缘
+          value: "+1"
+      displayEffects:
+        - "华贵法袍彰显财力，坊市交易时更受优待"
+      tags: ["法袍", "华贵", "商贾"]
+      visualDesc: "金丝云纹法袍，灵光流转，袍角缀以灵玉珠饰"
+      locale: zh-CN
+
+  - id: spirit-stone-pouch
+    name: 灵石袋
+    description: 以灵蚕丝编织的储物袋，内设禁制可安全存放灵石。袋口以灵锁封印，非主人神识不可开启。商贾之家子弟的标准配置，袋中常备充足灵石，以备不时之需。
+    category: accessory
+    quality: common
+    stats: {}
+    effects: []
+    value:
+      buy: 60
+      sell: 30
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 法宝
+      displayRarity: 普通
+      displayStats: []
+      displayEffects:
+        - "安全存放灵石，内含充足灵石以备不时之需"
+        - "坊市交易时更为便利"
+      tags: ["储物", "灵石", "商贾"]
+      visualDesc: "淡金色丝袋，袋口灵锁微光闪烁，沉甸甸的分量令人安心"
+      locale: zh-CN
+
+  - id: quality-pill
+    name: 凝神丹
+    description: 品质上乘的修炼丹药，以珍稀灵草精心炼制，服用后可凝神聚气，大幅提升修炼效率。丹药呈淡金色，入口即有一股清凉灵气直冲天灵，令人神清气爽。商贾之家以灵石铺路，方能享用此等丹药。
+    category: consumable
+    quality: uncommon
+    stats:
+      qi_recovery: 20
+      heal: 15
+    effects:
+      - type: buff
+        value: 20
+        duration: 5
+      - type: heal
+        value: 15
+    value:
+      buy: 100
+      sell: 50
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 消耗品
+      displayRarity: 优秀
+      displayStats:
+        - key: qi_recovery
+          label: 灵气恢复
+          value: "+20"
+        - key: heal
+          label: 治疗量
+          value: "+15"
+      displayEffects:
+        - "服用后5回合内大幅提升灵气吸收"
+        - "同时恢复15点生命值"
+      tags: ["丹药", "修炼", "消耗品"]
+      visualDesc: "淡金色丹药，表面灵光流转，药香浓郁"
+      effects:
+        - type: buff
+          value: 20
+          duration: 5
+        - type: heal
+          value: 15
+      price: 50
+      locale: zh-CN
+
+  - id: simple-clothes
+    name: 粗布麻衣
+    description: 凡间最常见的粗布麻衣，毫无灵气加持，却承载着凡人对修真之路的朴素向往。穿上它，便不会忘记自己来自何方，道心反而更加坚定。凡人出身的修士常说：不忘来路，方知归途。
+    category: armor
+    quality: common
+    stats:
+      defense: 1
+    effects: []
+    value:
+      buy: 15
+      sell: 8
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 防具
+      displayRarity: 普通
+      displayStats:
+        - key: defense
+          label: 防御力
+          value: "+1"
+      displayEffects: []
+      tags: ["衣物", "凡人", "朴素"]
+      visualDesc: "灰褐色粗布麻衣，针脚细密，虽朴素却干净整洁"
+      locale: zh-CN
+
+  - id: family-heirloom
+    name: 传家灵物
+    description: 一件代代相传的灵物，或许是祖上偶然获得的灵玉，或许是某位先人留下的修炼信物。灵物中蕴含的灵气虽微薄，却承载着家族的期望和祝福。凡人出身的修士携带此物，仿佛先人护佑，道心更为坚定。
+    category: accessory
+    quality: uncommon
+    stats:
+      con: 1
+      int: 1
+    effects: []
+    value:
+      buy: 0
+      sell: 0
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 法宝
+      displayRarity: 优秀
+      displayStats:
+        - key: con
+          label: 体质
+          value: "+1"
+        - key: int
+          label: 悟性
+          value: "+1"
+      displayEffects:
+        - "先人护佑，道心更为坚定"
+        - "突破瓶颈时更有优势"
+      tags: ["传家宝", "凡人", "护佑"]
+      visualDesc: "古朴灵物，表面因代代摩挲而光滑温润，隐约散发微光"
+      locale: zh-CN
+
+  - id: lucky-charm
+    name: 护身符
+    description: 一枚由家中长辈亲手绘制的护身符，符纸虽已泛黄，朱砂灵墨却依然鲜红。凡人无法注入法力，但符中寄托的牵挂和祝福却胜过千般灵力。据说危急时刻，护身符会自行激发，挡下致命一击。
+    category: accessory
+    quality: common
+    stats:
+      magicDefense: 2
+      dodgeRate: 0.02
+    effects: []
+    value:
+      buy: 45
+      sell: 23
+      currency: spirit_stone
+    quantity: 1
+    custom_data:
+      displayType: 法宝
+      displayRarity: 普通
+      displayStats:
+        - key: magicDefense
+          label: 魔法防御
+          value: "+2"
+        - key: dodgeRate
+          label: 闪避率
+          value: "+2%"
+      displayEffects:
+        - "危急时刻可自行激发，挡下致命一击"
+      tags: ["护符", "凡人", "护身"]
+      visualDesc: "泛黄符纸以红绳系着，朱砂符文鲜红如新，散发温暖气息"
+      locale: zh-CN
+
+initial_data:
+  skills:
+    sword-cultivator:
+      - basic-sword-arts
+      - qi-slash
+      - sword-intent
+      - sword-qi-burst
+      - flying-sword
+      - sword-domain
+    alchemist:
+      - basic-alchemy
+      - fire-control
+      - pill-refining
+      - herb-identification
+      - detoxification-pill
+    formation-master:
+      - basic-formation
+      - rune-carving
+      - trap-formation
+      - defensive-formation
+      - spirit-gathering-formation
+    talisman-master:
+      - basic-talisman
+      - spirit-binding
+      - protection-talisman
+      - attack-talisman
+      - spirit-summoning
+  items_by_class:
+    sword-cultivator:
+      - item_id: iron-sword
+        quantity: 1
+      - item_id: basic-robe
+        quantity: 1
+      - item_id: qi-gathering-pill
+        quantity: 3
+      - item_id: sword-manual
+        quantity: 1
+      - item_id: cloud-boots
+        quantity: 1
+      - item_id: jade-pendant
+        quantity: 1
+    alchemist:
+      - item_id: alchemy-furnace
+        quantity: 1
+      - item_id: basic-robe
+        quantity: 1
+      - item_id: qi-gathering-pill
+        quantity: 5
+      - item_id: herb-collection-bag
+        quantity: 1
+      - item_id: fire-spirit-stone
+        quantity: 1
+      - item_id: alchemy-manual
+        quantity: 1
+    formation-master:
+      - item_id: formation-flags
+        quantity: 1
+      - item_id: basic-robe
+        quantity: 1
+      - item_id: spirit-stone
+        quantity: 3
+      - item_id: rune-chisel
+        quantity: 1
+      - item_id: formation-manual
+        quantity: 1
+      - item_id: cloud-boots
+        quantity: 1
+    talisman-master:
+      - item_id: talisman-brush
+        quantity: 1
+      - item_id: basic-robe
+        quantity: 1
+      - item_id: blank-talismans
+        quantity: 10
+      - item_id: cinnabar-ink
+        quantity: 1
+      - item_id: talisman-manual
+        quantity: 1
+      - item_id: jade-pendant
+        quantity: 1
+  items_by_background:
+    sect-disciple:
+      - item_id: sect-token
+        quantity: 1
+      - item_id: meditation-mat
+        quantity: 1
+      - item_id: basic-pill
+        quantity: 2
+    wandering-cultivator:
+      - item_id: worn-robe
+        quantity: 1
+      - item_id: spirit-herb
+        quantity: 2
+      - item_id: survival-guide
+        quantity: 1
+    merchant-family:
+      - item_id: fine-robe
+        quantity: 1
+      - item_id: spirit-stone-pouch
+        quantity: 1
+      - item_id: quality-pill
+        quantity: 2
+    mortal-origin:
+      - item_id: simple-clothes
+        quantity: 1
+      - item_id: family-heirloom
+        quantity: 1
+      - item_id: lucky-charm
+        quantity: 1
+  equipment:
+    sword-cultivator:
+      weapon: iron-sword
+      armor: basic-robe
+      feet: cloud-boots
+      accessory:
+        - jade-pendant
+        - sword-manual
+    alchemist:
+      weapon: alchemy-furnace
+      armor: basic-robe
+      accessory:
+        - fire-spirit-stone
+        - alchemy-manual
+    formation-master:
+      weapon: formation-flags
+      armor: basic-robe
+      feet: cloud-boots
+      accessory:
+        - rune-chisel
+        - formation-manual
+    talisman-master:
+      weapon: talisman-brush
+      armor: basic-robe
+      accessory:
+        - cinnabar-ink
+        - talisman-manual
+  gold:
+    sect-disciple: 100
+    wandering-cultivator: 20
+    merchant-family: 300
+    mortal-origin: 10
+
+ui_theme:
+  primary_color: "#f59e0b"
+  font_family: system
+  background_style: gradient
+  gradient_colors:
+    start: "#1a0a2e"
+    end: "#2d1b4e"
+    direction: to bottom
+  background_image: ""
+  pattern_type: clouds
+  animated_type: particles
+  custom_css: ""
+
+ui_layout:
+  show_minimap: true
+  show_combat_panel: true
+  show_skill_bar: true
+  show_party_panel: true
+  minimap_position: top-left
+  minimap_size: medium
+  party_panel_position: left
+  skill_bar_slots: 5
+  custom_layout: ""
+
+special_rules:
+  has_kp: false
+  permadeath: false
+  save_restriction: ""
+  custom_rules:
+    - 修炼境界系统：角色通过修炼提升境界，每个境界突破需要渡劫
+    - 灵气修炼：在灵气充裕之地修炼效率更高
+    - 天劫系统：境界突破时需渡天劫，失败则修为倒退
+    - 道心系统：道心坚定者突破更容易，道心破碎则修为尽废

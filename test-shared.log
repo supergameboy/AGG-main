@@ -1,0 +1,20 @@
+
+> @ai-rpg/shared@1.0.0 test C:\Users\super\Documents\trae_projects\AGG-main\packages\shared
+> vitest run "--no-file-parallelism"
+
+
+[7m[1m[36m RUN [39m[22m[27m [36mv1.6.1[39m [90mC:/Users/super/Documents/trae_projects/AGG-main/packages/shared[39m
+
+ [32m鉁?[39m src/tool-core/__tests__/base-tool-abort.test.ts [2m ([22m[2m6 tests[22m[2m)[22m[90m 3[2mms[22m[39m
+ [32m鉁?[39m src/tool-core/__tests__/base-tool-events.test.ts [2m ([22m[2m6 tests[22m[2m)[22m[90m 8[2mms[22m[39m
+ [32m鉁?[39m src/tool-core/__tests__/abort-signal.test.ts [2m ([22m[2m9 tests[22m[2m)[22m[90m 2[2mms[22m[39m
+ [32m鉁?[39m src/types/__tests__/execution-trace.test.ts [2m ([22m[2m15 tests[22m[2m)[22m[90m 4[2mms[22m[39m
+ [32m鉁?[39m src/session/__tests__/client-id-generator.test.ts [2m ([22m[2m16 tests[22m[2m)[22m[90m 3[2mms[22m[39m
+ [32m鉁?[39m src/tool-core/__tests__/tool-progress.test.ts [2m ([22m[2m7 tests[22m[2m)[22m[90m 4[2mms[22m[39m
+ [32m鉁?[39m src/types/__tests__/progress.test.ts [2m ([22m[2m10 tests[22m[2m)[22m[90m 2[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m7 passed[39m[22m[90m (7)[39m
+[2m      Tests [22m [1m[32m69 passed[39m[22m[90m (69)[39m
+[2m   Start at [22m 02:51:56
+[2m   Duration [22m 1.91s[2m (transform 103ms, setup 0ms, collect 196ms, tests 26ms, environment 1ms, prepare 876ms)[22m
+

@@ -1,0 +1,16 @@
+templateId: null
+name: "幽灵"
+gender: "female"
+customGender: null
+race: "android"
+classType: "hacker"
+background: "middle-class"
+attributes:
+  str: 8
+  dex: 12
+  con: 10
+  int: 16
+  wis: 12
+  cha: 8
+customOptions: null
+language: "zh-CN"

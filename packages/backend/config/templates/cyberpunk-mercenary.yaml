@@ -1,0 +1,2737 @@
+id: cyberpunk-mercenary
+name: 赛博朋克佣兵
+description: 2087年的新东京，霓虹灯永不熄灭，雨水冲刷着被污染的街道。巨型企业控制一切，黑客在暗网中穿行，而你——一个在刀尖上跳舞的佣兵——将用自己的方式改写这座城市的命运。
+version: 1.0.0
+author: AGG Team
+tags:
+  - cyberpunk
+  - noir
+  - sci-fi
+  - action
+  - mercenary
+
+game_mode: text_rpg
+default_challenge_mode: dynamic_combat
+numerical_complexity: complex
+agent_profile: fantasy_rpg
+is_builtin: true
+
+world_setting:
+  name: 新东京
+  description: 2087年的新东京，一座被巨型企业统治的超级都市。霓虹灯永不熄灭，雨水冲刷着被污染的街道。在光鲜的摩天大楼之上，是权贵们的空中花园；在地面之下，是无数挣扎求生的底层市民。赛博空间与现实交织，义体改造模糊了人与机器的界限。在这里，信息是最昂贵的货币，而生命是最廉价的消耗品。
+  era: 2087年
+  genre: cyberpunk
+  magic_system: 无 - 赛博空间与义体科技
+  technology_level: 高度发达
+  custom_fields:
+    megacorps: 荒坂重工、军用科技、网络科技、生物动力
+    net_type: 赛博空间
+    currency: 信用点
+    districts: 霓虹区、企业区、暗巷区、港口区、地下城
+    augmentation: 义体改造系统
+
+character_creation:
+  attribute_points: 10
+  attribute_role_mapping:
+    physical_power: str
+    agility: dex
+    endurance: con
+    mental_power: int
+    perception: wis
+    influence: cha
+  races:
+    - id: human
+      name: 人类
+      description: 未改造的纯种人类。在这个时代，保持纯粹既是劣势也是骄傲。你没有义体的依赖，也不受赛博空间的侵蚀。
+      bonuses:
+        # charisma → cha
+        cha: 1
+      penalties: {}
+      abilities:
+        - 人类适应力
+        - 社会工程
+      available_classes:
+        - hacker
+        - soldier
+        - fixer
+        - techie
+    - id: cyborg
+      name: 改造人
+      description: 经过义体改造的半机械人。用血肉换取力量，在钢铁中寻找人性。你的身体一半是原生的，一半是工业制品。
+      bonuses:
+        # strength → str
+        str: 1
+        # vitality → con
+        con: 1
+      penalties:
+        # charisma → cha
+        cha: -1
+      abilities:
+        - 义体强化
+        - 内置HUD
+      available_classes:
+        - soldier
+        - hacker
+        - techie
+    - id: android
+      name: 仿生人
+      description: 高度拟真的人造生命体。拥有超越人类的计算能力，却缺少真正的情感。你是科技的奇迹，也是伦理的灰色地带。
+      bonuses:
+        # intelligence → int
+        int: 2
+      penalties:
+        # charisma → cha
+        cha: -1
+      abilities:
+        - 数据接口
+        - 快速学习
+      available_classes:
+        - hacker
+        - techie
+    - id: mutant
+      name: 变异者
+      description: 辐射变异的幸存者。被社会排斥，却拥有常人不具备的异能。新东京的地下城是你的庇护所，也是你的牢笼。
+      bonuses:
+        # vitality → con
+        con: 2
+      penalties:
+        # charisma → cha
+        cha: -2
+      abilities:
+        - 辐射抗性
+        - 异能觉醒
+      available_classes:
+        - soldier
+        - techie
+
+  classes:
+    - id: hacker
+      name: 黑客
+      description: 网络入侵专家。在赛博空间中如鱼得水，能够攻破任何防火墙。你的武器是代码，你的战场是网络。
+      primary_attributes:
+        # intelligence → int
+        - int
+      hit_die: d6
+      skill_proficiencies:
+        - hacking
+        - electronics
+        - investigation
+      starting_equipment:
+        - cyberdeck
+        - data-shard
+        - hacking-module
+    - id: soldier
+      name: 士兵
+      description: 重火力战斗专家。无论是街头火拼还是企业战争，你都是最可靠的战力。你的身体就是武器，你的意志就是弹药。
+      primary_attributes:
+        # strength → str
+        - str
+        # vitality → con
+        - con
+      hit_die: d10
+      skill_proficiencies:
+        - firearms
+        - athletics
+        - intimidation
+      starting_equipment:
+        - assault-rifle
+        - combat-armor
+        - medkit
+    - id: fixer
+      name: 掮客
+      description: 情报交易和谈判高手。你认识所有人，所有人也认识你。在新东京，信息比子弹更有杀伤力。
+      primary_attributes:
+        # charisma → cha
+        - cha
+        # intelligence → int
+        - int
+      hit_die: d8
+      skill_proficiencies:
+        - persuasion
+        - streetwise
+        - deception
+      starting_equipment:
+        - smartphone
+        - concealed-pistol
+        - contacts-list
+    - id: techie
+      name: 技师
+      description: 机械和无人机操控专家。你能让任何机器为你所用，从纳米机器人到重型机甲。在你的手中，废铁也能变成致命武器。
+      primary_attributes:
+        # intelligence → int
+        - int
+        # agility → dex
+        - dex
+      hit_die: d8
+      skill_proficiencies:
+        - engineering
+        - drone-operation
+        - crafting
+      starting_equipment:
+        - drone-kit
+        - tool-set
+        - tech-visor
+
+  backgrounds:
+    - id: corporate
+      name: 企业精英
+      description: 曾是大型企业的高管。你习惯了权力和奢华，直到某天一切化为乌有。被企业抛弃的你，带着内部知识和复仇的渴望来到了地下世界。
+      skill_proficiencies:
+        - persuasion
+        - bureaucracy
+      languages:
+        - corporate-jargon
+      equipment:
+        - designer-suit
+        - corporate-id
+        - expense-account
+      feature: 企业人脉 - 你仍然保留着一些企业内部的关系
+      attribute_bonuses:
+        # charisma → cha
+        cha: 1
+    - id: street
+      name: 街头混混
+      description: 在贫民窟摸爬滚打。你学会了用拳头和智慧在底层生存。暗巷是你的主场，帮派是你的家人。
+      skill_proficiencies:
+        - streetwise
+        - survival
+      languages:
+        - street-slang
+      equipment:
+        - tattered-jacket
+        - switchblade
+        - stash-map
+      feature: 街头智慧 - 你了解地下世界的每一条规则
+      attribute_bonuses:
+        # agility → dex
+        dex: 1
+    - id: middle-class
+      name: 中产市民
+      description: 普通的城市居民。你曾经拥有体面的工作和温馨的家，直到一场企业战争摧毁了一切。现在你只想要活下去，顺便讨个公道。
+      skill_proficiencies:
+        - computers
+        - driving
+      languages: []
+      equipment:
+        - casual-clothes
+        - personal-link
+        - savings-chip
+      feature: 市民身份 - 你拥有合法的身份和信用记录
+      attribute_bonuses:
+        # intelligence → int
+        int: 1
+    - id: ex-military
+      name: 退役军人
+      description: 曾在军队服役。战场上的经历让你变得坚韧，也留下了无法愈合的伤疤。退役后你成了佣兵，因为除了战斗，你不知道还能做什么。
+      skill_proficiencies:
+        - firearms
+        - tactics
+      languages:
+        - military-code
+      equipment:
+        - dog-tags
+        - old-uniform
+        - service-weapon
+      feature: 军事训练 - 你对武器和战术有着专业的了解
+      attribute_bonuses:
+        # vitality → con
+        con: 1
+
+  attributes:
+    # strength → str
+    - id: str
+      name: 力量
+      abbreviation: STR
+      description: 物理攻击和负重，影响近战伤害和义体功率
+      min_value: 1
+      default_value: 10
+      max_value: 20
+    # agility → dex
+    - id: dex
+      name: 敏捷
+      abbreviation: DEX
+      description: 反应速度和闪避，影响先攻和远程攻击
+      min_value: 1
+      default_value: 10
+      max_value: 20
+    # intelligence → int
+    - id: int
+      name: 智力
+      abbreviation: INT
+      description: 黑客能力和逻辑推理，影响赛博空间操作和技术判定
+      min_value: 1
+      default_value: 10
+      max_value: 20
+    # vitality → con
+    - id: con
+      name: 体质
+      abbreviation: CON
+      description: 生命值和耐力，影响义体兼容性和抗性
+      min_value: 1
+      default_value: 10
+      max_value: 20
+    # charisma → cha
+    - id: cha
+      name: 魅力
+      abbreviation: CHA
+      description: 社交影响力和谈判，影响情报获取和关系建立
+      min_value: 1
+      default_value: 10
+      max_value: 20
+    # 新增: wis (感知)
+    - id: wis
+      name: 感知
+      abbreviation: WIS
+      description: 洞察力和判断力，影响侦查和警觉判定
+      min_value: 1
+      default_value: 10
+      max_value: 20
+
+  custom_options: []
+
+  age_mode: number
+  age_number:
+    min: 18
+    max: 80
+    default: 28
+
+game_rules:
+  combat_system:
+    type: real_time
+    initiative_type: dex  # agility → dex
+    custom_initiative: ""
+    action_points: 2
+    critical_hit:
+      threshold: 18
+      multiplier: 2.5
+    flee:
+      base_chance: 0.4
+      per_dead_enemy_bonus: 0.15
+    defend:
+      damage_reduction: 0.3
+    damage_formula:
+      attack_contribution: 0.6
+      defense_reduction: 0.3
+      level_bonus_factor: 1.5
+      variance_min: 0.85
+      variance_range: 0.3
+    enemy_ai:
+      skill_use_chance: 0.4
+    defaults:
+      potion_heal: 40
+      mana_potion_restore: 25
+      skill_mana_cost: 12
+      skill_damage_multiplier: 1.8
+      skill_base_damage_factor: 2.2
+      attribute_fallback: 10
+      enemy_speed_factor: 2
+  derived_attribute_formulas:
+    maxHealth:
+      base: 80
+      coefficients: { physical_power: 3, endurance: 12, mental_power: 2 }
+    maxMana:
+      base: 40
+      coefficients: { mental_power: 12, perception: 4, endurance: 1 }
+    attack:
+      base: 8
+      coefficients: { physical_power: 2.5, agility: 1, mental_power: 0.3 }
+    defense:
+      base: 4
+      coefficients: { endurance: 2, physical_power: 1, agility: 0.3 }
+    magicAttack:
+      base: 6
+      coefficients: { mental_power: 3, perception: 0.5, influence: 0.2 }
+    magicDefense:
+      base: 3
+      coefficients: { mental_power: 1.5, endurance: 0.5, perception: 0.2 }
+    speed:
+      base: 12
+      coefficients: { agility: 2, influence: 0.5, physical_power: 0.2 }
+    critRate:
+      base: 0.06
+      coefficients: { agility: 0.012, perception: 0.004, influence: 0.003 }
+      max: 0.6
+    critDamage:
+      base: 1.4
+      coefficients: { physical_power: 0.025, agility: 0.01, influence: 0.008 }
+    dodgeRate:
+      base: 0.06
+      coefficients: { agility: 0.01, perception: 0.003 }
+      max: 0.35
+    blockRate:
+      base: 0.88
+      coefficients: { agility: 0.006, perception: 0.004, mental_power: 0.001 }
+  skill_system:
+    max_level: 15
+    cooldown_system: time
+    upgrade_cost:
+      base: 200
+      multiplier: 1.8
+  inventory_system:
+    max_slots: 30
+    weight_system: false
+    stack_sizes:
+      ammo: 99
+      chip: 10
+      consumable: 5
+    equipment_slots:
+      - id: main_hand
+        name: 主手
+        icon: ⚔
+        accepted_item_types:
+          - weapon
+      - id: body
+        name: 身体
+        icon: 🛡
+        accepted_item_types:
+          - armor
+      - id: head
+        name: 头部
+        icon: 🪖
+        accepted_item_types:
+          - armor
+          - accessory
+      - id: hands
+        name: 手部
+        icon: 🧤
+        accepted_item_types:
+          - armor
+          - accessory
+      - id: accessory
+        name: 饰品
+        icon: 💍
+        capacity: 2
+        accepted_item_types:
+          - accessory
+  quest_system:
+    max_active: 5
+    time_system: true
+    fail_conditions:
+      - timeout
+      - alert-triggered
+      - npc-death
+  currency_system:
+    id: credit
+    name: 信用点
+    icon: 💳
+  custom_rules:
+    - name: 义体过热
+      description: 使用义体能力过多会导致过热，需要冷却时间
+    - name: 网络入侵
+      description: 黑客可以在战斗中入侵敌方设备获得优势
+
+ai_constraints:
+  tone: dark
+  custom_tone: 赛博朋克黑色电影风格
+  content_rating: mature
+  prohibited_topics: []
+  required_elements:
+    - conspiracy
+    - moral-dilemma
+    - technology-vs-humanity
+  ai_behavior:
+    response_style: noir
+    detail_level: detailed
+    player_agency: high
+
+starting_scene:
+  location: neon-district
+  description: 雨水打湿了霓虹灯闪烁的街道，你站在阴暗的小巷中。远处传来警笛声，头顶的全息广告不断播放着荒坂重工的宣传语。你的数据终端突然震动——一条加密信息：「如果你想知道真相，来第13区的旧仓库。——V」
+  location_description: 霓虹区，新东京最混乱的街区之一，雇佣兵与情报贩子的聚集地
+  atmosphere: 阴暗潮湿，霓虹灯永不熄灭
+
+  sub_locations:
+    - id: neon-alley
+      name: 霓虹小巷
+      description: 阴暗潮湿的小巷，墙壁上涂满了荧光涂鸦，头顶的全息广告牌不断闪烁。雨水顺着锈蚀的管道滴落，空气中弥漫着合成食品的油腻气味和电路烧焦的焦糊味。这里是新东京地下世界的入口，每个转角都可能藏着危险或机遇。
+      type: alley
+      is_starting: true
+      danger_level: 1
+
+    - id: merc-hq
+      name: 佣兵总部大厅
+      description: 一座改造过的旧工厂大厅，天花板上悬挂着巨大的全息任务板，不断滚动着各类委托信息。大厅中央是一张磨损的金属长桌，佣兵们在此交换情报和分配任务。角落里的自动售货机出售从兴奋剂到加密芯片的一切。
+      type: headquarters
+      danger_level: 0
+      services:
+        - type: mission_board
+          name: 委托任务板
+        - type: vending
+          name: 自动售货机
+
+    - id: armory
+      name: 装备库
+      description: 总部的地下装备库，铁架上整齐排列着从手枪到重机枪的各类武器，防弹衣和战术装备按型号分类存放。空气中弥漫着枪油和金属的气味，角落里有一台3D打印机正在缓慢地制造定制零件。
+      type: workshop
+      danger_level: 0
+      services:
+        - type: weapon_shop
+          name: 武器装备交易
+        - type: repair
+          name: 装备维修与改装
+
+    - id: intel-room
+      name: 情报室
+      description: 一间被厚重铅板屏蔽的密室，墙壁上嵌满了显示屏，实时监控着新东京各区的数据流。中央的全息投影桌上漂浮着三维城市地图，红色标记点标注着最新的事件和委托目标。这里是佣兵总部的神经中枢。
+      type: intel_center
+      danger_level: 0
+      services:
+        - type: information
+          name: 情报交易
+        - type: network_access
+          name: 暗网接入
+
+    - id: neon-exit
+      name: 街区出口
+      description: 霓虹区与外界的交界处，一道锈迹斑斑的铁门上方闪烁着"出口"的全息标识。门口站着两个义体改造的守卫，他们的机械眼扫视着每一个进出的人。从这里可以前往新东京的其他区域。
+      type: gate
+      danger_level: 0
+      connections:
+        - warehouse-entrance
+        - cafe-main
+
+  npcs:
+    - id: fixer-viper
+      location: neon-alley
+      name: 毒蛇
+      title: 地下情报贩子
+      description: 一个永远戴着墨镜的神秘人物，据说能搞到任何信息。在新东京的地下世界，毒蛇的名字就是信誉的保证。
+      role: quest_giver
+      race: human
+      appearance: 黑色风衣，反光墨镜，手指上满是银色义体接口
+      personality: 狡猾、谨慎、利益至上
+      dialogue:
+        - 你有胆量来找我，说明你确实想知道真相。
+        - 这条信息值500信用点，但你看起来付不起......算了，就当是投资。
+        - 荒坂重工在上周进行了一次秘密实验，之后整个第13区就被封锁了。
+      stats:
+        level: 8
+        hp: 60
+        attack: 15
+        defense: 10
+        speed: 8
+        magic: 5
+      services:
+        - quest
+        - information
+      custom_data: {}
+  items:
+    - id: stim-pack
+      name: 兴奋剂
+      description: 一次性注射器，暂时提升反应速度。黑市上最常见的战斗辅助药剂，副作用是使用后会头痛欲裂。
+      category: consumable
+      quality: common
+      stats:
+        # agility_boost → dex_boost
+        dex_boost: 2
+      effects:
+        - type: buff
+          value: 2
+          duration: 3
+      value:
+        buy: 100
+        sell: 50
+        currency: credit
+      quantity: 1
+      custom_data:
+        displayType: 消耗品
+        displayRarity: 普通
+        displayStats:
+          - key: dex_boost
+            label: 敏捷提升
+            value: "+2"
+        displayEffects:
+          - 敏捷+2持续3回合
+          - 使用后头痛副作用
+        tags: [consumable, buff, combat, stim]
+        locale: zh-CN
+  quests:
+    - id: main-quest-cp1
+      name: 加密信号
+      description: 追踪神秘的加密信息来源，揭开荒坂重工秘密实验的真相。
+      type: main
+      objectives:
+        - id: obj-cp1
+          description: 前往第13区旧仓库
+          type: explore
+          target: warehouse-13
+          required: 1
+        - id: obj-cp2
+          description: 调查荒坂重工的秘密实验
+          type: investigate
+          target: arasaka-lab
+          required: 1
+      rewards:
+        - type: experience
+          value: 200
+        - type: credit
+          value: 500
+      giver: anonymous
+      time_limit: 0
+      custom_data: {}
+  explorable_areas:
+    - id: warehouse-13
+      name: 第13区旧仓库
+      description: 废弃的工业仓库群，据说隐藏着不可告人的秘密。入口处有企业安保系统的痕迹，空气中弥漫着化学药品的刺鼻气味。
+      type: building
+      danger_level: 4
+      atmosphere: 阴森压抑，金属与化学药品的气味交织
+      sub_locations:
+        - id: warehouse-entrance
+          name: 仓库入口
+          description: 锈迹斑斑的铁门半开着，门框上残留着荒坂重工的安保系统扫描器，红色指示灯已经熄灭。地面上有新鲜的轮胎痕迹，说明最近有人来过。铁门旁的墙壁上用荧光喷漆写着"禁止入内"的警告。
+          type: entrance
+          danger_level: 2
+          connections:
+            - neon-exit
+        - id: warehouse-interior
+          name: 仓库内部
+          description: 巨大的仓库空间，堆满了标注着荒坂重工标志的集装箱。中央有一台仍在运行的服务器阵列，全息屏幕上闪烁着加密数据流。角落里有一张临时搭建的手术台，上面残留着不明液体。头顶的工业灯管忽明忽暗，投下不安的影子。
+          type: laboratory
+          danger_level: 4
+        - id: warehouse-basement
+          name: 仓库地下室
+          description: 隐藏在地板下的秘密实验室，需要通过生物识别才能进入。冰冷的金属走廊通向一间密封的房间，房间里保存着荒坂重工秘密实验的完整记录和样本。空气中弥漫着消毒水和某种说不出的甜腥味，墙壁上的隔音棉暗示这里曾经传出过不该被听到的声音。
+          type: secret_lab
+          danger_level: 5
+    - id: dark-net-cafe
+      name: 暗网咖啡馆
+      description: 黑客们的聚集地，隐藏在一条不起眼的巷子深处。从外面看只是一家破旧的茶馆，但地下层却是新东京最活跃的暗网节点之一。
+      type: social
+      danger_level: 1
+      atmosphere: 昏暗嘈杂，键盘敲击声与低语交织
+      sub_locations:
+        - id: cafe-main
+          name: 咖啡馆大厅
+          description: 昏暗的咖啡馆大厅，每张桌子上都嵌着加密终端。墙上贴满了用隐形墨水书写的留言条，只有戴上特殊滤镜才能阅读。空气中混合着廉价咖啡和电子烟的气味，角落里的老式点唱机播放着失真的爵士乐。这里是信息交易的温床，每个低头敲键盘的人都可能是情报贩子。
+          type: social
+          danger_level: 1
+          connections:
+            - neon-exit
+        - id: cafe-backroom
+          name: 咖啡馆密室
+          description: 隐藏在书架后的密室，需要特定的暗号才能进入。密室中央是一台量子加密服务器，直接连接着新东京的暗网骨干节点。墙壁上排列着数十块显示屏，实时显示着各区的监控画面和数据流量。这里是暗网咖啡馆的核心，也是最危险的地方——知道这个房间存在的人，要么是核心成员，要么已经死了。
+          type: intel_center
+          danger_level: 3
+
+initial_data:
+  skills:
+    hacker:
+      - system-breach
+      - data-analysis
+      - firewall-pierce
+      - quick-hack
+      - daemon-deploy
+    soldier:
+      - tactical-combat
+      - heavy-weapons
+      - suppressive-fire
+      - combat-stim
+      - grenade-toss
+    fixer:
+      - negotiation
+      - street-knowledge
+      - information-broker
+      - bribe
+      - safe-house
+    techie:
+      - drone-control
+      - cybernetic-repair
+      - device-hack
+      - turret-deploy
+      - emp-blast
+  items_by_class:
+    hacker:
+      - item_id: cyberdeck
+        quantity: 1
+      - item_id: data-shard
+        quantity: 3
+      - item_id: neural-interface
+        quantity: 1
+      - item_id: encryption-module
+        quantity: 1
+      - item_id: energy-drink
+        quantity: 2
+    soldier:
+      - item_id: assault-rifle
+        quantity: 1
+      - item_id: combat-armor
+        quantity: 1
+      - item_id: medkit
+        quantity: 1
+      - item_id: frag-grenade
+        quantity: 2
+      - item_id: combat-helmet
+        quantity: 1
+      - item_id: tactical-gloves
+        quantity: 1
+    fixer:
+      - item_id: smartphone
+        quantity: 1
+      - item_id: concealed-pistol
+        quantity: 1
+      - item_id: contacts-list
+        quantity: 1
+      - item_id: bribe-money
+        quantity: 1
+      - item_id: disguise-kit
+        quantity: 1
+      - item_id: energy-drink
+        quantity: 2
+    techie:
+      - item_id: drone-kit
+        quantity: 1
+      - item_id: tool-set
+        quantity: 1
+      - item_id: tech-visor
+        quantity: 1
+      - item_id: spare-parts
+        quantity: 3
+      - item_id: emp-device
+        quantity: 1
+      - item_id: welding-goggles
+        quantity: 1
+  items_by_background:
+    corporate:
+      - item_id: designer-suit
+        quantity: 1
+      - item_id: corporate-id
+        quantity: 1
+      - item_id: expense-account
+        quantity: 1
+    street:
+      - item_id: tattered-jacket
+        quantity: 1
+      - item_id: switchblade
+        quantity: 1
+      - item_id: stash-map
+        quantity: 1
+    middle-class:
+      - item_id: casual-clothes
+        quantity: 1
+      - item_id: savings-chip
+        quantity: 1
+      - item_id: personal-link
+        quantity: 1
+    ex-military:
+      - item_id: dog-tags
+        quantity: 1
+      - item_id: service-weapon
+        quantity: 1
+      - item_id: old-uniform
+        quantity: 1
+      - item_id: ration-pack
+        quantity: 1
+  equipment:
+    hacker:
+      weapon: cyberdeck
+      armor: casual-clothes
+      accessory:
+        - neural-interface
+        - encryption-module
+    soldier:
+      weapon: assault-rifle
+      armor: combat-armor
+      head: combat-helmet
+      hands: tactical-gloves
+    fixer:
+      weapon: concealed-pistol
+      armor: designer-suit
+      accessory:
+        - contacts-list
+        - bribe-money
+    techie:
+      weapon: drone-kit
+      armor: tech-visor
+      head: welding-goggles
+      accessory: emp-device
+  gold:
+    corporate: 5000
+    street: 200
+    middle-class: 1000
+    ex-military: 800
+
+skills:
+  - id: system-breach
+    name: 系统入侵
+    description: 通过赛博终端强行突破目标网络防火墙，在敌方系统中植入恶意代码造成直接伤害。你的手指在虚拟键位上飞舞，防火墙像纸一样被撕碎。
+    category: attack
+    element: arcane
+    target_type: single
+    cost:
+      mana: 15
+    damage:
+      base: 25
+      scaling:
+        attribute: int
+        multiplier: 2.5
+    effects:
+      - type: cyber_damage
+        value: 25
+        duration: 0
+      - type: system_glitch
+        value: 10
+        duration: 2
+    cooldown: 3
+    range: 30
+    icon: 💻
+    custom_data:
+      class: hacker
+      displayType: 黑客攻击
+      displayEffects:
+        - 造成25点赛博伤害，目标系统故障2回合
+      tags: [hacker, attack, hacking, cyber]
+      locale: zh-CN
+
+  - id: data-analysis
+    name: 数据解析
+    description: 实时分析战场数据流，标记敌方弱点并预测行动轨迹。在你眼中，战场是一张不断更新的数据图谱，每个敌人都是一组待解读的变量。
+    category: utility
+    element: arcane
+    target_type: self
+    cost:
+      mana: 10
+    damage: {}
+    effects:
+      - type: buff
+        attribute: wis
+        value: 3
+        duration: 4
+      - type: weakness_reveal
+        value: 20
+        duration: 4
+    cooldown: 5
+    range: 0
+    icon: 📊
+    custom_data:
+      class: hacker
+      displayType: 辅助技能
+      displayEffects:
+        - 感知+3持续4回合，揭示敌方弱点+20%
+      tags: [hacker, utility, analysis, intel]
+      locale: zh-CN
+
+  - id: firewall-pierce
+    name: 防火墙穿透
+    description: 集中算力发动穿透式入侵，无视目标防御层直接攻击核心系统。就像用热刀切黄油——没有什么防火墙能挡住一个决心已定的黑客。
+    category: attack
+    element: arcane
+    target_type: single
+    cost:
+      mana: 25
+    damage:
+      base: 40
+      scaling:
+        attribute: int
+        multiplier: 3.0
+      armor_pierce: 50
+    effects:
+      - type: cyber_damage
+        value: 40
+        duration: 0
+      - type: defense_shred
+        value: 30
+        duration: 3
+    cooldown: 5
+    range: 25
+    icon: 🔥
+    custom_data:
+      class: hacker
+      displayType: 黑客攻击
+      displayEffects:
+        - 造成40点穿透赛博伤害，降低目标防御30%持续3回合
+      tags: [hacker, attack, piercing, firewall]
+      locale: zh-CN
+
+  - id: quick-hack
+    name: 快速骇入
+    description: 以极快速度注入干扰代码，令目标义体系统短暂失控。不需要完美入侵，只需要让对方的瞄准系统偏移几度——在枪战中，这就够了。
+    category: debuff
+    element: arcane
+    target_type: single
+    cost:
+      mana: 12
+    damage: {}
+    effects:
+      - type: debuff
+        attribute: dex
+        value: 3
+        duration: 3
+      - type: blockRate_reduction
+        value: 25
+        duration: 3
+    cooldown: 2
+    range: 20
+    icon: ⚡
+    custom_data:
+      class: hacker
+      displayType: 减益技能
+      displayEffects:
+        - 目标敏捷-3持续3回合，命中率降低25%
+      tags: [hacker, debuff, quick, disruption]
+      locale: zh-CN
+
+  - id: daemon-deploy
+    name: 守护进程部署
+    description: 在赛博空间中部署自主运行的守护程序，持续监控并自动反击入侵者。你的数字守卫从不睡觉，从不疲倦，从不犹豫。
+    category: buff
+    element: arcane
+    target_type: self
+    cost:
+      mana: 20
+    damage: {}
+    effects:
+      - type: buff
+        attribute: int
+        value: 2
+        duration: 5
+      - type: auto_counter
+        value: 15
+        duration: 5
+      - type: cyber_shield
+        value: 20
+        duration: 5
+    cooldown: 6
+    range: 0
+    icon: 🛡️
+    custom_data:
+      class: hacker
+      displayType: 增益技能
+      displayEffects:
+        - 智力+2持续5回合，自动反击15点伤害，赛博护盾20点
+      tags: [hacker, buff, daemon, shield, counter]
+      locale: zh-CN
+
+  - id: tactical-combat
+    name: 战术格斗
+    description: 结合军用格斗术与义体强化的近身战斗技术，每一拳都精准打击要害。在暗巷里，拳头比键盘更直接。
+    category: attack
+    element: physical
+    target_type: single
+    cost:
+      mana: 8
+    damage:
+      base: 20
+      scaling:
+        - attribute: str
+          multiplier: 2.0
+        - attribute: dex
+          multiplier: 1.0
+    effects:
+      - type: physical_damage
+        value: 20
+        duration: 0
+      - type: stagger
+        value: 1
+        duration: 1
+    cooldown: 1
+    range: 2
+    icon: 👊
+    custom_data:
+      class: soldier
+      displayType: 物理攻击
+      displayEffects:
+        - 造成20点物理伤害，击退1回合
+      tags: [soldier, attack, melee, tactical]
+      locale: zh-CN
+
+  - id: heavy-weapons
+    name: 重火力打击
+    description: 使用重型武器进行毁灭性火力覆盖，弹幕如暴雨般倾泻。当谈判失败，当潜行暴露，当一切体面的手段都用尽——就该让枪炮来说话了。
+    category: attack
+    element: physical
+    target_type: aoe
+    cost:
+      mana: 30
+    damage:
+      base: 45
+      scaling:
+        attribute: str
+        multiplier: 3.0
+      aoe_radius: 6
+    effects:
+      - type: aoe_damage
+        value: 45
+        radius: 6
+        duration: 0
+      - type: stagger
+        value: 2
+        duration: 2
+    cooldown: 6
+    range: 40
+    icon: 💣
+    custom_data:
+      class: soldier
+      displayType: 范围攻击
+      displayEffects:
+        - 范围物理伤害45，击退2回合，影响半径6m
+      tags: [soldier, attack, heavy, aoe, explosive]
+      locale: zh-CN
+
+  - id: suppressive-fire
+    name: 压制射击
+    description: 持续倾泻火力封锁敌方行动区域，迫使对手无法有效还击。子弹不一定非要命中——只要让对方不敢抬头，你就已经赢了。
+    category: debuff
+    element: physical
+    target_type: enemy
+    cost:
+      mana: 18
+    damage: {}
+    effects:
+      - type: debuff
+        attribute: dex
+        value: 4
+        duration: 3
+      - type: action_denial
+        value: 30
+        duration: 3
+    cooldown: 4
+    range: 35
+    icon: 🔫
+    custom_data:
+      class: soldier
+      displayType: 减益技能
+      displayEffects:
+        - 敌方敏捷-4持续3回合，30%概率无法行动
+      tags: [soldier, debuff, suppressive, pinning]
+      locale: zh-CN
+
+  - id: combat-stim
+    name: 战斗兴奋剂
+    description: 注射军用级纳米兴奋剂，瞬间激发身体潜能。疼痛消失，反应加速，世界在你眼中慢了下来。代价是药效消退后的虚脱——但那是以后的事。
+    category: buff
+    element: physical
+    target_type: self
+    cost:
+      mana: 15
+    damage: {}
+    effects:
+      - type: buff
+        attribute: str
+        value: 3
+        duration: 4
+      - type: buff
+        attribute: dex
+        value: 2
+        duration: 4
+      - type: debuff
+        attribute: con
+        value: 2
+        duration: 3
+        delay: 4
+    cooldown: 5
+    range: 0
+    icon: 💉
+    custom_data:
+      class: soldier
+      displayType: 增益技能
+      displayEffects:
+        - 力量+3、敏捷+2持续4回合，药效后体质-2持续3回合
+      tags: [soldier, buff, stim, temporary]
+      locale: zh-CN
+
+  - id: grenade-toss
+    name: 手雷投掷
+    description: 精准投掷破片手雷，在目标区域制造毁灭性爆炸。弹片横飞，硝烟弥漫——这就是新东京的交响乐。
+    category: attack
+    element: physical
+    target_type: aoe
+    cost:
+      mana: 20
+    damage:
+      base: 35
+      scaling:
+        - attribute: str
+          multiplier: 1.5
+        - attribute: dex
+          multiplier: 1.0
+      aoe_radius: 5
+    effects:
+      - type: aoe_damage
+        value: 35
+        radius: 5
+        duration: 0
+      - type: bleed
+        value: 5
+        duration: 3
+    cooldown: 3
+    range: 20
+    icon: 🧨
+    custom_data:
+      class: soldier
+      displayType: 范围攻击
+      displayEffects:
+        - 范围物理伤害35，流血5持续3回合，影响半径5m
+      tags: [soldier, attack, grenade, aoe, explosive]
+      locale: zh-CN
+
+  - id: negotiation
+    name: 谈判施压
+    description: 运用话术和心理战术在谈判中占据上风，让对方在不知不觉中接受你的条件。在新东京，最锋利的武器不是刀，而是舌头。
+    category: utility
+    element: physical
+    target_type: single
+    cost:
+      mana: 10
+    damage: {}
+    effects:
+      - type: buff
+        attribute: cha
+        value: 3
+        duration: 4
+      - type: intimidation
+        value: 20
+        duration: 4
+    cooldown: 3
+    range: 10
+    icon: 🗣️
+    custom_data:
+      class: fixer
+      displayType: 辅助技能
+      displayEffects:
+        - 魅力+3持续4回合，威慑+20
+      tags: [fixer, utility, negotiation, social]
+      locale: zh-CN
+
+  - id: street-knowledge
+    name: 街头情报
+    description: 调动地下世界的情报网络，获取关键战场信息。每个暗巷都有眼睛，每个酒馆都有耳朵——而你认识它们的主人。
+    category: utility
+    element: arcane
+    target_type: self
+    cost:
+      mana: 8
+    damage: {}
+    effects:
+      - type: buff
+        attribute: wis
+        value: 4
+        duration: 5
+      - type: intel_reveal
+        value: 25
+        duration: 5
+    cooldown: 4
+    range: 0
+    icon: 🕵️
+    custom_data:
+      class: fixer
+      displayType: 辅助技能
+      displayEffects:
+        - 感知+4持续5回合，情报揭示+25%
+      tags: [fixer, utility, intel, street]
+      locale: zh-CN
+
+  - id: information-broker
+    name: 情报交易
+    description: 出售或利用关键情报削弱敌方，让对手的秘密成为你的武器。在这个城市里，每个人都有不想被公开的过去——而你恰好知道。
+    category: debuff
+    element: arcane
+    target_type: single
+    cost:
+      mana: 15
+    damage: {}
+    effects:
+      - type: debuff
+        attribute: cha
+        value: 3
+        duration: 4
+      - type: morale_damage
+        value: 20
+        duration: 4
+      - type: weakness_expose
+        value: 15
+        duration: 4
+    cooldown: 4
+    range: 15
+    icon: 📡
+    custom_data:
+      class: fixer
+      displayType: 减益技能
+      displayEffects:
+        - 目标魅力-3持续4回合，士气伤害20，暴露弱点15%
+      tags: [fixer, debuff, intel, blackmail]
+      locale: zh-CN
+
+  - id: bribe
+    name: 贿赂收买
+    description: 用信用点收买敌方阵营中的动摇者，使其暂时倒戈或放弃抵抗。在这个城市，忠诚是有价格的——而且通常比你想象的便宜。
+    category: utility
+    element: physical
+    target_type: single
+    cost:
+      mana: 12
+      credit: 200
+    damage: {}
+    effects:
+      - type: charm
+        value: 30
+        duration: 3
+      - type: action_skip_chance
+        value: 25
+        duration: 3
+    cooldown: 5
+    range: 10
+    icon: 💰
+    custom_data:
+      class: fixer
+      displayType: 辅助技能
+      displayEffects:
+        - 30%概率魅惑目标，25%概率令目标跳过行动，持续3回合
+      tags: [fixer, utility, bribe, charm]
+      locale: zh-CN
+
+  - id: safe-house
+    name: 安全屋
+    description: 启用预先布置的安全屋资源，为队伍提供紧急医疗和补给。在城市的每个角落，你都留了后手——这就是掮客的生存之道。
+    category: healing
+    element: physical
+    target_type: ally
+    cost:
+      mana: 20
+    damage: {}
+    effects:
+      - type: heal
+        value: 40
+        duration: 0
+      - type: buff
+        attribute: con
+        value: 2
+        duration: 4
+      - type: stress_relief
+        value: 15
+        duration: 0
+    cooldown: 6
+    range: 5
+    icon: 🏠
+    custom_data:
+      class: fixer
+      displayType: 治疗技能
+      displayEffects:
+        - 恢复40点生命值，体质+2持续4回合，缓解压力15
+      tags: [fixer, healing, safehouse, support]
+      locale: zh-CN
+
+  - id: drone-control
+    name: 无人机操控
+    description: 遥控攻击型无人机对目标实施精确打击，从死角发起致命攻击。天空中的蜂群听从你的指挥，而你站在安全的阴影里。
+    category: attack
+    element: arcane
+    target_type: single
+    cost:
+      mana: 14
+    damage:
+      base: 22
+      scaling:
+        - attribute: int
+          multiplier: 2.0
+        - attribute: dex
+          multiplier: 1.0
+    effects:
+      - type: drone_damage
+        value: 22
+        duration: 0
+      - type: flank_bonus
+        value: 15
+        duration: 0
+    cooldown: 2
+    range: 35
+    icon: 🛸
+    custom_data:
+      class: techie
+      displayType: 科技攻击
+      displayEffects:
+        - 无人机造成22点伤害，侧翼加成15%
+      tags: [techie, attack, drone, tech]
+      locale: zh-CN
+
+  - id: cybernetic-repair
+    name: 义体修复
+    description: 使用纳米修复剂和现场焊接技术修复义体损伤，恢复战斗能力。你的工具箱就是移动手术室，而每一个改造人都是你的病人。
+    category: healing
+    element: arcane
+    target_type: self
+    cost:
+      mana: 18
+    damage: {}
+    effects:
+      - type: heal
+        value: 35
+        duration: 0
+      - type: repair_cybernetic
+        value: 20
+        duration: 0
+      - type: buff
+        attribute: con
+        value: 1
+        duration: 5
+    cooldown: 4
+    range: 0
+    icon: 🔧
+    custom_data:
+      class: techie
+      displayType: 治疗技能
+      displayEffects:
+        - 恢复35点生命值，修复义体20点，体质+1持续5回合
+      tags: [techie, healing, repair, cybernetic]
+      locale: zh-CN
+
+  - id: device-hack
+    name: 设备骇入
+    description: 远程入侵敌方电子设备和义体系统，使其功能紊乱甚至反噬使用者。你的代码是病毒，你的信号是毒药，你的意志通过电路延伸。
+    category: debuff
+    element: arcane
+    target_type: object
+    cost:
+      mana: 16
+    damage: {}
+    effects:
+      - type: device_malfunction
+        value: 30
+        duration: 3
+      - type: debuff
+        attribute: int
+        value: 2
+        duration: 3
+      - type: feedback_damage
+        value: 10
+        duration: 2
+    cooldown: 4
+    range: 25
+    icon: 📱
+    custom_data:
+      class: techie
+      displayType: 减益技能
+      displayEffects:
+        - 设备故障30%持续3回合，智力-2，反馈伤害10持续2回合
+      tags: [techie, debuff, hack, device, electronic]
+      locale: zh-CN
+
+  - id: turret-deploy
+    name: 炮台部署
+    description: 快速组装并部署自动炮台，在指定位置形成持续火力压制。你从废铁中拼装出死神，然后看着它忠实地收割。
+    category: attack
+    element: arcane
+    target_type: self_aoe
+    cost:
+      mana: 25
+    damage:
+      base: 18
+      scaling:
+        attribute: int
+        multiplier: 1.5
+      aoe_radius: 8
+    effects:
+      - type: turret_damage
+        value: 18
+        radius: 8
+        duration: 4
+      - type: zone_control
+        value: 20
+        duration: 4
+    cooldown: 7
+    range: 15
+    icon: ⚙️
+    custom_data:
+      class: techie
+      displayType: 范围攻击
+      displayEffects:
+        - 炮台每回合造成18点伤害持续4回合，区域控制20，影响半径8m
+      tags: [techie, attack, turret, deploy, aoe]
+      locale: zh-CN
+
+  - id: emp-blast
+    name: 电磁脉冲
+    description: 释放局部电磁脉冲波，瘫痪范围内所有电子设备和义体系统。在脉冲波及的瞬间，霓虹灯熄灭，义体停摆，世界回归原始的黑暗。
+    category: attack
+    element: arcane
+    target_type: aoe
+    cost:
+      mana: 28
+    damage:
+      base: 30
+      scaling:
+        attribute: int
+        multiplier: 2.0
+      aoe_radius: 10
+      bonus_vs_cyborg: 20
+    effects:
+      - type: aoe_damage
+        value: 30
+        radius: 10
+        duration: 0
+      - type: disable_electronics
+        value: 2
+        duration: 3
+      - type: cyborg_bonus_damage
+        value: 20
+        duration: 0
+    cooldown: 8
+    range: 12
+    icon: ⚡
+    custom_data:
+      class: techie
+      displayType: 范围攻击
+      displayEffects:
+        - 范围赛博伤害30，瘫痪电子设备3回合，对改造人额外伤害20
+      tags: [techie, attack, emp, aoe, electronic_warfare]
+      locale: zh-CN
+
+items:
+  - id: cyberdeck
+    name: 赛博终端
+    description: 顶级网络入侵设备，内置量子加密处理器和神经直连接口。在赛博空间中，它就是你的武器、你的盾牌、你的灵魂延伸。没有它的黑客，就像没有枪的士兵。
+    category: weapon
+    quality: uncommon
+    stats:
+      attack: 12
+      magic_attack: 18
+      int_bonus: 2
+    effects:
+      - type: buff
+        attribute: int
+        value: 2
+        duration: 0
+      - type: hacking_boost
+        value: 30
+        duration: 0
+    value:
+      buy: 2500
+      sell: 1250
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 武器
+      displayRarity: 精良
+      displayStats:
+        - key: attack
+          label: 攻击力
+          value: 12
+        - key: magic_attack
+          label: 黑客攻击
+          value: 18
+        - key: int_bonus
+          label: 智力加成
+          value: +2
+      displayEffects:
+        - 提升黑客能力30%，智力+2
+      tags: [hacker, weapon, cyberdeck, network]
+      locale: zh-CN
+
+  - id: data-shard
+    name: 数据碎片
+    description: 存储加密数据的微型光芯片，常见于黑市交易。每块碎片都可能藏着价值连城的秘密，也可能只是某人的购物清单。在信息时代，数据就是货币。
+    category: tool
+    quality: common
+    stats:
+      data_capacity: 128
+    effects:
+      - type: data_storage
+        value: 128
+        duration: 0
+    value:
+      buy: 50
+      sell: 25
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats:
+        - key: data_capacity
+          label: 数据容量
+          value: 128GB
+      displayEffects:
+        - 存储128GB加密数据
+      tags: [hacker, tool, data, storage]
+      locale: zh-CN
+
+  - id: neural-interface
+    name: 神经接口
+    description: 植入式脑机接口设备，将意识直接接入赛博空间。数据流如潮水般涌入大脑，现实与虚拟的边界在你眼中逐渐模糊。副作用？那只是弱者的借口。
+    category: accessory
+    quality: uncommon
+    stats:
+      int_bonus: 1
+      dex_bonus: 1
+      hacking_speed: 15
+    effects:
+      - type: buff
+        attribute: int
+        value: 1
+        duration: 0
+      - type: buff
+        attribute: dex
+        value: 1
+        duration: 0
+      - type: hacking_speed_boost
+        value: 15
+        duration: 0
+    value:
+      buy: 1800
+      sell: 900
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 饰品
+      displayRarity: 精良
+      displayStats:
+        - key: int_bonus
+          label: 智力加成
+          value: +1
+        - key: dex_bonus
+          label: 敏捷加成
+          value: +1
+        - key: hacking_speed
+          label: 入侵加速
+          value: 15%
+      displayEffects:
+        - 智力+1，敏捷+1，入侵速度提升15%
+      tags: [hacker, accessory, neural, implant]
+      locale: zh-CN
+
+  - id: encryption-module
+    name: 加密模块
+    description: 军用级数据加密解密硬件，能破解大部分民用加密协议。插在赛博终端上，让防火墙形同虚设。荒坂重工的加密？不过是多花两分钟的事。
+    category: accessory
+    quality: uncommon
+    stats:
+      encryption_power: 25
+      firewall_bypass: 20
+    effects:
+      - type: encryption_boost
+        value: 25
+        duration: 0
+      - type: firewall_bypass_boost
+        value: 20
+        duration: 0
+    value:
+      buy: 1500
+      sell: 750
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 饰品
+      displayRarity: 精良
+      displayStats:
+        - key: encryption_power
+          label: 加密强度
+          value: 25
+        - key: firewall_bypass
+          label: 防火墙穿透
+          value: 20%
+      displayEffects:
+        - 加密强度+25，防火墙穿透率+20%
+      tags: [hacker, accessory, encryption, security]
+      locale: zh-CN
+
+  - id: energy-drink
+    name: 能量饮料
+    description: 充满合成咖啡因和纳米兴奋剂的荧光液体，喝下去仿佛被电击。黑市工人和佣兵的续命神器，一罐下去能连续工作36小时。代价？你的肝脏会感谢你的慷慨。
+    category: consumable
+    quality: common
+    stats:
+      dex_boost: 1
+      con_boost: 1
+    effects:
+      - type: buff
+        attribute: dex
+        value: 1
+        duration: 5
+      - type: buff
+        attribute: con
+        value: 1
+        duration: 5
+      - type: debuff
+        attribute: con
+        value: 1
+        duration: 3
+        delay: 5
+    value:
+      buy: 30
+      sell: 15
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 消耗品
+      displayRarity: 普通
+      displayStats:
+        - key: dex_boost
+          label: 敏捷提升
+          value: +1
+        - key: con_boost
+          label: 体质提升
+          value: +1
+      displayEffects:
+        - 敏捷+1、体质+1持续5回合，之后体质-1持续3回合
+      tags: [consumable, buff, stamina]
+      locale: zh-CN
+
+  - id: assault-rifle
+    name: 突击步枪
+    description: 军用科技出品的MK-IV型突击步枪，配备智能瞄准系统和穿甲弹。在街头火拼中，它就是话语权。每一发子弹都在提醒对手——你来错地方了。
+    category: weapon
+    quality: uncommon
+    stats:
+      attack: 22
+      crit_rate: 8
+      range: 40
+    effects:
+      - type: damage
+        value: 22
+        duration: 0
+      - type: armor_pierce
+        value: 15
+        duration: 0
+    value:
+      buy: 3000
+      sell: 1500
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 武器
+      displayRarity: 精良
+      displayStats:
+        - key: attack
+          label: 攻击力
+          value: 22
+        - key: crit_rate
+          label: 暴击率
+          value: 8%
+        - key: range
+          label: 射程
+          value: 40m
+      displayEffects:
+        - 攻击力22，护甲穿透15%
+      tags: [soldier, weapon, rifle, firearm]
+      locale: zh-CN
+
+  - id: combat-armor
+    name: 战斗护甲
+    description: 轻型复合陶瓷战斗护甲，在机动性和防护力之间取得平衡。内置微型反应装甲层，能在受到冲击时瞬间硬化。穿上它，子弹也不过是挠痒痒。
+    category: armor
+    quality: uncommon
+    stats:
+      defense: 16
+      hp_bonus: 20
+      speed_penalty: 2
+    effects:
+      - type: defense_boost
+        value: 16
+        duration: 0
+      - type: hp_boost
+        value: 20
+        duration: 0
+    value:
+      buy: 2800
+      sell: 1400
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 护甲
+      displayRarity: 精良
+      displayStats:
+        - key: defense
+          label: 防御力
+          value: 16
+        - key: hp_bonus
+          label: 生命加成
+          value: +20
+        - key: speed_penalty
+          label: 速度惩罚
+          value: -2
+      displayEffects:
+        - 防御+16，生命+20，速度-2
+      tags: [soldier, armor, combat, protection]
+      locale: zh-CN
+
+  - id: medkit
+    name: 医疗包
+    description: 战场急救包，内置纳米止血凝胶和生物组织修复剂。在枪林弹雨中，它是你和死神之间最后的屏障。别等到快死了才想起来用——很多人就是忘了这一步。
+    category: consumable
+    quality: common
+    stats:
+      heal_amount: 50
+    effects:
+      - type: heal
+        value: 50
+        duration: 0
+      - type: remove_bleed
+        value: 1
+        duration: 0
+    value:
+      buy: 200
+      sell: 100
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 消耗品
+      displayRarity: 普通
+      displayStats:
+        - key: heal_amount
+          label: 治疗量
+          value: 50
+      displayEffects:
+        - 恢复50点生命值，止血
+      tags: [soldier, consumable, healing, medical]
+      locale: zh-CN
+
+  - id: frag-grenade
+    name: 碎片手雷
+    description: 标准军用破片手雷，爆炸后产生数百片高速弹片。在密闭空间里效果拔群——走廊、电梯、小巷，都是它的舞台。记得拉开引信后赶紧扔，别当英雄。
+    category: weapon
+    quality: uncommon
+    stats:
+      attack: 35
+      aoe_radius: 5
+    effects:
+      - type: aoe_damage
+        value: 35
+        radius: 5
+        duration: 0
+      - type: stagger
+        value: 1
+        duration: 2
+    value:
+      buy: 400
+      sell: 200
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 武器
+      displayRarity: 精良
+      displayStats:
+        - key: attack
+          label: 爆炸伤害
+          value: 35
+        - key: aoe_radius
+          label: 爆炸半径
+          value: 5m
+      displayEffects:
+        - 范围伤害35，击退效果持续2回合
+      tags: [soldier, weapon, grenade, explosive, aoe]
+      locale: zh-CN
+
+  - id: combat-helmet
+    name: 战斗头盔
+    description: 配备全息HUD显示的战术头盔，实时标注敌方位置和威胁等级。内置通讯加密模块，确保小队通讯不被截获。在信息就是生命的战场上，先看到敌人就赢了一半。
+    category: armor
+    quality: uncommon
+    stats:
+      defense: 6
+      wis_bonus: 1
+      perception_range: 10
+    effects:
+      - type: defense_boost
+        value: 6
+        duration: 0
+      - type: buff
+        attribute: wis
+        value: 1
+        duration: 0
+      - type: perception_boost
+        value: 10
+        duration: 0
+    value:
+      buy: 1200
+      sell: 600
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 护甲
+      displayRarity: 精良
+      displayStats:
+        - key: defense
+          label: 防御力
+          value: 6
+        - key: wis_bonus
+          label: 感知加成
+          value: +1
+        - key: perception_range
+          label: 侦查范围
+          value: +10m
+      displayEffects:
+        - 防御+6，感知+1，侦查范围+10m
+      tags: [soldier, armor, helmet, hud]
+      locale: zh-CN
+
+  - id: tactical-gloves
+    name: 战术手套
+    description: 纳米纤维编织的战术手套，增强握力和触觉灵敏度。内置微型电磁吸附器，让你在任何表面上都能稳稳抓握。换弹夹的速度快人一步，就是生与死的差距。
+    category: armor
+    quality: uncommon
+    stats:
+      defense: 3
+      dex_bonus: 1
+      reload_speed: 20
+    effects:
+      - type: defense_boost
+        value: 3
+        duration: 0
+      - type: buff
+        attribute: dex
+        value: 1
+        duration: 0
+      - type: reload_speed_boost
+        value: 20
+        duration: 0
+    value:
+      buy: 800
+      sell: 400
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 护甲
+      displayRarity: 精良
+      displayStats:
+        - key: defense
+          label: 防御力
+          value: 3
+        - key: dex_bonus
+          label: 敏捷加成
+          value: +1
+        - key: reload_speed
+          label: 换弹加速
+          value: 20%
+      displayEffects:
+        - 防御+3，敏捷+1，换弹速度+20%
+      tags: [soldier, armor, gloves, tactical]
+      locale: zh-CN
+
+  - id: smartphone
+    name: 智能终端
+    description: 经过深度改装的加密通讯终端，运行着地下网络专用的暗网协议。能绕过企业监控，直连黑市数据库。在新东京，信息差就是利润差，而这部手机就是你的优势。
+    category: tool
+    quality: common
+    stats:
+      encryption_level: 15
+      network_range: 50
+    effects:
+      - type: communication_boost
+        value: 15
+        duration: 0
+      - type: intel_gathering
+        value: 10
+        duration: 0
+    value:
+      buy: 500
+      sell: 250
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats:
+        - key: encryption_level
+          label: 加密等级
+          value: 15
+        - key: network_range
+          label: 网络范围
+          value: 50m
+      displayEffects:
+        - 通讯加密+15，情报获取+10
+      tags: [fixer, tool, communication, encrypted]
+      locale: zh-CN
+
+  - id: concealed-pistol
+    name: 隐蔽手枪
+    description: 袖珍型消音手枪，藏在袖口或脚踝 holster 中毫不显眼。开枪声比咳嗽还轻，是掮客和间谍的最爱。不是用来打硬仗的，而是用来解决"那个知道太多的人"。
+    category: weapon
+    quality: uncommon
+    stats:
+      attack: 14
+      crit_rate: 12
+      concealment: 95
+    effects:
+      - type: damage
+        value: 14
+        duration: 0
+      - type: stealth_bonus
+        value: 20
+        duration: 0
+    value:
+      buy: 1200
+      sell: 600
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 武器
+      displayRarity: 精良
+      displayStats:
+        - key: attack
+          label: 攻击力
+          value: 14
+        - key: crit_rate
+          label: 暴击率
+          value: 12%
+        - key: concealment
+          label: 隐蔽度
+          value: 95%
+      displayEffects:
+        - 攻击力14，暴击率12%，潜行+20
+      tags: [fixer, weapon, pistol, stealth, silenced]
+      locale: zh-CN
+
+  - id: contacts-list
+    name: 人脉数据盘
+    description: 加密存储着数百个地下世界联系人信息的芯片——从黑市军火商到企业内鬼，从暗网管理员到腐败警察。在新东京，你认识谁比你是谁更重要。这张芯片就是你的社交帝国。
+    category: accessory
+    quality: uncommon
+    stats:
+      cha_bonus: 2
+      intel_bonus: 10
+    effects:
+      - type: buff
+        attribute: cha
+        value: 2
+        duration: 0
+      - type: intel_access
+        value: 10
+        duration: 0
+    value:
+      buy: 1000
+      sell: 500
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 饰品
+      displayRarity: 精良
+      displayStats:
+        - key: cha_bonus
+          label: 魅力加成
+          value: +2
+        - key: intel_bonus
+          label: 情报加成
+          value: +10
+      displayEffects:
+        - 魅力+2，情报获取+10
+      tags: [fixer, accessory, contacts, intel]
+      locale: zh-CN
+
+  - id: bribe-money
+    name: 贿赂资金
+    description: 预装在匿名信用芯片上的"活动经费"，专门用来润滑那些需要"特殊照顾"的关系。从门卫到高管，每个人都有价格，而你恰好随身带着支票簿。
+    category: accessory
+    quality: common
+    stats:
+      cha_bonus: 1
+      bribe_power: 25
+    effects:
+      - type: buff
+        attribute: cha
+        value: 1
+        duration: 0
+      - type: bribe_boost
+        value: 25
+        duration: 0
+    value:
+      buy: 500
+      sell: 250
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 饰品
+      displayRarity: 普通
+      displayStats:
+        - key: cha_bonus
+          label: 魅力加成
+          value: +1
+        - key: bribe_power
+          label: 贿赂效力
+          value: 25
+      displayEffects:
+        - 魅力+1，贿赂成功率+25%
+      tags: [fixer, accessory, money, bribe]
+      locale: zh-CN
+
+  - id: disguise-kit
+    name: 伪装套件
+    description: 便携式全息伪装设备，能生成逼真的面部投影和声纹模拟。从企业高管到街头混混，你想是谁就是谁。唯一的问题是——伪装太久，你会忘记自己是谁。
+    category: tool
+    quality: uncommon
+    stats:
+      disguise_power: 30
+      duration: 10
+    effects:
+      - type: disguise
+        value: 30
+        duration: 10
+      - type: stealth_boost
+        value: 15
+        duration: 10
+    value:
+      buy: 1500
+      sell: 750
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 精良
+      displayStats:
+        - key: disguise_power
+          label: 伪装强度
+          value: 30
+        - key: duration
+          label: 持续时间
+          value: 10回合
+      displayEffects:
+        - 伪装强度30，潜行+15，持续10回合
+      tags: [fixer, tool, disguise, stealth]
+      locale: zh-CN
+
+  - id: drone-kit
+    name: 无人机套件
+    description: 包含三架微型无人机的操控套件——侦察蜂、攻击蚊和干扰蛾。它们是你的眼睛、你的拳头、你的盾牌。在技师手中，一群小虫子也能掀翻一辆装甲车。
+    category: weapon
+    quality: uncommon
+    stats:
+      attack: 15
+      magic_attack: 12
+      drone_count: 3
+    effects:
+      - type: drone_damage
+        value: 15
+        duration: 0
+      - type: reconnaissance
+        value: 20
+        duration: 0
+      - type: electronic_warfare
+        value: 10
+        duration: 0
+    value:
+      buy: 2200
+      sell: 1100
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 武器
+      displayRarity: 精良
+      displayStats:
+        - key: attack
+          label: 攻击力
+          value: 15
+        - key: magic_attack
+          label: 科技攻击
+          value: 12
+        - key: drone_count
+          label: 无人机数量
+          value: 3
+      displayEffects:
+        - 无人机攻击15，侦查+20，电子战+10
+      tags: [techie, weapon, drone, tech]
+      locale: zh-CN
+
+  - id: tool-set
+    name: 维修工具组
+    description: 全功能纳米维修工具组，从精密电路到重型机甲都能修。内置3D打印头，能现场制造替换零件。在新东京，能修东西的人永远不愁没饭吃——因为总有人在搞破坏。
+    category: tool
+    quality: common
+    stats:
+      repair_power: 20
+      crafting_bonus: 15
+    effects:
+      - type: repair_boost
+        value: 20
+        duration: 0
+      - type: crafting_boost
+        value: 15
+        duration: 0
+    value:
+      buy: 400
+      sell: 200
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats:
+        - key: repair_power
+          label: 维修能力
+          value: 20
+        - key: crafting_bonus
+          label: 制造加成
+          value: 15%
+      displayEffects:
+        - 维修能力+20，制造成功率+15%
+      tags: [techie, tool, repair, crafting]
+      locale: zh-CN
+
+  - id: tech-visor
+    name: 技术护目镜
+    description: AR增强现实战术护目镜，能透视电子设备内部结构、标注弱点、显示实时数据流。在你眼中，世界是一张等待被改写的蓝图。别人看到的是墙壁，你看到的是线路。
+    category: armor
+    quality: uncommon
+    stats:
+      defense: 8
+      int_bonus: 1
+      tech_perception: 25
+    effects:
+      - type: defense_boost
+        value: 8
+        duration: 0
+      - type: buff
+        attribute: int
+        value: 1
+        duration: 0
+      - type: tech_analysis
+        value: 25
+        duration: 0
+    value:
+      buy: 1600
+      sell: 800
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 护甲
+      displayRarity: 精良
+      displayStats:
+        - key: defense
+          label: 防御力
+          value: 8
+        - key: int_bonus
+          label: 智力加成
+          value: +1
+        - key: tech_perception
+          label: 科技感知
+          value: 25
+      displayEffects:
+        - 防御+8，智力+1，科技分析+25
+      tags: [techie, armor, visor, ar, analysis]
+      locale: zh-CN
+
+  - id: spare-parts
+    name: 备用零件
+    description: 各种电子元件和机械零件的杂烩包——电路板、伺服电机、纳米导线、光学芯片。在技师眼中，这不是垃圾，而是等待被组装成奇迹的原材料。
+    category: tool
+    quality: common
+    stats:
+      crafting_bonus: 10
+      repair_bonus: 10
+    effects:
+      - type: crafting_boost
+        value: 10
+        duration: 0
+      - type: repair_boost
+        value: 10
+        duration: 0
+    value:
+      buy: 80
+      sell: 40
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats:
+        - key: crafting_bonus
+          label: 制造加成
+          value: 10%
+        - key: repair_bonus
+          label: 维修加成
+          value: 10%
+      displayEffects:
+        - 制造成功率+10%，维修效率+10%
+      tags: [techie, tool, parts, crafting, repair]
+      locale: zh-CN
+
+  - id: emp-device
+    name: 电磁脉冲装置
+    description: 小型化EMP发生器，能在局部范围内瘫痪所有电子设备。对付义体改造人和安防系统有奇效，但别在朋友身边用——你的队友也全是电子设备。
+    category: accessory
+    quality: rare
+    stats:
+      emp_power: 40
+      aoe_radius: 8
+      cooldown: 5
+    effects:
+      - type: emp_burst
+        value: 40
+        radius: 8
+        duration: 0
+      - type: disable_electronics
+        value: 3
+        duration: 3
+      - type: cyborg_damage
+        value: 25
+        duration: 0
+    value:
+      buy: 3500
+      sell: 1750
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 饰品
+      displayRarity: 稀有
+      displayStats:
+        - key: emp_power
+          label: 脉冲强度
+          value: 40
+        - key: aoe_radius
+          label: 影响半径
+          value: 8m
+        - key: cooldown
+          label: 冷却时间
+          value: 5回合
+      displayEffects:
+        - 范围EMP伤害40，瘫痪电子设备3回合，对改造人额外伤害25
+      tags: [techie, accessory, emp, electronic_warfare]
+      locale: zh-CN
+
+  - id: welding-goggles
+    name: 焊接护目镜
+    description: 工业级防强光焊接护目镜，能自动调节滤光等级。在电弧的蓝白光芒中，你焊接的不仅是金属，还有自己在这个废墟世界中的位置。
+    category: armor
+    quality: common
+    stats:
+      defense: 3
+      light_resistance: 20
+      crafting_bonus: 5
+    effects:
+      - type: defense_boost
+        value: 3
+        duration: 0
+      - type: light_resistance
+        value: 20
+        duration: 0
+      - type: crafting_boost
+        value: 5
+        duration: 0
+    value:
+      buy: 200
+      sell: 100
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 护甲
+      displayRarity: 普通
+      displayStats:
+        - key: defense
+          label: 防御力
+          value: 3
+        - key: light_resistance
+          label: 强光抗性
+          value: 20
+        - key: crafting_bonus
+          label: 制造加成
+          value: 5%
+      displayEffects:
+        - 防御+3，强光抗性+20，制造+5%
+      tags: [techie, armor, goggles, welding, protection]
+      locale: zh-CN
+
+  - id: designer-suit
+    name: 高定西装
+    description: 看似普通的定制西装，实则编织了纳米防弹纤维和隐形护盾发生器。在上流社会，这是体面；在地下世界，这是活命的资本。没有人会怀疑一个穿着得体的人。
+    category: armor
+    quality: uncommon
+    stats:
+      defense: 10
+      cha_bonus: 2
+      concealment: 90
+    effects:
+      - type: defense_boost
+        value: 10
+        duration: 0
+      - type: buff
+        attribute: cha
+        value: 2
+        duration: 0
+      - type: social_stealth
+        value: 20
+        duration: 0
+    value:
+      buy: 2500
+      sell: 1250
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 护甲
+      displayRarity: 精良
+      displayStats:
+        - key: defense
+          label: 防御力
+          value: 10
+        - key: cha_bonus
+          label: 魅力加成
+          value: +2
+        - key: concealment
+          label: 隐蔽度
+          value: 90%
+      displayEffects:
+        - 防御+10，魅力+2，社交潜行+20
+      tags: [corporate, armor, suit, stealth, social]
+      locale: zh-CN
+
+  - id: corporate-id
+    name: 企业身份卡
+    description: 荒坂重工高级权限身份卡，能打开大部分企业区域的门禁。虽然你已经不是企业的人了，但这张卡还在——它就是你潜伏在旧世界的锚点。
+    category: accessory
+    quality: uncommon
+    stats:
+      cha_bonus: 1
+      access_level: 3
+    effects:
+      - type: buff
+        attribute: cha
+        value: 1
+        duration: 0
+      - type: corporate_access
+        value: 3
+        duration: 0
+      - type: bureaucracy_boost
+        value: 20
+        duration: 0
+    value:
+      buy: 0
+      sell: 500
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 饰品
+      displayRarity: 精良
+      displayStats:
+        - key: cha_bonus
+          label: 魅力加成
+          value: +1
+        - key: access_level
+          label: 权限等级
+          value: 3
+      displayEffects:
+        - 魅力+1，企业区域3级权限，官僚事务+20
+      tags: [corporate, accessory, id, access, corporate]
+      locale: zh-CN
+
+  - id: expense-account
+    name: 企业消费账户
+    description: 离职时忘记注销的企业消费账户，里面还有不少余额。用企业的钱办自己的事，这大概是你从老东家那里得到的唯一公正待遇。趁他们发现之前，赶紧花。
+    category: misc
+    quality: uncommon
+    stats:
+      credit_value: 2000
+    effects:
+      - type: credit_access
+        value: 2000
+        duration: 0
+      - type: corporate_cover
+        value: 15
+        duration: 0
+    value:
+      buy: 0
+      sell: 2000
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 杂项
+      displayRarity: 精良
+      displayStats:
+        - key: credit_value
+          label: 账户余额
+          value: 2000信用点
+      displayEffects:
+        - 提供2000信用点消费额度，企业掩护+15
+      tags: [corporate, misc, money, cover]
+      locale: zh-CN
+
+  - id: tattered-jacket
+    name: 破旧夹克
+    description: 缝满补丁的旧皮夹克，口袋里藏着各种小玩意。它不防弹，不防刀，甚至不太防风——但它承载着暗巷里的每一个生存故事。在贫民窟，这就是你的盔甲。
+    category: armor
+    quality: common
+    stats:
+      defense: 4
+      dex_bonus: 1
+      pocket_count: 6
+    effects:
+      - type: defense_boost
+        value: 4
+        duration: 0
+      - type: buff
+        attribute: dex
+        value: 1
+        duration: 0
+      - type: hidden_pocket
+        value: 3
+        duration: 0
+    value:
+      buy: 100
+      sell: 50
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 护甲
+      displayRarity: 普通
+      displayStats:
+        - key: defense
+          label: 防御力
+          value: 4
+        - key: dex_bonus
+          label: 敏捷加成
+          value: +1
+        - key: pocket_count
+          label: 暗袋数量
+          value: 6
+      displayEffects:
+        - 防御+4，敏捷+1，6个暗袋
+      tags: [street, armor, jacket, survival]
+      locale: zh-CN
+
+  - id: switchblade
+    name: 弹簧刀
+    description: 一按即弹的快开刀，刀刃涂了抗凝血剂。在暗巷里，它比枪更实用——安静、致命、不留痕迹。每个街头混混的第一把武器，也是最后一把。
+    category: weapon
+    quality: common
+    stats:
+      attack: 10
+      crit_rate: 10
+      concealment: 85
+    effects:
+      - type: damage
+        value: 10
+        duration: 0
+      - type: bleed
+        value: 3
+        duration: 3
+      - type: stealth_bonus
+        value: 10
+        duration: 0
+    value:
+      buy: 80
+      sell: 40
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 武器
+      displayRarity: 普通
+      displayStats:
+        - key: attack
+          label: 攻击力
+          value: 10
+        - key: crit_rate
+          label: 暴击率
+          value: 10%
+        - key: concealment
+          label: 隐蔽度
+          value: 85%
+      displayEffects:
+        - 攻击力10，造成流血3持续3回合，潜行+10
+      tags: [street, weapon, blade, stealth, melee]
+      locale: zh-CN
+
+  - id: stash-map
+    name: 藏匿点地图
+    description: 加密数据芯片中标记着暗巷区所有秘密藏匿点的位置——武器库、安全屋、医疗站、逃生通道。在街头混了这么多年，你知道每一条暗道和每一个可以躲藏的角落。
+    category: tool
+    quality: common
+    stats:
+      navigation_bonus: 15
+      survival_bonus: 10
+    effects:
+      - type: navigation_boost
+        value: 15
+        duration: 0
+      - type: survival_boost
+        value: 10
+        duration: 0
+      - type: escape_bonus
+        value: 20
+        duration: 0
+    value:
+      buy: 150
+      sell: 75
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats:
+        - key: navigation_bonus
+          label: 导航加成
+          value: 15
+        - key: survival_bonus
+          label: 生存加成
+          value: 10
+      displayEffects:
+        - 导航+15，生存+10，逃脱成功率+20%
+      tags: [street, tool, map, survival, navigation]
+      locale: zh-CN
+
+  - id: casual-clothes
+    name: 休闲便装
+    description: 普通市民的日常服装，不引人注目就是最大的优势。在新东京的街头，融入人群比穿盔甲更安全。没有人会注意一个普通人——而这就是你想要的。
+    category: armor
+    quality: common
+    stats:
+      defense: 2
+      social_stealth: 30
+    effects:
+      - type: defense_boost
+        value: 2
+        duration: 0
+      - type: social_blend
+        value: 30
+        duration: 0
+    value:
+      buy: 60
+      sell: 30
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 护甲
+      displayRarity: 普通
+      displayStats:
+        - key: defense
+          label: 防御力
+          value: 2
+        - key: social_stealth
+          label: 社交隐蔽
+          value: 30
+      displayEffects:
+        - 防御+2，社交隐蔽+30
+      tags: [middle-class, armor, clothes, civilian, stealth]
+      locale: zh-CN
+
+  - id: savings-chip
+    name: 储蓄芯片
+    description: 存有多年积蓄的信用芯片，是中产阶级生活的最后遗产。虽然不多，但足够你在新东京撑过最初的艰难日子。省着点花——这是你用朝九晚五换来的。
+    category: misc
+    quality: common
+    stats:
+      credit_value: 800
+    effects:
+      - type: credit_access
+        value: 800
+        duration: 0
+    value:
+      buy: 0
+      sell: 800
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 杂项
+      displayRarity: 普通
+      displayStats:
+        - key: credit_value
+          label: 存储金额
+          value: 800信用点
+      displayEffects:
+        - 提供800信用点
+      tags: [middle-class, misc, money, savings]
+      locale: zh-CN
+
+  - id: personal-link
+    name: 个人链路
+    description: 标准个人通讯链路设备，能接入城市公共网络和紧急服务。虽然不如黑客的赛博终端强大，但足以应付日常生活——查路线、付账单、叫救护车。普通人的万能钥匙。
+    category: tool
+    quality: common
+    stats:
+      communication: 10
+      navigation: 10
+    effects:
+      - type: communication_boost
+        value: 10
+        duration: 0
+      - type: navigation_boost
+        value: 10
+        duration: 0
+    value:
+      buy: 150
+      sell: 75
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats:
+        - key: communication
+          label: 通讯能力
+          value: 10
+        - key: navigation
+          label: 导航能力
+          value: 10
+      displayEffects:
+        - 通讯+10，导航+10
+      tags: [middle-class, tool, communication, navigation]
+      locale: zh-CN
+
+  - id: dog-tags
+    name: 军牌
+    description: 磨损的金属身份识别牌，刻着你的军号和血型。它见证了战场上的生死，也承载着无法言说的记忆。退役后，这是你唯一还带着的东西——除了噩梦。
+    category: accessory
+    quality: common
+    stats:
+      con_bonus: 1
+      intimidation: 10
+    effects:
+      - type: buff
+        attribute: con
+        value: 1
+        duration: 0
+      - type: intimidation_boost
+        value: 10
+        duration: 0
+      - type: military_recognition
+        value: 15
+        duration: 0
+    value:
+      buy: 0
+      sell: 20
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 饰品
+      displayRarity: 普通
+      displayStats:
+        - key: con_bonus
+          label: 体质加成
+          value: +1
+        - key: intimidation
+          label: 威慑力
+          value: 10
+      displayEffects:
+        - 体质+1，威慑+10，军人识别+15
+      tags: [ex-military, accessory, identity, military]
+      locale: zh-CN
+
+  - id: service-weapon
+    name: 军用配枪
+    description: 退役时保留的制式手枪，虽然不如新式武器先进，但胜在可靠。每个零件你都拆装过上百次，闭着眼都能上膛。老兵不死，配枪不锈。
+    category: weapon
+    quality: uncommon
+    stats:
+      attack: 16
+      blockRate: 15
+      reliability: 95
+    effects:
+      - type: damage
+        value: 16
+        duration: 0
+      - type: blockRate_boost
+        value: 15
+        duration: 0
+    value:
+      buy: 800
+      sell: 400
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 武器
+      displayRarity: 精良
+      displayStats:
+        - key: attack
+          label: 攻击力
+          value: 16
+        - key: blockRate
+          label: 格挡率
+          value: 15%
+        - key: reliability
+          label: 可靠性
+          value: 95%
+      displayEffects:
+        - 攻击力16，精准+15%，极低故障率
+      tags: [ex-military, weapon, pistol, military, reliable]
+      locale: zh-CN
+
+  - id: old-uniform
+    name: 旧军装
+    description: 褪色的退役军装，内衬缝了防弹陶瓷片。虽然已经不再代表任何军队，但穿上它时，肌肉记忆会自动调整你的站姿。有些东西，退伍了也脱不掉。
+    category: armor
+    quality: common
+    stats:
+      defense: 6
+      con_bonus: 1
+    effects:
+      - type: defense_boost
+        value: 6
+        duration: 0
+      - type: buff
+        attribute: con
+        value: 1
+        duration: 0
+    value:
+      buy: 150
+      sell: 75
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 护甲
+      displayRarity: 普通
+      displayStats:
+        - key: defense
+          label: 防御力
+          value: 6
+        - key: con_bonus
+          label: 体质加成
+          value: +1
+      displayEffects:
+        - 防御+6，体质+1
+      tags: [ex-military, armor, uniform, military]
+      locale: zh-CN
+
+  - id: ration-pack
+    name: 口粮包
+    description: 军用压缩口粮，营养均衡但味道像纸板。保质期长达十年，是末日生存的理想食品。你吃过太多这种东西，以至于偶尔吃到真正的食物时反而会肠胃不适。
+    category: consumable
+    quality: common
+    stats:
+      heal_amount: 25
+      con_boost: 1
+    effects:
+      - type: heal
+        value: 25
+        duration: 0
+      - type: buff
+        attribute: con
+        value: 1
+        duration: 5
+    value:
+      buy: 40
+      sell: 20
+      currency: credit
+    quantity: 1
+    custom_data:
+      displayType: 消耗品
+      displayRarity: 普通
+      displayStats:
+        - key: heal_amount
+          label: 恢复量
+          value: 25
+        - key: con_boost
+          label: 体质提升
+          value: +1
+      displayEffects:
+        - 恢复25点生命值，体质+1持续5回合
+      tags: [ex-military, consumable, food, survival]
+      locale: zh-CN
+
+ui_theme:
+  primary_color: "#06b6d4"
+  font_family: monospace
+  background_style: gradient
+  gradient_colors:
+    start: "#0a0a1a"
+    end: "#1a0a2e"
+    direction: to bottom
+  background_image: ""
+  pattern_type: grid
+  animated_type: rain
+  custom_css: ""
+
+ui_layout:
+  show_minimap: true
+  show_combat_panel: true
+  show_skill_bar: true
+  show_party_panel: false
+  minimap_position: top-right
+  minimap_size: small
+  party_panel_position: right
+  skill_bar_slots: 6
+  custom_layout: ""
+
+special_rules:
+  has_kp: false
+  permadeath: true
+  save_restriction: checkpoint_only
+  custom_rules:
+    - 义体过热：过度使用义体能力需要冷却
+    - 网络入侵：黑客可在战斗中入侵敌方设备
+    - 永久死亡：角色死亡不可复活
+    - 检查点存档：仅在关键节点可以存档

@@ -1,0 +1,128 @@
+
+[ERROR]   agents/coordinator/ResponseBuilder.ts:16
+          rule: G→F (Agent层禁止依赖业务层（组合根除外）)
+          import: import { CharacterRepository } from '../../game-systems/character/CharacterRepository.js';
+
+[ERROR]   agents/coordinator/ResponseBuilder.ts:17
+          rule: G→F (Agent层禁止依赖业务层（组合根除外）)
+          import: import { InventoryRepository } from '../../game-systems/inventory/InventoryRepository.js';
+
+[ERROR]   agents/coordinator/ResponseBuilder.ts:18
+          rule: G→F (Agent层禁止依赖业务层（组合根除外）)
+          import: import { LocationRepository } from '../../game-systems/map/LocationRepository.js';
+
+[ERROR]   agents/coordinator/ResponseBuilder.ts:19
+          rule: G→F (Agent层禁止依赖业务层（组合根除外）)
+          import: import { LocationConnectionRepository } from '../../game-systems/map/LocationConnectionRepository.js';
+
+[ERROR]   agents/coordinator/ResponseBuilder.ts:20
+          rule: G→F (Agent层禁止依赖业务层（组合根除外）)
+          import: import { NPCRepository } from '../../game-systems/npc/NPCRepository.js';
+
+[ERROR]   agents/coordinator/ResponseBuilder.ts:21
+          rule: G→F (Agent层禁止依赖业务层（组合根除外）)
+          import: import { QuestRepository } from '../../game-systems/quest/QuestRepository.js';
+
+[ERROR]   agents/coordinator/ResponseBuilder.ts:22
+          rule: G→F (Agent层禁止依赖业务层（组合根除外）)
+          import: import { QuestObjectiveRepository } from '../../game-systems/quest/QuestObjectiveRepository.js';
+
+[WARNING]   agents/AgentRuntime.ts:117
+          rule: G→F (Agent层禁止依赖业务层（组合根除外）)
+          import: import type { LocationData } from '../game-systems/map/types';
+
+[WARNING]   agents/BaseAgent.ts:9
+          rule: G→F (Agent层禁止依赖业务层（组合根除外）)
+          import: import type { IContextProvider } from '../game-systems/shared/types.js';
+
+[WARNING]   agents/coordinator/DataRefreshHandler.ts:6
+          rule: G→F (Agent层禁止依赖业务层（组合根除外）)
+          import: import type { LocationData, LocationConnection } from '../../game-systems/map/types.js';
+
+[WARNING]   agents/coordinator/DataRefreshHandler.ts:7
+          rule: G→F (Agent层禁止依赖业务层（组合根除外）)
+          import: import type { ICharacterRepository, CharacterData } from '../../game-systems/character/types.js';
+
+[WARNING]   agents/coordinator/DataRefreshHandler.ts:8
+          rule: G→F (Agent层禁止依赖业务层（组合根除外）)
+          import: import type { IInventoryRepository, InventoryItem, OwnerType } from '../../game-systems/inventory/types.js';
+
+[WARNING]   agents/coordinator/DataRefreshHandler.ts:9
+          rule: G→F (Agent层禁止依赖业务层（组合根除外）)
+          import: import type { ILocationRepository, ILocationConnectionRepository } from '../../game-systems/map/types.js';
+
+[WARNING]   agents/coordinator/DataRefreshHandler.ts:10
+          rule: G→F (Agent层禁止依赖业务层（组合根除外）)
+          import: import type { INPCRepository, NPCProfile } from '../../game-systems/npc/types.js';
+
+[WARNING]   agents/coordinator/DataRefreshHandler.ts:11
+          rule: G→F (Agent层禁止依赖业务层（组合根除外）)
+          import: import type { IQuestRepository, IQuestObjectiveRepository, Quest, QuestObjective } from '../../game-systems/quest/types.js';
+
+[WARNING]   agents/prompt/layers/drive-layer.ts:3
+          rule: G→F (Agent层禁止依赖业务层（组合根除外）)
+          import: import type { INPCService, DriveProfile, NPCProfile } from '../../../game-systems/npc/types.js';
+
+[WARNING]   agents/prompt/layers/entity-graph-layer.ts:2
+          rule: G→F (Agent层禁止依赖业务层（组合根除外）)
+          import: import type { EntityGraphService } from '../../../game-systems/entity-graph/EntityGraphService.js';
+
+[WARNING]   agents/prompt/layers/information-boundary-layer.ts:2
+          rule: G→F (Agent层禁止依赖业务层（组合根除外）)
+          import: import type { EntityGraphService } from '../../../game-systems/entity-graph/EntityGraphService.js';
+
+[WARNING]   agents/story/StoryDomain.ts:7
+          rule: G→F (Agent层禁止依赖业务层（组合根除外）)
+          import: import type { StoryEvent, StoryEventInput } from '../../game-systems/story/types.js';
+
+[WARNING]   agents/story/StoryKernel.ts:30
+          rule: G→F (Agent层禁止依赖业务层（组合根除外）)
+          import: import type { StoryEventInput } from '../../game-systems/story/types.js';
+
+[WARNING]   agents/story/types.ts:1
+          rule: G→F (Agent层禁止依赖业务层（组合根除外）)
+          import: import type { ChapterInfo, StoryContext, StoryEvent, StoryEventInput, } from '../../game-systems/story/types.js';
+
+[WARNING]   agents/tools/coordinator-service.ts:8
+          rule: G→F (Agent层禁止依赖业务层（组合根除外）)
+          import: import type { DedupService } from '../../game-systems/dispatch/DedupService.js';
+
+[WARNING]   agents/tools/coordinator-service.ts:21
+          rule: G→F (Agent层禁止依赖业务层（组合根除外）)
+          import: import type { IAuditAgent, AuditContext } from '../../game-systems/audit/ProgramChecker.js';
+
+[WARNING]   agents/tools/coordinator-service.ts:23
+          rule: G→F (Agent层禁止依赖业务层（组合根除外）)
+          import: import type { AuditRuleLoader, AuditRule } from '../../game-systems/audit/AuditRuleLoader.js';
+
+[WARNING]   agents/types.ts:7
+          rule: G→F (Agent层禁止依赖业务层（组合根除外）)
+          import: import type { GameTime, TimeAdvanceParams, TimePassageResult } from '../game-systems/time/types';
+
+[WARNING]   agents/types.ts:11
+          rule: G→F (Agent层禁止依赖业务层（组合根除外）)
+          import: import type { GraphAuditIssue } from '../game-systems/entity-graph/EntityGraphAuditor.js';
+
+[WARNING]   game-systems/character/GenerateOptionsTool.ts:12
+          rule: I→E+G (工具层禁止依赖服务层和Agent层)
+          import: import type { ConfigLoader } from '../../agents/config/ConfigLoader.js';
+
+[WARNING]   game-systems/entity-graph/EntityGraphSnapshotManager.ts:2
+          rule: F→E (业务层禁止依赖服务层（通过接口解耦）)
+          import: import type { DatabaseWriteQueue } from '../../services/DatabaseWriteQueue.js';
+
+[WARNING]   game-systems/shared/types.ts:29
+          rule: F→E (业务层禁止依赖服务层（通过接口解耦）)
+          import: import type { TemplateRecord } from '../../services/template.js';
+
+[WARNING]   game-systems/shared/types.ts:30
+          rule: F→E (业务层禁止依赖服务层（通过接口解耦）)
+          import: import type { CreateTemplateSkillParams, CreateTemplateItemParams, } from '../../services/template-pool.js';
+
+========== 汇总 ==========
+ERROR:   7 个（value import 违规，error 模式会阻断构建）
+WARNING: 23 个（type-only 违规，不阻断构建）
+豁免:    agents/agent-deps.ts (5 处 import，组合根)
+豁免:    agents/init.ts (55 处 import，组合根)
+
+模式: warn (exit 0)

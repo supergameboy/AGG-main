@@ -1,0 +1,71 @@
+
+> @ai-rpg/backend@1.0.0 typecheck C:\Users\super\Documents\trae_projects\AGG-main\packages\backend
+> tsc --noEmit
+
+src/agents/__tests__/react-engine-debug-extraction.test.ts(167,36): error TS7006: Parameter 'i' implicitly has an 'any' type.
+src/agents/AgentRuntime.ts(2063,64): error TS2345: Argument of type '"dev:llm_debug"' is not assignable to parameter of type '"dialogue:message" | "combat:turn_start" | "quest:update" | "event:triggered" | "agent_progress" | "config:reloaded" | "map:update" | "map:entity_move" | "dev:staging_write" | ... 8 more ... | "generate_progress"'.
+src/agents/init.ts(502,29): error TS2554: Expected 2-3 arguments, but got 1.
+src/agents/init.ts(504,26): error TS2554: Expected 4-5 arguments, but got 2.
+src/agents/init.ts(724,28): error TS2554: Expected 4-5 arguments, but got 1.
+src/game-systems/character/__tests__/CharacterRepository.test.ts(124,13): error TS2739: Type '{ id: string; save_id: string; name: string; gender: string; custom_gender: null; age_group: null; race: string; class: string; background: string; level: number; experience: number; current_hp: number; ... 10 more ...; updated_at: number; }' is missing the following properties from type 'CharacterRow': base_max_hp, base_max_mp, custom_data
+src/game-systems/character/CharacterService.ts(48,11): error TS6133: 'txManager' is declared but its value is never read.
+src/game-systems/character/CharacterService.ts(119,9): error TS2322: Type 'number | undefined' is not assignable to type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+src/game-systems/character/CharacterService.ts(120,9): error TS2322: Type 'number | undefined' is not assignable to type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+src/game-systems/character/CharacterService.ts(121,9): error TS2322: Type 'number | undefined' is not assignable to type 'number | null'.
+  Type 'undefined' is not assignable to type 'number | null'.
+src/game-systems/character/CharacterService.ts(122,9): error TS2322: Type 'number | undefined' is not assignable to type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+src/game-systems/character/CharacterService.ts(123,9): error TS2322: Type 'number | undefined' is not assignable to type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+src/game-systems/character/CharacterService.ts(124,9): error TS2322: Type 'number | undefined' is not assignable to type 'number | null'.
+  Type 'undefined' is not assignable to type 'number | null'.
+src/game-systems/character/CharacterService.ts(186,31): error TS2551: Property 'character_creation' does not exist on type 'TemplateRecord'. Did you mean 'characterCreation'?
+src/game-systems/character/CharacterService.ts(259,7): error TS2345: Argument of type 'number | undefined' is not assignable to parameter of type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+src/game-systems/init/GameInitService.ts(54,22): error TS6138: Property 'transactionManager' is declared but its value is never read.
+src/game-systems/init/GameInitService.ts(231,17): error TS2352: Conversion of type 'Record<string, unknown>[]' to type 'TemplateSkillDefinition[]' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Type 'Record<string, unknown>' is missing the following properties from type 'TemplateSkillDefinition': id, name
+src/game-systems/init/GameInitService.ts(232,20): error TS2352: Conversion of type 'Record<string, unknown>[]' to type 'TemplateLocationDefinition[]' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Type 'Record<string, unknown>' is missing the following properties from type 'TemplateLocationDefinition': id, name
+src/game-systems/story/__tests__/StoryEventRepository.test.ts(124,43): error TS2559: Type '10' has no properties in common with type '{ chapter?: string | undefined; limit?: number | undefined; offset?: number | undefined; }'.
+src/game-systems/story/__tests__/StoryService.story-events.test.ts(38,21): error TS2554: Expected 4-5 arguments, but got 1.
+src/game-systems/story/__tests__/StoryService.story-events.test.ts(90,21): error TS2554: Expected 4-5 arguments, but got 1.
+src/game-systems/story/StoryService.ts(86,7): error TS2322: Type 'AgentContextRow | null' is not assignable to type 'Record<string, unknown> | null'.
+  Type 'AgentContextRow' is not assignable to type 'Record<string, unknown>'.
+    Index signature for type 'string' is missing in type 'AgentContextRow'.
+src/index.ts(129,24): error TS2554: Expected 4-5 arguments, but got 1.
+src/routes/dev.ts(54,24): error TS2554: Expected 4-5 arguments, but got 1.
+src/routes/save.ts(63,28): error TS2554: Expected 4-5 arguments, but got 1.
+src/services/__tests__/shadow-state-insert-override.test.ts(85,12): error TS2571: Object is of type 'unknown'.
+src/services/__tests__/shadow-state-scope-values-transparent.test.ts(139,14): error TS2571: Object is of type 'unknown'.
+src/services/__tests__/template-world-context.test.ts(6,3): error TS2322: Type '{ id: string; name: string; description: string; version: string; author: string; tags: string[]; gameMode: string; numericalComplexity: string; agentProfile: string; isBuiltin: boolean; ... 16 more ...; updatedAt: any; }' is not assignable to type 'TemplateRecord'.
+  Types of property 'locations' are incompatible.
+    Type 'Record<string, unknown>[] | undefined' is not assignable to type 'Record<string, unknown>[]'.
+      Type 'undefined' is not assignable to type 'Record<string, unknown>[]'.
+src/services/__tests__/ws-request-handler.test.ts(149,43): error TS2345: Argument of type '{ coordinatorAgent: never; db: never; configLoader: never; clientId: string; toolRegistry: never; webSocketService: IWebSocketContext; }' is not assignable to parameter of type 'GameHandlerContext'.
+  Property 'gameServiceDeps' is missing in type '{ coordinatorAgent: never; db: never; configLoader: never; clientId: string; toolRegistry: never; webSocketService: IWebSocketContext; }' but required in type 'GameHandlerContext'.
+src/services/__tests__/ws-request-handler.test.ts(168,43): error TS2345: Argument of type '{ coordinatorAgent: never; db: never; configLoader: never; clientId: string; toolRegistry: never; webSocketService: IWebSocketContext; }' is not assignable to parameter of type 'GameHandlerContext'.
+  Property 'gameServiceDeps' is missing in type '{ coordinatorAgent: never; db: never; configLoader: never; clientId: string; toolRegistry: never; webSocketService: IWebSocketContext; }' but required in type 'GameHandlerContext'.
+src/services/__tests__/ws-request-handler.test.ts(204,43): error TS2345: Argument of type '{ coordinatorAgent: never; db: never; configLoader: never; clientId: string; toolRegistry: never; webSocketService: IWebSocketContext; }' is not assignable to parameter of type 'GameHandlerContext'.
+  Property 'gameServiceDeps' is missing in type '{ coordinatorAgent: never; db: never; configLoader: never; clientId: string; toolRegistry: never; webSocketService: IWebSocketContext; }' but required in type 'GameHandlerContext'.
+src/services/__tests__/ws-request-handler.test.ts(248,43): error TS2345: Argument of type '{ coordinatorAgent: never; db: never; configLoader: never; clientId: string; toolRegistry: never; webSocketService: IWebSocketContext; }' is not assignable to parameter of type 'GameHandlerContext'.
+  Property 'gameServiceDeps' is missing in type '{ coordinatorAgent: never; db: never; configLoader: never; clientId: string; toolRegistry: never; webSocketService: IWebSocketContext; }' but required in type 'GameHandlerContext'.
+src/services/__tests__/ws-request-handler.test.ts(276,43): error TS2345: Argument of type '{ coordinatorAgent: never; db: never; configLoader: never; clientId: string; toolRegistry: never; webSocketService: IWebSocketContext; }' is not assignable to parameter of type 'GameHandlerContext'.
+  Property 'gameServiceDeps' is missing in type '{ coordinatorAgent: never; db: never; configLoader: never; clientId: string; toolRegistry: never; webSocketService: IWebSocketContext; }' but required in type 'GameHandlerContext'.
+src/services/__tests__/ws-request-handler.test.ts(369,43): error TS2345: Argument of type '{ coordinatorAgent: never; db: never; configLoader: never; clientId: string; toolRegistry: never; webSocketService: IWebSocketContext; }' is not assignable to parameter of type 'GameHandlerContext'.
+  Property 'gameServiceDeps' is missing in type '{ coordinatorAgent: never; db: never; configLoader: never; clientId: string; toolRegistry: never; webSocketService: IWebSocketContext; }' but required in type 'GameHandlerContext'.
+src/services/__tests__/ws-request-handler.test.ts(414,43): error TS2345: Argument of type '{ coordinatorAgent: never; db: never; configLoader: never; clientId: string; toolRegistry: never; webSocketService: IWebSocketContext; }' is not assignable to parameter of type 'GameHandlerContext'.
+  Property 'gameServiceDeps' is missing in type '{ coordinatorAgent: never; db: never; configLoader: never; clientId: string; toolRegistry: never; webSocketService: IWebSocketContext; }' but required in type 'GameHandlerContext'.
+src/services/__tests__/ws-request-handler.test.ts(452,43): error TS2345: Argument of type '{ coordinatorAgent: never; db: never; configLoader: never; clientId: string; toolRegistry: never; webSocketService: IWebSocketContext; }' is not assignable to parameter of type 'GameHandlerContext'.
+  Property 'gameServiceDeps' is missing in type '{ coordinatorAgent: never; db: never; configLoader: never; clientId: string; toolRegistry: never; webSocketService: IWebSocketContext; }' but required in type 'GameHandlerContext'.
+src/services/__tests__/ws-request-handler.test.ts(488,43): error TS2345: Argument of type '{ coordinatorAgent: never; db: never; configLoader: never; clientId: string; toolRegistry: never; webSocketService: IWebSocketContext; }' is not assignable to parameter of type 'GameHandlerContext'.
+  Property 'gameServiceDeps' is missing in type '{ coordinatorAgent: never; db: never; configLoader: never; clientId: string; toolRegistry: never; webSocketService: IWebSocketContext; }' but required in type 'GameHandlerContext'.
+src/services/game-service.ts(212,30): error TS2554: Expected 4-5 arguments, but got 1.
+src/services/game-service.ts(213,30): error TS2554: Expected 4-5 arguments, but got 2.
+src/services/ws-request-handler.ts(276,24): error TS2554: Expected 4-5 arguments, but got 1.
+src/services/ws-save-handler.ts(97,30): error TS2554: Expected 4-5 arguments, but got 1.
+C:\Users\super\Documents\trae_projects\AGG-main\packages\backend:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @ai-rpg/backend@1.0.0 typecheck: `tsc --noEmit`
+Exit status 2

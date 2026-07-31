@@ -1,0 +1,2179 @@
+id: modern-romance
+name: 现代都市恋爱
+description: 在繁华的星城，青春与梦想交织。转学、邂逅、心动——每一段关系都是独一无二的故事。在这个没有魔法的现代世界里，最强大的力量是人心。
+version: 1.0.0
+author: AGG Team
+tags:
+  - romance
+  - modern
+  - visual-novel
+  - school-life
+  - dating
+
+game_mode: visual_novel
+default_challenge_mode: narrative_combat
+numerical_complexity: simple
+agent_profile: fantasy_rpg
+is_builtin: true
+
+world_setting:
+  name: 星城
+  description: 一座繁华的现代都市，高楼林立，霓虹闪烁。星城学园是这座城市最负盛名的高中，汇聚了来自各地的优秀学生。樱花飘落的校园小径、温馨的咖啡馆、热闹的祭典——这里每天都在上演着青春的故事。
+  era: 现代
+  genre: romance
+  magic_system: 无
+  technology_level: 现代
+  custom_fields:
+    setting: 日本风格都市
+    school: 星城学园
+    currency: 日元
+    season: 春季
+
+character_creation:
+  attribute_points: 10
+  attribute_role_mapping:
+    physical_power: courage
+    agility: intelligence
+    endurance: empathy
+    mental_power: intelligence
+    perception: empathy
+    influence: charm
+  races:
+    - id: normal-student
+      name: 普通学生
+      description: 平凡而真实，在人群中默默生活。你没有特别的光环，却有着最真挚的情感和最朴实的善良。
+      bonuses:
+        empathy: 1
+      penalties: {}
+      abilities:
+        - 平凡魅力
+        - 真诚待人
+      available_classes:
+        - literature-club
+        - sports-club
+        - art-club
+        - science-club
+    - id: transfer-student
+      name: 转校生
+      description: 从远方而来，带着神秘的气息。你的出现总是引起周围人的好奇和关注，每一段新的邂逅都充满可能。
+      bonuses:
+        charm: 1
+        luck: 1
+      penalties: {}
+      abilities:
+        - 新鲜感
+        - 适应力
+      available_classes:
+        - literature-club
+        - sports-club
+        - art-club
+        - science-club
+    - id: returnee
+      name: 归国子女
+      description: 从海外归来，见多识广。你拥有不同于他人的视角和经历，优雅而自信，却也渴望找到归属感。
+      bonuses:
+        intelligence: 1
+        charm: 1
+      penalties: {}
+      abilities:
+        - 双语优势
+        - 国际视野
+      available_classes:
+        - literature-club
+        - art-club
+        - science-club
+    - id: genius
+      name: 天才少年
+      description: 天资聪颖，学业出众。你在学术上有着惊人的天赋，但有时会被人认为难以接近。其实你只是不知道如何表达自己的情感。
+      bonuses:
+        intelligence: 2
+      penalties:
+        empathy: -1
+      abilities:
+        - 学业天才
+        - 逻辑思维
+      available_classes:
+        - literature-club
+        - science-club
+
+  classes:
+    - id: literature-club
+      name: 文学部
+      description: 热爱文字与故事，在书页间寻找心灵的共鸣。文学部的成员们总是沉浸在小说和诗歌的世界中，用文字编织梦想。
+      primary_attributes:
+        - intelligence
+        - empathy
+      hit_die: d6
+      skill_proficiencies:
+        - writing
+        - analysis
+        - conversation
+      starting_equipment:
+        - notebook
+        - fountain-pen
+        - favorite-novel
+    - id: sports-club
+      name: 运动部
+      description: 在运动场上挥洒汗水，用激情和毅力征服一切。运动部的成员们阳光开朗，以强健的体魄和永不放弃的精神感染着身边的人。
+      primary_attributes:
+        - courage
+        - charm
+      hit_die: d10
+      skill_proficiencies:
+        - athletics
+        - teamwork
+        - encouragement
+      starting_equipment:
+        - sports-uniform
+        - water-bottle
+        - lucky-towel
+    - id: art-club
+      name: 艺术部
+      description: 用画笔和旋律表达内心世界，感受美的存在。艺术部的成员们敏感而富有创造力，他们能看到常人忽略的细微之美。
+      primary_attributes:
+        - empathy
+        - charm
+      hit_die: d6
+      skill_proficiencies:
+        - painting
+        - music
+        - observation
+      starting_equipment:
+        - sketchbook
+        - colored-pencils
+        - portable-music-player
+    - id: science-club
+      name: 科学部
+      description: 追求真理与知识，在实验中探索世界的奥秘。科学部的成员们理性而严谨，相信一切问题都有答案。
+      primary_attributes:
+        - intelligence
+        - courage
+      hit_die: d8
+      skill_proficiencies:
+        - research
+        - logic
+        - experimentation
+      starting_equipment:
+        - lab-coat
+        - science-notebook
+        - magnifying-glass
+
+  backgrounds:
+    - id: wealthy-family
+      name: 富裕家庭
+      description: 出身优渥，从小衣食无忧。你习惯了精致的生活，但内心深处渴望被人真心相待，而非因为家境。
+      skill_proficiencies:
+        - etiquette
+        - conversation
+      languages: []
+      equipment:
+        - designer-uniform
+        - luxury-bag
+        - family-crest-pin
+      feature: 名门光环 - 你的家世让人印象深刻，但也带来了距离感
+      attribute_bonuses:
+        charm: 1
+    - id: ordinary-family
+      name: 普通家庭
+      description: 温馨平凡的家庭，父母勤劳朴实。你懂得珍惜，也明白幸福的真谛在于身边人的陪伴。
+      skill_proficiencies:
+        - cooking
+        - empathy
+      languages: []
+      equipment:
+        - school-uniform
+        - homemade-bento
+        - family-photo
+      feature: 温暖日常 - 你擅长营造温馨的氛围，让人感到安心
+      attribute_bonuses:
+        empathy: 1
+    - id: single-parent
+      name: 单亲家庭
+      description: 与一位家长相依为命，你比同龄人更早学会了独立。虽然生活不易，但你从未放弃对幸福的追求。
+      skill_proficiencies:
+        - independence
+        - resilience
+      languages: []
+      equipment:
+        - simple-uniform
+        - part-time-job-schedule
+        - cherished-memento
+      feature: 坚韧之心 - 你不轻易被困难打倒，这份坚强令人动容
+      attribute_bonuses:
+        courage: 1
+    - id: foster-family
+      name: 寄养家庭
+      description: 在寄养家庭中长大，你学会了适应不同的环境。你渴望一个真正属于自己的家，也在寻找能够接纳你的人。
+      skill_proficiencies:
+        - observation
+        - adaptability
+      languages: []
+      equipment:
+        - worn-uniform
+        - travel-journal
+        - lucky-charm
+      feature: 旅人之心 - 你善于理解不同的人，这份共情力是珍贵的礼物
+      attribute_bonuses:
+        luck: 1
+
+  attributes:
+    - id: charm
+      name: 魅力
+      abbreviation: CHM
+      description: 吸引他人的气质和魅力，影响第一印象和好感度
+      min_value: 1
+      default_value: 10
+      max_value: 20
+    - id: intelligence
+      name: 智力
+      abbreviation: INT
+      description: 学业能力和逻辑思维，影响学习效率和解决问题
+      min_value: 1
+      default_value: 10
+      max_value: 20
+    - id: courage
+      name: 勇气
+      abbreviation: CRG
+      description: 面对困难时的勇气和决断力，影响关键时刻的选择
+      min_value: 1
+      default_value: 10
+      max_value: 20
+    - id: empathy
+      name: 共情
+      abbreviation: EMP
+      description: 理解他人情感的能力，影响对话选择和关系发展
+      min_value: 1
+      default_value: 10
+      max_value: 20
+    - id: luck
+      name: 幸运
+      abbreviation: LCK
+      description: 命运的眷顾，影响偶然事件和缘分邂逅
+      min_value: 1
+      default_value: 10
+      max_value: 20
+
+  custom_options: []
+
+  age_mode: number
+  age_number:
+    min: 16
+    max: 60
+    default: 22
+
+game_rules:
+  combat_system:
+    type: narrative
+    initiative_type: random
+    custom_initiative: ""
+    action_points: 1
+    critical_hit:
+      threshold: 20
+      multiplier: 1
+    flee:
+      base_chance: 0.8
+      per_dead_enemy_bonus: 0.1
+    defend:
+      damage_reduction: 0.7
+    damage_formula:
+      attack_contribution: 0.3
+      defense_reduction: 0.7
+      level_bonus_factor: 0.5
+      variance_min: 0.9
+      variance_range: 0.2
+    enemy_ai:
+      skill_use_chance: 0.1
+    defaults:
+      potion_heal: 50
+      mana_potion_restore: 30
+      skill_mana_cost: 5
+      skill_damage_multiplier: 1.2
+      skill_base_damage_factor: 1.5
+      attribute_fallback: 10
+      enemy_speed_factor: 1
+  derived_attribute_formulas:
+    maxHealth:
+      base: 120
+      coefficients: { endurance: 8 }
+    maxMana:
+      base: 60
+      coefficients: { mental_power: 6 }
+    attack:
+      base: 12
+      coefficients: { physical_power: 1 }
+    defense:
+      base: 8
+      coefficients: { endurance: 1 }
+    magicAttack:
+      base: 10
+      coefficients: { mental_power: 1.5 }
+    magicDefense:
+      base: 6
+      coefficients: { mental_power: 0.5 }
+    speed:
+      base: 12
+      coefficients: { agility: 1 }
+    critRate:
+      base: 0.05
+      coefficients: { agility: 0.005 }
+      max: 0.3
+    critDamage:
+      base: 1.5
+      coefficients: { physical_power: 0.01 }
+    dodgeRate:
+      base: 0.05
+      coefficients: { agility: 0.005 }
+      max: 0.2
+    blockRate:
+      base: 0.92
+      coefficients: { agility: 0.003 }
+  skill_system:
+    max_level: 10
+    cooldown_system: none
+    upgrade_cost:
+      base: 50
+      multiplier: 1.3
+  inventory_system:
+    max_slots: 10
+    weight_system: false
+    stack_sizes:
+      gift: 5
+      letter: 10
+      consumable: 3
+    equipment_slots:
+      - id: outfit
+        name: 穿搭
+        icon: 👔
+        accepted_item_types:
+          - armor
+          - accessory
+      - id: accessory
+        name: 饰品
+        icon: 💍
+        capacity: 2
+        accepted_item_types:
+          - accessory
+      - id: bag
+        name: 随身包
+        icon: 👜
+        accepted_item_types:
+          - accessory
+  quest_system:
+    max_active: 5
+    time_system: true
+    fail_conditions:
+      - timeout
+      - relationship-broken
+  currency_system:
+    id: yen
+    name: 日元
+    icon: 💴
+  custom_rules:
+    - name: 好感度系统
+      description: 与NPC的互动会影响好感度，好感度决定关系走向
+    - name: 时间流逝
+      description: 每个选择都会推进时间，珍惜每一次相遇
+
+ai_constraints:
+  tone: romantic
+  custom_tone: ""
+  content_rating: everyone
+  prohibited_topics:
+    - violence
+    - horror
+    - explicit-content
+  required_elements:
+    - romance
+    - character-development
+    - emotional-moments
+  ai_behavior:
+    response_style: narrative
+    detail_level: detailed
+    player_agency: guided
+
+starting_scene:
+  location: school-gate
+  description: 樱花纷飞的四月初，你站在星城学园的校门前。春风拂面，带着淡淡的花香。远处的钟楼传来悠扬的钟声，学生们三三两两地走进校园。这是你在这所学校的第一个春天——新的开始，新的邂逅，一切皆有可能......
+  location_description: 星城学园校门，樱花纷飞的校园入口
+  atmosphere: 青春洋溢，樱花纷飞，充满期待与悸动
+
+  sub_locations:
+    - id: school-entrance
+      name: 校门入口
+      description: 星城学园标志性的拱形校门，门柱上缠绕着盛开的紫藤花。樱花树夹道而立，花瓣随风飘落如粉色的雪。学生们三三两两地穿过校门，笑声和问候声此起彼伏。公告栏上贴着新学期的社团招新海报，色彩斑斓。
+      type: gate
+      is_starting: true
+      danger_level: 0
+
+    - id: school-courtyard
+      name: 中央庭院
+      description: 校园中央的开阔庭院，中央是一座喷泉，水花在阳光下折射出彩虹。四周种着樱花树和银杏树，长椅上坐着看书或聊天的学生。这里是校园中最热闹的地方，也是邂逅最常发生的场所。
+      type: plaza
+      danger_level: 0
+
+    - id: main-building
+      name: 教学主楼
+      description: 红砖建筑的教学主楼，走廊里回荡着上课铃声和朗朗书声。一楼大厅的鞋柜区是每天早上最拥挤的地方，也是偷偷塞情书的热门地点。楼梯转角的窗台可以望见整个校园，是许多人独处思考的秘密角落。
+      type: building
+      danger_level: 0
+
+    - id: club-building
+      name: 社团活动楼
+      description: 专门供社团活动的三层小楼，每层都有不同社团的活动室。文学部的教室里总是飘着红茶的香气，运动部的更衣室里回荡着加油声，艺术部的画室里颜料味与音乐声交织，科学部的实验室里偶尔传来轻微的爆炸声。
+      type: building
+      danger_level: 0
+
+    - id: school-exit
+      name: 学校后门
+      description: 通向校外商业街的侧门，门外的坡道两旁开满了小花店和咖啡馆。放学后这里总是最热闹，同学们约着一起去吃可丽饼或者唱卡拉OK。夕阳把整条坡道染成橘红色，是最适合告白的时刻。
+      type: gate
+      danger_level: 0
+      connections:
+        - shopping-entrance
+        - park-entrance
+
+  npcs:
+    - id: sakura-mizuki
+      location: club-building
+      name: 水月樱
+      title: 文学部部长
+      description: 长发如瀑的文学部部长，总是安静地坐在窗边读书。她看似冷淡，实则内心温柔，只是不善于表达。据说她的小说曾在文学杂志上获奖。
+      role: ally
+      race: human
+      appearance: 黑色长发及腰，总是戴着一枚银色书签发夹，校服整洁
+      personality: 内敛、温柔、文学少女
+      dialogue:
+        - ......你也喜欢这本书吗？
+        - 文字是有温度的，只是需要用心去感受。
+        - 每天放学后，文学部的教室里总有一杯温热的红茶。
+      stats:
+        level: 3
+        hp: 30
+        attack: 3
+        defense: 5
+        speed: 6
+        magic: 8
+      services:
+        - conversation
+      custom_data:
+        affection: 0
+        favorite: literature
+    - id: hayate-ren
+      location: school-courtyard
+      name: 莲疾风
+      title: 学生会副会长
+      description: 学生会副会长兼运动部王牌，阳光开朗的校园偶像。他总是面带微笑，对谁都温柔以待，但似乎没有人真正了解他的内心。
+      role: ally
+      race: human
+      appearance: 短发微卷，笑容温暖，运动部夹克外套在校服外
+      personality: 开朗、温柔、完美主义
+      dialogue:
+        - 早上好！今天天气真不错呢。
+        - 有什么困难的话，随时可以来找我。
+        - 其实......我也有不知道该怎么办的时候。
+      stats:
+        level: 5
+        hp: 50
+        attack: 8
+        defense: 6
+        speed: 10
+        magic: 4
+      services:
+        - conversation
+        - quest
+      custom_data:
+        affection: 0
+        favorite: sports
+  items: []
+  quests:
+    - id: romance-quest-1
+      name: 春日邂逅
+      description: 在星城学园的第一天，去认识新的朋友吧。也许某个人会成为你特别的存在。
+      type: main
+      objectives:
+        - id: rq1-1
+          description: 在校园中探索，与至少一位同学交谈
+          type: talk
+          target: any
+          required: 1
+        - id: rq1-2
+          description: 选择一个社团加入
+          type: custom
+          target: club
+          required: 1
+      rewards:
+        - type: experience
+          value: 30
+        - type: skill
+          value: first-impression
+      giver: system
+      time_limit: 0
+      custom_data: {}
+  explorable_areas:
+    - id: shopping-district
+      name: 商业街
+      description: 学校后门外的热闹商业街，两旁排列着各式小店和咖啡馆，是学生们放学后最爱的去处。
+      type: commercial
+      danger_level: 0
+      atmosphere: 热闹温馨，食物香气与笑声交织
+      sub_locations:
+        - id: shopping-entrance
+          name: 商业街入口
+          description: 从学校后门延伸出的缓坡尽头，一块手绘风格的木牌写着"星坂商店街"。街道两旁挂满了彩色灯笼和手写招牌，空气中飘着可丽饼和章鱼烧的香气。放学时分，穿着制服的学生们将这里挤得水泄不通。
+          type: gate
+          danger_level: 0
+          connections:
+            - school-exit
+        - id: cafe-harmony
+          name: 和音咖啡馆
+          description: 商业街角落一家温馨的咖啡馆，门口的黑板上用彩色粉笔写着今日推荐。店内弥漫着咖啡和肉桂的香气，靠窗的位置可以看见街上来来往往的人。据说这里的拿铁拉花会根据常客的喜好定制，是最适合约会的地点。
+          type: social
+          danger_level: 0
+        - id: karaoke-planet
+          name: KTV星球
+          description: 商业街最热闹的娱乐场所，门口的霓虹招牌闪烁着星星图案。包厢里回荡着走调的歌声和欢笑声，点歌本上最受欢迎的永远是那几首情歌对唱。这里是社团聚会和生日派对的常驻地，也是许多告白故事的起点。
+          type: entertainment
+          danger_level: 0
+    - id: starlight-park
+      name: 星光公园
+      description: 城市中心的绿意公园，有大片的草坪、蜿蜒的小径和一座星光观测台。夜晚的公园是观赏星空的绝佳地点，也是情侣们最爱的散步场所。
+      type: park
+      danger_level: 0
+      atmosphere: 宁静浪漫，花香与星光相伴
+      sub_locations:
+        - id: park-entrance
+          name: 公园入口
+          description: 公园的拱形铁门入口，门上缠绕着盛开的蔷薇。入口处的花坛四季常开，当前是樱花和紫藤的季节。长椅上坐着一对对情侣，空气中飘着花香和远处传来的吉他声。
+          type: gate
+          danger_level: 0
+          connections:
+            - school-exit
+        - id: observatory-hill
+          name: 观星丘
+          description: 公园内一座缓坡小丘，丘顶有一座白色圆顶的天文观测台。夜晚这里可以清晰地看到满天星斗，是校园传说中最灵验的告白地点——在流星划过的瞬间告白，就一定会成功。丘顶的风总是很温柔，像是大自然也在为恋人们加油。
+          type: landmark
+          danger_level: 0
+
+initial_data:
+  skills:
+    literature-club:
+      - heartfelt-letter
+      - poetic-expression
+      - deep-conversation
+      - empathic-listening
+      - literary-quote
+    sports-club:
+      - encouraging-smile
+      - team-spirit
+      - never-give-up
+      - protective-instinct
+      - cheerful-encouragement
+    art-club:
+      - creative-gift
+      - emotional-resonance
+      - artistic-sensitivity
+      - aesthetic-appreciation
+      - heartfelt-performance
+    science-club:
+      - logical-persuasion
+      - problem-solving
+      - careful-observation
+      - analytical-advice
+      - inventive-surprise
+  items_by_class:
+    literature-club:
+      - item_id: notebook
+        quantity: 1
+      - item_id: favorite-novel
+        quantity: 1
+      - item_id: fountain-pen
+        quantity: 1
+      - item_id: school-uniform
+        quantity: 1
+      - item_id: bookmarks
+        quantity: 3
+      - item_id: tea-set
+        quantity: 1
+    sports-club:
+      - item_id: sports-uniform
+        quantity: 1
+      - item_id: lucky-towel
+        quantity: 1
+      - item_id: water-bottle
+        quantity: 1
+      - item_id: sneakers
+        quantity: 1
+      - item_id: sports-bag
+        quantity: 1
+      - item_id: energy-bar
+        quantity: 2
+    art-club:
+      - item_id: sketchbook
+        quantity: 1
+      - item_id: colored-pencils
+        quantity: 1
+      - item_id: portable-music-player
+        quantity: 1
+      - item_id: school-uniform
+        quantity: 1
+      - item_id: paint-set
+        quantity: 1
+      - item_id: canvas-bag
+        quantity: 1
+    science-club:
+      - item_id: lab-coat
+        quantity: 1
+      - item_id: science-notebook
+        quantity: 1
+      - item_id: magnifying-glass
+        quantity: 1
+      - item_id: school-uniform
+        quantity: 1
+      - item_id: experiment-kit
+        quantity: 1
+      - item_id: calculator
+        quantity: 1
+  items_by_background:
+    wealthy-family:
+      - item_id: designer-uniform
+        quantity: 1
+      - item_id: luxury-bag
+        quantity: 1
+      - item_id: family-crest-pin
+        quantity: 1
+    ordinary-family:
+      - item_id: homemade-bento
+        quantity: 1
+      - item_id: family-photo
+        quantity: 1
+      - item_id: school-uniform
+        quantity: 1
+    single-parent:
+      - item_id: part-time-job-schedule
+        quantity: 1
+      - item_id: cherished-memento
+        quantity: 1
+      - item_id: simple-uniform
+        quantity: 1
+    foster-family:
+      - item_id: travel-journal
+        quantity: 1
+      - item_id: lucky-charm
+        quantity: 1
+      - item_id: worn-uniform
+        quantity: 1
+  equipment:
+    literature-club:
+      outfit: school-uniform
+      accessory:
+        - fountain-pen
+        - favorite-novel
+      bag: notebook
+    sports-club:
+      outfit: sports-uniform
+      accessory:
+        - lucky-towel
+        - water-bottle
+      bag: sports-bag
+    art-club:
+      outfit: school-uniform
+      accessory:
+        - colored-pencils
+        - portable-music-player
+      bag: canvas-bag
+    science-club:
+      outfit: lab-coat
+      accessory:
+        - magnifying-glass
+        - science-notebook
+      bag: calculator
+  gold:
+    wealthy-family: 5000
+    ordinary-family: 1500
+    single-parent: 800
+    foster-family: 1000
+
+skills:
+  - id: heartfelt-letter
+    name: 真心信笺
+    description: 用文字将无法当面说出口的心意写成一封信，字里行间流淌着真挚的情感。收信人读到的不仅是文字，更是一颗为你跳动的心。
+    category: buff
+    element: arcane
+    target_type: single
+    cost:
+      mp: 8
+    damage: {}
+    effects:
+      - type: buff
+        attribute: charm
+        value: 3
+        duration: 3
+      - type: buff
+        attribute: empathy
+        value: 2
+        duration: 3
+    cooldown: 2
+    range: 3
+    icon: heartfelt-letter.png
+    custom_data:
+      category: active
+      class_requirement:
+        - literature-club
+      level_requirement: 1
+      is_passive: false
+      locale: zh-CN
+
+  - id: poetic-expression
+    name: 诗意表达
+    description: 引用一首动人的诗句来表达此刻的心情，文字的力量穿越时空，在对方心中激起涟漪。文学部最擅长的浪漫，就是把日常变成诗篇。
+    category: buff
+    element: arcane
+    target_type: single
+    cost:
+      mp: 6
+    damage: {}
+    effects:
+      - type: buff
+        attribute: charm
+        value: 2
+        duration: 2
+      - type: buff
+        attribute: intelligence
+        value: 1
+        duration: 2
+    cooldown: 1
+    range: 2
+    icon: poetic-expression.png
+    custom_data:
+      category: active
+      class_requirement:
+        - literature-club
+      level_requirement: 1
+      is_passive: false
+      locale: zh-CN
+
+  - id: deep-conversation
+    name: 深度对话
+    description: 抛开寒暄与客套，走进对方内心深处的世界。在安静的角落里，两颗心因真诚的交流而越靠越近，时间仿佛为你们放慢了脚步。
+    category: healing
+    element: holy
+    target_type: single
+    cost:
+      mp: 10
+    damage: {}
+    effects:
+      - type: heal
+        base: 15
+        scaling:
+          attribute: empathy
+          multiplier: 1.2
+      - type: buff
+        attribute: empathy
+        value: 2
+        duration: 3
+    cooldown: 2
+    range: 1
+    icon: deep-conversation.png
+    custom_data:
+      category: active
+      class_requirement:
+        - literature-club
+      level_requirement: 2
+      is_passive: false
+      locale: zh-CN
+
+  - id: empathic-listening
+    name: 共情倾听
+    description: 安静地坐在对方身旁，认真聆听每一句话语背后的情感。不需要建议，不需要评判，只需要一颗愿意理解的心。有时候，被听见就是最好的治愈。
+    category: healing
+    element: holy
+    target_type: ally
+    cost:
+      mp: 8
+    damage: {}
+    effects:
+      - type: heal
+        base: 20
+        scaling:
+          attribute: empathy
+          multiplier: 1.5
+      - type: buff
+        attribute: empathy
+        value: 3
+        duration: 2
+    cooldown: 2
+    range: 1
+    icon: empathic-listening.png
+    custom_data:
+      category: active
+      class_requirement:
+        - literature-club
+      level_requirement: 2
+      is_passive: false
+      locale: zh-CN
+
+  - id: literary-quote
+    name: 文学引用
+    description: 在恰当的时刻引用一段经典文学名句，为对话增添深度与韵味。那些流传百年的文字，此刻因你的引用而焕发新的生命，也让你显得格外迷人。
+    category: utility
+    element: arcane
+    target_type: single
+    cost:
+      mp: 4
+    damage: {}
+    effects:
+      - type: buff
+        attribute: intelligence
+        value: 2
+        duration: 2
+      - type: buff
+        attribute: charm
+        value: 1
+        duration: 2
+    cooldown: 1
+    range: 2
+    icon: literary-quote.png
+    custom_data:
+      category: active
+      class_requirement:
+        - literature-club
+      level_requirement: 1
+      is_passive: false
+      locale: zh-CN
+
+  - id: encouraging-smile
+    name: 鼓励微笑
+    description: 展露一个温暖而坚定的微笑，仿佛阳光穿透云层。你的笑容有着不可思议的力量，能让身边的人重新振作，也能让心跳不由自主地加速。
+    category: buff
+    element: holy
+    target_type: single
+    cost:
+      mp: 5
+    damage: {}
+    effects:
+      - type: buff
+        attribute: charm
+        value: 2
+        duration: 2
+      - type: buff
+        attribute: courage
+        value: 2
+        duration: 2
+    cooldown: 1
+    range: 2
+    icon: encouraging-smile.png
+    custom_data:
+      category: active
+      class_requirement:
+        - sports-club
+      level_requirement: 1
+      is_passive: false
+      locale: zh-CN
+
+  - id: team-spirit
+    name: 团队精神
+    description: 振臂高呼，将所有人的心凝聚在一起。在运动场上培养出的默契与信任，让每个人都感受到——我们不是一个人在战斗。这份团结的力量，比任何个人能力都更强大。
+    category: buff
+    element: physical
+    target_type: ally_aoe
+    cost:
+      mp: 12
+    damage: {}
+    effects:
+      - type: buff
+        attribute: courage
+        value: 2
+        duration: 3
+      - type: buff
+        attribute: charm
+        value: 1
+        duration: 3
+    cooldown: 3
+    range: 3
+    icon: team-spirit.png
+    custom_data:
+      category: active
+      class_requirement:
+        - sports-club
+      level_requirement: 2
+      is_passive: false
+      locale: zh-CN
+
+  - id: never-give-up
+    name: 永不放弃
+    description: 即使跌倒无数次，也要一次次站起来。运动部最引以为傲的不是胜利，而是那颗永不言败的心。你的坚持会感染身边的每一个人，也会让某个人对你刮目相看。
+    category: buff
+    element: physical
+    target_type: self
+    cost:
+      mp: 8
+    damage: {}
+    effects:
+      - type: buff
+        attribute: courage
+        value: 4
+        duration: 3
+      - type: buff
+        attribute: luck
+        value: 1
+        duration: 3
+    cooldown: 3
+    range: 0
+    icon: never-give-up.png
+    custom_data:
+      category: active
+      class_requirement:
+        - sports-club
+      level_requirement: 2
+      is_passive: false
+      locale: zh-CN
+
+  - id: protective-instinct
+    name: 守护本能
+    description: 当重要的人面临困境时，身体比意识更先行动。挡在对方身前的背影，是最让人安心的风景。这份本能的守护，胜过千言万语的告白。
+    category: defense
+    element: physical
+    target_type: ally
+    cost:
+      mp: 10
+    damage: {}
+    effects:
+      - type: shield
+        attribute: hp
+        value: 15
+        duration: 2
+      - type: buff
+        attribute: charm
+        value: 3
+        duration: 2
+    cooldown: 3
+    range: 1
+    icon: protective-instinct.png
+    custom_data:
+      category: active
+      class_requirement:
+        - sports-club
+      level_requirement: 3
+      is_passive: false
+      locale: zh-CN
+
+  - id: cheerful-encouragement
+    name: 爽朗加油
+    description: 用最响亮的声音为对方加油打气！运动部式的应援简单直接却充满力量，你的呐喊穿越喧嚣，直达对方心底。被你加油的人，一定能感受到那份炽热的真心。
+    category: buff
+    element: physical
+    target_type: single
+    cost:
+      mp: 6
+    damage: {}
+    effects:
+      - type: buff
+        attribute: courage
+        value: 3
+        duration: 2
+      - type: buff
+        attribute: charm
+        value: 1
+        duration: 2
+    cooldown: 1
+    range: 3
+    icon: cheerful-encouragement.png
+    custom_data:
+      category: active
+      class_requirement:
+        - sports-club
+      level_requirement: 1
+      is_passive: false
+      locale: zh-CN
+
+  - id: creative-gift
+    name: 创意礼物
+    description: 亲手制作一份独一无二的礼物，倾注了时间、心思和满满的爱意。也许不够精致，也许有些笨拙，但正因为是用心做的，才格外珍贵。收到礼物的人，一定能感受到那份温暖。
+    category: buff
+    element: arcane
+    target_type: single
+    cost:
+      mp: 10
+    damage: {}
+    effects:
+      - type: buff
+        attribute: charm
+        value: 4
+        duration: 3
+      - type: buff
+        attribute: empathy
+        value: 2
+        duration: 3
+    cooldown: 3
+    range: 1
+    icon: creative-gift.png
+    custom_data:
+      category: active
+      class_requirement:
+        - art-club
+      level_requirement: 2
+      is_passive: false
+      locale: zh-CN
+
+  - id: emotional-resonance
+    name: 情感共鸣
+    description: 用画笔或旋律触碰对方灵魂深处的弦，让两颗心在同一频率上共振。艺术最神奇的力量，就是让素不相识的人在美的面前产生共鸣，仿佛找到了失散已久的知己。
+    category: healing
+    element: arcane
+    target_type: single
+    cost:
+      mp: 8
+    damage: {}
+    effects:
+      - type: heal
+        base: 20
+        scaling:
+          attribute: empathy
+          multiplier: 1.3
+      - type: buff
+        attribute: empathy
+        value: 3
+        duration: 2
+    cooldown: 2
+    range: 2
+    icon: emotional-resonance.png
+    custom_data:
+      category: active
+      class_requirement:
+        - art-club
+      level_requirement: 2
+      is_passive: false
+      locale: zh-CN
+
+  - id: artistic-sensitivity
+    name: 艺术感知
+    description: 敏锐地捕捉到对方细微的情感变化，就像捕捉画布上最微妙的光影。艺术部培养出的感知力，让你总能在对方开口之前就察觉到那些未曾说出口的心情。
+    category: utility
+    element: arcane
+    target_type: self
+    cost:
+      mp: 5
+    damage: {}
+    effects:
+      - type: buff
+        attribute: empathy
+        value: 3
+        duration: 3
+      - type: buff
+        attribute: intelligence
+        value: 1
+        duration: 3
+    cooldown: 2
+    range: 0
+    icon: artistic-sensitivity.png
+    custom_data:
+      category: active
+      class_requirement:
+        - art-club
+      level_requirement: 1
+      is_passive: false
+      locale: zh-CN
+
+  - id: aesthetic-appreciation
+    name: 审美鉴赏
+    description: 与对方一起欣赏一幅画、一首曲子或一处风景，分享彼此对美的感悟。在美的面前，人与人之间的距离自然而然地缩短了。能一起欣赏美的人，心灵总是相通的。
+    category: buff
+    element: arcane
+    target_type: single
+    cost:
+      mp: 6
+    damage: {}
+    effects:
+      - type: buff
+        attribute: charm
+        value: 2
+        duration: 2
+      - type: buff
+        attribute: empathy
+        value: 2
+        duration: 2
+    cooldown: 1
+    range: 2
+    icon: aesthetic-appreciation.png
+    custom_data:
+      category: active
+      class_requirement:
+        - art-club
+      level_requirement: 1
+      is_passive: false
+      locale: zh-CN
+
+  - id: heartfelt-performance
+    name: 真心演奏
+    description: 为那个人弹奏一首曲子，每一个音符都承载着无法用语言表达的情感。当旋律在空气中流淌，你的心意也随着音乐传递到对方心中。这一刻，整个世界只剩下你们两个人。
+    category: healing
+    element: holy
+    target_type: single
+    cost:
+      mp: 12
+    damage: {}
+    effects:
+      - type: heal
+        base: 25
+        scaling:
+          attribute: empathy
+          multiplier: 1.5
+      - type: buff
+        attribute: charm
+        value: 3
+        duration: 3
+    cooldown: 3
+    range: 2
+    icon: heartfelt-performance.png
+    custom_data:
+      category: active
+      class_requirement:
+        - art-club
+      level_requirement: 3
+      is_passive: false
+      locale: zh-CN
+
+  - id: logical-persuasion
+    name: 逻辑说服
+    description: 用严密的逻辑和无可辩驳的论据说服对方。科学部最擅长的就是用理性打动人心，条理清晰的论述比任何花言巧语都更有说服力。当逻辑与真心结合，没有人能拒绝你。
+    category: utility
+    element: arcane
+    target_type: single
+    cost:
+      mp: 6
+    damage: {}
+    effects:
+      - type: buff
+        attribute: intelligence
+        value: 3
+        duration: 2
+      - type: debuff
+        attribute: courage
+        value: -1
+        duration: 1
+    cooldown: 2
+    range: 2
+    icon: logical-persuasion.png
+    custom_data:
+      category: active
+      class_requirement:
+        - science-club
+      level_requirement: 1
+      is_passive: false
+      locale: zh-CN
+
+  - id: problem-solving
+    name: 问题解决
+    description: 面对棘手的困境，冷静分析并找到最佳解决方案。科学部式的问题解决能力，让你在关键时刻总能化险为夷。可靠的人总是格外迷人，因为你让人感到安心。
+    category: utility
+    element: arcane
+    target_type: self
+    cost:
+      mp: 8
+    damage: {}
+    effects:
+      - type: buff
+        attribute: intelligence
+        value: 3
+        duration: 3
+      - type: buff
+        attribute: courage
+        value: 1
+        duration: 3
+    cooldown: 2
+    range: 0
+    icon: problem-solving.png
+    custom_data:
+      category: active
+      class_requirement:
+        - science-club
+      level_requirement: 2
+      is_passive: false
+      locale: zh-CN
+
+  - id: careful-observation
+    name: 细致观察
+    description: 用科学家的眼光观察周围的一切，不放过任何细微的线索。你注意到了别人忽略的细节——她今天换了发夹，他笑的时候眼角有淡淡的疲惫。这份细心，是最温柔的关注。
+    category: utility
+    element: arcane
+    target_type: self
+    cost:
+      mp: 4
+    damage: {}
+    effects:
+      - type: buff
+        attribute: empathy
+        value: 2
+        duration: 3
+      - type: buff
+        attribute: intelligence
+        value: 2
+        duration: 3
+    cooldown: 1
+    range: 0
+    icon: careful-observation.png
+    custom_data:
+      category: active
+      class_requirement:
+        - science-club
+      level_requirement: 1
+      is_passive: false
+      locale: zh-CN
+
+  - id: analytical-advice
+    name: 分析建议
+    description: 用数据和事实为对方提供最客观的建议，帮助对方做出最好的选择。虽然听起来有些理性过头，但你的每一句建议背后，都藏着对对方深深的关心——只是表达方式不太一样罢了。
+    category: utility
+    element: arcane
+    target_type: ally
+    cost:
+      mp: 7
+    damage: {}
+    effects:
+      - type: buff
+        attribute: intelligence
+        value: 2
+        duration: 2
+      - type: buff
+        attribute: courage
+        value: 2
+        duration: 2
+    cooldown: 2
+    range: 2
+    icon: analytical-advice.png
+    custom_data:
+      category: active
+      class_requirement:
+        - science-club
+      level_requirement: 2
+      is_passive: false
+      locale: zh-CN
+
+  - id: inventive-surprise
+    name: 创意惊喜
+    description: 运用科学知识策划一场出人意料的惊喜——也许是用化学反应制作的彩色烟花，也许是精心计算的完美烟火观赏时间。理科生的浪漫，就是把不可能变成可能。
+    category: buff
+    element: shadow
+    target_type: single
+    cost:
+      mp: 10
+    damage: {}
+    effects:
+      - type: buff
+        attribute: charm
+        value: 4
+        duration: 3
+      - type: buff
+        attribute: luck
+        value: 2
+        duration: 2
+    cooldown: 3
+    range: 2
+    icon: inventive-surprise.png
+    custom_data:
+      category: active
+      class_requirement:
+        - science-club
+      level_requirement: 3
+      is_passive: false
+      locale: zh-CN
+
+items:
+  - id: notebook
+    name: 笔记本
+    description: 一本封面素雅的笔记本，纸张细腻顺滑。文学部的同学们用它记录灵感、摘抄诗句，也写下那些只属于自己的心事。每一页都承载着青春的痕迹。
+    category: tool
+    quality: common
+    stats:
+      intelligence: 1
+    effects: []
+    value:
+      buy: 300
+      sell: 150
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats:
+        - key: intelligence
+          label: 智力
+          value: "+1"
+      displayEffects: []
+      tags: ["文具", "笔记", "文学部"]
+      locale: zh-CN
+
+  - id: favorite-novel
+    name: 心爱小说
+    description: 一本翻阅了无数遍的小说，书角已经微微卷起。书页间夹着一片干枯的樱花花瓣，那是某个春日午后在樱花树下阅读时留下的纪念。故事里的文字仿佛有了温度。
+    category: tool
+    quality: common
+    stats:
+      empathy: 1
+      intelligence: 1
+    effects: []
+    value:
+      buy: 500
+      sell: 250
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats:
+        - key: empathy
+          label: 共情
+          value: "+1"
+        - key: intelligence
+          label: 智力
+          value: "+1"
+      displayEffects: []
+      tags: ["书籍", "小说", "文学部"]
+      locale: zh-CN
+
+  - id: fountain-pen
+    name: 钢笔
+    description: 一支墨蓝色的钢笔，笔身修长优雅，书写时墨水流畅如溪。用它写下的每一个字都带着独特的韵味，仿佛文字本身也变得更加动人了。
+    category: accessory
+    quality: uncommon
+    stats:
+      charm: 1
+      intelligence: 1
+    effects: []
+    value:
+      buy: 1200
+      sell: 600
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 饰品
+      displayRarity: 优秀
+      displayStats:
+        - key: charm
+          label: 魅力
+          value: "+1"
+        - key: intelligence
+          label: 智力
+          value: "+1"
+      displayEffects: []
+      tags: ["文具", "钢笔", "文学部"]
+      locale: zh-CN
+
+  - id: school-uniform
+    name: 星城学园制服
+    description: 星城学园的标准制服，深蓝色的外套搭配白色衬衫，胸前绣着学园的校徽。穿上它，就是这所学校的一员了。每个扣子都扣好的样子，认真又可爱。
+    category: armor
+    quality: common
+    stats:
+      defense: 1
+      charm: 1
+    effects: []
+    value:
+      buy: 800
+      sell: 400
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 穿搭
+      displayRarity: 普通
+      displayStats:
+        - key: defense
+          label: 防御
+          value: "+1"
+        - key: charm
+          label: 魅力
+          value: "+1"
+      displayEffects: []
+      tags: ["制服", "校服", "初始装备"]
+      locale: zh-CN
+
+  - id: bookmarks
+    name: 书签套装
+    description: 一套精美的书签，每一枚都印着不同的风景画——有海边的落日、有山间的薄雾、有街角的咖啡馆。夹在书页间，像是为阅读留下了一个温柔的标记。
+    category: accessory
+    quality: common
+    stats:
+      intelligence: 1
+    effects: []
+    value:
+      buy: 200
+      sell: 100
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 饰品
+      displayRarity: 普通
+      displayStats:
+        - key: intelligence
+          label: 智力
+          value: "+1"
+      displayEffects: []
+      tags: ["文具", "书签", "文学部"]
+      locale: zh-CN
+
+  - id: tea-set
+    name: 红茶茶具
+    description: 一套精致的陶瓷茶具，白瓷上绘着淡雅的樱花图案。文学部的午后，泡一壶温热的红茶，茶香与书香交织，时光仿佛也变得温柔起来。据说这是部长最珍爱的物品。
+    category: tool
+    quality: uncommon
+    stats:
+      empathy: 2
+      charm: 1
+    effects: []
+    value:
+      buy: 1500
+      sell: 750
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 优秀
+      displayStats:
+        - key: empathy
+          label: 共情
+          value: "+2"
+        - key: charm
+          label: 魅力
+          value: "+1"
+      displayEffects:
+        - "泡茶时能营造温馨氛围，拉近与他人的距离"
+      tags: ["茶具", "红茶", "文学部"]
+      locale: zh-CN
+
+  - id: sports-uniform
+    name: 运动部队服
+    description: 运动部的标志性队服，红白相间的设计充满活力。背后印着学园的名字和号码，穿上它就仿佛拥有了无限的能量。阳光下奔跑的身影，总是最耀眼的。
+    category: armor
+    quality: common
+    stats:
+      courage: 1
+      speed: 1
+    effects: []
+    value:
+      buy: 600
+      sell: 300
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 穿搭
+      displayRarity: 普通
+      displayStats:
+        - key: courage
+          label: 勇气
+          value: "+1"
+        - key: speed
+          label: 速度
+          value: "+1"
+      displayEffects: []
+      tags: ["制服", "运动服", "运动部"]
+      locale: zh-CN
+
+  - id: lucky-towel
+    name: 幸运毛巾
+    description: 一条看似普通的蓝色毛巾，边角绣着一个小小的四叶草。据说每次比赛前用它擦汗都能带来好运，虽然没有人能证实，但运动部的成员们都深信不疑。
+    category: accessory
+    quality: common
+    stats:
+      luck: 1
+    effects: []
+    value:
+      buy: 300
+      sell: 150
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 饰品
+      displayRarity: 普通
+      displayStats:
+        - key: luck
+          label: 幸运
+          value: "+1"
+      displayEffects: []
+      tags: ["毛巾", "幸运物", "运动部"]
+      locale: zh-CN
+
+  - id: water-bottle
+    name: 运动水壶
+    description: 一个大容量的运动水壶，瓶身上贴满了各种比赛的号码贴纸。每次训练后大口喝水的瞬间，是运动部成员们最畅快的时刻。水壶里装的不仅是水，还有坚持的汗水。
+    category: tool
+    quality: common
+    stats:
+      courage: 1
+    effects: []
+    value:
+      buy: 400
+      sell: 200
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats:
+        - key: courage
+          label: 勇气
+          value: "+1"
+      displayEffects: []
+      tags: ["水壶", "运动", "运动部"]
+      locale: zh-CN
+
+  - id: sneakers
+    name: 运动跑鞋
+    description: 一双轻便的跑鞋，鞋底的纹路还清晰可见。穿上它奔跑在操场上，风从耳边呼啸而过，仿佛整个世界都在身后。跑步时留下的每一个脚印，都是青春的证明。
+    category: armor
+    quality: common
+    stats:
+      speed: 2
+    effects: []
+    value:
+      buy: 700
+      sell: 350
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 穿搭
+      displayRarity: 普通
+      displayStats:
+        - key: speed
+          label: 速度
+          value: "+2"
+      displayEffects: []
+      tags: ["鞋子", "跑鞋", "运动部"]
+      locale: zh-CN
+
+  - id: sports-bag
+    name: 运动背包
+    description: 一个红色的大容量运动背包，侧面有专门放水壶的口袋。包里总是塞着替换的衣物和毛巾，随时准备奔赴下一场训练。拉链上挂着一个小小的护身符。
+    category: accessory
+    quality: common
+    stats:
+      courage: 1
+    effects: []
+    value:
+      buy: 500
+      sell: 250
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 饰品
+      displayRarity: 普通
+      displayStats:
+        - key: courage
+          label: 勇气
+          value: "+1"
+      displayEffects: []
+      tags: ["背包", "运动", "运动部"]
+      locale: zh-CN
+
+  - id: energy-bar
+    name: 能量棒
+    description: 运动部成员的必备补给，巧克力味的能量棒。训练间隙咬上一口，甜蜜的味道和满满的卡路里瞬间充满全身。虽然不是什么美味佳肴，但此刻就是世界上最好吃的东西。
+    category: consumable
+    quality: common
+    stats:
+      heal: 20
+    effects:
+      - type: heal
+        value: 20
+    value:
+      buy: 150
+      sell: 75
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 消耗品
+      displayRarity: 普通
+      displayStats:
+        - key: heal
+          label: 恢复量
+          value: "+20"
+      displayEffects:
+        - "恢复20点体力"
+      tags: ["食品", "能量棒", "消耗品"]
+      locale: zh-CN
+
+  - id: sketchbook
+    name: 素描本
+    description: 一本厚厚的素描本，封面已经被颜料染得五彩斑斓。翻开里面，画满了校园的风景、同学们的侧脸、窗外的天空。每一幅画都倾注了画者的心意，是最真挚的表达。
+    category: tool
+    quality: common
+    stats:
+      empathy: 1
+    effects: []
+    value:
+      buy: 400
+      sell: 200
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats:
+        - key: empathy
+          label: 共情
+          value: "+1"
+      displayEffects: []
+      tags: ["画具", "素描", "艺术部"]
+      locale: zh-CN
+
+  - id: colored-pencils
+    name: 彩色铅笔
+    description: 一套36色的彩色铅笔，从温柔的樱粉到深邃的夜蓝，每一种颜色都有它的故事。用它们描绘出的世界，比现实更加温暖和美好。艺术部的同学们总能找到最合适的色彩。
+    category: accessory
+    quality: common
+    stats:
+      empathy: 1
+      charm: 1
+    effects: []
+    value:
+      buy: 600
+      sell: 300
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 饰品
+      displayRarity: 普通
+      displayStats:
+        - key: empathy
+          label: 共情
+          value: "+1"
+        - key: charm
+          label: 魅力
+          value: "+1"
+      displayEffects: []
+      tags: ["画具", "铅笔", "艺术部"]
+      locale: zh-CN
+
+  - id: portable-music-player
+    name: 便携音乐播放器
+    description: 一个银色的便携音乐播放器，里面存满了各种风格的音乐。戴上耳机，世界就只剩下旋律和自己。音乐是心灵的语言，有时候一首歌比千言万语更能传达心意。
+    category: accessory
+    quality: uncommon
+    stats:
+      empathy: 2
+      charm: 1
+    effects: []
+    value:
+      buy: 2000
+      sell: 1000
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 饰品
+      displayRarity: 优秀
+      displayStats:
+        - key: empathy
+          label: 共情
+          value: "+2"
+        - key: charm
+          label: 魅力
+          value: "+1"
+      displayEffects:
+        - "聆听音乐时更容易理解他人的情感"
+      tags: ["电子", "音乐", "艺术部"]
+      locale: zh-CN
+
+  - id: paint-set
+    name: 颜料套装
+    description: 一套专业的水彩颜料，色彩鲜艳而纯净。调色板上的颜色混合在一起，就像人与人之间的相遇——总会产生意想不到的美丽。每一幅画都是一次心灵的对话。
+    category: tool
+    quality: uncommon
+    stats:
+      empathy: 2
+    effects: []
+    value:
+      buy: 1500
+      sell: 750
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 优秀
+      displayStats:
+        - key: empathy
+          label: 共情
+          value: "+2"
+      displayEffects:
+        - "绘画时能更敏锐地感知美的存在"
+      tags: ["画具", "颜料", "艺术部"]
+      locale: zh-CN
+
+  - id: canvas-bag
+    name: 帆布包
+    description: 一个米白色的帆布包，上面手绘着一朵向日葵。包里装着画具和梦想，走到哪里都能随时记录灵感。帆布包越用越有味道，就像友谊一样，时间越久越珍贵。
+    category: accessory
+    quality: common
+    stats:
+      charm: 1
+    effects: []
+    value:
+      buy: 500
+      sell: 250
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 饰品
+      displayRarity: 普通
+      displayStats:
+        - key: charm
+          label: 魅力
+          value: "+1"
+      displayEffects: []
+      tags: ["背包", "帆布", "艺术部"]
+      locale: zh-CN
+
+  - id: lab-coat
+    name: 实验白大褂
+    description: 科学部的标志性白大褂，洁白如雪，口袋里总是装着各种小工具。穿上它，仿佛整个世界都变成了一个巨大的实验室，充满了等待发现的奥秘。认真做实验的样子，意外地帅气。
+    category: armor
+    quality: common
+    stats:
+      intelligence: 1
+      defense: 1
+    effects: []
+    value:
+      buy: 800
+      sell: 400
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 穿搭
+      displayRarity: 普通
+      displayStats:
+        - key: intelligence
+          label: 智力
+          value: "+1"
+        - key: defense
+          label: 防御
+          value: "+1"
+      displayEffects: []
+      tags: ["制服", "实验服", "科学部"]
+      locale: zh-CN
+
+  - id: science-notebook
+    name: 科学实验笔记
+    description: 一本厚实的实验笔记，每一页都工整地记录着实验步骤、数据和结论。字迹一丝不苟，偶尔在页边空白处画着可爱的简笔画——原来严谨的科学家也有柔软的一面。
+    category: tool
+    quality: common
+    stats:
+      intelligence: 2
+    effects: []
+    value:
+      buy: 500
+      sell: 250
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats:
+        - key: intelligence
+          label: 智力
+          value: "+2"
+      displayEffects: []
+      tags: ["文具", "笔记", "科学部"]
+      locale: zh-CN
+
+  - id: magnifying-glass
+    name: 放大镜
+    description: 一把精致的放大镜，黄铜手柄上刻着细小的花纹。透过它，微小的世界变得清晰可见——叶脉的纹路、昆虫的翅膀、文字的墨迹。观察是发现真理的第一步。
+    category: tool
+    quality: common
+    stats:
+      intelligence: 1
+    effects: []
+    value:
+      buy: 400
+      sell: 200
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats:
+        - key: intelligence
+          label: 智力
+          value: "+1"
+      displayEffects: []
+      tags: ["工具", "放大镜", "科学部"]
+      locale: zh-CN
+
+  - id: experiment-kit
+    name: 实验工具套装
+    description: 一套便携的实验工具，包含试管、烧杯、量筒和试剂瓶。虽然只是基础器材，但在好奇心的驱动下，简单的实验也能揭示世界的奥秘。小心轻放，科学需要耐心。
+    category: tool
+    quality: uncommon
+    stats:
+      intelligence: 2
+      courage: 1
+    effects: []
+    value:
+      buy: 1800
+      sell: 900
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 优秀
+      displayStats:
+        - key: intelligence
+          label: 智力
+          value: "+2"
+        - key: courage
+          label: 勇气
+          value: "+1"
+      displayEffects:
+        - "实验时能更敏锐地发现异常现象"
+      tags: ["工具", "实验", "科学部"]
+      locale: zh-CN
+
+  - id: calculator
+    name: 科学计算器
+    description: 一台功能强大的科学计算器，按键清脆，屏幕清晰。从简单的四则运算到复杂的微积分，它都能轻松应对。虽然手机也能计算，但真正的科学爱好者总是随身带着它。
+    category: tool
+    quality: common
+    stats:
+      intelligence: 1
+    effects: []
+    value:
+      buy: 600
+      sell: 300
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats:
+        - key: intelligence
+          label: 智力
+          value: "+1"
+      displayEffects: []
+      tags: ["电子", "计算器", "科学部"]
+      locale: zh-CN
+
+  - id: designer-uniform
+    name: 名牌校服
+    description: 由知名设计师量身定制的校服，面料考究，剪裁合身。每一个细节都彰显着不凡的品味，在人群中一眼就能认出。穿着它的你，仿佛自带聚光灯，走到哪里都是焦点。
+    category: armor
+    quality: rare
+    stats:
+      charm: 3
+      defense: 2
+    effects: []
+    value:
+      buy: 5000
+      sell: 2500
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 穿搭
+      displayRarity: 稀有
+      displayStats:
+        - key: charm
+          label: 魅力
+          value: "+3"
+        - key: defense
+          label: 防御
+          value: "+2"
+      displayEffects:
+        - "名门光环：家世带来的气场让人印象深刻"
+      tags: ["制服", "名牌", "富裕家庭"]
+      locale: zh-CN
+
+  - id: luxury-bag
+    name: 奢华手提包
+    description: 一个来自顶级品牌的手提包，皮质柔软细腻，金属扣件闪耀着低调的光泽。包里装着的不仅仅是日常用品，更是一种生活态度。但你知道，最珍贵的东西从来不在包里。
+    category: accessory
+    quality: rare
+    stats:
+      charm: 3
+    effects: []
+    value:
+      buy: 8000
+      sell: 4000
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 饰品
+      displayRarity: 稀有
+      displayStats:
+        - key: charm
+          label: 魅力
+          value: "+3"
+      displayEffects:
+        - "优雅气场：精致的外表让人不自觉地想要靠近"
+      tags: ["包包", "奢侈品", "富裕家庭"]
+      locale: zh-CN
+
+  - id: family-crest-pin
+    name: 家徽胸针
+    description: 一枚精致的银质胸针，上面雕刻着家族的徽章。世代传承的纹路里，藏着家族的荣耀与责任。别在校服领口，既是身份的象征，也是一份沉甸甸的期许。
+    category: accessory
+    quality: uncommon
+    stats:
+      charm: 2
+    effects: []
+    value:
+      buy: 2000
+      sell: 1000
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 饰品
+      displayRarity: 优秀
+      displayStats:
+        - key: charm
+          label: 魅力
+          value: "+2"
+      displayEffects:
+        - "名门印记：家族的声望为你带来关注"
+      tags: ["饰品", "胸针", "富裕家庭"]
+      locale: zh-CN
+
+  - id: homemade-bento
+    name: 手作便当
+    description: 妈妈每天早上用心制作的便当，米饭上铺着色彩丰富的配菜，还有用海苔剪出的笑脸。虽然不是什么高级料理，但每一口都充满了家的温暖。打开便当盒的瞬间，仿佛妈妈就在身边。
+    category: consumable
+    quality: common
+    stats:
+      heal: 30
+    effects:
+      - type: heal
+        value: 30
+    value:
+      buy: 0
+      sell: 0
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 消耗品
+      displayRarity: 普通
+      displayStats:
+        - key: heal
+          label: 恢复量
+          value: "+30"
+      displayEffects:
+        - "恢复30点体力"
+        - "家的味道：食用后共情+1（持续一场景）"
+      tags: ["食品", "便当", "普通家庭"]
+      locale: zh-CN
+
+  - id: family-photo
+    name: 全家福照片
+    description: 一张装在透明相框里的全家福，照片里一家人笑得灿烂。无论走到哪里，只要看到这张照片，心里就充满了力量。最平凡的幸福，往往是最珍贵的。
+    category: misc
+    quality: common
+    stats:
+      empathy: 2
+    effects: []
+    value:
+      buy: 0
+      sell: 0
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 杂物
+      displayRarity: 普通
+      displayStats:
+        - key: empathy
+          label: 共情
+          value: "+2"
+      displayEffects:
+        - "温暖回忆：看到照片时心中涌起暖意"
+      tags: ["照片", "纪念", "普通家庭"]
+      locale: zh-CN
+
+  - id: part-time-job-schedule
+    name: 打工排班表
+    description: 一张仔细标注着打工时间的排班表，不同颜色的笔标记着不同的工作地点。虽然课余时间被填得满满当当，但自食其力的感觉让人变得坚强。每一分钱都是努力的证明。
+    category: tool
+    quality: common
+    stats:
+      courage: 1
+    effects: []
+    value:
+      buy: 0
+      sell: 0
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats:
+        - key: courage
+          label: 勇气
+          value: "+1"
+      displayEffects: []
+      tags: ["日程", "打工", "单亲家庭"]
+      locale: zh-CN
+
+  - id: cherished-memento
+    name: 珍贵纪念品
+    description: 一件小巧的纪念品，可能是离开时对方塞到手里的钥匙扣，也可能是一起旅行时买的手工艺品。虽然不值什么钱，但它是某段珍贵回忆的载体，是你最珍视的宝物。
+    category: misc
+    quality: uncommon
+    stats:
+      empathy: 2
+      luck: 1
+    effects: []
+    value:
+      buy: 0
+      sell: 0
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 杂物
+      displayRarity: 优秀
+      displayStats:
+        - key: empathy
+          label: 共情
+          value: "+2"
+        - key: luck
+          label: 幸运
+          value: "+1"
+      displayEffects:
+        - "珍贵回忆：想起那个人时，心中充满力量"
+      tags: ["纪念品", "回忆", "单亲家庭"]
+      locale: zh-CN
+
+  - id: simple-uniform
+    name: 朴素校服
+    description: 一套洗得有些发白的校服，虽然不是最新的，但总是干干净净、整整齐齐。每一个补丁都是生活的印记，每一道褶皱都诉说着勤俭的故事。穿着它的你，有着最真实的模样。
+    category: armor
+    quality: common
+    stats:
+      empathy: 1
+      defense: 1
+    effects: []
+    value:
+      buy: 0
+      sell: 0
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 穿搭
+      displayRarity: 普通
+      displayStats:
+        - key: empathy
+          label: 共情
+          value: "+1"
+        - key: defense
+          label: 防御
+          value: "+1"
+      displayEffects: []
+      tags: ["制服", "校服", "单亲家庭"]
+      locale: zh-CN
+
+  - id: travel-journal
+    name: 旅行日记
+    description: 一本厚厚的旅行日记，每一页都记录着在不同城市的生活片段。车票、照片、干花被仔细地贴在纸页上，文字里写满了对每个暂居之地的感悟。漂泊教会了你理解不同的人。
+    category: tool
+    quality: uncommon
+    stats:
+      empathy: 2
+      intelligence: 1
+    effects: []
+    value:
+      buy: 800
+      sell: 400
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 优秀
+      displayStats:
+        - key: empathy
+          label: 共情
+          value: "+2"
+        - key: intelligence
+          label: 智力
+          value: "+1"
+      displayEffects:
+        - "旅人之心：丰富的经历让你更容易理解他人"
+      tags: ["日记", "旅行", "寄养家庭"]
+      locale: zh-CN
+
+  - id: lucky-charm
+    name: 幸运护身符
+    description: 一个从神社求来的护身符，淡粉色的绸布上绣着"缘结"二字。无论走到哪里，它都静静地挂在书包上，守护着你的每一段旅程。也许好运真的存在，只要你相信。
+    category: accessory
+    quality: uncommon
+    stats:
+      luck: 2
+    effects: []
+    value:
+      buy: 500
+      sell: 250
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 饰品
+      displayRarity: 优秀
+      displayStats:
+        - key: luck
+          label: 幸运
+          value: "+2"
+      displayEffects:
+        - "缘结守护：也许能带来美好的邂逅"
+      tags: ["护身符", "幸运", "寄养家庭"]
+      locale: zh-CN
+
+  - id: worn-uniform
+    name: 旧校服
+    description: 一套已经有些旧的校服，是从之前转学的学校带来的。虽然和星城学园的制服不太一样，但你舍不得丢弃——它承载着过去的记忆，也是你不断前行的见证。新旧交替之间，是成长的痕迹。
+    category: armor
+    quality: common
+    stats:
+      courage: 1
+      empathy: 1
+    effects: []
+    value:
+      buy: 0
+      sell: 0
+      currency: yen
+    quantity: 1
+    custom_data:
+      displayType: 穿搭
+      displayRarity: 普通
+      displayStats:
+        - key: courage
+          label: 勇气
+          value: "+1"
+        - key: empathy
+          label: 共情
+          value: "+1"
+      displayEffects: []
+      tags: ["制服", "旧衣", "寄养家庭"]
+      locale: zh-CN
+
+ui_theme:
+  primary_color: "#ec4899"
+  font_family: sans-serif
+  background_style: gradient
+  gradient_colors:
+    start: "#fdf2f8"
+    end: "#fce7f3"
+    direction: to bottom
+  background_image: ""
+  pattern_type: clouds
+  animated_type: aurora
+  custom_css: ""
+
+ui_layout:
+  show_minimap: false
+  show_combat_panel: false
+  show_skill_bar: false
+  show_party_panel: true
+  minimap_position: top-right
+  minimap_size: small
+  party_panel_position: right
+  skill_bar_slots: 3
+  custom_layout: ""
+
+special_rules:
+  has_kp: false
+  permadeath: false
+  save_restriction: ""
+  custom_rules:
+    - 好感度系统：与NPC的互动会影响好感度，好感度决定关系走向
+    - 时间流逝：每个选择都会推进时间，珍惜每一次相遇
+    - 无战斗：这是一段关于爱与成长的旅程

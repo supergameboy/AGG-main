@@ -1,0 +1,18 @@
+templateId: null
+name: "艾德里克"
+gender: "male"
+customGender: null
+race: "human"
+classType: "warrior"
+background: "soldier"
+attributes:
+  str: 16
+  dex: 12
+  con: 14
+  int: 8
+  wis: 10
+  cha: 10
+customOptions:
+  deity: "战神海若尼斯"
+  backstory_detail: "退役老兵，为寻找失散的战友踏上冒险之路"
+language: "zh-CN"

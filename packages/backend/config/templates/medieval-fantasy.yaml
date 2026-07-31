@@ -1,0 +1,2546 @@
+id: medieval-fantasy
+name: 中世纪奇幻冒险
+description: 在艾尔德兰大陆的广袤土地上，元素魔法与钢铁交织。古老的龙族沉睡于山脉深处，暗影势力在边境蠢蠢欲动。选择你的种族与职业，书写属于你的传奇故事。
+version: 1.0.0
+author: AGG Team
+tags:
+  - fantasy
+  - medieval
+  - magic
+  - adventure
+  - rpg
+
+game_mode: text_rpg
+default_challenge_mode: turn_based_combat
+numerical_complexity: medium
+agent_profile: fantasy_rpg
+is_builtin: true
+
+world_setting:
+  name: 艾尔德兰大陆
+  description: 一片被古老魔法笼罩的大陆，人类、精灵、矮人和半身人共同生活在这片土地上。远古的龙族沉睡在山脉深处，而黑暗势力正在边境蠢蠢欲动。四元素之力流淌在大地的脉络中，只有掌握元素魔法的人才能驾驭这股力量。
+  era: 中世纪
+  genre: fantasy
+  magic_system: 元素魔法
+  technology_level: 中世纪
+  custom_fields:
+    pantheon: 多神教 - 光明神、暗影神、自然女神、锻造之神
+    calendar: 龙历纪元
+    currency: 金币
+    factions: 银盾骑士团、暮光法师塔、暗影兄弟会
+
+character_creation:
+  attribute_points: 12
+  attribute_role_mapping:
+    physical_power: str
+    agility: dex
+    endurance: con
+    mental_power: int
+    perception: wis
+    influence: cha
+  races:
+    - id: human
+      name: 人类
+      description: 适应力强，能力均衡。人类是艾尔德兰大陆上最广泛的种族，以坚韧和创造力闻名。他们没有突出的天赋，却能在任何领域取得成就。
+      bonuses:
+        cha: 1
+      penalties: {}
+      abilities:
+        - 适应训练
+        - 额外专长
+      available_classes:
+        - warrior
+        - mage
+        - rogue
+        - cleric
+    - id: elf
+      name: 精灵
+      description: 优雅长寿，擅长魔法。精灵族居住在古老的森林中，拥有与自然沟通的天赋。他们的寿命可达数百年，对元素魔法有着天然的亲和力。
+      bonuses:
+        dex: 2
+        int: 1
+      penalties:
+        con: -1
+      abilities:
+        - 黑暗视觉
+        - 精灵敏锐感官
+        - 元素亲和
+      available_classes:
+        - mage
+        - rogue
+        - cleric
+    - id: dwarf
+      name: 矮人
+      description: 坚韧耐久，擅长锻造。矮人族世代居住在山脉之中，是最出色的工匠和矿工。他们打造的武器和护甲享誉大陆。
+      bonuses:
+        str: 1
+        con: 2
+      penalties:
+        dex: -1
+      abilities:
+        - 黑暗视觉
+        - 矮人韧性
+        - 锻造精通
+      available_classes:
+        - warrior
+        - cleric
+    - id: halfling
+      name: 半身人
+      description: 灵巧敏捷，幸运眷顾。半身人天性乐观，善于在危险中找到出路。他们的身形虽小，却有着惊人的勇气和运气。
+      bonuses:
+        dex: 2
+        cha: 1
+      penalties:
+        str: -1
+      abilities:
+        - 幸运
+        - 勇敢
+        - 潜行天赋
+      available_classes:
+        - rogue
+        - cleric
+
+  classes:
+    - id: warrior
+      name: 战士
+      description: 近战专家，高生命值。战士是战场上的中流砥柱，精通各种武器和战术。他们以钢铁般的意志和强健的体魄守护同伴。
+      primary_attributes:
+        - str
+        - con
+      hit_die: d10
+      skill_proficiencies:
+        - athletics
+        - intimidation
+        - perception
+      starting_equipment:
+        - rusty-sword
+        - leather-armor
+        - shield
+    - id: mage
+      name: 法师
+      description: 魔法大师，高法力值。法师通过研习古老典籍掌握元素之力，能够施展强大的法术。他们是暮光法师塔的传承者，掌握着毁灭与创造的秘密。
+      primary_attributes:
+        - int
+        - wis
+      hit_die: d6
+      skill_proficiencies:
+        - arcana
+        - history
+        - investigation
+      starting_equipment:
+        - wooden-staff
+        - apprentice-robe
+        - spellbook
+    - id: rogue
+      name: 盗贼
+      description: 潜行暗杀，高暴击率。盗贼擅长在暗处行动，以速度和精准致命一击。他们是暗影兄弟会的精英，擅长情报收集和暗杀任务。
+      primary_attributes:
+        - dex
+        - cha
+      hit_die: d8
+      skill_proficiencies:
+        - stealth
+        - sleight_of_hand
+        - acrobatics
+      starting_equipment:
+        - dagger
+        - dagger
+        - leather-armor
+        - thieves-tools
+    - id: cleric
+      name: 牧师
+      description: 治疗辅助，神圣之力。牧师信仰神灵，借助神圣之力治愈伤痛、驱散邪恶。他们是光明神的使者，在黑暗中为同伴带来希望。
+      primary_attributes:
+        - wis
+        - cha
+      hit_die: d8
+      skill_proficiencies:
+        - medicine
+        - religion
+        - insight
+      starting_equipment:
+        - mace
+        - priest-robe
+        - holy-symbol
+
+  backgrounds:
+    - id: noble
+      name: 贵族
+      description: 出身名门，拥有财富和人脉。你从小在宫廷中长大，习惯了权力和礼仪。你的家族在王国中有着举足轻重的地位。
+      skill_proficiencies:
+        - persuasion
+        - history
+      languages:
+        - elf
+      equipment:
+        - signet-ring
+        - fine-clothes
+        - scroll-of-lineage
+      feature: 地位特权 - 你可以获得贵族阶层的接待和帮助
+      attribute_bonuses:
+        cha: 1
+    - id: commoner
+      name: 平民
+      description: 普通出身，脚踏实地。你是一个普通人，但有着不平凡的决心。你了解民间疾苦，也拥有最朴实的生存智慧。
+      skill_proficiencies:
+        - survival
+        - animal-handling
+      languages: []
+      equipment:
+        - travelers-clothes
+        - tool-of-trade
+        - pouch
+      feature: 民间智慧 - 你了解普通人的生活，容易获得平民的信任
+      attribute_bonuses:
+        con: 1
+    - id: urchin
+      name: 流浪儿
+      description: 街头长大，机敏灵活。你在贫民窟中长大，学会了在艰难环境中生存。街头的经历让你变得机警而务实。
+      skill_proficiencies:
+        - stealth
+        - sleight-of-hand
+      languages:
+        - thieves-cant
+      equipment:
+        - tattered-clothes
+        - dagger
+        - lucky-charm
+      feature: 城市求生 - 你熟悉城市的每条暗巷和秘密通道
+      attribute_bonuses:
+        dex: 1
+    - id: scholar
+      name: 学者
+      description: 饱读诗书，知识渊博。你在学院中度过了多年，对世界有着深刻的理解。你追求知识，相信智慧是改变世界的力量。
+      skill_proficiencies:
+        - arcana
+        - history
+      languages:
+        - ancient
+      equipment:
+        - scholar-robes
+        - ink-and-quill
+        - ancient-tome
+      feature: 学者洞察 - 你可以回忆关于任何学术主题的知识
+      attribute_bonuses:
+        int: 1
+    - id: soldier
+      name: 士兵
+      description: 曾在军队中服役，熟悉战斗和纪律。你经历过战火的洗礼，懂得在战场上生存的法则。
+      skill_proficiencies:
+        - athletics
+        - intimidation
+      languages: []
+      equipment:
+        - soldiers-uniform
+        - shield
+        - ration-pack
+      feature: 军事训练 - 你可以识别军事编制和战术，在军事营地可获得基本补给
+      attribute_bonuses:
+        str: 1
+
+  attributes:
+    - id: str
+      name: 力量
+      abbreviation: STR
+      description: 物理攻击力和负重能力，影响近战伤害和体力劳动
+      min_value: 1
+      default_value: 10
+      max_value: 20
+    - id: dex
+      name: 敏捷
+      abbreviation: DEX
+      description: 闪避和先攻能力，影响远程攻击和反应速度
+      min_value: 1
+      default_value: 10
+      max_value: 20
+    - id: con
+      name: 体质
+      abbreviation: CON
+      description: 生命值和耐力，影响抗性和恢复能力
+      min_value: 1
+      default_value: 10
+      max_value: 20
+    - id: int
+      name: 智力
+      abbreviation: INT
+      description: 魔法攻击和知识判定，影响法术威力和学习能力
+      min_value: 1
+      default_value: 10
+      max_value: 20
+    - id: wis
+      name: 感知
+      abbreviation: WIS
+      description: 洞察力和判断力，影响治疗效果和直觉判定
+      min_value: 1
+      default_value: 10
+      max_value: 20
+    - id: cha
+      name: 魅力
+      abbreviation: CHA
+      description: 社交影响力和领导力，影响交涉和召唤法术
+      min_value: 1
+      default_value: 10
+      max_value: 20
+
+  custom_options:
+  - id: deity
+    name: 信仰神祇
+    description: 选择你的角色所信仰的神祇
+    type: select
+    options:
+      - 太阳神培罗
+      - 战神海若尼斯
+      - 幸运女神欧吕尔
+      - 自然之神欧拜亥
+    default_value: 太阳神培罗
+  - id: backstory_detail
+    name: 个人经历
+    description: 简要描述你的角色过去的特殊经历
+    type: text
+    options: []
+    default_value: ""
+
+  age_mode: group
+  age_groups:
+    - id: young
+      name: 少年
+      description: 年少轻狂，身体灵活但经验不足
+      bonuses:
+        dex: 1
+      penalties:
+        str: -1
+    - id: youth
+      name: 青年
+      description: 风华正茂，体力和精力处于巅峰
+      bonuses: {}
+      penalties: {}
+    - id: middle
+      name: 中年
+      description: 沉稳老练，经验丰富但体力开始衰退
+      bonuses:
+        wis: 1
+      penalties:
+        dex: -1
+    - id: elder
+      name: 老年
+      description: 饱经沧桑，智慧超群但身体衰弱
+      bonuses:
+        int: 1
+        wis: 1
+      penalties:
+        str: -1
+        con: -1
+
+game_rules:
+  combat_system:
+    type: turn_based
+    initiative_type: dexterity
+    custom_initiative: ""
+    action_points: 1
+    critical_hit:
+      threshold: 19
+      multiplier: 2
+    flee:
+      base_chance: 0.3
+      per_dead_enemy_bonus: 0.1
+    defend:
+      damage_reduction: 0.5
+    damage_formula:
+      attack_contribution: 0.5
+      defense_reduction: 0.5
+      level_bonus_factor: 2
+      variance_min: 0.9
+      variance_range: 0.2
+    enemy_ai:
+      skill_use_chance: 0.3
+    element_affinities:
+      # 克制关系: attacker_element → {defender_element: multiplier}
+      # 1.5 = 强克制, 0.75 = 被克制, 未列出 = 1.0 (无修正)
+      fire:
+        water: 0.75
+        shadow: 1.5
+      water:
+        fire: 1.5
+        arcane: 0.75
+      arcane:
+        water: 1.5
+        holy: 0.75
+      holy:
+        shadow: 1.5
+        arcane: 0.75
+      shadow:
+        holy: 1.5
+        fire: 0.75
+    defaults:
+      potion_heal: 30
+      mana_potion_restore: 20
+      skill_mana_cost: 10
+      skill_damage_multiplier: 1.5
+      skill_base_damage_factor: 2
+      attribute_fallback: 10
+      enemy_speed_factor: 2
+  derived_attribute_formulas:
+    maxHealth:
+      base: 100
+      coefficients: { physical_power: 5, endurance: 15 }
+    maxMana:
+      base: 50
+      coefficients: { mental_power: 10, endurance: 2 }
+    attack:
+      base: 10
+      coefficients: { physical_power: 2, agility: 0.5 }
+    defense:
+      base: 5
+      coefficients: { endurance: 1.5, physical_power: 0.5 }
+    magicAttack:
+      base: 8
+      coefficients: { mental_power: 2.5, perception: 0.3 }
+    magicDefense:
+      base: 4
+      coefficients: { mental_power: 1, endurance: 0.3 }
+    speed:
+      base: 10
+      coefficients: { agility: 1.5, influence: 0.2 }
+    critRate:
+      base: 0.05
+      coefficients: { agility: 0.01, influence: 0.005 }
+      max: 0.5
+    critDamage:
+      base: 1.5
+      coefficients: { physical_power: 0.02, influence: 0.01 }
+    dodgeRate:
+      base: 0.05
+      coefficients: { agility: 0.008 }
+      max: 0.3
+    blockRate:
+      base: 0.9
+      coefficients: { agility: 0.005, perception: 0.002 }
+  skill_system:
+    max_level: 10
+    cooldown_system: turn
+    upgrade_cost:
+      base: 100
+      multiplier: 1.5
+  inventory_system:
+    max_slots: 20
+    weight_system: true
+    stack_sizes:
+      potion: 10
+      scroll: 5
+      gem: 99
+      misc: 99
+    equipment_slots:
+      - id: main_hand
+        name: 主手
+        icon: ⚔
+        accepted_item_types:
+          - weapon
+      - id: off_hand
+        name: 副手
+        icon: 🛡
+        accepted_item_types:
+          - weapon
+          - accessory
+          - armor
+      - id: head
+        name: 头部
+        icon: ⛑
+        accepted_item_types:
+          - armor
+      - id: body
+        name: 身体
+        icon: 🛡
+        accepted_item_types:
+          - armor
+      - id: hands
+        name: 手部
+        icon: 🧤
+        accepted_item_types:
+          - armor
+      - id: feet
+        name: 脚部
+        icon: 👢
+        accepted_item_types:
+          - armor
+      - id: accessory
+        name: 饰品
+        icon: 💍
+        capacity: 2
+        accepted_item_types:
+          - accessory
+  quest_system:
+    max_active: 10
+    time_system: true
+    fail_conditions:
+      - timeout
+      - npc_death
+      - item_lost
+      - enemy_escapes
+  currency_system:
+    id: gold
+    name: 金币
+    icon: 🪙
+  custom_rules:
+    - name: 休息恢复
+      description: 在安全地点休息可以恢复全部生命值和法力值
+    - name: 经验分配
+      description: 队伍中所有成员平分战斗经验
+
+ai_constraints:
+  tone: serious
+  custom_tone: ""
+  content_rating: teen
+  prohibited_topics:
+    - gore
+    - explicit-content
+  required_elements:
+    - exploration
+    - combat
+    - character-growth
+  ai_behavior:
+    response_style: narrative
+    detail_level: detailed
+    player_agency: balanced
+
+starting_scene:
+  location: village-square
+  description: 你站在白杨村广场中央，周围是熙熙攘攘的人群。古老的橡树下，一块布告栏贴满了各种委托。远处传来铁匠铺叮叮当当的敲打声，空气中弥漫着面包房飘来的香气。一个看起来很重要的村长正朝你走来，他的眼中带着一丝忧虑......
+  location_description: 白杨村，艾尔德兰王国东部平原上的一个宁静村庄，以村中央那棵千年白杨树命名
+  atmosphere: 宁静而充满生活气息
+
+  sub_locations:
+    - id: village-square-plaza
+      name: 白杨村广场
+      description: 铺着青石板的广场，矗立着一棵古老的橡树，树荫下是一块贴满委托的布告栏。广场周围分布着铁匠铺、旅店和杂货铺，村民们在这里往来穿梭，热闹非凡。空气中飘散着面包房传来的麦香和铁匠铺的金属敲击声。
+      type: plaza
+      is_starting: true
+
+    - id: blacksmith
+      name: 铁匠铺
+      description: 广场东侧的铁匠铺，火炉永不熄灭，墙上挂满了各式武器和农具。矮人铁匠加雷斯和他的学徒们在这里日夜忙碌，打造着村民们需要的器具。
+      type: workshop
+      danger_level: 0
+      services:
+        - type: blacksmith
+          name: 武器锻造与修理
+
+    - id: inn
+      name: 白杨旅店
+      description: 广场北侧一栋两层木制建筑，门口的招牌上画着一棵白杨树。旅店老板娘玛莎以热情的招待和可口的炖菜闻名于过往旅人，是冒险者们休整的好去处。
+      type: inn
+      danger_level: 0
+      services:
+        - type: inn
+          name: 住宿与休息
+
+    - id: general-store
+      name: 杂货铺
+      description: 广场西侧的小铺子，货架上摆满了各种旅行用品、药水和干粮。老店主汤姆总是眯着眼睛打量每一位顾客，但他店里的东西确实物美价廉。
+      type: shop
+      danger_level: 0
+      services:
+        - type: general_store
+          name: 旅行用品与杂货
+
+    - id: village-gate
+      name: 村口
+      description: 白杨村南边的出入口，一条土路从这里延伸向远方的艾尔德兰大道。木制的瞭望塔上，守卫眺望着北方那片幽暗的森林轮廓。
+      type: gate
+      danger_level: 0
+      connections:
+        - forest-entrance
+
+  npcs:
+    - id: village-elder
+      name: 村长艾德温
+      title: 白杨村村长
+      description: 一位慈祥的老人，白发苍苍但精神矍铄。他管理白杨村已有三十年，深受村民爱戴。
+      role: quest_giver
+      race: human
+      location: village-square-plaza
+      appearance: 身穿朴素的褐色长袍，手持一根木杖，腰间挂着一串钥匙
+      personality: 慈祥、睿智、有责任感
+      dialogue:
+        - 欢迎来到白杨村，年轻的冒险者。
+        - 最近森林里出现了奇怪的暗影生物，我们需要你的帮助。
+        - 这些怪物似乎来自北方的废弃矿坑，那里曾经是矮人的领地。
+      stats:
+        level: 5
+        hp: 40
+        attack: 8
+        defense: 6
+        speed: 4
+        magic: 10
+      services:
+        - quest
+      custom_data: {}
+    - id: blacksmith-gareth
+      name: 铁匠加雷斯
+      title: 白杨村铁匠
+      description: 一个壮硕的矮人，手臂上满是伤疤。他是村里唯一的铁匠，打造的武器远近闻名。
+      role: merchant
+      race: dwarf
+      location: blacksmith
+      appearance: 身材矮壮，满脸络腮胡，围着皮围裙，手中握着一把铁锤
+      personality: 粗犷、直率、对锻造充满热情
+      dialogue:
+        - 需要好武器？来对地方了！
+        - 这把剑是我最好的作品，用了上等的秘银。
+        - 听说北边的矿坑里有稀有的矿石，可惜那里太危险了。
+      stats:
+        level: 3
+        hp: 50
+        attack: 12
+        defense: 10
+        speed: 3
+        magic: 2
+      services:
+        - shop
+        - repair
+      custom_data: {}
+    - id: innkeeper-martha
+      name: 旅店老板娘玛莎
+      title: 白杨旅店店主
+      description: 一位热情开朗的中年妇女，总是笑眯眯地招呼每一位客人。她的炖菜是村里一绝，旅店的壁炉边总是坐满了人。
+      role: service
+      race: human
+      location: inn
+      appearance: 微胖的身材，围着一条绣花的围裙，脸上带着温暖的笑容
+      personality: 热情、健谈、善良
+      dialogue:
+        - 累了就来旅店歇歇脚吧，壁炉边的位置永远为你留着！
+        - 听说暗影森林里出现了奇怪的生物，旅人们都不敢进去了。
+        - 玛莎特制炖菜，保证让你充满活力！
+      stats:
+        level: 2
+        hp: 20
+        attack: 3
+        defense: 4
+        speed: 5
+        magic: 3
+      services:
+        - inn
+      custom_data: {}
+    - id: shopkeeper-tom
+      name: 老店主汤姆
+      title: 杂货铺老板
+      description: 一位戴着老花镜的瘦削老人，经营这家杂货铺已有四十余年。他对商品了如指掌，总能从堆满杂物的货架上准确找出顾客需要的东西。
+      role: merchant
+      race: human
+      location: general-store
+      appearance: 瘦削的身材，戴着老花镜，总是穿着一件洗得发白的蓝色外套
+      personality: 精明、健谈但稍显吝啬
+      dialogue:
+        - 随便看看，小店虽小但东西齐全。
+        - 这瓶药水可是我亲自调的，保证货真价实。
+        - 北边矿坑里的矿石可是好东西，可惜现在没人敢去了。
+      stats:
+        level: 2
+        hp: 15
+        attack: 2
+        defense: 3
+        speed: 4
+        magic: 5
+      services:
+        - shop
+      custom_data: {}
+  items:
+    - id: health-potion
+      name: 生命药水
+      description: 一瓶散发着红色微光的药水，可以恢复生命值。瓶身上刻着炼金术士公会的标记。
+      category: consumable
+      quality: common
+      stats:
+        heal: 20
+      effects:
+        - type: heal
+          value: 20
+      value:
+        buy: 50
+        sell: 25
+        currency: gold
+      quantity: 1
+      custom_data:
+        displayType: 消耗品
+        displayRarity: 普通
+        displayStats:
+          - key: heal
+            label: 治疗量
+            value: "20"
+        displayEffects:
+          - 恢复20点生命值
+        tags: [consumable, healing, potion]
+        locale: zh-CN
+  quests:
+    - id: main-quest-1
+      name: 暗影初现
+      description: 调查森林中出现的异常暗影生物，找出它们的来源并消除威胁。
+      type: main
+      objectives:
+        - id: obj-1
+          description: 与村长交谈了解情况
+          type: talk
+          target: village-elder
+          required: 1
+        - id: obj-2
+          description: 前往暗影森林入口调查
+          type: explore
+          target: forest-entrance
+          required: 1
+        - id: obj-3
+          description: 击败暗影生物首领
+          type: kill
+          target: shadow-wolf
+          location: deep-forest
+          required: 1
+      rewards:
+        - type: experience
+          value: 100
+        - type: gold
+          value: 50
+      giver: village-elder
+      time_limit: 0
+      custom_data: {}
+  explorable_areas:
+    - id: shadow-forest
+      name: 暗影森林
+      description: 白杨村北方一片古老而阴暗的森林，树冠遮天蔽日。最近出现了不明的暗影生物在林中游荡，树木扭曲变形，空气中弥漫着不自然的寒意。
+      type: forest
+      danger_level: 3
+      sub_locations:
+        - id: forest-entrance
+          name: 暗影森林入口
+          description: 森林边缘的地带，还能远远看到白杨村的炊烟。一些扭曲的树干上刻着古老的符文，似乎在警示着前方的危险。
+          type: forest_edge
+          danger_level: 1
+          connections:
+            - village-gate
+        - id: deep-forest
+          name: 暗影森林深处
+          description: 阳光几乎无法穿透浓密的树冠，地面覆盖着厚厚的落叶和腐殖质。远处传来隐约的狼嚎，空气中弥漫着腐朽与不祥的气息。
+          type: forest
+          danger_level: 3
+
+    - id: abandoned-mine
+      name: 废弃矿坑
+      description: 矮人族曾经在暗影森林深处开采的矿坑，如今已被废弃多年。入口被藤蔓和碎石半掩着，木制的支撑结构已经腐朽。传说深处埋藏着矮人族的宝藏和稀有的秘银矿脉。
+      type: dungeon
+      danger_level: 5
+      sub_locations:
+        - id: mine-entrance
+          name: 矿坑入口
+          description: 矿坑的入口被藤蔓和碎石半掩着，木制的支撑结构已经腐朽。一阵冷风从黑暗的深处吹来，带着金属和潮湿的气味。
+          type: dungeon_entrance
+          danger_level: 4
+          connections:
+            - deep-forest
+        - id: mine-depths
+          name: 矿坑深处
+          description: 深入地下的矿道错综复杂，墙壁上残留着矮人开采的痕迹。黑暗中闪烁着不明来源的微光，似乎有什么东西在这些废弃的矿道中栖息。
+          type: dungeon
+          danger_level: 5
+  events:
+    - id: shadow-creature-attack
+      name: 暗影生物袭击
+      description: 暗影生物从森林深处涌出，袭击村庄外围
+      type: random
+      trigger_type: enter_location
+      trigger_data:
+        location_id: shadow-forest
+        probability: 0.3
+      effects:
+        - type: spawn_enemy
+          params:
+            enemies:
+              - name: 暗影狼
+                level: 2
+                count: 2
+      priority: 5
+      repeatable: true
+      cooldown: 3600
+
+    - id: traveling-merchant
+      name: 旅行商人
+      description: 一位旅行商人路过村庄，带来了稀有的商品
+      type: random
+      trigger_type: enter_location
+      trigger_data:
+        location_id: village-square
+        probability: 0.15
+      effects:
+        - type: give_item
+          params:
+            discount: 0.8
+      priority: 3
+      repeatable: true
+      cooldown: 7200
+
+    - id: nightly-strange-light
+      name: 夜间的诡异光芒
+      description: 夜晚，森林深处传来诡异的光芒和低语
+      type: time_based
+      trigger_type: time_reached
+      trigger_data:
+        time_period: night
+        probability: 0.4
+      effects:
+        - type: dialogue_trigger
+          params:
+            narrative: "夜幕降临，暗影森林深处闪烁着不自然的蓝绿色光芒..."
+      priority: 4
+      repeatable: true
+      cooldown: 86400
+
+locations:
+  - id: shadow-continent
+    name: 暗影大陆
+    description: 一片被暗影笼罩的古老大陆
+    type: continent
+    level: 1
+    regions:
+      - id: white-poplar-village
+        name: 白杨村
+        description: 坐落在大陆东部的小村庄
+        type: village
+        level: 2
+        sub_locations:
+          - id: tavern
+            name: 月光酒馆
+            description: 村里唯一的酒馆
+            type: building
+            level: 3
+          - id: blacksmith
+            name: 铁匠铺
+            description: 老铁匠的作坊
+            type: building
+            level: 3
+          - id: village-square
+            name: 村庄广场
+            description: 村民聚集的中心广场
+            type: plaza
+            level: 3
+      - id: shadow-forest
+        name: 暗影森林
+        description: 充满危险的古老森林
+        type: forest
+        level: 2
+        sub_locations:
+          - id: forest-entrance
+            name: 森林入口
+            description: 森林的边缘，光线开始暗淡
+            type: clearing
+            level: 3
+          - id: forest-depths
+            name: 森林深处
+            description: 暗影最浓密的地方
+            type: dense_forest
+            level: 3
+      - id: dragon-ridge
+        name: 龙脊山脉
+        description: 巍峨的山脉，传说中龙族的栖息地
+        type: mountain
+        level: 2
+        sub_locations:
+          - id: mountain-pass
+            name: 山间隘口
+            description: 穿越山脉的唯一通道
+            type: pass
+            level: 3
+          - id: dragon-cave
+            name: 龙穴
+            description: 传说中的龙族巢穴
+            type: cave
+            level: 3
+
+skills:
+  - id: slash
+    name: 斩击
+    description: 用武器进行强力斩击，造成物理伤害。
+    category: attack
+    element: physical
+    target_type: single
+    cost:
+      stamina: 10
+    damage:
+      base: 15
+      scaling:
+        attribute: str
+        multiplier: 1.2
+    effects: []
+    cooldown: 0
+    range: 1
+    icon: slash.png
+    custom_data:
+      locale: zh-CN
+
+  - id: shield-block
+    name: 盾牌格挡
+    description: 举起盾牌格挡攻击，减少受到的伤害。
+    category: defense
+    element: physical
+    target_type: self
+    cost:
+      stamina: 5
+    damage: {}
+    effects:
+      - type: damage_reduction
+        value: 50
+        duration: 1
+    cooldown: 2
+    range: 0
+    icon: shield-block.png
+    custom_data:
+      locale: zh-CN
+
+  - id: fireball
+    name: 火球术
+    description: 发射一颗火球，对目标造成火焰伤害。
+    category: attack
+    element: fire
+    target_type: single
+    cost:
+      mana: 20
+    damage:
+      base: 25
+      scaling:
+        attribute: int
+        multiplier: 1.5
+    effects:
+      - type: burn
+        damage: 5
+        duration: 3
+    cooldown: 1
+    range: 5
+    icon: fireball.png
+    custom_data:
+      locale: zh-CN
+
+  - id: magic-missile
+    name: 魔法飞弹
+    description: 发射多枚魔法飞弹，必定命中目标。
+    category: attack
+    element: arcane
+    target_type: single
+    cost:
+      mana: 15
+    damage:
+      base: 10
+      hits: 3
+    effects: []
+    cooldown: 0
+    range: 5
+    icon: magic-missile.png
+    custom_data:
+      locale: zh-CN
+
+  - id: sneak-attack
+    name: 潜行攻击
+    description: 从暗处发动突袭，造成额外伤害。
+    category: attack
+    element: physical
+    target_type: single
+    cost:
+      stamina: 15
+    damage:
+      base: 20
+      scaling:
+        attribute: dex
+        multiplier: 2.0
+    effects:
+      - type: critical_bonus
+        value: 50
+    cooldown: 3
+    range: 1
+    icon: sneak-attack.png
+    custom_data:
+      requires_stealth: true
+      locale: zh-CN
+
+  - id: pick-lock
+    name: 开锁
+    description: 使用工具打开锁具。
+    category: utility
+    element: physical
+    target_type: object
+    cost: {}
+    damage: {}
+    effects:
+      - type: unlock
+        difficulty_range:
+          - 1
+          - 10
+    cooldown: 0
+    range: 1
+    icon: pick-lock.png
+    custom_data:
+      locale: zh-CN
+
+  - id: heal
+    name: 治疗术
+    description: 恢复目标的生命值。
+    category: healing
+    element: holy
+    target_type: single
+    cost:
+      mana: 25
+    damage: {}
+    effects:
+      - type: heal
+        base: 30
+        scaling:
+          attribute: wis
+          multiplier: 1.5
+    cooldown: 1
+    range: 3
+    icon: heal.png
+    custom_data:
+      locale: zh-CN
+
+  - id: turn-undead
+    name: 驱散亡灵
+    description: 对亡灵生物造成神圣伤害并使其恐惧。
+    category: attack
+    element: holy
+    target_type: single
+    cost:
+      mana: 20
+    damage:
+      base: 20
+      bonus_vs_type:
+        undead: 30
+    effects:
+      - type: fear
+        duration: 2
+        targets:
+          - undead
+    cooldown: 3
+    range: 3
+    icon: turn-undead.png
+    custom_data:
+      locale: zh-CN
+
+  - id: battle-cry
+    name: 战吼
+    description: 发出震耳欲聋的战吼，提升自身攻击力并威吓周围敌人。
+    category: buff
+    element: physical
+    target_type: self_aoe
+    cost:
+      mp: 10
+    damage: {}
+    effects:
+      - type: buff
+        attribute: attack
+        value: 3
+        duration: 3
+      - type: debuff
+        attribute: attack
+        value: -2
+        duration: 2
+        target: enemies
+    cooldown: 3
+    range: 2
+    icon: battle-cry.png
+    custom_data:
+      class_requirement:
+        - warrior
+      level_requirement: 1
+      locale: zh-CN
+
+  - id: mana-shield
+    name: 法力护盾
+    description: 用魔法能量形成护盾，消耗法力值来抵消受到的伤害。
+    category: defense
+    element: arcane
+    target_type: self
+    cost:
+      mp: 15
+    damage: {}
+    effects:
+      - type: shield
+        attribute: hp
+        value: 20
+        duration: 3
+    cooldown: 4
+    range: 0
+    icon: mana-shield.png
+    custom_data:
+      class_requirement:
+        - mage
+      level_requirement: 1
+      locale: zh-CN
+
+  - id: shadow-step
+    name: 暗影步
+    description: 融入暗影之中瞬间移动到目标身后，下次攻击造成额外伤害。
+    category: attack
+    element: shadow
+    target_type: enemy
+    cost:
+      mp: 12
+    damage:
+      base: 8
+      scaling:
+        attribute: dex
+        multiplier: 1.0
+    effects:
+      - type: damage
+        attribute: hp
+        value: 8
+        scaling: agility
+      - type: buff
+        attribute: crit_rate
+        value: 30
+        duration: 1
+    cooldown: 2
+    range: 3
+    icon: shadow-step.png
+    custom_data:
+      class_requirement:
+        - rogue
+      level_requirement: 1
+      locale: zh-CN
+
+  - id: bless
+    name: 祝福
+    description: 向神明祈祷，为队友施加祝福，提升全属性。
+    category: buff
+    element: holy
+    target_type: ally
+    cost:
+      mp: 12
+    damage: {}
+    effects:
+      - type: buff
+        attribute: all
+        value: 1
+        duration: 3
+    cooldown: 3
+    range: 5
+    icon: bless.png
+    custom_data:
+      class_requirement:
+        - cleric
+      level_requirement: 1
+      locale: zh-CN
+
+  - id: power-strike
+    name: 强力打击
+    description: 集中力量进行一次强力打击，造成大量物理伤害。
+    category: attack
+    element: physical
+    target_type: single
+    cost:
+      stamina: 15
+    damage:
+      base: 20
+      scaling:
+        attribute: str
+        multiplier: 1.8
+    effects:
+      - type: armor_break
+        value: 3
+        duration: 2
+    cooldown: 2
+    range: 1
+    icon: power-strike.png
+    custom_data:
+      class_requirement:
+        - warrior
+      level_requirement: 1
+      locale: zh-CN
+
+  - id: taunt
+    name: 嘲讽
+    description: 嘲讽敌人，强制其攻击自己，同时提升自身防御力。
+    category: defense
+    element: physical
+    target_type: self_aoe
+    cost:
+      stamina: 8
+    damage: {}
+    effects:
+      - type: taunt
+        duration: 2
+      - type: buff
+        attribute: defense
+        value: 5
+        duration: 2
+    cooldown: 3
+    range: 2
+    icon: taunt.png
+    custom_data:
+      class_requirement:
+        - warrior
+      level_requirement: 1
+      locale: zh-CN
+
+  - id: endurance-stance
+    name: 耐力姿态
+    description: 进入耐力姿态，提升最大生命值和防御力，但降低攻击速度。
+    category: defense
+    element: physical
+    target_type: self
+    cost:
+      stamina: 10
+    damage: {}
+    effects:
+      - type: buff
+        attribute: max_hp
+        value: 20
+        duration: 5
+      - type: buff
+        attribute: defense
+        value: 3
+        duration: 5
+      - type: debuff
+        attribute: attack_speed
+        value: -10
+        duration: 5
+    cooldown: 5
+    range: 0
+    icon: endurance-stance.png
+    custom_data:
+      class_requirement:
+        - warrior
+      level_requirement: 1
+      locale: zh-CN
+
+  - id: frost-nova
+    name: 冰霜新星
+    description: 释放冰霜能量，对周围敌人造成冰冻伤害并减速。
+    category: attack
+    element: water
+    target_type: aoe
+    cost:
+      mana: 25
+    damage:
+      base: 18
+      scaling:
+        attribute: int
+        multiplier: 1.3
+    effects:
+      - type: slow
+        value: 30
+        duration: 2
+    cooldown: 3
+    range: 3
+    icon: frost-nova.png
+    custom_data:
+      class_requirement:
+        - mage
+      level_requirement: 1
+      locale: zh-CN
+
+  - id: arcane-insight
+    name: 奥术洞察
+    description: 运用奥术知识洞察战场，提升法术强度和法力回复。
+    category: buff
+    element: arcane
+    target_type: self
+    cost:
+      mana: 10
+    damage: {}
+    effects:
+      - type: buff
+        attribute: spell_power
+        value: 5
+        duration: 4
+      - type: buff
+        attribute: mana_regen
+        value: 3
+        duration: 4
+    cooldown: 4
+    range: 0
+    icon: arcane-insight.png
+    custom_data:
+      class_requirement:
+        - mage
+      level_requirement: 1
+      locale: zh-CN
+
+  - id: poison-blade
+    name: 毒刃
+    description: 在武器上涂抹剧毒，攻击时造成持续毒伤害。
+    category: attack
+    element: physical
+    target_type: single
+    cost:
+      stamina: 8
+    damage:
+      base: 10
+      scaling:
+        attribute: dex
+        multiplier: 1.2
+    effects:
+      - type: poison
+        damage: 5
+        duration: 4
+    cooldown: 2
+    range: 1
+    icon: poison-blade.png
+    custom_data:
+      class_requirement:
+        - rogue
+      level_requirement: 1
+      locale: zh-CN
+
+  - id: evasion
+    name: 闪避
+    description: 提升闪避率，有概率完全躲避敌人的攻击。
+    category: defense
+    element: physical
+    target_type: self
+    cost:
+      stamina: 5
+    damage: {}
+    effects:
+      - type: buff
+        attribute: dodge_rate
+        value: 25
+        duration: 3
+    cooldown: 3
+    range: 0
+    icon: evasion.png
+    custom_data:
+      class_requirement:
+        - rogue
+      level_requirement: 1
+      locale: zh-CN
+
+  - id: divine-light
+    name: 神圣之光
+    description: 召唤神圣之光，治疗自身及周围队友。
+    category: healing
+    element: holy
+    target_type: ally_aoe
+    cost:
+      mana: 30
+    damage: {}
+    effects:
+      - type: heal
+        base: 20
+        scaling:
+          attribute: wis
+          multiplier: 1.2
+    cooldown: 3
+    range: 3
+    icon: divine-light.png
+    custom_data:
+      class_requirement:
+        - cleric
+      level_requirement: 1
+      locale: zh-CN
+
+  - id: purify
+    name: 净化
+    description: 净化目标身上的负面效果，恢复其正常状态。
+    category: utility
+    element: holy
+    target_type: ally
+    cost:
+      mana: 15
+    damage: {}
+    effects:
+      - type: cleanse
+        max_debuffs: 2
+    cooldown: 2
+    range: 3
+    icon: purify.png
+    custom_data:
+      class_requirement:
+        - cleric
+      level_requirement: 1
+      locale: zh-CN
+
+items:
+  - id: rusty-sword
+    name: 生锈的铁剑
+    description: 一把布满锈迹的旧铁剑，剑刃已经不再锋利，但仍然足以在战斗中造成伤害。这把剑不知经历了多少任主人，剑柄上的皮革已经磨损殆尽。
+    category: weapon
+    equipped_slot: main_hand
+    quality: common
+    stats:
+      attack: 5
+    effects: []
+    value:
+      buy: 20
+      sell: 10
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 武器
+      displayRarity: 普通
+      displayStats:
+        - key: attack
+          label: 攻击力
+          value: "+5"
+      displayEffects: []
+      tags: ["剑", "近战", "初始装备"]
+      locale: zh-CN
+
+  - id: leather-armor
+    name: 皮甲
+    description: 由鞣制皮革制成的轻便护甲，在灵活性和防护力之间取得了平衡。虽然无法抵挡重武器的猛击，但对于日常冒险来说已经足够。
+    category: armor
+    equipped_slot: body
+    quality: common
+    stats:
+      defense: 3
+    effects: []
+    value:
+      buy: 30
+      sell: 15
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 防具
+      displayRarity: 普通
+      displayStats:
+        - key: defense
+          label: 防御力
+          value: "+3"
+      displayEffects: []
+      tags: ["轻甲", "皮甲", "初始装备"]
+      locale: zh-CN
+
+  - id: shield
+    name: 木盾
+    description: 一面由橡木制成的圆盾，表面用铁皮加固。虽然简陋，但在危急时刻能挡住致命的一击。盾面上刻着模糊的纹章，已无法辨认属于哪个家族。
+    category: armor
+    equipped_slot: off_hand
+    quality: common
+    stats:
+      defense: 2
+    effects: []
+    value:
+      buy: 25
+      sell: 12
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 防具
+      displayRarity: 普通
+      displayStats:
+        - key: defense
+          label: 防御力
+          value: "+2"
+      displayEffects: []
+      tags: ["盾牌", "副手", "初始装备"]
+      locale: zh-CN
+
+  - id: health-potion
+    name: 生命药水
+    description: 一瓶散发着红色微光的药水，可以恢复生命值。瓶身上刻着炼金术士公会的标记，是冒险者行囊中不可或缺的补给品。
+    category: consumable
+    quality: common
+    stats:
+      heal: 20
+    effects:
+      - type: heal
+        value: 20
+    value:
+      buy: 50
+      sell: 25
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 消耗品
+      displayRarity: 普通
+      displayStats:
+        - key: heal
+          label: 治疗量
+          value: "+20"
+      displayEffects:
+        - "恢复20点生命值"
+      tags: ["药水", "治疗", "消耗品"]
+      visualDesc: "红色液体在玻璃瓶中微微发光，瓶塞用蜡封住"
+      effects:
+        - type: heal
+          value: 20
+      price: 25
+      locale: zh-CN
+
+  - id: iron-helmet
+    name: 铁盔
+    description: 一顶简单的铁制头盔，能保护头部免受攻击。虽然视野受限，但在战场上多一层防护就意味着多一分生存的希望。盔顶有一道浅浅的凹痕，是前主人留下的纪念。
+    category: armor
+    equipped_slot: head
+    quality: common
+    stats:
+      defense: 2
+    effects: []
+    value:
+      buy: 25
+      sell: 12
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 防具
+      displayRarity: 普通
+      displayStats:
+        - key: defense
+          label: 防御力
+          value: "+2"
+      displayEffects: []
+      tags: ["头盔", "铁制", "初始装备"]
+      locale: zh-CN
+
+  - id: war-boots
+    name: 战靴
+    description: 厚重的皮制战靴，鞋底钉有铁钉以增加抓地力。在泥泞的战场上，一双好靴子比什么都重要。靴筒内侧缝有小袋，可以藏放匕首或小物件。
+    category: armor
+    equipped_slot: feet
+    quality: common
+    stats:
+      defense: 1
+      speed: 1
+    effects: []
+    value:
+      buy: 20
+      sell: 10
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 防具
+      displayRarity: 普通
+      displayStats:
+        - key: defense
+          label: 防御力
+          value: "+1"
+        - key: speed
+          label: 速度
+          value: "+1"
+      displayEffects: []
+      tags: ["靴子", "皮制", "初始装备"]
+      locale: zh-CN
+
+  - id: wooden-staff
+    name: 木制法杖
+    description: 一根由古老橡木雕刻而成的法杖，杖身缠绕着铜丝纹路，顶端镶嵌着一颗暗淡的元素水晶。虽然只是学徒级别的法杖，但足以引导基本的元素之力。
+    category: weapon
+    equipped_slot: main_hand
+    quality: common
+    stats:
+      magicAttack: 4
+      attack: 2
+    effects: []
+    value:
+      buy: 25
+      sell: 12
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 武器
+      displayRarity: 普通
+      displayStats:
+        - key: magicAttack
+          label: 魔法攻击
+          value: "+4"
+        - key: attack
+          label: 攻击力
+          value: "+2"
+      displayEffects: []
+      tags: ["法杖", "魔法", "初始装备"]
+      locale: zh-CN
+
+  - id: apprentice-robe
+    name: 学徒法袍
+    description: 暮光法师塔学徒的标准着装，深蓝色的长袍上绣着简单的元素纹路。法袍的布料经过特殊处理，能轻微抵御魔法攻击，但物理防护几乎为零。
+    category: armor
+    equipped_slot: body
+    quality: common
+    stats:
+      magicDefense: 2
+      defense: 1
+    effects: []
+    value:
+      buy: 30
+      sell: 15
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 防具
+      displayRarity: 普通
+      displayStats:
+        - key: magicDefense
+          label: 魔法防御
+          value: "+2"
+        - key: defense
+          label: 防御力
+          value: "+1"
+      displayEffects: []
+      tags: ["法袍", "布甲", "初始装备"]
+      locale: zh-CN
+
+  - id: spellbook
+    name: 法术书
+    description: 一本厚重的皮面法术书，书页由羊皮纸制成，上面用魔法墨水书写着基础法术的咒文和施法手势。封面上烫印着暮光法师塔的徽记，是每位学徒最重要的学习工具。
+    category: tool
+    quality: uncommon
+    stats:
+      magicAttack: 2
+    effects: []
+    value:
+      buy: 100
+      sell: 50
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 优秀
+      displayStats:
+        - key: magicAttack
+          label: 魔法攻击
+          value: "+2"
+      displayEffects:
+        - "记录法术咒文，施法时可参考"
+      tags: ["法术书", "魔法", "学习工具"]
+      visualDesc: "厚重的皮面书籍，封面烫印着法师塔徽记，书页泛着微弱的魔法光芒"
+      locale: zh-CN
+
+  - id: mana-potion
+    name: 法力药水
+    description: 一瓶散发着蓝色微光的药水，可以恢复法力值。炼金术士用月光草和元素精华精心调配而成，是施法者在战斗中续战的关键补给。
+    category: consumable
+    quality: common
+    stats:
+      manaRestore: 20
+    effects:
+      - type: mana_restore
+        value: 20
+    value:
+      buy: 60
+      sell: 30
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 消耗品
+      displayRarity: 普通
+      displayStats:
+        - key: manaRestore
+          label: 法力恢复
+          value: "+20"
+      displayEffects:
+        - "恢复20点法力值"
+      tags: ["药水", "法力", "消耗品"]
+      visualDesc: "蓝色液体在玻璃瓶中微微发光，比生命药水更加清澈透明"
+      effects:
+        - type: mana_restore
+          value: 20
+      price: 30
+      locale: zh-CN
+
+  - id: apprentice-hood
+    name: 学徒兜帽
+    description: 与学徒法袍配套的深蓝色兜帽，能遮蔽面部并抵御轻微的魔法侵扰。暮光法师塔的学徒们在研习时都会戴上它，据说能帮助集中精神。
+    category: armor
+    equipped_slot: head
+    quality: common
+    stats:
+      magicDefense: 1
+    effects: []
+    value:
+      buy: 15
+      sell: 7
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 防具
+      displayRarity: 普通
+      displayStats:
+        - key: magicDefense
+          label: 魔法防御
+          value: "+1"
+      displayEffects: []
+      tags: ["兜帽", "布甲", "初始装备"]
+      locale: zh-CN
+
+  - id: magic-ring
+    name: 魔法戒指
+    description: 一枚镶嵌着淡紫色宝石的银戒指，宝石内部流转着微弱的元素光芒。这枚戒指是暮光法师塔发给优秀学徒的奖励，能小幅增强佩戴者的魔法亲和力。
+    category: accessory
+    equipped_slot: accessory
+    quality: uncommon
+    stats:
+      magicAttack: 2
+      magicDefense: 1
+    effects: []
+    value:
+      buy: 120
+      sell: 60
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 饰品
+      displayRarity: 优秀
+      displayStats:
+        - key: magicAttack
+          label: 魔法攻击
+          value: "+2"
+        - key: magicDefense
+          label: 魔法防御
+          value: "+1"
+      displayEffects:
+        - "增强魔法亲和力，小幅提升施法效果"
+      tags: ["戒指", "魔法", "饰品"]
+      visualDesc: "银色戒环上镶嵌着淡紫色宝石，宝石内部流转着微弱光芒"
+      locale: zh-CN
+
+  - id: dagger
+    name: 匕首
+    description: 一把短小精悍的匕首，刀刃经过精心打磨，锋利无比。匕首是盗贼最信赖的伙伴，无论是战斗还是日常使用都极为方便。刀柄上缠绕着黑色皮革，握感极佳。
+    category: weapon
+    equipped_slot: main_hand
+    quality: common
+    stats:
+      attack: 3
+      critRate: 0.05
+    effects: []
+    value:
+      buy: 15
+      sell: 7
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 武器
+      displayRarity: 普通
+      displayStats:
+        - key: attack
+          label: 攻击力
+          value: "+3"
+        - key: critRate
+          label: 暴击率
+          value: "+5%"
+      displayEffects: []
+      tags: ["匕首", "近战", "轻武器", "初始装备"]
+      locale: zh-CN
+
+  - id: thieves-tools
+    name: 盗贼工具
+    description: 一套精心制作的盗贼工具，包含各种规格的撬锁针、张力扳手和微型锯片。装在柔软的皮革卷包中，方便随身携带。暗影兄弟会的入门必修课就是熟练使用这套工具。
+    category: tool
+    quality: common
+    stats: {}
+    effects: []
+    value:
+      buy: 40
+      sell: 20
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats: []
+      displayEffects:
+        - "可以撬开普通锁具"
+      tags: ["工具", "撬锁", "盗贼"]
+      visualDesc: "皮革卷包中整齐排列着各种金属工具，在光线下闪烁着冷光"
+      locale: zh-CN
+
+  - id: poison-vial
+    name: 毒药瓶
+    description: 一只装着暗绿色液体的玻璃小瓶，液体散发着刺鼻的气味。盗贼和刺客常用它涂抹武器，使刀刃带上致命毒素。瓶身上贴着暗影兄弟会的标记，警告使用者小心操作。
+    category: consumable
+    quality: uncommon
+    stats: {}
+    effects:
+      - type: poison
+        value: 15
+        duration: 3
+        target: enemy
+    value:
+      buy: 80
+      sell: 40
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 消耗品
+      displayRarity: 优秀
+      displayStats: []
+      displayEffects:
+        - "使武器附带毒素，攻击时15%概率使目标中毒3回合"
+      tags: ["炼金", "危险品", "盗贼工具"]
+      visualDesc: "暗绿色液体在玻璃瓶中微微晃动，瓶口用蜡封住"
+      effects:
+        - type: poison
+          value: 15
+          duration: 3
+          target: enemy
+      price: 40
+      locale: zh-CN
+
+  - id: thieves-hood
+    name: 盗贼兜帽
+    description: 一顶黑色的紧身兜帽，只露出双眼，能有效隐藏身份。兜帽内层缝有薄毡，既能保暖又能消音。暗影兄弟会的成员在执行任务时几乎从不摘下它。
+    category: armor
+    equipped_slot: head
+    quality: common
+    stats:
+      dodgeRate: 0.02
+    effects: []
+    value:
+      buy: 15
+      sell: 7
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 防具
+      displayRarity: 普通
+      displayStats:
+        - key: dodgeRate
+          label: 闪避率
+          value: "+2%"
+      displayEffects: []
+      tags: ["兜帽", "皮甲", "初始装备"]
+      locale: zh-CN
+
+  - id: soft-boots
+    name: 软底靴
+    description: 一双用柔软鹿皮制成的轻便靴子，鞋底几乎不发出任何声响。盗贼在潜行时最怕的就是脚步声，这双靴子是暗影兄弟会的标准装备。
+    category: armor
+    equipped_slot: feet
+    quality: common
+    stats:
+      speed: 2
+      dodgeRate: 0.02
+    effects: []
+    value:
+      buy: 25
+      sell: 12
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 防具
+      displayRarity: 普通
+      displayStats:
+        - key: speed
+          label: 速度
+          value: "+2"
+        - key: dodgeRate
+          label: 闪避率
+          value: "+2%"
+      displayEffects: []
+      tags: ["靴子", "皮制", "潜行", "初始装备"]
+      locale: zh-CN
+
+  - id: mace
+    name: 战锤
+    description: 一柄沉重的铁制战锤，锤头呈球形，布满了尖刺。虽然不如利剑优雅，但战锤的钝击能轻易击碎盔甲和骨骼，是不死生物的克星。牧师们偏爱这种无需见血的武器。
+    category: weapon
+    equipped_slot: main_hand
+    quality: common
+    stats:
+      attack: 6
+    effects: []
+    value:
+      buy: 25
+      sell: 12
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 武器
+      displayRarity: 普通
+      displayStats:
+        - key: attack
+          label: 攻击力
+          value: "+6"
+      displayEffects:
+        - "对不死生物造成额外伤害"
+      tags: ["战锤", "钝器", "神圣", "初始装备"]
+      locale: zh-CN
+
+  - id: priest-robe
+    name: 牧师法袍
+    description: 光明神殿牧师的标准着装，白色长袍上绣着金色的太阳纹路。法袍经过神圣祝福，能轻微抵御邪恶力量的侵蚀。穿着它行走于世，便是光明神意志的化身。
+    category: armor
+    equipped_slot: body
+    quality: common
+    stats:
+      magicDefense: 2
+      defense: 1
+    effects: []
+    value:
+      buy: 35
+      sell: 17
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 防具
+      displayRarity: 普通
+      displayStats:
+        - key: magicDefense
+          label: 魔法防御
+          value: "+2"
+        - key: defense
+          label: 防御力
+          value: "+1"
+      displayEffects:
+        - "经神圣祝福，轻微抵御邪恶力量"
+      tags: ["法袍", "布甲", "神圣", "初始装备"]
+      locale: zh-CN
+
+  - id: holy-symbol
+    name: 圣徽
+    description: 一枚银制的光明神圣徽，中央是太阳图案，四周环绕着古老的祈祷文。牧师通过圣徽引导神圣之力，它是信仰的象征，也是施展神术的媒介。
+    category: accessory
+    equipped_slot: accessory
+    quality: uncommon
+    stats:
+      magicDefense: 2
+    effects:
+      - type: turn_undead
+        value: 1
+    value:
+      buy: 100
+      sell: 50
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 饰品
+      displayRarity: 优秀
+      displayStats:
+        - key: magicDefense
+          label: 魔法防御
+          value: "+2"
+      displayEffects:
+        - "增强驱散亡灵的效果"
+        - "作为施展神术的媒介"
+      tags: ["圣徽", "神圣", "信仰", "饰品"]
+      visualDesc: "银制圆盘上刻着太阳图案，边缘环绕着古老祈祷文，散发着温暖的光芒"
+      locale: zh-CN
+
+  - id: prayer-beads
+    name: 祈祷念珠
+    description: 一串由108颗木质念珠组成的祈祷链，每颗珠子都经过光明神殿的祝福。牧师在祈祷时拨动念珠，能更加专注地与神灵沟通，增强治疗效果。
+    category: accessory
+    equipped_slot: accessory
+    quality: common
+    stats:
+      magicAttack: 1
+    effects: []
+    value:
+      buy: 40
+      sell: 20
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 饰品
+      displayRarity: 普通
+      displayStats:
+        - key: magicAttack
+          label: 魔法攻击
+          value: "+1"
+      displayEffects:
+        - "祈祷时增强治疗效果"
+      tags: ["念珠", "神圣", "祈祷", "饰品"]
+      visualDesc: "深色木质念珠用丝线串联，珠子表面因长年摩挲而光滑温润"
+      locale: zh-CN
+
+  - id: priest-hood
+    name: 牧师兜帽
+    description: 与牧师法袍配套的白色兜帽，边缘绣着金色的太阳纹路。在举行仪式时，牧师会戴上兜帽以示对光明神的敬意。兜帽也能在旅途中遮挡风沙和烈日。
+    category: armor
+    equipped_slot: head
+    quality: common
+    stats:
+      magicDefense: 1
+    effects: []
+    value:
+      buy: 15
+      sell: 7
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 防具
+      displayRarity: 普通
+      displayStats:
+        - key: magicDefense
+          label: 魔法防御
+          value: "+1"
+      displayEffects: []
+      tags: ["兜帽", "布甲", "神圣", "初始装备"]
+      locale: zh-CN
+
+  - id: signet-ring
+    name: 印章戒指
+    description: 一枚刻有家族徽章的金戒指，是贵族身份的象征。戒指上的徽章可以在蜡封上留下印记，证明文件的真实性。在贵族社交圈中，这枚戒指比任何通行证都管用。
+    category: accessory
+    equipped_slot: accessory
+    quality: uncommon
+    stats:
+      cha: 1
+    effects: []
+    value:
+      buy: 150
+      sell: 75
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 饰品
+      displayRarity: 优秀
+      displayStats:
+        - key: cha
+          label: 魅力
+          value: "+1"
+      displayEffects:
+        - "证明贵族身份，可获得贵族阶层的接待和帮助"
+      tags: ["戒指", "贵族", "身份证明", "饰品"]
+      visualDesc: "金质戒环上雕刻着精美的家族徽章，宝石在光线下熠熠生辉"
+      locale: zh-CN
+
+  - id: fine-clothes
+    name: 精致衣物
+    description: 一套做工精良的丝绸衣物，绣着低调而奢华的暗纹。衣料柔软贴身，剪裁合体，彰显穿着者的高贵品味。在宫廷社交场合，得体的着装是第一张名片。
+    category: misc
+    quality: common
+    stats:
+      cha: 1
+    effects: []
+    value:
+      buy: 80
+      sell: 40
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 杂项
+      displayRarity: 普通
+      displayStats:
+        - key: cha
+          label: 魅力
+          value: "+1"
+      displayEffects:
+        - "在社交场合获得更好的印象"
+      tags: ["衣物", "贵族", "社交"]
+      visualDesc: "深色丝绸面料上绣着暗金色花纹，衣领和袖口缀着细密的蕾丝"
+      locale: zh-CN
+
+  - id: gold-purse
+    name: 金币袋
+    description: 一个沉甸甸的天鹅绒钱袋，里面装着贵族出身的证明——充足的金币。钱袋口用金丝绳系紧，上面绣着家族的缩写。对于初出茅庐的贵族冒险者来说，这是最实际的优势。
+    category: misc
+    quality: common
+    stats: {}
+    effects: []
+    value:
+      buy: 0
+      sell: 0
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 杂项
+      displayRarity: 普通
+      displayStats: []
+      displayEffects:
+        - "内含200金币，是贵族冒险的启动资金"
+      tags: ["钱袋", "贵族", "金币"]
+      visualDesc: "深红色天鹅绒钱袋，袋口用金丝绳系紧，沉甸甸的分量令人安心"
+      locale: zh-CN
+
+  - id: travelers-clothes
+    name: 旅行者衣物
+    description: 一套朴素但结实的旅行衣物，由粗麻布和皮革制成。虽然算不上美观，但耐穿耐磨，适合长途跋涉。口袋很多，方便携带各种小物件，是平民冒险者的务实之选。
+    category: misc
+    quality: common
+    stats: {}
+    effects: []
+    value:
+      buy: 10
+      sell: 5
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 杂项
+      displayRarity: 普通
+      displayStats: []
+      displayEffects: []
+      tags: ["衣物", "旅行", "平民"]
+      visualDesc: "灰褐色的粗麻布衣物，多处缝有皮革补丁，口袋鼓鼓囊囊"
+      locale: zh-CN
+
+  - id: tool-of-trade
+    name: 行业工具
+    description: 一套与你的职业相关的工具，可能是铁匠的锤子、木匠的锯子或农夫的镰刀。这些工具代表了你在成为冒险者之前赖以谋生的手艺，也是你了解民间疾苦的见证。
+    category: tool
+    quality: common
+    stats: {}
+    effects: []
+    value:
+      buy: 15
+      sell: 7
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats: []
+      displayEffects:
+        - "可用于相关行业的制作和修理"
+      tags: ["工具", "行业", "平民"]
+      visualDesc: "一包用油布包裹的工具，虽然旧了但保养得当"
+      locale: zh-CN
+
+  - id: pouch
+    name: 小袋
+    description: 一个用粗线缝制的皮革小袋，可以系在腰带上。虽然不大，但足以装下几枚铜板和一些小物件。对于出身平民的冒险者来说，这是最实用的收纳工具。
+    category: misc
+    quality: common
+    stats: {}
+    effects: []
+    value:
+      buy: 5
+      sell: 2
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 杂项
+      displayRarity: 普通
+      displayStats: []
+      displayEffects: []
+      tags: ["容器", "平民", "收纳"]
+      visualDesc: "棕色皮革小袋，袋口用细绳抽紧，表面有些磨损"
+      locale: zh-CN
+
+  - id: tattered-clothes
+    name: 破旧衣物
+    description: 一套已经看不出原色的破旧衣物，到处是补丁和破洞。这是流浪儿在街头生存的全部家当，虽然破烂，但每一处补丁都记录着一段艰难求生的故事。
+    category: misc
+    quality: common
+    stats: {}
+    effects: []
+    value:
+      buy: 0
+      sell: 0
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 杂项
+      displayRarity: 普通
+      displayStats: []
+      displayEffects: []
+      tags: ["衣物", "破旧", "流浪儿"]
+      visualDesc: "灰扑扑的破旧衣物，补丁摞着补丁，但洗得很干净"
+      locale: zh-CN
+
+  - id: lucky-charm
+    name: 幸运护符
+    description: 一个用旧绳串着的动物牙齿，据说是流浪儿在垃圾堆里捡到的"宝贝"。虽然看起来不值一文，但不知为何，带着它总能在危急时刻化险为夷。也许，真正的幸运来自于永不放弃的信念。
+    category: accessory
+    equipped_slot: accessory
+    quality: uncommon
+    stats:
+      dodgeRate: 0.03
+    effects: []
+    value:
+      buy: 50
+      sell: 25
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 饰品
+      displayRarity: 优秀
+      displayStats:
+        - key: dodgeRate
+          label: 闪避率
+          value: "+3%"
+      displayEffects:
+        - "在危急时刻提升闪避概率"
+      tags: ["护符", "幸运", "流浪儿", "饰品"]
+      visualDesc: "一根旧绳串着泛黄的动物牙齿，表面被摩挲得光滑"
+      locale: zh-CN
+
+  - id: sewers-map
+    name: 下水道地图
+    description: 一张用炭笔绘制的城市下水道地图，标注了各种暗道、出口和秘密通道。这是流浪儿在街头生存的宝贵知识结晶，有了它，城市的每个角落都无所遁形。
+    category: tool
+    quality: common
+    stats: {}
+    effects: []
+    value:
+      buy: 30
+      sell: 15
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats: []
+      displayEffects:
+        - "熟悉城市的每条暗巷和秘密通道"
+        - "在城市中移动时可发现隐藏路径"
+      tags: ["地图", "下水道", "流浪儿", "秘密"]
+      visualDesc: "泛黄的羊皮纸上用炭笔画满了线条和标记，折痕处已经磨损"
+      locale: zh-CN
+
+  - id: scholar-robes
+    name: 学者长袍
+    description: 一件深灰色的学者长袍，口袋里总是塞满了笔记和书签。长袍上沾着墨水渍和蜡油痕迹，是无数个伏案苦读的夜晚留下的印记。穿着它，仿佛能感受到学院图书馆的墨香。
+    category: armor
+    equipped_slot: body
+    quality: common
+    stats:
+      magicDefense: 1
+      int: 1
+    effects: []
+    value:
+      buy: 35
+      sell: 17
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 防具
+      displayRarity: 普通
+      displayStats:
+        - key: magicDefense
+          label: 魔法防御
+          value: "+1"
+        - key: int
+          label: 智力
+          value: "+1"
+      displayEffects: []
+      tags: ["长袍", "学者", "布甲"]
+      visualDesc: "深灰色长袍，多处沾着墨水渍，口袋鼓鼓囊囊塞满了纸片"
+      locale: zh-CN
+
+  - id: ancient-tome
+    name: 古代典籍
+    description: 一本年代久远的厚重典籍，书页已经泛黄，但上面的文字仍然清晰可辨。这本书记载着失落时代的知识和秘密，对于追求真理的学者来说，它的价值远超黄金。
+    category: tool
+    quality: uncommon
+    stats:
+      int: 1
+    effects: []
+    value:
+      buy: 120
+      sell: 60
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 优秀
+      displayStats:
+        - key: int
+          label: 智力
+          value: "+1"
+      displayEffects:
+        - "可以回忆关于任何学术主题的知识"
+        - "研读时可获得关于古代秘密的线索"
+      tags: ["书籍", "古代", "知识", "学者"]
+      visualDesc: "厚重的皮面古书，金属锁扣已经锈蚀，书页泛黄但文字清晰"
+      locale: zh-CN
+
+  - id: ink-and-quill
+    name: 墨水与羽毛笔
+    description: 一瓶黑墨水和一支鹅毛笔，是学者记录知识和灵感的基本工具。墨水瓶用软木塞密封，羽毛笔的笔尖经过精心修剪。在冒险途中，随时记录所见所闻是学者的本能。
+    category: tool
+    quality: common
+    stats: {}
+    effects: []
+    value:
+      buy: 10
+      sell: 5
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 工具
+      displayRarity: 普通
+      displayStats: []
+      displayEffects:
+        - "可以书写和记录信息"
+        - "可用于绘制地图和抄写法术"
+      tags: ["书写", "学者", "工具"]
+      visualDesc: "小墨水瓶配一支白色鹅毛笔，用布包仔细包裹"
+      locale: zh-CN
+
+  - id: soldiers-uniform
+    name: 士兵制服
+    description: 一套王国正规军的制服，深红色的外套上绣着银色的狮鹫徽章。虽然已经退役，但制服仍然保养得当，穿上它便能在军事营地获得基本补给和尊重。
+    category: armor
+    equipped_slot: body
+    quality: common
+    stats:
+      defense: 2
+    effects: []
+    value:
+      buy: 30
+      sell: 15
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 防具
+      displayRarity: 普通
+      displayStats:
+        - key: defense
+          label: 防御力
+          value: "+2"
+      displayEffects:
+        - "在军事营地可获得基本补给"
+      tags: ["制服", "军事", "士兵"]
+      visualDesc: "深红色外套配银色狮鹫徽章，虽然有些旧但保养得当"
+      locale: zh-CN
+
+  - id: ration-pack
+    name: 口粮包
+    description: 一个装满干粮和肉干的帆布包，是行军打仗的标准补给。虽然味道乏善可陈，但胜在耐储存、热量高。在野外冒险时，一包口粮可能就是活下去的关键。
+    category: consumable
+    quality: common
+    stats:
+      heal: 10
+    effects:
+      - type: heal
+        value: 10
+    value:
+      buy: 15
+      sell: 7
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 消耗品
+      displayRarity: 普通
+      displayStats:
+        - key: heal
+          label: 治疗量
+          value: "+10"
+      displayEffects:
+        - "恢复10点生命值"
+        - "可在野外休息时食用"
+      tags: ["食物", "补给", "消耗品"]
+      visualDesc: "帆布包中装着硬面饼、肉干和水囊，分量十足"
+      effects:
+        - type: heal
+          value: 10
+      price: 7
+      locale: zh-CN
+
+  - id: war-medal
+    name: 战争勋章
+    description: 一枚铜质战争勋章，正面刻着王国狮鹫徽章，背面刻着授予日期和战役名称。这是在战火中出生入死的证明，佩戴它，老兵们会向你致敬，平民们会心生敬意。
+    category: accessory
+    equipped_slot: accessory
+    quality: uncommon
+    stats:
+      cha: 1
+    effects: []
+    value:
+      buy: 80
+      sell: 40
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 饰品
+      displayRarity: 优秀
+      displayStats:
+        - key: cha
+          label: 魅力
+          value: "+1"
+      displayEffects:
+        - "在军事场合获得尊重和优待"
+        - "老兵和军人会对你另眼相看"
+      tags: ["勋章", "军事", "荣誉", "饰品"]
+      visualDesc: "铜质勋章上刻着狮鹫徽章，绶带已经褪色但勋章本身依然闪亮"
+      locale: zh-CN
+
+  - id: scroll-of-lineage
+    name: 家谱卷轴
+    description: 一卷用上等羊皮纸制成的家谱卷轴，上面用金色墨水书写着家族的谱系与纹章，并由王室公证处加盖封蜡。这是贵族血统的法律凭证，在任何宫廷与官方场合都能证明你的出身与继承权。
+    category: misc
+    quality: uncommon
+    stats: {}
+    effects: []
+    value:
+      buy: 0
+      sell: 0
+      currency: gold
+    quantity: 1
+    custom_data:
+      displayType: 杂项
+      displayRarity: 优秀
+      displayStats: []
+      displayEffects:
+        - "证明贵族血统与继承权的法律凭证"
+        - "在宫廷与官方场合获得贵族阶层的接待"
+      tags: ["卷轴", "贵族", "身份证明", "传家宝"]
+      visualDesc: "上等羊皮纸卷轴以金色墨水书写，末端悬挂着红色封蜡与丝带"
+      isQuestItem: true
+      locale: zh-CN
+
+initial_data:
+  skills:
+    warrior:
+      - slash
+      - shield-block
+      - battle-cry
+      - power-strike
+      - taunt
+      - endurance-stance
+    mage:
+      - fireball
+      - magic-missile
+      - mana-shield
+      - frost-nova
+      - arcane-insight
+    rogue:
+      - sneak-attack
+      - pick-lock
+      - shadow-step
+      - poison-blade
+      - evasion
+    cleric:
+      - heal
+      - turn-undead
+      - bless
+      - divine-light
+      - purify
+  items_by_class:
+    warrior:
+      - item_id: rusty-sword
+        quantity: 1
+      - item_id: leather-armor
+        quantity: 1
+      - item_id: shield
+        quantity: 1
+      - item_id: health-potion
+        quantity: 2
+      - item_id: iron-helmet
+        quantity: 1
+      - item_id: war-boots
+        quantity: 1
+    mage:
+      - item_id: wooden-staff
+        quantity: 1
+      - item_id: apprentice-robe
+        quantity: 1
+      - item_id: spellbook
+        quantity: 1
+      - item_id: mana-potion
+        quantity: 2
+      - item_id: apprentice-hood
+        quantity: 1
+      - item_id: magic-ring
+        quantity: 1
+    rogue:
+      - item_id: dagger
+        quantity: 2
+      - item_id: leather-armor
+        quantity: 1
+      - item_id: thieves-tools
+        quantity: 1
+      - item_id: health-potion
+        quantity: 1
+      - item_id: poison-vial
+        quantity: 2
+      - item_id: thieves-hood
+        quantity: 1
+      - item_id: soft-boots
+        quantity: 1
+    cleric:
+      - item_id: mace
+        quantity: 1
+      - item_id: priest-robe
+        quantity: 1
+      - item_id: holy-symbol
+        quantity: 1
+      - item_id: health-potion
+        quantity: 2
+      - item_id: prayer-beads
+        quantity: 1
+      - item_id: priest-hood
+        quantity: 1
+  items_by_background:
+    noble:
+      - item_id: signet-ring
+        quantity: 1
+      - item_id: fine-clothes
+        quantity: 1
+      - item_id: gold-purse
+        quantity: 1
+    commoner:
+      - item_id: travelers-clothes
+        quantity: 1
+      - item_id: tool-of-trade
+        quantity: 1
+      - item_id: pouch
+        quantity: 1
+    urchin:
+      - item_id: tattered-clothes
+        quantity: 1
+      - item_id: lucky-charm
+        quantity: 1
+      - item_id: sewers-map
+        quantity: 1
+    scholar:
+      - item_id: scholar-robes
+        quantity: 1
+      - item_id: ancient-tome
+        quantity: 1
+      - item_id: ink-and-quill
+        quantity: 1
+    soldier:
+      - item_id: soldiers-uniform
+        quantity: 1
+      - item_id: shield
+        quantity: 1
+      - item_id: ration-pack
+        quantity: 1
+      - item_id: war-medal
+        quantity: 1
+  equipment:
+    warrior:
+      weapon: rusty-sword
+      armor: leather-armor
+      offhand: shield
+      head: iron-helmet
+      feet: war-boots
+    mage:
+      weapon: wooden-staff
+      armor: apprentice-robe
+      head: apprentice-hood
+      accessory: magic-ring
+    rogue:
+      weapon: dagger
+      armor: leather-armor
+      head: thieves-hood
+      feet: soft-boots
+    cleric:
+      weapon: mace
+      armor: priest-robe
+      head: priest-hood
+      accessory: prayer-beads
+  gold:
+    noble: 200
+    commoner: 30
+    urchin: 10
+    scholar: 50
+    soldier: 40
+
+ui_theme:
+  primary_color: "#8b5cf6"
+  font_family: system
+  background_style: gradient
+  gradient_colors:
+    start: "#1a0a2e"
+    end: "#16213e"
+    direction: to bottom right
+  background_image: ""
+  pattern_type: stars
+  animated_type: particles
+  custom_css: ""
+
+ui_layout:
+  show_minimap: true
+  show_combat_panel: true
+  show_skill_bar: true
+  show_party_panel: true
+  minimap_position: top-left
+  minimap_size: medium
+  party_panel_position: left
+  skill_bar_slots: 5
+  custom_layout: ""
+
+special_rules:
+  has_kp: false
+  permadeath: false
+  save_restriction: ""
+  custom_rules:
+    - 休息恢复：在安全地点休息可恢复全部HP和MP
+    - 经验分配：队伍成员平分战斗经验

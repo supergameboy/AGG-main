@@ -1,0 +1,13 @@
+===  AgentRuntime hook runtime applyToolExposePatch 应写回 toolExposureTrace 与裁剪后的 allowedFunctionNames ===
+agent.applyToolExposePatch is not a function
+
+===  AgentRuntime hook runtime before_compaction 应支持 veto，after_compaction 应观测已执行压缩项 ===
+expected "spy" to be called with arguments: [ 'save-1' ][90m
+
+Received: 
+
+[39m[90m
+
+Number of calls: [1m0[22m
+[39m
+

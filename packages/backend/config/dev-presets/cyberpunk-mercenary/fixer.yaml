@@ -1,0 +1,16 @@
+templateId: null
+name: "蝮蛇"
+gender: "male"
+customGender: null
+race: "human"
+classType: "fixer"
+background: "corporate"
+attributes:
+  str: 8
+  dex: 12
+  con: 10
+  int: 14
+  wis: 10
+  cha: 14
+customOptions: null
+language: "zh-CN"

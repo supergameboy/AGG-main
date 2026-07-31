@@ -1,0 +1,58 @@
+{
+  "name": "multi-agent-generative-rpg-engine",
+  "version": "1.0.0",
+  "description": "AI-generated Games - 基于大语言模型(LLM)驱动的角色扮演游戏引擎",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --filter @ai-rpg/backend dev",
+    "dev:frontend": "pnpm --filter @ai-rpg/frontend dev",
+    "dev:backend": "pnpm --filter @ai-rpg/backend dev",
+    "cli": "pnpm --filter @ai-rpg/cli dev",
+    "lint:layers": "node scripts/check-layer-boundary.mjs",
+    "lint:layers:strict": "node scripts/check-layer-boundary.mjs --error",
+    "audit:agent-help": "pnpm --filter @ai-rpg/backend generate:agent-help --check",
+    "build": "pnpm lint:layers && pnpm audit:agent-help && pnpm -r build",
+    "build:frontend": "pnpm --filter @ai-rpg/frontend build",
+    "build:backend": "pnpm --filter @ai-rpg/backend build",
+    "build:shared": "pnpm --filter @ai-rpg/shared build",
+    "build:ai": "pnpm --filter @ai-rpg/ai build",
+    "typecheck": "pnpm -r typecheck",
+    "lint": "pnpm -r lint",
+    "clean": "pnpm -r clean",
+    "test": "pnpm -r test"
+  },
+  "keywords": [
+    "ai",
+    "rpg",
+    "game-engine",
+    "llm",
+    "openai",
+    "gemini",
+    "deepseek"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "@types/node": "^20.11.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.4",
+    "ts-prune": "^0.10.3",
+    "typescript": "^5.3.3"
+  },
+  "pnpm": {
+    "overrides": {
+      "react": "18.3.1",
+      "react-dom": "18.3.1",
+      "@types/react": "18.3.28",
+      "@types/react-dom": "18.3.7"
+    }
+  }
+}

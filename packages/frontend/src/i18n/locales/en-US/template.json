@@ -1,0 +1,7 @@
+{
+  "challengeMode": {
+    "defaultLabel": "Default Challenge Mode",
+    "hint": "Leave empty to auto-infer from game mode",
+    "auto": "Auto-infer"
+  }
+}

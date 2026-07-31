@@ -1,0 +1,1244 @@
+diff --git a/packages/backend/src/agents/__tests__/react-agent-post-react.test.ts b/packages/backend/src/agents/__tests__/react-agent-post-react.test.ts
+index 6d817c1..a2bbd57 100644
+--- a/packages/backend/src/agents/__tests__/react-agent-post-react.test.ts
++++ b/packages/backend/src/agents/__tests__/react-agent-post-react.test.ts
+@@ -30,7 +30,7 @@ function createGameMasterAgent() {
+ }
+ 
+ describe('ReActAgent post-react 主链', () => {
+-  it('Pre-react 应把模板、snapshot、worldState、sceneNPC、战斗态与 entity-graph 送入 story directive 生成链', async () => {
++  it('Pre-react 应把模板、snapshot、projection、worldState、sceneNPC、战斗态与 entity-graph 送入 story directive 生成链', async () => {
+     const agent = createGameMasterAgent() as unknown as Record<string, unknown>;
+     const storyRequestContext = {
+       snapshot: {
+@@ -132,6 +132,7 @@ describe('ReActAgent post-react 主链', () => {
+         saveId: 'save-pre-react',
+         templateContext: '模板世界观上下文',
+         storySnapshot: storyRequestContext.snapshot,
++        projection: storyRequestContext.projection,
+         worldState: storyRequestContext.worldState,
+         sceneNPCs: [{ id: 'npc-chief', name: '村长艾德温', role: 'chief' }],
+         entityGraphXml: '<entity_graph><node id="npc-chief" /></entity_graph>',
+@@ -140,6 +141,319 @@ describe('ReActAgent post-react 主链', () => {
+     );
+   });
+ 
++  it('generateStoryDirective 应优先使用请求上下文 projection 作为当前故事投影真源', async () => {
++    const agent = createGameMasterAgent() as unknown as Record<string, unknown>;
++    const normalizeStoryDirective = vi.fn().mockReturnValue({
++      requiredLayer1Agents: [],
++      optionalLayer1Agents: [],
++      projection: { chapter: 'chapter_projection', mainQuest: '推进投影主线' },
++    });
++    const llmChat = vi.fn().mockResolvedValue({
++      content: JSON.stringify({
++        requiredLayer1Agents: [],
++        optionalLayer1Agents: [],
++        projection: {},
++      }),
++    });
++
++    agent.storyKernel = {
++      normalizeStoryDirective,
++    };
++    agent.llmServiceNew = {
++      chat: llmChat,
++    };
++
++    vi.spyOn(agent as never, 'loadPromptFile' as never).mockReturnValue('story orchestration prompt');
++
++    const result = await (agent.generateStoryDirective as ( // eslint-disable-line @typescript-eslint/no-explicit-any
++      context: Record<string, unknown>,
++    ) => Promise<unknown>)({
++      saveId: 'save-projection',
++      message: {
++        payload: {
++          action: 'chat',
++          data: {
++            playerInput: '继续调查灰雾',
++          },
++        },
++      },
++      reqCtx: { intentHint: 'chat' },
++      templateContext: '模板上下文',
++      storySnapshot: {
++        context: {
++          currentChapter: 'chapter_snapshot',
++          mainQuest: '旧主线',
++        },
++        history: {
++          events: [],
++          pagination: { page: 1, pageSize: 20, total: 0, totalPages: 0 },
++        },
++        chapter: {
++          chapter: 'chapter_snapshot',
++          mainQuest: '旧主线',
++          level: 1,
++        },
++      },
++      projection: {
++        chapter: 'chapter_projection',
++        mainQuest: '推进投影主线',
++      },
++      worldState: undefined,
++      sceneNPCs: [],
++      inCombat: false,
++      entityGraphXml: null,
++    });
++
++    expect(result).toEqual({
++      requiredLayer1Agents: [],
++      optionalLayer1Agents: [],
++      projection: { chapter: 'chapter_projection', mainQuest: '推进投影主线' },
++    });
++    expect(llmChat).toHaveBeenCalledWith(
++      expect.arrayContaining([
++        expect.objectContaining({
++          role: 'user',
++          content: expect.stringContaining('章节: chapter_projection'),
++        }),
++      ]),
++      expect.any(Object),
++      'save-projection',
++      'gamemaster',
++    );
++    expect(llmChat).toHaveBeenCalledWith(
++      expect.arrayContaining([
++        expect.objectContaining({
++          role: 'user',
++          content: expect.stringContaining('主线任务: 推进投影主线'),
++        }),
++      ]),
++      expect.any(Object),
++      'save-projection',
++      'gamemaster',
++    );
++    expect(normalizeStoryDirective).toHaveBeenCalledWith(
++      expect.any(Object),
++      { chapter: 'chapter_projection', mainQuest: '推进投影主线' },
++    );
++  });
++
++  it('ui_interaction 应先经过 preprocessAction 再进入 generateStoryDirective 与 LLM 输入主链', async () => {
++    const agent = createGameMasterAgent() as unknown as Record<string, unknown>;
++    const storyRequestContext = {
++      snapshot: {
++        context: {
++          currentChapter: 'chapter_ui',
++          mainQuest: '处理灰雾委托',
++        },
++        history: {
++          events: [],
++          pagination: { page: 1, pageSize: 20, total: 0, totalPages: 0 },
++        },
++        chapter: {
++          chapter: 'chapter_ui',
++          mainQuest: '处理灰雾委托',
++          level: 1,
++        },
++      },
++      projection: {
++        chapter: 'chapter_ui',
++        mainQuest: '处理灰雾委托',
++      },
++      worldState: {
++        nodeCount: 1,
++        edgeCount: 0,
++        nodesByType: { npc: 1 },
++        edgesByRelation: {},
++      },
++    };
++    const llmChat = vi.fn().mockResolvedValue({
++      content: JSON.stringify({
++        requiredLayer1Agents: [],
++        optionalLayer1Agents: [],
++        projection: {},
++      }),
++    });
++
++    agent.resolveRequestLanguage = vi.fn().mockResolvedValue('zh-CN');
++    agent.buildRequestTemplateRuntime = vi.fn().mockResolvedValue({ templateContext: '模板上下文' });
++    agent.resolveTemplateId = vi.fn().mockResolvedValue('template-medieval');
++    agent.buildSceneNPCContext = vi.fn().mockResolvedValue([{ id: 'npc-chief', name: '村长艾德温' }]);
++    agent.validateTargetNpcIds = vi.fn().mockReturnValue({ validIds: [], invalidNpcIds: [] });
++    agent.storyKernel = {
++      prepareRequestContext: vi.fn().mockResolvedValue(storyRequestContext),
++      normalizeStoryDirective: vi.fn().mockReturnValue({
++        requiredLayer1Agents: [],
++        optionalLayer1Agents: [],
++        projection: storyRequestContext.projection,
++      }),
++    };
++    agent.promptModule = {
++      rules: { getAllRulesForAgent: vi.fn().mockReturnValue([]) },
++      skills: { getSkillByName: vi.fn().mockReturnValue(undefined) },
++      build: vi.fn().mockResolvedValue({
++        systemPrompt: 'gm system prompt',
++        userPrompt: 'gm user prompt',
++        apiTools: [],
++        allowedFunctionNames: new Set<string>(),
++      }),
++    };
++    agent.llmServiceNew = {
++      chat: llmChat,
++    };
++    agent.reactEngine = {
++      execute: vi.fn().mockResolvedValue({
++        content: '{}',
++        iterations: 1,
++        toolCalls: [],
++      }),
++    };
++    agent.buildGameMasterFinalResponse = vi.fn().mockResolvedValue({
++      success: true,
++      data: {},
++      messages: [],
++    });
++
++    vi.spyOn(agent as never, 'executeContextInjection' as never).mockResolvedValue({
++      context: null,
++      injectedMethods: [],
++    });
++    vi.spyOn(EntityGraphLayer.prototype, 'build').mockResolvedValue({
++      content: '<entity_graph><node id="npc-chief" /></entity_graph>',
++    } as never);
++    const directiveSpy = vi.spyOn(agent as never, 'generateStoryDirective' as never);
++
++    await (agent.processGameMasterPath as ( // eslint-disable-line @typescript-eslint/no-explicit-any
++      message: Record<string, unknown>,
++      startTime: number,
++    ) => Promise<unknown>)(
++      {
++        saveId: 'save-ui-interaction',
++        payload: {
++          action: 'ui_interaction',
++          data: {
++            interactionType: 'accept_quest',
++            target: '灰雾委托',
++          },
++        },
++      },
++      Date.now(),
++    );
++
++    expect(directiveSpy).toHaveBeenCalledWith(
++      expect.objectContaining({
++        reqCtx: expect.objectContaining({
++          intentHint: 'accept_quest',
++        }),
++        message: expect.objectContaining({
++          payload: expect.objectContaining({
++            intentHint: 'accept_quest',
++            data: expect.objectContaining({
++              interactionMessage: '接受任务 灰雾委托',
++            }),
++          }),
++        }),
++      }),
++    );
++    expect(llmChat).toHaveBeenCalledWith(
++      expect.arrayContaining([
++        expect.objectContaining({
++          role: 'user',
++          content: expect.stringContaining('意图: accept_quest'),
++        }),
++        expect.objectContaining({
++          role: 'user',
++          content: expect.stringContaining('内容: 接受任务 灰雾委托'),
++        }),
++      ]),
++      expect.any(Object),
++      'save-ui-interaction',
++      'gamemaster',
++    );
++  });
++
++  it.each([
++    ['playerInput', { playerInput: '接受委托并继续追查', interactionMessage: '不应覆盖 playerInput' }, '接受委托并继续追查'],
++    ['interactionMessage', { interactionMessage: '前往铁匠铺询问灰雾线索' }, '前往铁匠铺询问灰雾线索'],
++    ['selectedDialogueOption.text', { selectedDialogueOption: { text: '追问村长关于钟声的来源' } }, '追问村长关于钟声的来源'],
++    ['selectedDialogueOption.message', { selectedDialogueOption: { message: '查看委托详情' } }, '查看委托详情'],
++  ])(
++    'generateStoryDirective 在非 chat 场景应解析 %s 作为玩家输入',
++    async (_source, data, expectedInput) => {
++      const agent = createGameMasterAgent() as unknown as Record<string, unknown>;
++      const normalizeStoryDirective = vi.fn().mockReturnValue({
++        requiredLayer1Agents: [],
++        optionalLayer1Agents: [],
++        projection: { chapter: 'chapter_1', mainQuest: '调查灰雾' },
++      });
++      const llmChat = vi.fn().mockResolvedValue({
++        content: JSON.stringify({
++          requiredLayer1Agents: [],
++          optionalLayer1Agents: [],
++          projection: {},
++        }),
++      });
++
++      agent.storyKernel = {
++        normalizeStoryDirective,
++      };
++      agent.llmServiceNew = {
++        chat: llmChat,
++      };
++
++      vi.spyOn(agent as never, 'loadPromptFile' as never).mockReturnValue('story orchestration prompt');
++
++      await (agent.generateStoryDirective as ( // eslint-disable-line @typescript-eslint/no-explicit-any
++        context: Record<string, unknown>,
++      ) => Promise<unknown>)({
++        saveId: 'save-non-chat',
++        message: {
++          payload: {
++            action: 'select_option',
++            data,
++          },
++        },
++        reqCtx: { intentHint: 'dialogue' },
++        templateContext: '模板上下文',
++        storySnapshot: {
++          context: {
++            currentChapter: 'chapter_1',
++            mainQuest: '调查灰雾',
++          },
++          history: {
++            events: [],
++            pagination: { page: 1, pageSize: 20, total: 0, totalPages: 0 },
++          },
++          chapter: {
++            chapter: 'chapter_1',
++            mainQuest: '调查灰雾',
++            level: 1,
++          },
++        },
++        projection: {
++          chapter: 'chapter_1',
++          mainQuest: '调查灰雾',
++        },
++        worldState: undefined,
++        sceneNPCs: [],
++        inCombat: false,
++        entityGraphXml: null,
++      });
++
++      expect(llmChat).toHaveBeenCalledWith(
++        expect.arrayContaining([
++          expect.objectContaining({
++            role: 'user',
++            content: expect.stringContaining(`内容: ${expectedInput}`),
++          }),
++        ]),
++        expect.any(Object),
++        'save-non-chat',
++        'gamemaster',
++      );
++      expect(normalizeStoryDirective).toHaveBeenCalled();
++    },
++  );
++
+   it('应把显式 postReviewDecision 经过真实 pipeline 与 runtime commit 主链写回，且不丢 todo/continuity 字段', async () => {
+     const agent = createGameMasterAgent() as unknown as Record<string, unknown>;
+     agent.currentAction = 'chat';
+@@ -760,6 +1074,461 @@ describe('ReActAgent post-react 主链', () => {
+     );
+   });
+ 
++  it('NPC 对话场景下若 React 结果越权移动玩家，Post-react 应触发 repair 并拒绝错误写入', async () => {
++    const agent = createGameMasterAgent() as unknown as Record<string, unknown>;
++    agent.currentAction = 'chat';
++    agent.currentStoryDirective = {
++      storyGoal: '询问灰雾来源',
++      requiredLayer1Agents: [],
++      optionalLayer1Agents: [],
++      todoList: ['询问灰雾来源', '获得村长反馈'],
++      projection: {
++        chapter: 'chapter_dialogue',
++        mainQuest: '调查灰雾来源',
++      },
++    };
++
++    const domain = {
++      getSnapshot: vi.fn().mockResolvedValue({
++        context: {
++          agentContext: {
++            state: {
++              runtimeState: {
++                storyPhase: 'dialogue',
++              },
++              projection: {
++                chapter: 'chapter_dialogue',
++                mainQuest: '调查灰雾来源',
++              },
++            },
++          },
++          saveInfo: null,
++        },
++        history: {
++          events: [],
++          pagination: { page: 1, pageSize: 20, total: 0, totalPages: 0 },
++        },
++        chapter: {
++          chapter: 'chapter_dialogue',
++          mainQuest: '调查灰雾来源',
++          level: 1,
++        },
++      }),
++      saveStoryState: vi.fn().mockResolvedValue(undefined),
++      addStoryEvent: vi.fn().mockResolvedValue({ id: 'evt-dialogue-repair' }),
++    };
++
++    const failingDecision = {
++      taskReview: {
++        completion: 'failed',
++        missingRequirements: ['玩家不应在对话中被移动'],
++      },
++      continuityAudit: {
++        passed: false,
++        issues: [
++          {
++            dimension: 'timeline',
++            severity: 'error',
++            problem: '与村长对话时错误把玩家移动到森林',
++            expectedValue: '玩家留在村口继续对话',
++            actualValue: '玩家被移动到森林',
++            suggestion: '移除本轮越权移动写入，仅保留对话反馈',
++          },
++        ],
++      },
++      todoCompletion: {
++        completedItems: [],
++        incompleteItems: ['获得村长反馈'],
++        overallCompletion: 'failed',
++      },
++      secondLayerDecision: {
++        shouldSchedule: false,
++        reason: '先修复越权移动再继续对话',
++        agents: [],
++      },
++    };
++    const repairedDecision = {
++      taskReview: {
++        completion: 'partial',
++        missingRequirements: ['仍待后续继续追查灰雾'],
++      },
++      storyReview: {
++        storyConsistency: 'partial_match',
++        progressDelta: '已回到对话主线并保留玩家原地交流',
++        reviewFocus: ['保留玩家位置不变'],
++      },
++      continuityAudit: {
++        passed: true,
++        issues: [],
++      },
++      todoCompletion: {
++        completedItems: ['获得村长反馈'],
++        incompleteItems: ['继续调查灰雾来源'],
++        overallCompletion: 'partial',
++      },
++      secondLayerDecision: {
++        shouldSchedule: false,
++        reason: '当前对话输出可继续交给玩家选择',
++        agents: [],
++      },
++    };
++
++    const responseBuilder = {
++      triggerAutoSave: vi.fn().mockResolvedValue(undefined),
++      getGameTimeData: vi.fn().mockResolvedValue(undefined),
++      extractAndRefreshPanelUpdates: vi.fn().mockResolvedValue(undefined),
++      sanitizeAllOutputsPublic: vi.fn((data) => data),
++      extractDataChangesPublic: vi.fn().mockReturnValue({}),
++    };
++
++    const storyKernel = new StoryKernel(domain as never);
++    const saveStoryStateSpy = vi.spyOn(storyKernel, 'saveStoryState');
++
++    agent.responseBuilder = responseBuilder;
++    agent.storyKernel = storyKernel;
++    agent.storyPostReactPipeline = new StoryPostReactPipeline({});
++
++    vi.spyOn(agent as never, 'reviewStoryConsistency' as never)
++      .mockResolvedValueOnce(failingDecision)
++      .mockResolvedValueOnce(repairedDecision);
++
++    const mainStagingPool = new StagingPool();
++    await mainStagingPool.stage({
++      table: 'characters',
++      operation: 'update',
++      data: { current_location_id: 'loc_forest' },
++      where: { id: 'player' },
++      toolType: 'npc_service',
++      method: 'move_to',
++      source: 'gamemaster',
++    });
++
++    const initialReactResult: ReActEngineResult = {
++      content: JSON.stringify({
++        dialogue: {
++          message: '村长刚开口，玩家却被带去了森林。',
++          messages: [{ speaker: '旁白', content: '村长刚开口，玩家却被带去了森林。', messageType: 'narrator' }],
++        },
++      }),
++      iterations: 1,
++      toolCalls: [{
++        success: true,
++        data: {},
++        _meta: {
++          toolType: 'npc_service',
++          method: 'move_to',
++          params: {},
++        },
++        writeOperation: {
++          toolType: 'npc_service',
++          method: 'move_to',
++          params: { npcId: 'player', locationId: 'loc_forest' },
++          result: { ok: true },
++          timestamp: Date.now() as never,
++        },
++      }],
++    };
++
++    const repairedReactResult: ReActEngineResult = {
++      content: JSON.stringify({
++        dialogue: {
++          message: '村长压低声音解释，灰雾最早从北方废井附近升起。',
++          messages: [{ speaker: '村长艾德温', content: '灰雾最早从北方废井附近升起。', messageType: 'npc' }],
++        },
++      }),
++      iterations: 1,
++      toolCalls: [],
++    };
++
++    const repairExecutor = vi.fn(async (
++      _repairMessage: string,
++      _runtime: { stagingPool: StagingPool; shadowState: unknown },
++    ) => repairedReactResult);
++
++    const response = await (agent.buildGameMasterFinalResponse as (
++      reactResult: ReActEngineResult,
++      message: Record<string, unknown>,
++      saveId: string,
++      startTime: number,
++      invalidNpcIds: string[],
++      stagingPool: StagingPool,
++      shadowState: unknown,
++      repairExecutor: (repairMessage: string, runtime: { stagingPool: StagingPool; shadowState: unknown }) => Promise<ReActEngineResult>,
++    ) => Promise<Record<string, unknown>>)(
++      initialReactResult,
++      { payload: { data: { saveId: 'save-1' } } },
++      'save-1',
++      Date.now(),
++      [],
++      mainStagingPool,
++      {} as never,
++      repairExecutor,
++    );
++
++    expect(repairExecutor).toHaveBeenCalledTimes(1);
++    expect(response.data).toEqual(expect.objectContaining({
++      dialogue: expect.objectContaining({
++        message: '村长压低声音解释，灰雾最早从北方废井附近升起。',
++      }),
++    }));
++    expect(response.data).not.toHaveProperty('writeOperations');
++    expect(mainStagingPool.getAllWrites()).toEqual([]);
++    expect(saveStoryStateSpy).toHaveBeenCalledWith(
++      'save-1',
++      expect.objectContaining({
++        runtimeState: expect.objectContaining({
++          lastRepairRoundCount: 1,
++          lastPostReviewDecision: expect.objectContaining({
++            todoCompletion: expect.objectContaining({
++              overallCompletion: 'partial',
++              completedItems: ['获得村长反馈'],
++            }),
++          }),
++          lastPostReactTraceSummary: expect.objectContaining({
++            repairRoundCount: 1,
++            repairReasons: expect.arrayContaining([
++              'continuity_audit:error',
++              'todo_completion:failed',
++            ]),
++          }),
++        }),
++      }),
++    );
++  });
++
++  it('战斗叙事与数值时间线冲突时，应触发 repair 并把 continuityAudit 写回 runtime state', async () => {
++    const agent = createGameMasterAgent() as unknown as Record<string, unknown>;
++    agent.currentAction = 'chat';
++    agent.currentStoryDirective = {
++      storyGoal: '结算与修复战斗现场',
++      requiredLayer1Agents: ['combat'],
++      optionalLayer1Agents: [],
++      todoList: ['同步战斗结算', '补齐战斗时间线'],
++      projection: {
++        chapter: 'chapter_combat',
++        mainQuest: '击退灰雾中的失控野兽',
++      },
++    };
++
++    const domain = {
++      getSnapshot: vi.fn().mockResolvedValue({
++        context: {
++          agentContext: {
++            state: {
++              runtimeState: {
++                storyPhase: 'combat',
++              },
++              projection: {
++                chapter: 'chapter_combat',
++                mainQuest: '击退灰雾中的失控野兽',
++              },
++            },
++          },
++          saveInfo: null,
++        },
++        history: {
++          events: [],
++          pagination: { page: 1, pageSize: 20, total: 0, totalPages: 0 },
++        },
++        chapter: {
++          chapter: 'chapter_combat',
++          mainQuest: '击退灰雾中的失控野兽',
++          level: 2,
++        },
++      }),
++      saveStoryState: vi.fn().mockResolvedValue(undefined),
++      addStoryEvent: vi.fn().mockResolvedValue({ id: 'evt-combat-repair' }),
++    };
++
++    const failingDecision = {
++      taskReview: {
++        completion: 'failed',
++        missingRequirements: ['同步战斗结算'],
++      },
++      continuityAudit: {
++        passed: false,
++        issues: [
++          {
++            dimension: 'numeric_range',
++            severity: 'error',
++            problem: '战斗结算后 HP 变化异常: 90 → 300',
++            expectedValue: 'HP 应保持在 0-100',
++            actualValue: '300',
++            suggestion: '重算伤害并重写战斗结算',
++          },
++          {
++            dimension: 'timeline',
++            severity: 'error',
++            problem: '战斗叙事先写击败后写出手，时间线倒置',
++            expectedValue: '先出手再结算胜负',
++            actualValue: '先写击败再写攻击',
++            suggestion: '按战斗顺序重写旁白',
++          },
++        ],
++      },
++      todoCompletion: {
++        completedItems: [],
++        incompleteItems: ['同步战斗结算', '补齐战斗时间线'],
++        overallCompletion: 'failed',
++      },
++      secondLayerDecision: {
++        shouldSchedule: false,
++        reason: '先修复战斗叙事与数值冲突',
++        agents: [],
++      },
++    };
++    const repairedDecision = {
++      taskReview: {
++        completion: 'partial',
++        missingRequirements: ['等待玩家决定下一步行动'],
++      },
++      storyReview: {
++        storyConsistency: 'partial_match',
++        progressDelta: '战斗结算与时间线已对齐',
++        reviewFocus: ['保留受伤余波描述'],
++      },
++      continuityAudit: {
++        passed: true,
++        issues: [],
++      },
++      todoCompletion: {
++        completedItems: ['同步战斗结算', '补齐战斗时间线'],
++        incompleteItems: ['等待玩家决定下一步行动'],
++        overallCompletion: 'partial',
++      },
++      secondLayerDecision: {
++        shouldSchedule: false,
++        reason: '战斗结果已可交由玩家继续决策',
++        agents: [],
++      },
++    };
++
++    const responseBuilder = {
++      triggerAutoSave: vi.fn().mockResolvedValue(undefined),
++      getGameTimeData: vi.fn().mockResolvedValue(undefined),
++      extractAndRefreshPanelUpdates: vi.fn().mockResolvedValue(undefined),
++      sanitizeAllOutputsPublic: vi.fn((data) => data),
++      extractDataChangesPublic: vi.fn().mockReturnValue({}),
++    };
++
++    const storyKernel = new StoryKernel(domain as never);
++    const saveStoryStateSpy = vi.spyOn(storyKernel, 'saveStoryState');
++
++    agent.responseBuilder = responseBuilder;
++    agent.storyKernel = storyKernel;
++    agent.storyPostReactPipeline = new StoryPostReactPipeline({});
++
++    vi.spyOn(agent as never, 'reviewStoryConsistency' as never)
++      .mockResolvedValueOnce(failingDecision)
++      .mockResolvedValueOnce(repairedDecision);
++
++    const mainStagingPool = new StagingPool();
++    await mainStagingPool.stage({
++      table: 'characters',
++      operation: 'update',
++      data: { hp: 300 },
++      where: { id: 'player' },
++      toolType: 'combat_service',
++      method: 'execute_turn',
++      source: 'gamemaster',
++    });
++
++    const initialReactResult: ReActEngineResult = {
++      content: JSON.stringify({
++        dialogue: {
++          message: '你先倒下又立刻击败了野兽，血量飙升到 300。',
++          messages: [{ speaker: '旁白', content: '你先倒下又立刻击败了野兽，血量飙升到 300。', messageType: 'narrator' }],
++        },
++      }),
++      iterations: 1,
++      toolCalls: [{
++        success: true,
++        data: {},
++        _meta: {
++          toolType: 'combat_service',
++          method: 'execute_turn',
++          params: {},
++        },
++        writeOperation: {
++          toolType: 'combat_service',
++          method: 'execute_turn',
++          params: { action: 'attack' },
++          result: { ok: true },
++          timestamp: Date.now() as never,
++        },
++      }],
++    };
++
++    const repairedReactResult: ReActEngineResult = {
++      content: JSON.stringify({
++        dialogue: {
++          message: '你在挡下最后一击后反击成功，战斗结算恢复正常。',
++          messages: [{ speaker: '旁白', content: '你在挡下最后一击后反击成功，战斗结算恢复正常。', messageType: 'narrator' }],
++        },
++      }),
++      iterations: 1,
++      toolCalls: [],
++    };
++
++    const repairExecutor = vi.fn(async (
++      _repairMessage: string,
++      _runtime: { stagingPool: StagingPool; shadowState: unknown },
++    ) => repairedReactResult);
++
++    const response = await (agent.buildGameMasterFinalResponse as (
++      reactResult: ReActEngineResult,
++      message: Record<string, unknown>,
++      saveId: string,
++      startTime: number,
++      invalidNpcIds: string[],
++      stagingPool: StagingPool,
++      shadowState: unknown,
++      repairExecutor: (repairMessage: string, runtime: { stagingPool: StagingPool; shadowState: unknown }) => Promise<ReActEngineResult>,
++    ) => Promise<Record<string, unknown>>)(
++      initialReactResult,
++      { payload: { data: { saveId: 'save-1' } } },
++      'save-1',
++      Date.now(),
++      [],
++      mainStagingPool,
++      {} as never,
++      repairExecutor,
++    );
++
++    expect(repairExecutor).toHaveBeenCalledTimes(1);
++    expect(response.data).toEqual(expect.objectContaining({
++      dialogue: expect.objectContaining({
++        message: '你在挡下最后一击后反击成功，战斗结算恢复正常。',
++      }),
++    }));
++    expect(mainStagingPool.getAllWrites()).toEqual([]);
++    expect(saveStoryStateSpy).toHaveBeenCalledWith(
++      'save-1',
++      expect.objectContaining({
++        runtimeState: expect.objectContaining({
++          lastRepairRoundCount: 1,
++          lastPostReviewDecision: expect.objectContaining({
++            continuityAudit: expect.objectContaining({
++              passed: true,
++              issues: [],
++            }),
++            todoCompletion: expect.objectContaining({
++              overallCompletion: 'partial',
++              completedItems: ['同步战斗结算', '补齐战斗时间线'],
++            }),
++          }),
++          lastPostReactTraceSummary: expect.objectContaining({
++            repairRoundCount: 1,
++            repairReasons: expect.arrayContaining([
++              'continuity_audit:error',
++              'todo_completion:failed',
++            ]),
++          }),
++        }),
++      }),
++    );
++  });
++
+   it('当 repair 执行器抛错时应显式失败，且不能清空主 staging 原写集后静默成功', async () => {
+     const agent = createGameMasterAgent() as unknown as Record<string, unknown>;
+     agent.currentAction = 'chat';
+diff --git a/packages/backend/src/agents/config/ReActAgent.ts b/packages/backend/src/agents/config/ReActAgent.ts
+index 4e62ebd..feb4f2f 100644
+--- a/packages/backend/src/agents/config/ReActAgent.ts
++++ b/packages/backend/src/agents/config/ReActAgent.ts
+@@ -84,6 +84,7 @@ interface StoryDirectiveGenerationContext {
+   reqCtx: RequestContext;
+   templateContext: string | null;
+   storySnapshot: import('../story/types.js').StorySnapshot;
++  projection: import('../story/types.js').StoryProjection;
+   worldState?: import('../story/types.js').WorldStateSummary;
+   sceneNPCs: Array<{ id: string; name: string; role?: string }>;
+   inCombat: boolean;
+@@ -853,6 +854,7 @@ export class ReActAgent extends BaseAgent {
+           reqCtx,
+           templateContext,
+           storySnapshot: storyRequestContext.snapshot,
++          projection: storyRequestContext.projection,
+           worldState: storyRequestContext.worldState,
+           sceneNPCs,
+           inCombat,
+@@ -1048,17 +1050,18 @@ export class ReActAgent extends BaseAgent {
+       return null;
+     }
+ 
+-    const playerInput = (context.message.payload?.data as Record<string, unknown>)?.playerInput as string || '';
++    const playerInput = this.resolveStoryDirectivePlayerInput(context.message);
+     const intentHint = context.reqCtx.intentHint || 'chat';
++    const currentProjection = this.resolveStoryDirectiveProjection(context);
+ 
+     const userMessage = [
+       `## 模板世界观`,
+       context.templateContext || '无',
+       ``,
+       `## 当前故事状态`,
+-      `章节: ${context.storySnapshot.chapter.chapter || context.storySnapshot.context.currentChapter || '未知'}`,
+-      `主线任务: ${context.storySnapshot.chapter.mainQuest || context.storySnapshot.context.mainQuest || '未知'}`,
+-      `近期事件: ${this.summarizeRecentEvents({ snapshot: context.storySnapshot, projection: { chapter: context.storySnapshot.chapter.chapter, mainQuest: context.storySnapshot.chapter.mainQuest }, worldState: context.worldState })}`,
++      `章节: ${currentProjection.chapter || '未知'}`,
++      `主线任务: ${currentProjection.mainQuest || '未知'}`,
++      `近期事件: ${this.summarizeRecentEvents({ snapshot: context.storySnapshot, projection: currentProjection, worldState: context.worldState })}`,
+       `世界状态: ${this.summarizeWorldState(context.worldState)}`,
+       ``,
+       `## 当前游戏状态`,
+@@ -1096,15 +1099,63 @@ export class ReActAgent extends BaseAgent {
+     const parsedDirective = this.parseStoryDirectiveFromLLM(content);
+ 
+     if (parsedDirective) {
+-      return this.storyKernel.normalizeStoryDirective(parsedDirective, {
+-        chapter: context.storySnapshot.chapter.chapter,
+-        mainQuest: context.storySnapshot.chapter.mainQuest,
+-      });
++      return this.storyKernel.normalizeStoryDirective(parsedDirective, currentProjection);
+     }
+ 
+     return null;
+   }
+ 
++  private resolveStoryDirectiveProjection(
++    context: StoryDirectiveGenerationContext,
++  ): import('../story/types.js').StoryProjection {
++    return {
++      chapter: context.projection.chapter
++        ?? context.storySnapshot.chapter.chapter
++        ?? context.storySnapshot.context.currentChapter
++        ?? null,
++      mainQuest: context.projection.mainQuest
++        ?? context.storySnapshot.chapter.mainQuest
++        ?? context.storySnapshot.context.mainQuest
++        ?? null,
++    };
++  }
++
++  private resolveStoryDirectivePlayerInput(message: AgentMessage): string {
++    const payloadData = message.payload?.data;
++    if (!payloadData || typeof payloadData !== 'object' || Array.isArray(payloadData)) {
++      return '';
++    }
++
++    const data = payloadData as Record<string, unknown>;
++    const selectedDialogueOption = data.selectedDialogueOption;
++    const selectedDialogueOptionRecord =
++      selectedDialogueOption && typeof selectedDialogueOption === 'object' && !Array.isArray(selectedDialogueOption)
++        ? selectedDialogueOption as Record<string, unknown>
++        : null;
++
++    return this.firstNonEmptyStoryDirectiveInput([
++      data.playerInput,
++      data.interactionMessage,
++      selectedDialogueOptionRecord?.text,
++      selectedDialogueOptionRecord?.message,
++    ]);
++  }
++
++  private firstNonEmptyStoryDirectiveInput(values: unknown[]): string {
++    for (const value of values) {
++      if (typeof value !== 'string') {
++        continue;
++      }
++
++      const normalized = value.trim();
++      if (normalized) {
++        return normalized;
++      }
++    }
++
++    return '';
++  }
++
+   /** 摘要近期事件 */
+   private summarizeRecentEvents(ctx: import('../story/types.js').StoryRequestContext): string {
+     const events = ctx.snapshot?.history?.events;
+diff --git a/packages/backend/src/agents/story/ContinuityAuditor.ts b/packages/backend/src/agents/story/ContinuityAuditor.ts
+index 789fd69..7f4aa60 100644
+--- a/packages/backend/src/agents/story/ContinuityAuditor.ts
++++ b/packages/backend/src/agents/story/ContinuityAuditor.ts
+@@ -17,13 +17,13 @@ export class ContinuityAuditor {
+   async audit(
+     saveId: string,
+     shadowState: ShadowStateLayer,
+-    _stagingPool: StagingPool,
++    stagingPool: StagingPool,
+     llmOutput: string,
+   ): Promise<AuditIssue[]> {
+     const issues: AuditIssue[] = [];
+ 
+     issues.push(...await this.checkNpcLocations(saveId, llmOutput));
+-    issues.push(...await this.checkItemOwnership(saveId, llmOutput));
++    issues.push(...await this.checkItemOwnership(saveId, stagingPool, llmOutput));
+     issues.push(...await this.checkNumericRanges(saveId, shadowState));
+     issues.push(...await this.checkTimeline(saveId));
+ 
+@@ -53,12 +53,122 @@ export class ContinuityAuditor {
+    * 物品归属一致性检查
+    * 从 LLM 输出中提取物品归属描述，对比 inventory 表
+    */
+-  private async checkItemOwnership(_saveId: string, _llmOutput: string): Promise<AuditIssue[]> {
++  private async checkItemOwnership(
++    saveId: string,
++    stagingPool: StagingPool,
++    llmOutput: string,
++  ): Promise<AuditIssue[]> {
+     const issues: AuditIssue[] = [];
+-    // 同上，LLM 输出中物品归属提取是启发式的，暂不实现自动提取
++
++    const giftedItemNames = this.extractGiftedItemNames(llmOutput);
++    if (giftedItemNames.length === 0) {
++      return issues;
++    }
++
++    try {
++      const inventoryRows = await this.db('inventory')
++        .where({ save_id: saveId })
++        .select('id', 'name', 'owner_type', 'owner_id');
++      const stagedInventoryWrites = stagingPool.getWritesByTable('inventory');
++
++      for (const itemName of giftedItemNames) {
++        const matchedRow = inventoryRows.find(row => this.isSameItemName(row.name, itemName));
++        const effectiveOwnership = this.resolveEffectiveOwnership(matchedRow, stagedInventoryWrites, itemName);
++
++        if (!effectiveOwnership || effectiveOwnership.ownerType !== 'character') {
++          issues.push({
++            dimension: 'item_ownership',
++            severity: 'error',
++            problem: `叙事声称已把 ${itemName} 交给玩家，但物品归属未同步到玩家`,
++            expectedValue: `${itemName} 应归属 character`,
++            actualValue: effectiveOwnership
++              ? `${effectiveOwnership.ownerType}:${effectiveOwnership.ownerId || 'unknown'}`
++              : '未找到物品归属变更',
++            suggestion: '补齐 inventory owner_type/owner_id 写入，或修正叙事中的赠物描述',
++          });
++        }
++      }
++    } catch (error) {
++      logger.debug('Item ownership check failed', {
++        saveId,
++        error: error instanceof Error ? error.message : 'Unknown',
++      });
++    }
++
+     return issues;
+   }
+ 
++  private extractGiftedItemNames(llmOutput: string): string[] {
++    const patterns = [
++      /把(.+?)交给了?玩家/g,
++      /将(.+?)交给了?玩家/g,
++      /把(.+?)递给了?玩家/g,
++      /将(.+?)递给了?玩家/g,
++      /把(.+?)塞给了?玩家/g,
++      /将(.+?)赠与了?玩家/g,
++    ];
++    const itemNames = new Set<string>();
++
++    for (const pattern of patterns) {
++      for (const match of llmOutput.matchAll(pattern)) {
++        const rawName = match[1]?.trim();
++        const itemName = this.normalizeItemName(rawName);
++        if (itemName) {
++          itemNames.add(itemName);
++        }
++      }
++    }
++
++    return [...itemNames];
++  }
++
++  private normalizeItemName(value: string | undefined): string {
++    if (!value) return '';
++    return value
++      .replace(/[“”"'`]/g, '')
++      .replace(/^[这那一枚个张把份件]\s*/u, '')
++      .trim();
++  }
++
++  private isSameItemName(actualName: unknown, expectedName: string): boolean {
++    if (typeof actualName !== 'string') {
++      return false;
++    }
++    return this.normalizeItemName(actualName) === this.normalizeItemName(expectedName);
++  }
++
++  private resolveEffectiveOwnership(
++    matchedRow: Record<string, unknown> | undefined,
++    stagedInventoryWrites: Array<{
++      data: Record<string, unknown>;
++      where?: Record<string, unknown>;
++    }>,
++    itemName: string,
++  ): { ownerType: string; ownerId: string } | null {
++    const matchedWrite = stagedInventoryWrites.find(write => {
++      const writeName = write.data.name;
++      if (this.isSameItemName(writeName, itemName)) {
++        return true;
++      }
++      if (matchedRow?.id && write.where?.id === matchedRow.id) {
++        return true;
++      }
++      return false;
++    });
++
++    const ownerType = matchedWrite?.data.owner_type ?? matchedRow?.owner_type;
++    const ownerId = matchedWrite?.data.owner_id ?? matchedRow?.owner_id;
++
++    if (typeof ownerType !== 'string') {
++      return null;
++    }
++
++    return {
++      ownerType,
++      ownerId: typeof ownerId === 'string' ? ownerId : '',
++    };
++  }
++
+   /**
+    * 数值合理性检查
+    * 对比 ShadowState 快照 vs 当前值，检查 HP/MP/金币变化量是否在合理范围
+diff --git a/packages/backend/src/agents/story/StoryKernel.ts b/packages/backend/src/agents/story/StoryKernel.ts
+index 85f12d7..14673a5 100644
+--- a/packages/backend/src/agents/story/StoryKernel.ts
++++ b/packages/backend/src/agents/story/StoryKernel.ts
+@@ -514,7 +514,7 @@ export class StoryKernel {
+   ): StoryStateCommit {
+     const currentState = this.asRecord(requestContext.snapshot.context.agentContext?.state);
+     const currentRuntimeState = this.asRecord(currentState.runtimeState);
+-    const currentProjection = this.resolveProjection(requestContext.snapshot);
++    const currentProjection = requestContext.projection ?? this.resolveProjection(requestContext.snapshot);
+     const directiveSummary = input.storyDirective
+       ? summarizeStoryDirective(input.storyDirective)
+       : null;
+diff --git a/packages/backend/src/agents/story/__tests__/continuity-auditor.test.ts b/packages/backend/src/agents/story/__tests__/continuity-auditor.test.ts
+index 00c1c03..92c5b75 100644
+--- a/packages/backend/src/agents/story/__tests__/continuity-auditor.test.ts
++++ b/packages/backend/src/agents/story/__tests__/continuity-auditor.test.ts
+@@ -24,6 +24,14 @@ function createDbMock(chainReturns: Record<string, unknown>) {
+         }),
+       };
+     }
++
++    if (table === 'inventory') {
++      chains[table] = {
++        where: vi.fn().mockReturnValue({
++          select: vi.fn().mockResolvedValue(returnValue),
++        }),
++      };
++    }
+   }
+ 
+   const db = vi.fn((t: string) => chains[t]);
+@@ -161,6 +169,40 @@ describe('ContinuityAuditor', () => {
+     expect(timelineIssue!.severity).toBe('warning');
+     expect(timelineIssue!.problem).toContain('最新事件时间戳早于前一条事件');
+   });
++
++  it('叙事声明 NPC 把钥匙交给玩家时，应检查物品归属一致性', async () => {
++    const characterMap = new Map<string, Record<string, unknown>>();
++    characterMap.set('char-1', { hp: 100, gold: 100 });
++    const snapshot = new Map<string, Map<string, Record<string, unknown>>>();
++    snapshot.set('characters', characterMap);
++
++    const db = createDbMock({
++      characters: { hp: 100, gold: 100, max_hp: 100 },
++      story_events: [],
++      inventory: [
++        { id: 'item-key', name: '青铜钥匙', owner_type: 'npc', owner_id: 'npc-chief' },
++      ],
++    });
++
++    const stagingPool = {
++      getWritesByTable: vi.fn().mockReturnValue([]),
++      getAllWrites: vi.fn().mockReturnValue([]),
++    } as any;
++
++    const auditor = new ContinuityAuditor(db as any);
++    const issues = await auditor.audit(
++      saveId,
++      createShadowStateMock(snapshot),
++      stagingPool,
++      '村长把青铜钥匙交给了玩家。',
++    );
++
++    const ownershipIssue = issues.find(issue => issue.dimension === 'item_ownership');
++    expect(ownershipIssue).toBeDefined();
++    expect(ownershipIssue?.severity).toBe('error');
++    expect(ownershipIssue?.problem).toContain('青铜钥匙');
++    expect(ownershipIssue?.actualValue).toContain('npc');
++  });
+ });
+ 
+ describe('ContinuityAuditor 边界值', () => {
+@@ -246,7 +288,7 @@ describe('ContinuityAuditor 边界值', () => {
+     expect(timelineIssues).toEqual([]);
+   });
+ 
+-  it('checkNpcLocations 和 checkItemOwnership 当前返回空数组（暂未实现自动提取）', async () => {
++  it('未出现赠物叙事时，不应凭空产生 item ownership 问题', async () => {
+     const characterMap = new Map<string, Record<string, unknown>>();
+     characterMap.set('char-1', { hp: 100, gold: 100 });
+     const snapshot = new Map<string, Map<string, Record<string, unknown>>>();
+@@ -258,7 +300,7 @@ describe('ContinuityAuditor 边界值', () => {
+     });
+ 
+     const auditor = new ContinuityAuditor(db as any);
+-    const issues = await auditor.audit(saveId, createShadowStateMock(snapshot), {} as any, 'NPC在酒馆');
++    const issues = await auditor.audit(saveId, createShadowStateMock(snapshot), {} as any, 'NPC在酒馆等待玩家。');
+     const npcIssues = issues.filter(i => i.dimension === 'npc_location');
+     const itemIssues = issues.filter(i => i.dimension === 'item_ownership');
+     expect(npcIssues).toEqual([]);
+diff --git a/packages/backend/src/agents/story/__tests__/story-driving-integration.test.ts b/packages/backend/src/agents/story/__tests__/story-driving-integration.test.ts
+index 5366ab7..20a95a7 100644
+--- a/packages/backend/src/agents/story/__tests__/story-driving-integration.test.ts
++++ b/packages/backend/src/agents/story/__tests__/story-driving-integration.test.ts
+@@ -286,4 +286,89 @@ describe('Pre-react→React→Post-react 集成', () => {
+       overallCompletion: 'partial',
+     });
+   });
++
++  it('Post-react: 任务推进后，quest 写入、projection 与 todoCompletion 应保持一致', () => {
++    const kernel = createKernel();
++    const requestContext = {
++      snapshot: {
++        context: {
++          agentContext: {
++            state: {
++              runtimeState: {
++                storyPhase: 'quest',
++              },
++              projection: {
++                chapter: 'chapter_old',
++                mainQuest: '旧的主线描述',
++              },
++            },
++          },
++        },
++        history: {
++          events: [],
++          pagination: { page: 1, pageSize: 20, total: 0, totalPages: 0 },
++        },
++        chapter: {
++          chapter: 'chapter_old',
++          mainQuest: '旧的主线描述',
++          level: 1,
++        },
++      },
++      projection: {
++        chapter: 'chapter_quest',
++        mainQuest: '接受村长委托并追查灰雾',
++      },
++      worldState: null,
++    };
++
++    const commit = kernel.buildRuntimeStoryStateCommit(requestContext as never, {
++      storyDirective: null,
++      resolvedLayer1Agents: ['quest'],
++      writeToolTypes: ['quest_service'],
++      needAgentReasons: ['推进主线任务'],
++      postReviewDecision: {
++        secondLayerDecision: {
++          shouldSchedule: true,
++          agents: ['quest'],
++          reason: '推进主线任务',
++        },
++        todoCompletion: {
++          completedItems: ['接受委托'],
++          incompleteItems: ['汇报村长'],
++          overallCompletion: 'partial',
++        },
++      },
++      postReactTraceSummary: {
++        phase: 'post-react',
++        repairRoundCount: 0,
++        requiresRepair: false,
++        decisionSummary: {
++          todoCompletion: 'partial',
++          secondLayerDecisionValid: true,
++        },
++        repairReasons: [],
++        resolvedLayer1Agents: ['quest'],
++        needAgentReasons: ['推进主线任务'],
++        runtimeCommitSummary: {
++          wrotePostReviewDecision: true,
++          wroteContinuityAudit: false,
++          wroteTodoCompletion: true,
++          wroteRepairMetadata: false,
++        },
++      },
++    });
++
++    expect(commit.runtimeState.lastResolvedLayer1Agents).toEqual(['quest']);
++    expect(commit.runtimeState.lastWriteToolTypes).toEqual(['quest_service']);
++    expect(commit.runtimeState.lastNeedAgentReasons).toEqual(['推进主线任务']);
++    expect(commit.runtimeState.lastPostReviewDecision?.todoCompletion).toEqual({
++      completedItems: ['接受委托'],
++      incompleteItems: ['汇报村长'],
++      overallCompletion: 'partial',
++    });
++    expect(commit.projection).toEqual({
++      chapter: 'chapter_quest',
++      mainQuest: '接受村长委托并追查灰雾',
++    });
++  });
+ });

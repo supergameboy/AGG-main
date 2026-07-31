@@ -1,0 +1,18 @@
+templateId: null
+name: "塞拉斯"
+gender: "male"
+customGender: null
+race: "dwarf"
+classType: "cleric"
+background: "noble"
+attributes:
+  str: 12
+  dex: 8
+  con: 14
+  int: 10
+  wis: 15
+  cha: 11
+customOptions:
+  deity: "太阳神培罗"
+  backstory_detail: "矮人贵族出身的牧师，为光明神的荣耀而战"
+language: "zh-CN"

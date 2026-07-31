@@ -1,0 +1,25 @@
+=== agent_llm_calls schema ===
+  id: TEXT
+  save_id: TEXT
+  agent_type: TEXT
+  model: TEXT
+  prompt_tokens: INTEGER
+  completion_tokens: INTEGER
+  total_tokens: INTEGER
+  duration_ms: INTEGER
+  success: INTEGER
+  timestamp: INTEGER
+  prompt_cache_hit_tokens: INTEGER
+  prompt_cache_miss_tokens: INTEGER
+  stage: TEXT
+  prefix_hash: TEXT
+  cache_strategy: TEXT
+  react_iterations: INTEGER
+  tool_calls_count: INTEGER
+
+=== agent_llm_calls锛堟渶杩?20 鍒嗛挓锛?==
+  2026-07-29T04:07:38.717Z agent=gamemaster model=deepseek-v4-flash tokens=49891 iter=1 tools=0 ok=1
+  2026-07-29T04:08:02.982Z agent=gamemaster model=llama-3.2-3b-instruct tokens=2197 iter=2 tools=1 ok=1
+  2026-07-29T04:12:44.971Z agent=gamemaster model=deepseek-v4-flash tokens=15732 iter=1 tools=0 ok=1
+  2026-07-29T04:12:56.075Z agent=gamemaster model=llama-3.2-3b-instruct tokens=1126 iter=2 tools=1 ok=1
+  2026-07-29T04:13:07.119Z agent=gamemaster model=llama-3.2-3b-instruct tokens=3094 iter=3 tools=2 ok=1

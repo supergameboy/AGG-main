@@ -1,0 +1,5 @@
+name: minimal_test
+description: 最小化测试配置 - 无子Agent，仅GameMasterAgent
+game_mode: turn_based_rpg
+
+agents: {}

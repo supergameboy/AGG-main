@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 沙箱全局样式：暗黑风格（暗黑类 2.5D 渲染基调） */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  background: #0b0b12;
+  color: #d6d3e0;
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    'PingFang SC',
+    'Microsoft YaHei',
+    sans-serif;
+  overflow: hidden;
+}
+
+/* 控制面板滚动条 */
+.sb-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.sb-scroll::-webkit-scrollbar-thumb {
+  background: #3a3a4a;
+  border-radius: 4px;
+}
+.sb-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* 区域横幅动画（模块5 §2.2.2 状态机：showing 200ms / visible 1600ms / hiding 200ms）
+   注意：动画仅作用于 Y 轴/透明度 —— X 轴居中由外层 flex 容器负责，避免 transform 叠加偏移 */
+@keyframes sb-banner-in {
+  from {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes sb-banner-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+.sb-banner-in {
+  animation: sb-banner-in 200ms ease-out forwards;
+}
+.sb-banner-out {
+  animation: sb-banner-out 200ms ease-in forwards;
+}
+
+/* range 输入统一风格 */
+input[type='range'] {
+  accent-color: #8b5cf6;
+}

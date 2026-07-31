@@ -1,0 +1,15 @@
+templateId: null
+name: "疾风"
+gender: "male"
+customGender: null
+race: "normal-student"
+classType: "sports-club"
+background: "single-parent"
+attributes:
+  charm: 14
+  intelligence: 8
+  courage: 16
+  empathy: 10
+  luck: 10
+customOptions: null
+language: "zh-CN"

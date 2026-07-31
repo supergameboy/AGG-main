@@ -1,0 +1,71 @@
+# hook 放置配置（M4：4 维度 Hook 系统）
+# 设计文档：docs/design/solution-design-20260726-pi-reference-upgrade/
+#   solution-design-20260726-pi-reference-upgrade-模块M4-4维度Hook.md §8.2
+#
+# selector 语义：entry 内多维度条件为 AND；同一维度多值为 OR；缺省维度 = 通配。
+# 冲突解决：固定秩 通用(0) < Agent类型(1) < 路径(2) < 领域(3)，特异性升序执行，
+# 后执行者覆盖先执行者（标量）；同秩按声明序（可用 order 微调）。
+version: 1
+
+# hookRef 引用代码内 HookImplRegistry 的 hookImplId（hook-impl-registry.ts 内建注册）：
+#   readonly-guard         → before_tool_call 只读降级阻断
+#   arg-normalizer         → before_tool_call 参数归一化
+#   result-normalizer      → after_tool_call 结果信封规范化
+#   fail-recovery-seed     → after_agent_fail 恢复种子
+#   progress-broadcaster   → report_progress WS 广播
+#   audit-on-task-complete → on_task_complete 审核
+entries:
+  # ── 维度1：通用（无 selector 限定，所有 Agent/路径/领域生效）──
+  - id: generic-readonly-guard
+    hookRef: readonly-guard
+    selector:
+      hook: before_tool_call
+  - id: generic-arg-normalizer
+    hookRef: arg-normalizer
+    selector:
+      hook: before_tool_call
+  - id: generic-result-normalizer
+    hookRef: result-normalizer
+    selector:
+      hook: after_tool_call
+  - id: generic-fail-recovery
+    hookRef: fail-recovery-seed
+    selector:
+      hook: after_agent_fail
+  - id: generic-progress
+    hookRef: progress-broadcaster
+    selector:
+      hook: report_progress
+  - id: generic-audit
+    hookRef: audit-on-task-complete
+    selector:
+      hook: on_task_complete
+
+  # ── 维度2：Agent 类型（示例：仅 GM 生效）──
+  # - id: gm-master-plan-check
+  #   hookRef: gm-master-plan-check
+  #   selector:
+  #     hook: after_tool_call
+  #     agentTypes: [gamemaster]
+
+  # ── 维度3：路径（示例：仅池生成路径）──
+  # - id: pool-gen-result-check
+  #   hookRef: pool-gen-result-check
+  #   selector:
+  #     hook: after_tool_call
+  #     paths: [pool_generation]
+
+  # ── 维度4：领域（示例：仅 map 领域工具）──
+  # - id: map-boundary-audit
+  #   hookRef: map-boundary-audit
+  #   selector:
+  #     hook: after_tool_call
+  #     domains: [map]
+
+  # ── 组合维度（多 selector 条件为 AND 关系，秩 = 最高维度秩）──
+  # - id: gm-map-audit
+  #   hookRef: map-boundary-audit-strict
+  #   selector:
+  #     hook: after_tool_call
+  #     agentTypes: [gamemaster]
+  #     domains: [map]

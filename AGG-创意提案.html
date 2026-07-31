@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGG — 多智能体生成式自定义RPG游戏引擎</title>
+<style>
+  :root {
+    --bg-primary: #0a0e17;
+    --bg-secondary: #111827;
+    --bg-card: #1a2235;
+    --bg-card-hover: #1f2a40;
+    --accent: #6366f1;
+    --accent-light: #818cf8;
+    --accent-glow: rgba(99, 102, 241, 0.3);
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --border: #1e293b;
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --cyan: #06b6d4;
+    --pink: #ec4899;
+    --orange: #f97316;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Hero Section */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at 30% 20%, rgba(99,102,241,0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(6,182,212,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(236,72,153,0.06) 0%, transparent 60%);
+    animation: heroGlow 15s ease-in-out infinite alternate;
+  }
+
+  @keyframes heroGlow {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(-2%, -2%) scale(1.05); }
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 900px; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    background: rgba(99,102,241,0.15);
+    border: 1px solid rgba(99,102,241,0.3);
+    border-radius: 100px;
+    font-size: 13px;
+    color: var(--accent-light);
+    margin-bottom: 32px;
+  }
+
+  .hero-badge .dot {
+    width: 6px; height: 6px;
+    background: var(--success);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+
+  .hero h1 .gradient-text {
+    background: linear-gradient(135deg, #6366f1, #06b6d4, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero .subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.35rem);
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    font-weight: 400;
+  }
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 48px;
+  }
+
+  .hero-stat {
+    text-align: center;
+  }
+
+  .hero-stat .number {
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent-light), var(--cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-stat .label {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* Section Common */
+  .section {
+    padding: 80px 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .section-header .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(99,102,241,0.12);
+    border: 1px solid rgba(99,102,241,0.2);
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent-light);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+  }
+
+  .section-header h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+
+  .section-header p {
+    color: var(--text-secondary);
+    max-width: 640px;
+    margin: 0 auto;
+    font-size: 1.05rem;
+  }
+
+  /* Agent Architecture */
+  .agent-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .agent-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .agent-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(99,102,241,0.15);
+  }
+
+  .agent-card .icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+
+  .agent-card h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .agent-card .role {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  .agent-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .agent-card.master {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(6,182,212,0.05));
+    border-color: rgba(99,102,241,0.3);
+  }
+
+  .agent-card.master .icon {
+    background: linear-gradient(135deg, var(--accent), var(--cyan));
+    width: 52px; height: 52px;
+    font-size: 26px;
+  }
+
+  /* Feature Cards */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 24px;
+  }
+
+  .feature-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    transition: all 0.3s ease;
+  }
+
+  .feature-card:hover {
+    border-color: rgba(99,102,241,0.4);
+    box-shadow: 0 4px 24px rgba(99,102,241,0.1);
+  }
+
+  .feature-card .icon-wrap {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .feature-card h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .feature-card p {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .feature-card .tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 16px;
+  }
+
+  .feature-card .tech-tag {
+    padding: 3px 10px;
+    background: rgba(99,102,241,0.1);
+    border-radius: 6px;
+    font-size: 11px;
+    color: var(--accent-light);
+    font-weight: 500;
+  }
+
+  /* Template Showcase */
+  .template-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+  }
+
+  .template-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .template-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  }
+
+  .template-card .cover {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    position: relative;
+  }
+
+  .template-card .cover::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: linear-gradient(to top, var(--bg-card), transparent);
+  }
+
+  .template-card .info {
+    padding: 16px 20px 20px;
+  }
+
+  .template-card h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .template-card .world {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  .template-card .tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .template-card .tags span {
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  /* Entity Graph */
+  .graph-section {
+    background: var(--bg-secondary);
+    border-radius: 20px;
+    padding: 48px;
+    border: 1px solid var(--border);
+  }
+
+  .graph-visual {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+    position: relative;
+  }
+
+  .graph-nodes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    max-width: 700px;
+  }
+
+  .graph-node {
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    border: 2px solid;
+    transition: all 0.3s ease;
+    cursor: default;
+    position: relative;
+  }
+
+  .graph-node:hover {
+    transform: scale(1.15);
+    z-index: 2;
+  }
+
+  .graph-node .node-label {
+    font-size: 10px;
+    font-weight: 600;
+    margin-top: 4px;
+    letter-spacing: 0.02em;
+  }
+
+  .graph-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 32px;
+  }
+
+  .graph-stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .graph-stat-card .val {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent-light);
+  }
+
+  .graph-stat-card .desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* Architecture Diagram */
+  .arch-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 40px 0;
+    padding: 32px;
+    background: var(--bg-card);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+  }
+
+  .arch-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 20px;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    min-width: 120px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .arch-step:hover {
+    border-color: var(--accent);
+    background: rgba(99,102,241,0.08);
+  }
+
+  .arch-step .step-icon {
+    font-size: 28px;
+  }
+
+  .arch-step .step-name {
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .arch-step .step-detail {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  .arch-arrow {
+    font-size: 20px;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* Code Stats */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+  }
+
+  .stat-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .stat-item:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .stat-item .stat-number {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent-light), var(--cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .stat-item .stat-label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  /* LLM Providers */
+  .provider-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+  }
+
+  .provider-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .provider-item:hover {
+    border-color: var(--accent);
+    background: var(--bg-card-hover);
+  }
+
+  .provider-item .provider-icon {
+    font-size: 24px;
+    margin-bottom: 6px;
+  }
+
+  /* Roadmap */
+  .roadmap {
+    position: relative;
+    padding-left: 32px;
+  }
+
+  .roadmap::before {
+    content: '';
+    position: absolute;
+    left: 11px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent), var(--cyan), var(--pink));
+  }
+
+  .roadmap-item {
+    position: relative;
+    margin-bottom: 32px;
+    padding: 20px 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+
+  .roadmap-item::before {
+    content: '';
+    position: absolute;
+    left: -27px;
+    top: 24px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    background: var(--bg-primary);
+  }
+
+  .roadmap-item.done::before {
+    background: var(--success);
+    border-color: var(--success);
+  }
+
+  .roadmap-item.current::before {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+
+  .roadmap-item h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .roadmap-item .status-badge {
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .roadmap-item p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 48px 24px;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 14px;
+  }
+
+  .footer .heart {
+    color: var(--pink);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero-stats { gap: 24px; }
+    .arch-flow { flex-direction: column; }
+    .arch-arrow { transform: rotate(90deg); }
+    .graph-section { padding: 24px; }
+    .section { padding: 48px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      TRAE AI 创造力大赛 · 生活娱乐赛道
+    </div>
+    <h1>
+      <span class="gradient-text">AGG</span><br>
+      多智能体生成式自定义RPG游戏引擎
+    </h1>
+    <p class="subtitle">9个AI Agent协作驱动 · Entity Graph知识图谱 · 5大跨题材模板 · YAML配置即游戏</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="number">410+</div>
+        <div class="label">TypeScript 源文件</div>
+      </div>
+      <div class="hero-stat">
+        <div class="number">9</div>
+        <div class="label">专业化 AI Agent</div>
+      </div>
+      <div class="hero-stat">
+        <div class="number">16</div>
+        <div class="label">游戏业务领域</div>
+      </div>
+      <div class="hero-stat">
+        <div class="number">12</div>
+        <div class="label">LLM 提供商适配</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Problem & Solution -->
+<section class="section">
+  <div class="section-header">
+    <div class="tag">痛点与解法</div>
+    <h2>传统RPG内容固定，AI聊天缺乏游戏性</h2>
+    <p>AGG 将 LLM 的"创造力"与传统游戏引擎的"规则性"融合——AI负责叙事决策，程序负责数值规则</p>
+  </div>
+
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="icon-wrap" style="background:rgba(239,68,68,0.12);">🔒</div>
+      <h3>传统RPG：内容耗尽即弃</h3>
+      <p>剧情固定、NPC固定、任务固定，通关后没有重玩价值。开发者需要数月编写分支剧情，成本极高。</p>
+      <div class="tech-tags">
+        <span class="tech-tag">固定脚本</span>
+        <span class="tech-tag">有限分支</span>
+      </div>
+    </div>
+    <div class="feature-card">
+      <div class="icon-wrap" style="background:rgba(245,158,11,0.12);">💬</div>
+      <h3>AI聊天游戏：没有游戏性</h3>
+      <p>没有装备系统、没有技能冷却、没有战斗机制、没有任务追踪——本质上只是套了皮的对话机器人。</p>
+      <div class="tech-tags">
+        <span class="tech-tag">纯对话</span>
+        <span class="tech-tag">无数值</span>
+      </div>
+    </div>
+    <div class="feature-card">
+      <div class="icon-wrap" style="background:rgba(34,197,94,0.12);">⚡</div>
+      <h3>AGG：AI创造力 + 游戏规则</h3>
+      <p>9个Agent协作驱动RPG世界：GameMaster统筹叙事，CombatAgent计算伤害，InventoryAgent管理装备……每个Agent有独立工具权限和知识体系，通过Entity Graph共享世界状态。</p>
+      <div class="tech-tags">
+        <span class="tech-tag">ReAct推理</span>
+        <span class="tech-tag">知识图谱</span>
+        <span class="tech-tag">YAML配置驱动</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Agent Architecture -->
+<section class="section">
+  <div class="section-header">
+    <div class="tag">核心架构</div>
+    <h2>9个专业化AI Agent协作驱动</h2>
+    <p>YAML配置定义Agent角色、工具权限、技能规则——GameMaster调度，子Agent各司其职</p>
+  </div>
+
+  <div class="agent-grid">
+    <div class="agent-card master">
+      <div class="icon">👑</div>
+      <h3>GameMasterAgent — 游戏主控</h3>
+      <div class="role">主 Agent · 可生成子Agent · 连续性审计</div>
+      <p>统筹全局：理解玩家意图、调度子Agent、维护故事连贯性、执行ReAct推理循环（思考→工具调用→观察→回答），确保每次交互都推动游戏进程。</p>
+    </div>
+    <div class="agent-card">
+      <div class="icon" style="background:rgba(239,68,68,0.12);">⚔️</div>
+      <h3>CombatAgent</h3>
+      <div class="role">子 Agent · 回合制战斗</div>
+      <p>伤害计算、元素亲和、战斗流程管理、战斗结束幂等性保障。</p>
+    </div>
+    <div class="agent-card">
+      <div class="icon" style="background:rgba(34,197,94,0.12);">🗺️</div>
+      <h3>MapAgent</h3>
+      <div class="role">子 Agent · 地图导航</div>
+      <p>地点管理、区域探索、中文地名解析、区域连接查询。</p>
+    </div>
+    <div class="agent-card">
+      <div class="icon" style="background:rgba(6,182,212,0.12);">📝</div>
+      <h3>OutputAgent</h3>
+      <div class="role">子 Agent · 叙事+UI输出</div>
+      <p>生成沉浸式叙事文本、动态UI组件指令、结构化输出保障。</p>
+    </div>
+    <div class="agent-card">
+      <div class="icon" style="background:rgba(245,158,11,0.12);">📜</div>
+      <h3>QuestAgent</h3>
+      <div class="role">子 Agent · 任务管理</div>
+      <p>任务生命周期、链式任务、失败条件判定、奖励发放。</p>
+    </div>
+    <div class="agent-card">
+      <div class="icon" style="background:rgba(236,72,153,0.12);">🧑‍🤝‍🧑</div>
+      <h3>NPCPartyAgent</h3>
+      <div class="role">子 Agent · NPC交互</div>
+      <p>NPC关系管理、队伍编成、情绪系统、知识共享。</p>
+    </div>
+    <div class="agent-card">
+      <div class="icon" style="background:rgba(249,115,22,0.12);">🎒</div>
+      <h3>InventoryAgent</h3>
+      <div class="role">子 Agent · 物品装备</div>
+      <p>物品管理、装备槽位、消耗品自动应用、物品池系统。</p>
+    </div>
+    <div class="agent-card">
+      <div class="icon" style="background:rgba(139,92,246,0.12);">✨</div>
+      <h3>SkillAgent</h3>
+      <div class="role">子 Agent · 技能系统</div>
+      <p>技能学习/使用/升级、冷却管理、技能树、技能池。</p>
+    </div>
+    <div class="agent-card">
+      <div class="icon" style="background:rgba(34,197,94,0.12);">⚡</div>
+      <h3>EventAgent</h3>
+      <div class="role">子 Agent · 事件系统</div>
+      <p>事件总线分发、条件触发、故事事件注入。</p>
+    </div>
+    <div class="agent-card">
+      <div class="icon" style="background:rgba(6,182,212,0.12);">⏰</div>
+      <h3>TimeAgent</h3>
+      <div class="role">子 Agent · 时间系统</div>
+      <p>游戏时间推进、时段判断、商店营业状态。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ReAct Flow -->
+<section class="section">
+  <div class="section-header">
+    <div class="tag">推理引擎</div>
+    <h2>ReAct 推理循环</h2>
+    <p>每个Agent独立执行"思考→行动→观察→回答"的推理循环，自主决策而非脚本驱动</p>
+  </div>
+
+  <div class="arch-flow">
+    <div class="arch-step">
+      <div class="step-icon">🧠</div>
+      <div class="step-name">Thought</div>
+      <div class="step-detail">分析当前状态<br>制定行动计划</div>
+    </div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-step">
+      <div class="step-icon">🔧</div>
+      <div class="step-name">Action</div>
+      <div class="step-detail">调用注册工具<br>执行游戏操作</div>
+    </div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-step">
+      <div class="step-icon">👁️</div>
+      <div class="step-name">Observation</div>
+      <div class="step-detail">获取工具返回<br>更新世界认知</div>
+    </div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-step">
+      <div class="step-icon">💬</div>
+      <div class="step-name">Answer</div>
+      <div class="step-detail">生成叙事响应<br>输出UI指令</div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:24px;">
+    <div style="display:inline-flex;gap:24px;flex-wrap:wrap;justify-content:center;">
+      <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-secondary);">
+        <span style="color:var(--accent);">●</span> 40+ Agent技能文件
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-secondary);">
+        <span style="color:var(--cyan);">●</span> 30+ Agent规则文件
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-secondary);">
+        <span style="color:var(--pink);">●</span> 150+ 工具帮助文档
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-secondary);">
+        <span style="color:var(--orange);">●</span> 11层提示词构建
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Entity Graph -->
+<section class="section">
+  <div class="section-header">
+    <div class="tag">核心创新</div>
+    <h2>Entity Graph 知识图谱</h2>
+    <p>用知识图谱建模整个游戏世界——9种实体、16种关系、信息边界、快照管理</p>
+  </div>
+
+  <div class="graph-section">
+    <div class="graph-visual">
+      <div class="graph-nodes">
+        <div class="graph-node" style="border-color:var(--accent);background:rgba(99,102,241,0.1);">
+          🧙
+          <span class="node-label">Character</span>
+        </div>
+        <div class="graph-node" style="border-color:var(--cyan);background:rgba(6,182,212,0.1);">
+          👤
+          <span class="node-label">NPC</span>
+        </div>
+        <div class="graph-node" style="border-color:var(--success);background:rgba(34,197,94,0.1);">
+          🏰
+          <span class="node-label">Location</span>
+        </div>
+        <div class="graph-node" style="border-color:var(--warning);background:rgba(245,158,11,0.1);">
+          🗡️
+          <span class="node-label">Item</span>
+        </div>
+        <div class="graph-node" style="border-color:var(--pink);background:rgba(236,72,153,0.1);">
+          📜
+          <span class="node-label">Quest</span>
+        </div>
+        <div class="graph-node" style="border-color:var(--orange);background:rgba(249,115,22,0.1);">
+          ⚡
+          <span class="node-label">Event</span>
+        </div>
+        <div class="graph-node" style="border-color:#8b5cf6;background:rgba(139,92,246,0.1);">
+          🛡️
+          <span class="node-label">Faction</span>
+        </div>
+        <div class="graph-node" style="border-color:#14b8a6;background:rgba(20,184,166,0.1);">
+          ✨
+          <span class="node-label">Skill</span>
+        </div>
+        <div class="graph-node" style="border-color:#a855f7;background:rgba(168,85,247,0.1);">
+          🎯
+          <span class="node-label">Goal</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="graph-stats">
+      <div class="graph-stat-card">
+        <div class="val">9</div>
+        <div class="desc">实体类型</div>
+      </div>
+      <div class="graph-stat-card">
+        <div class="val">16</div>
+        <div class="desc">关系类型</div>
+      </div>
+      <div class="graph-stat-card">
+        <div class="val">5</div>
+        <div class="desc">核心服务</div>
+      </div>
+      <div class="graph-stat-card">
+        <div class="val">14</div>
+        <div class="desc">数据库表覆盖</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px;">
+        <h4 style="font-size:0.95rem;margin-bottom:8px;">🔒 信息边界</h4>
+        <p style="font-size:0.85rem;color:var(--text-secondary);">每个实体维护 knownFacts / unknownFacts，实现角色视角的信息不对称——NPC不知道玩家偷了东西，直到被目击。</p>
+      </div>
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px;">
+        <h4 style="font-size:0.95rem;margin-bottom:8px;">📸 图快照</h4>
+        <p style="font-size:0.85rem;color:var(--text-secondary);">支持基线快照和章节快照，可追溯世界状态变化——回溯到任意章节查看当时的NPC关系、物品分布、任务进度。</p>
+      </div>
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px;">
+        <h4 style="font-size:0.95rem;margin-bottom:8px;">🔍 审计系统</h4>
+        <p style="font-size:0.85rem;color:var(--text-secondary);">EntityGraphAuditor 自动检测越界访问和信息泄露，确保Agent不会使用角色不应知道的信息做决策。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Templates -->
+<section class="section">
+  <div class="section-header">
+    <div class="tag">5大内置模板</div>
+    <h2>一套引擎，多种题材</h2>
+    <p>从中世纪奇幻到赛博朋克，从仙侠修真到克苏鲁恐怖——选择模板即可开始冒险</p>
+  </div>
+
+  <div class="template-grid">
+    <div class="template-card">
+      <div class="cover" style="background:linear-gradient(135deg,#1e3a5f,#2d5a87);">🏰</div>
+      <div class="info">
+        <h4>中世纪奇幻冒险</h4>
+        <div class="world">艾尔德兰大陆</div>
+        <div class="tags">
+          <span style="background:rgba(99,102,241,0.15);color:var(--accent-light);">回合制RPG</span>
+          <span style="background:rgba(245,158,11,0.15);color:var(--warning);">奇幻</span>
+        </div>
+      </div>
+    </div>
+    <div class="template-card">
+      <div class="cover" style="background:linear-gradient(135deg,#1a3c34,#2d6b56);">🏔️</div>
+      <div class="info">
+        <h4>仙侠修真</h4>
+        <div class="world">九州大陆</div>
+        <div class="tags">
+          <span style="background:rgba(34,197,94,0.15);color:var(--success);">叙事聚焦</span>
+          <span style="background:rgba(139,92,246,0.15);color:#a78bfa;">修真</span>
+        </div>
+      </div>
+    </div>
+    <div class="template-card">
+      <div class="cover" style="background:linear-gradient(135deg,#2d1b4e,#5b3a8c);">🌃</div>
+      <div class="info">
+        <h4>赛博朋克佣兵</h4>
+        <div class="world">新东京 2087</div>
+        <div class="tags">
+          <span style="background:rgba(236,72,153,0.15);color:var(--pink);">动态战斗</span>
+          <span style="background:rgba(6,182,212,0.15);color:var(--cyan);">科幻</span>
+        </div>
+      </div>
+    </div>
+    <div class="template-card">
+      <div class="cover" style="background:linear-gradient(135deg,#1a1a2e,#3d3d5c);">👁️</div>
+      <div class="info">
+        <h4>克苏鲁恐怖调查</h4>
+        <div class="world">阿卡姆镇 1920s</div>
+        <div class="tags">
+          <span style="background:rgba(139,92,246,0.15);color:#a78bfa;">文字冒险</span>
+          <span style="background:rgba(239,68,68,0.15);color:var(--danger);">恐怖</span>
+        </div>
+      </div>
+    </div>
+    <div class="template-card">
+      <div class="cover" style="background:linear-gradient(135deg,#4a1942,#8b3a7f);">💕</div>
+      <div class="info">
+        <h4>现代都市恋爱</h4>
+        <div class="world">星城</div>
+        <div class="tags">
+          <span style="background:rgba(236,72,153,0.15);color:var(--pink);">视觉小说</span>
+          <span style="background:rgba(249,115,22,0.15);color:var(--orange);">恋爱</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LLM Providers -->
+<section class="section">
+  <div class="section-header">
+    <div class="tag">多模型支持</div>
+    <h2>12个LLM提供商适配</h2>
+    <p>支持国内外主流大模型，多Key轮询，智能重试，自由切换</p>
+  </div>
+
+  <div class="provider-grid">
+    <div class="provider-item"><div class="provider-icon">🟢</div>OpenAI</div>
+    <div class="provider-item"><div class="provider-icon">🟣</div>Anthropic</div>
+    <div class="provider-item"><div class="provider-icon">🔵</div>DeepSeek</div>
+    <div class="provider-item"><div class="provider-icon">🟡</div>Google Gemini</div>
+    <div class="provider-item"><div class="provider-icon">🔴</div>GLM 智谱</div>
+    <div class="provider-item"><div class="provider-icon">🟠</div>Qwen 通义</div>
+    <div class="provider-item"><div class="provider-icon">🌙</div>Kimi 月之暗面</div>
+    <div class="provider-item"><div class="provider-icon">🔷</div>Ernie 文心</div>
+    <div class="provider-item"><div class="provider-icon">💧</div>SiliconFlow</div>
+    <div class="provider-item"><div class="provider-icon">⭐</div>Spark 讯飞</div>
+    <div class="provider-item"><div class="provider-icon">🔗</div>OpenAI兼容</div>
+    <div class="provider-item"><div class="provider-icon">⚙️</div>Custom</div>
+  </div>
+</section>
+
+<!-- Code Stats -->
+<section class="section">
+  <div class="section-header">
+    <div class="tag">项目规模</div>
+    <h2>全栈 TypeScript Monorepo</h2>
+    <p>前后端类型共享，持续演进的全栈架构</p>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-number">410+</div>
+      <div class="stat-label">TypeScript 源文件</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">16</div>
+      <div class="stat-label">游戏业务领域</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">20+</div>
+      <div class="stat-label">Zustand Store</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">17</div>
+      <div class="stat-label">预设角色</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">11</div>
+      <div class="stat-label">提示词构建层</div>
+    </div>
+  </div>
+</section>
+
+<!-- Roadmap -->
+<section class="section">
+  <div class="section-header">
+    <div class="tag">开发路线</div>
+    <h2>已完成与未来计划</h2>
+    <p>从零到可运行的游戏引擎，3个月持续迭代</p>
+  </div>
+
+  <div class="roadmap">
+    <div class="roadmap-item done">
+      <h4>阶段一~三：核心引擎 ✅</h4>
+      <p>Agent系统（ReAct推理、多Agent协作、工具注册）、游戏系统（16个业务领域、Service+ServiceTool+Types三元组）、Entity Graph知识图谱、模板系统、数据库架构</p>
+    </div>
+    <div class="roadmap-item done">
+      <h4>阶段四：前端UI ✅</h4>
+      <p>57个任务全部完成——游戏主界面、对话/战斗/地图/背包/技能/任务面板、模板编辑器（12个子编辑器）、Agent配置管理、WebSocket实时通信、交互式地图可视化</p>
+    </div>
+    <div class="roadmap-item done">
+      <h4>深度重构与优化 ✅</h4>
+      <p>Prompt分层重构（27个prompt三明治结构）、上下文注入修复（9层PromptModule管线）、故事驱动升级（Pre-react/React/Post-react三阶段）、节奏引擎、上下文压缩、智能重试</p>
+    </div>
+    <div class="roadmap-item done">
+      <h4>WebSocket统一链路 ✅</h4>
+      <p>HTTP→WebSocket单通道迁移、Action三层路由、统一进度事件（agent_progress）、树形进度组件、前端状态机管理</p>
+    </div>
+    <div class="roadmap-item current">
+      <h4>条件与公式引擎 🔄</h4>
+      <p>条件表达式运行时求值器（hasItem/hasSkill/hasQuest）、派生属性公式引擎、替代硬编码数值计算——让游戏规则可配置而非写死在代码里</p>
+    </div>
+    <div class="roadmap-item">
+      <h4>Visual Generator 图片生成 📋</h4>
+      <p>独立微服务架构、多Provider适配（OpenAI/Gemini/Kling）、风格预设系统、素材注册与存储、前端素材加载、Entity Graph图片URL回填</p>
+    </div>
+    <div class="roadmap-item">
+      <h4>LLM实时地图 v2.0 📋</h4>
+      <p>Grid瓦片地图模式、TileMapService/ATLParser、地图预判生成——玩家探索到边界时，Agent已提前生成下一区域，实现无缝大地图体验</p>
+    </div>
+    <div class="roadmap-item">
+      <h4>背包/装备链路升级 📋</h4>
+      <p>拖拽装备、物品排序、装备比较、物品合成、装备强化、套装效果、物品鉴定</p>
+    </div>
+    <div class="roadmap-item">
+      <h4>Combat 设计升级 📋</h4>
+      <p>支持多种战斗模式和玩法——不只是回合制，还有动态战斗、实时策略等模式，由模板配置驱动</p>
+    </div>
+    <div class="roadmap-item">
+      <h4>世界编辑器 📋</h4>
+      <p>模板编辑器升级为世界编辑器，融合大纲生成功能，为故事内核提供支持——从"填表配参数"到"构建一个活的世界"</p>
+    </div>
+    <div class="roadmap-item">
+      <h4>GameMaster 生态构建 📋</h4>
+      <p>初始化时由GameMasterAgent构建生态、社会、文化——NPC不只是数据，而是有社会关系网、经济活动、文化背景的"活人"</p>
+    </div>
+    <div class="roadmap-item">
+      <h4>📖 小说即游戏 🔮</h4>
+      <p>识别分析小说中的世界规则，自动构建游戏世界——把《冰与火之歌》丢进去，维斯特洛大陆就是你的RPG沙盒</p>
+    </div>
+  </div>
+</section>
+
+<!-- Value -->
+<section class="section">
+  <div class="section-header">
+    <div class="tag">价值与意义</div>
+    <h2>不只是游戏引擎</h2>
+  </div>
+
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="icon-wrap" style="background:rgba(99,102,241,0.12);">💰</div>
+      <h3>商业价值</h3>
+      <p>游戏即服务（GaaS）模式——模板市场+AI推理付费。用户可创建和分享游戏模板，5大内置模板已验证跨题材可行性。每个模板定义完整RPG世界规则，AI推理按调用计费。</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon-wrap" style="background:rgba(34,197,94,0.12);">🚀</div>
+      <h3>效率提升</h3>
+      <p>将"开发一个RPG"的门槛从"编程+美术+策划"降低到"填写YAML配置"。模板编辑器12个子编辑器+LLM辅助批量生成，无需写代码即可创造完整RPG世界。</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon-wrap" style="background:rgba(6,182,212,0.12);">🔬</div>
+      <h3>技术意义</h3>
+      <p>验证了可复用的多Agent协作架构——YAML配置驱动、ReAct推理、Entity Graph、分层提示词、工具权限控制、信息边界。不限于RPG，可扩展到任何多Agent协作场景。</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<div class="footer">
+  <p>AGG — 多智能体生成式自定义RPG游戏引擎</p>
+  <p style="margin-top:8px;">用 <span class="heart">❤</span> 和 TRAE 构建</p>
+</div>
+
+</body>
+</html>
